@@ -1,50 +1,54 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>حسابي — بوابة المتدرب</title>
+<title>My account — Trainee portal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
 <style>
 .side .foot a{padding-inline:0}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-.rec{display:grid;grid-template-columns:11rem minmax(0,46rem);gap:var(--s-64);align-items:start}
+.rec{display:grid;grid-template-columns:12rem minmax(0,46rem);gap:var(--s-64);align-items:start}
 .toc{position:sticky;top:var(--s-24)}
-.toc ol{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
-.toc a{display:flex;align-items:center;min-height:var(--s-48);font-size:var(--fs-14);color:var(--ink-2);text-decoration:none;border-bottom:1.5px dashed var(--card-edge)}
+.toc ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-strong)}
+.toc a{display:flex;align-items:center;min-height:var(--s-48);font-family:var(--font-head);font-size:var(--fs-14);color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--card-edge)}
 .toc a:hover{color:var(--ink)}
-.toc a[aria-current]{color:var(--ink);font-weight:700}
+.toc a[aria-current]{color:var(--ink);font-weight:600}
 .rec section{scroll-margin-top:var(--s-24)}
 .rec h2{margin-bottom:var(--s-4)}
 .lead{font-size:var(--fs-14);color:var(--ink-2);max-width:60ch;margin:0 0 var(--s-16)}
-.dl{border-top:2px solid var(--ink)}
+.dl{border-top:1px solid var(--line-strong)}
+.dl>div{border-bottom:1px solid var(--card-edge)}
 .dl>div.open{align-items:start}
 .dl dd small{display:block;font-size:var(--fs-13);font-weight:400;color:var(--ink-2);line-height:1.7;max-width:52ch}
+.dl dd.val{overflow-wrap:anywhere}
 .dl .ed,.dl .sent{grid-column:2/-1;font-weight:400}
 .ed form{display:grid;gap:var(--s-16);max-width:26rem}
-.ed .otp{justify-content:flex-end}
+.ed .otp{justify-content:flex-start}
 .ed p,.sent p{font-size:var(--fs-14);margin:0}
 .ed .notice{display:block}
 .ed .notice form{max-width:none}
 .ed ul{margin:0;padding-inline-start:var(--s-24);font-size:var(--fs-14);display:grid;gap:var(--s-4)}
 .sent p{color:var(--ink-2);margin-top:var(--s-8);max-width:52ch}
 .chk{display:inline-flex;align-items:center;gap:var(--s-8);min-height:var(--s-48);font-size:var(--fs-14);cursor:pointer}
-.chk input{width:var(--s-24);height:var(--s-24);margin:0;accent-color:var(--ribbon);flex:none}
+.chk input{width:var(--s-24);height:var(--s-24);margin:0;accent-color:var(--accent-hi);flex:none}
 .field .chk{font-size:var(--fs-14);font-weight:400;color:var(--ink)}
 .chk.long{align-items:flex-start;padding-block:var(--s-8)}
 .opts{display:flex;gap:var(--s-4) var(--s-24);flex-wrap:wrap}
-.notif{border-top:2px solid var(--ink);margin-top:var(--s-24)}
-.notif>div{display:grid;grid-template-columns:1fr auto;gap:var(--s-4) var(--s-24);align-items:center;padding:var(--s-8) 0;border-bottom:1.5px dashed var(--card-edge)}
+.notif{border-top:1px solid var(--line-strong);margin-top:var(--s-24)}
+.notif>div{display:grid;grid-template-columns:1fr auto;gap:var(--s-4) var(--s-24);align-items:center;padding:var(--s-8) 0;border-bottom:1px solid var(--card-edge)}
 .notif b{display:block;font-weight:500}
 .notif span.d{display:block;font-size:var(--fs-13);color:var(--ink-2)}
 .fixed{font-size:var(--fs-14);color:var(--ink-2);margin:var(--s-16) 0 0;max-width:60ch}
 .scroll-x{position:relative}
-.pay{min-width:38rem}
+.pay{min-width:40rem}
 .pay td small{display:block;font-size:var(--fs-12);color:var(--ink-2)}
 .pay td:last-child,.pay td.num{white-space:nowrap}
+.pay .num{font-variant-numeric:tabular-nums}
 .synthetic{margin:var(--s-48) 0 0}
 @media (max-width:900px){
   .rec{grid-template-columns:minmax(0,1fr);gap:var(--s-32)}
@@ -57,119 +61,119 @@
 </head>
 <body class="desk">
 <div class="shell">
-  <nav class="side" aria-label="بوابتي">
-    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>بوابتي</span></div>
-    <a href="05-my-cohorts.html">دفعاتي</a>
-    <a href="13-course.html">صفّي</a>
-    <a href="06-my-certificate.html">شهاداتي</a>
-    <a href="20-account.html" aria-current="page">حسابي</a>
-    <div class="foot">نورة الصباح<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  <nav class="side" aria-label="My portal">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>My portal</span></div>
+    <a href="05-my-cohorts.html">My cohorts</a>
+    <a href="13-course.html">My classroom</a>
+    <a href="06-my-certificate.html">My certificates</a>
+    <a href="20-account.html" aria-current="page">My account</a>
+    <div class="foot">Noura Al-Sabah<br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
   </nav>
   <main class="work">
     <div class="sheet">
       <header class="top">
-        <div><h1>حسابي</h1><div class="crumb">نورة الصباح · وزارة التخطيط · متدربة منذ مارس 2026</div></div>
-        <a class="btn sec sm" href="17-login.html">خروج</a>
+        <div><h1>My account</h1><div class="crumb">Noura Al-Sabah · Ministry of Planning · Trainee since March 2026</div></div>
+        <a class="btn sec sm" href="17-login.html">Sign out</a>
       </header>
 
       <div class="rec">
-        <nav class="toc" aria-label="أقسام حسابي">
+        <nav class="toc" aria-label="Account sections">
           <ol>
-            <li><a href="#me">بياناتي</a></li>
-            <li><a href="#sec">الدخول والأمان</a></li>
-            <li><a href="#msg">اللغة والتنبيهات</a></li>
-            <li><a href="#pay">مدفوعاتي وإيصالاتي</a></li>
-            <li><a href="#priv">بياناتي وخصوصيتي</a></li>
+            <li><a href="#me">My details</a></li>
+            <li><a href="#sec">Sign-in and security</a></li>
+            <li><a href="#msg">Language and notifications</a></li>
+            <li><a href="#pay">Payments and receipts</a></li>
+            <li><a href="#priv">Data and privacy</a></li>
           </ol>
         </nav>
 
         <div>
           <section id="me" aria-labelledby="h-me">
-            <h2 id="h-me">بياناتي</h2>
-            <p class="lead">اسمك هنا هو ما يُكتب في شهادتك. تغيير الجوال أو البريد لا يُعتمد إلا بعد رمز تحقق يصلك على الجديد.</p>
+            <h2 id="h-me">My details</h2>
+            <p class="lead">Your name here is the name printed on your certificate. A new mobile number or email takes effect only after you enter a verification code sent to it.</p>
             <dl class="dl">
               <div data-row="name">
-                <dt>الاسم</dt>
-                <dd class="val" id="v-name">نورة الصباح</dd>
-                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">تعديل<span class="vh"> الاسم</span></button></dd>
+                <dt>Name</dt>
+                <dd class="val" id="v-name">Noura Al-Sabah</dd>
+                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">Edit<span class="vh"> name</span></button></dd>
                 <dd class="ed" hidden>
                   <form novalidate data-step="save">
-                    <div class="field"><label for="i-name">الاسم كما يُكتب في الشهادة</label><input id="i-name" value="نورة الصباح" autocomplete="name"><span class="msg" hidden></span></div>
-                    <div class="row"><button class="btn sm" type="submit">حفظ</button><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                    <div class="field"><label for="i-name">Name as it appears on the certificate</label><input id="i-name" value="Noura Al-Sabah" autocomplete="name"><span class="msg" hidden></span></div>
+                    <div class="row"><button class="btn sm" type="submit">Save</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                   </form>
                 </dd>
               </div>
               <div data-row="tel">
-                <dt>الجوال</dt>
-                <dd class="val"><bdi id="v-tel">+965 5000 0142</bdi></dd>
-                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">تعديل<span class="vh"> الجوال</span></button></dd>
+                <dt>Mobile</dt>
+                <dd class="val"><span id="v-tel">+965 5000 0142</span></dd>
+                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">Edit<span class="vh"> mobile</span></button></dd>
                 <dd class="ed" hidden>
                   <form novalidate data-step="ask">
-                    <div class="field"><label for="i-tel">رقم الجوال الجديد</label><input id="i-tel" dir="ltr" inputmode="tel" autocomplete="tel" value="+965 "><span class="hint">نرسل إليه رمزاً من 4 أرقام في رسالة نصية.</span><span class="msg" hidden></span></div>
-                    <div class="row"><button class="btn sm" type="submit">إرسال رمز التحقق</button><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                    <div class="field"><label for="i-tel">New mobile number</label><input id="i-tel" inputmode="tel" autocomplete="tel" value="+965 "><span class="hint">We will send a 4-digit code to it by text message.</span><span class="msg" hidden></span></div>
+                    <div class="row"><button class="btn sm" type="submit">Send verification code</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                   </form>
                   <form novalidate data-step="code" hidden>
-                    <p>أرسلنا الرمز إلى <bdi data-to></bdi>. رقمك الحالي يبقى كما هو حتى تُدخلي الرمز.</p>
-                    <div class="field"><span class="vh" id="l-tel">رمز التحقق</span>
-                      <div class="otp" role="group" aria-labelledby="l-tel"><input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="الخانة 1"><input inputmode="numeric" maxlength="1" aria-label="الخانة 2"><input inputmode="numeric" maxlength="1" aria-label="الخانة 3"><input inputmode="numeric" maxlength="1" aria-label="الخانة 4"></div>
-                      <span class="hint">في هذا العرض الرمز 1234.</span><span class="msg" hidden></span></div>
-                    <div class="row"><button class="btn sm" type="submit">تأكيد الرمز</button><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                    <p>We sent the code to <span data-to></span>. Your current number stays as it is until you enter the code.</p>
+                    <div class="field"><span class="vh" id="l-tel">Verification code</span>
+                      <div class="otp" role="group" aria-labelledby="l-tel"><input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="Digit 1"><input inputmode="numeric" maxlength="1" aria-label="Digit 2"><input inputmode="numeric" maxlength="1" aria-label="Digit 3"><input inputmode="numeric" maxlength="1" aria-label="Digit 4"></div>
+                      <span class="hint">In this demo the code is 1234.</span><span class="msg" hidden></span></div>
+                    <div class="row"><button class="btn sm" type="submit">Confirm code</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                   </form>
                 </dd>
               </div>
               <div data-row="email">
-                <dt>البريد</dt>
-                <dd class="val"><bdi id="v-email">noura.alsabah@example.com</bdi></dd>
-                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">تعديل<span class="vh"> البريد</span></button></dd>
+                <dt>Email</dt>
+                <dd class="val"><span id="v-email">noura.alsabah@example.com</span></dd>
+                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">Edit<span class="vh"> email</span></button></dd>
                 <dd class="ed" hidden>
                   <form novalidate data-step="ask">
-                    <div class="field"><label for="i-email">البريد الجديد</label><input id="i-email" type="email" dir="ltr" autocomplete="email" placeholder="name@example.com"><span class="hint">نرسل إليه رمزاً من 4 أرقام. به تدخلين وعليه تصلك الإيصالات والشهادات.</span><span class="msg" hidden></span></div>
-                    <div class="row"><button class="btn sm" type="submit">إرسال رمز التحقق</button><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                    <div class="field"><label for="i-email">New email</label><input id="i-email" type="email" autocomplete="email" placeholder="name@example.com"><span class="hint">We will send a 4-digit code to it. You sign in with this email, and your receipts and certificates are sent to it.</span><span class="msg" hidden></span></div>
+                    <div class="row"><button class="btn sm" type="submit">Send verification code</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                   </form>
                   <form novalidate data-step="code" hidden>
-                    <p>أرسلنا الرمز إلى <bdi data-to></bdi>. بريدك الحالي يبقى كما هو حتى تُدخلي الرمز.</p>
-                    <div class="field"><span class="vh" id="l-email">رمز التحقق</span>
-                      <div class="otp" role="group" aria-labelledby="l-email"><input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="الخانة 1"><input inputmode="numeric" maxlength="1" aria-label="الخانة 2"><input inputmode="numeric" maxlength="1" aria-label="الخانة 3"><input inputmode="numeric" maxlength="1" aria-label="الخانة 4"></div>
-                      <span class="hint">في هذا العرض الرمز 1234.</span><span class="msg" hidden></span></div>
-                    <div class="row"><button class="btn sm" type="submit">تأكيد الرمز</button><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                    <p>We sent the code to <span data-to></span>. Your current email stays as it is until you enter the code.</p>
+                    <div class="field"><span class="vh" id="l-email">Verification code</span>
+                      <div class="otp" role="group" aria-labelledby="l-email"><input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="Digit 1"><input inputmode="numeric" maxlength="1" aria-label="Digit 2"><input inputmode="numeric" maxlength="1" aria-label="Digit 3"><input inputmode="numeric" maxlength="1" aria-label="Digit 4"></div>
+                      <span class="hint">In this demo the code is 1234.</span><span class="msg" hidden></span></div>
+                    <div class="row"><button class="btn sm" type="submit">Confirm code</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                   </form>
                 </dd>
               </div>
               <div>
-                <dt>الجهة</dt>
-                <dd>وزارة التخطيط<small>لا تُعدَّل من هنا. الوزارة هي من أسندت إليك مقعدك وربطت حسابك بها، وعلى هذا الربط ترى حضورك وشهاداتك. إن انتقلتِ إلى جهة أخرى فراسلي الدكتورة لتفكّ الربط.</small></dd>
+                <dt>Organization</dt>
+                <dd>Ministry of Planning<small>This cannot be changed here. The ministry assigned you your seat and linked your account to it, and that link is what lets it see your attendance and certificates. If you move to another organization, write to Dr. Manal to have the link removed.</small></dd>
               </div>
             </dl>
           </section>
 
           <section id="sec" aria-labelledby="h-sec">
-            <h2 id="h-sec">الدخول والأمان</h2>
+            <h2 id="h-sec">Sign-in and security</h2>
             <dl class="dl">
               <div data-row="pwd">
-                <dt>كلمة المرور</dt>
-                <dd class="val" id="v-pwd">غُيّرت آخر مرة في 3 سبتمبر 2026</dd>
-                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">تغيير<span class="vh"> كلمة المرور</span></button></dd>
+                <dt>Password</dt>
+                <dd class="val" id="v-pwd">Last changed on 3 September 2026</dd>
+                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">Change<span class="vh"> password</span></button></dd>
                 <dd class="ed" hidden>
                   <form novalidate data-step="pwd">
-                    <div class="field"><label for="p-cur">كلمة المرور الحالية</label><input id="p-cur" type="password" dir="ltr" autocomplete="current-password"><span class="hint">في هذا العرض: <bdi>Noura2026</bdi></span><span class="msg" hidden></span></div>
-                    <div class="field"><label for="p-new">كلمة المرور الجديدة</label><input id="p-new" type="password" dir="ltr" autocomplete="new-password"><span class="hint">8 أحرف أو أكثر.</span><span class="msg" hidden></span></div>
-                    <div class="field"><label for="p-rep">أعيدي كتابة الجديدة</label><input id="p-rep" type="password" dir="ltr" autocomplete="new-password"><span class="msg" hidden></span></div>
-                    <div class="row"><button class="btn sm" type="submit">حفظ كلمة المرور</button><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                    <div class="field"><label for="p-cur">Current password</label><input id="p-cur" type="password" autocomplete="current-password"><span class="hint">In this demo: Noura2026</span><span class="msg" hidden></span></div>
+                    <div class="field"><label for="p-new">New password</label><input id="p-new" type="password" autocomplete="new-password"><span class="hint">8 characters or more.</span><span class="msg" hidden></span></div>
+                    <div class="field"><label for="p-rep">Repeat the new password</label><input id="p-rep" type="password" autocomplete="new-password"><span class="msg" hidden></span></div>
+                    <div class="row"><button class="btn sm" type="submit">Save password</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                   </form>
                 </dd>
               </div>
               <div>
-                <dt>آخر دخول</dt>
-                <dd>اليوم، الثلاثاء 15 ديسمبر 2026، الساعة 8:12 صباحاً<small>من جوال <bdi>iPhone</bdi> بمتصفح <bdi>Safari</bdi>، الكويت</small></dd>
+                <dt>Last sign-in</dt>
+                <dd>Today, Tuesday, 15 December 2026, at 8:12<small>From an iPhone using Safari, Kuwait</small></dd>
               </div>
               <div data-row="out">
-                <dt>الأجهزة الداخلة</dt>
-                <dd class="val">جهازان<small>هذا الجوال، وحاسوب دخلتِ منه في 12 ديسمبر</small></dd>
-                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">الخروج من كل الأجهزة</button></dd>
+                <dt>Signed-in devices</dt>
+                <dd class="val">2 devices<small>This phone, and a computer you signed in from on 12 December</small></dd>
+                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">Sign out of all devices</button></dd>
                 <dd class="ed" hidden>
                   <div class="notice">
-                    <p><b>تخرجين من الجهازين معاً؟</b> يُغلق حسابك على هذا الجوال وعلى الحاسوب، وتعودين إلى صفحة الدخول. كلمة المرور لا تتغير.</p>
-                    <div class="row"><a class="btn sm" href="17-login.html">تأكيد الخروج</a><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                    <p><b>Sign out of both devices?</b> Your account is closed on this phone and on the computer, and you return to the sign-in page. Your password does not change.</p>
+                    <div class="row"><a class="btn sm" href="17-login.html">Confirm sign-out</a><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                   </div>
                 </dd>
               </div>
@@ -177,90 +181,90 @@
           </section>
 
           <section id="msg" aria-labelledby="h-msg">
-            <h2 id="h-msg">اللغة والتنبيهات</h2>
-            <p class="lead">اختياراتك هنا تُحفظ فور تغييرها.</p>
+            <h2 id="h-msg">Language and notifications</h2>
+            <p class="lead">Your choices here are saved as soon as you change them.</p>
             <dl class="dl">
               <div>
-                <dt id="l-lang">لغة الواجهة والرسائل</dt>
+                <dt id="l-lang">Language of the portal and messages</dt>
                 <dd><div class="opts" role="radiogroup" aria-labelledby="l-lang">
-                  <label class="chk"><input type="radio" name="lang" value="ar" checked>العربية</label>
-                  <label class="chk"><input type="radio" name="lang" value="en"><bdi lang="en">English</bdi></label>
-                </div><small id="langnote" hidden>تظهر البوابة ورسائلها بالإنجليزية من دخولك القادم. مواد كل دفعة تبقى بلغة الدفعة.</small></dd>
+                  <label class="chk"><input type="radio" name="lang" value="en" checked>English</label>
+                  <label class="chk"><input type="radio" name="lang" value="ar">Arabic</label>
+                </div><small id="langnote" hidden>The portal and its messages will be in Arabic from your next sign-in. Each cohort's materials stay in the cohort's own language.</small></dd>
               </div>
             </dl>
             <div class="notif" id="notif">
-              <div role="group" aria-labelledby="n1"><div><b id="n1">تذكير قبل الجلسة</b><span class="d">قبل كل جلسة بيوم، بالموعد والقاعة</span></div><div class="opts"><label class="chk"><input type="checkbox" checked>البريد</label><label class="chk"><input type="checkbox" checked>رسالة نصية</label></div></div>
-              <div role="group" aria-labelledby="n2"><div><b id="n2">صدور الشهادة</b><span class="d">حين تُصدر الدكتورة شهادتك، مع رابطها</span></div><div class="opts"><label class="chk"><input type="checkbox" checked>البريد</label><label class="chk"><input type="checkbox">رسالة نصية</label></div></div>
-              <div role="group" aria-labelledby="n3"><div><b id="n3">تغيير موعد الدفعة</b><span class="d">إذا تغيّر تاريخ جلسة أو وقتها أو قاعتها</span></div><div class="opts"><label class="chk"><input type="checkbox" checked>البريد</label><label class="chk"><input type="checkbox" checked>رسالة نصية</label></div></div>
-              <div role="group" aria-labelledby="n4"><div><b id="n4">رسائل عن برامج جديدة</b><span class="d">حين يُفتح التسجيل في برنامج أو دفعة جديدة</span></div><div class="opts"><label class="chk"><input type="checkbox">البريد</label><label class="chk"><input type="checkbox">رسالة نصية</label></div></div>
+              <div role="group" aria-labelledby="n1"><div><b id="n1">Session reminder</b><span class="d">The day before each session, with the time and room</span></div><div class="opts"><label class="chk"><input type="checkbox" checked>Email</label><label class="chk"><input type="checkbox" checked>Text message</label></div></div>
+              <div role="group" aria-labelledby="n2"><div><b id="n2">Certificate issued</b><span class="d">When Dr. Manal issues your certificate, with a link to it</span></div><div class="opts"><label class="chk"><input type="checkbox" checked>Email</label><label class="chk"><input type="checkbox">Text message</label></div></div>
+              <div role="group" aria-labelledby="n3"><div><b id="n3">Cohort rescheduled</b><span class="d">If the date, time or room of a session changes</span></div><div class="opts"><label class="chk"><input type="checkbox" checked>Email</label><label class="chk"><input type="checkbox" checked>Text message</label></div></div>
+              <div role="group" aria-labelledby="n4"><div><b id="n4">News about new programs</b><span class="d">When registration opens for a new program or cohort</span></div><div class="opts"><label class="chk"><input type="checkbox">Email</label><label class="chk"><input type="checkbox">Text message</label></div></div>
             </div>
-            <p class="fixed">رسائل تسجيلك ومدفوعاتك، كتأكيد المقعد وإيصال الدفع والاسترجاع، تصلك دائماً ولا يمكن إيقافها.</p>
+            <p class="fixed">Messages about your registrations and payments, such as seat confirmations, payment receipts and refunds, are always sent and cannot be turned off.</p>
           </section>
 
           <section id="pay" aria-labelledby="h-pay">
-            <h2 id="h-pay">مدفوعاتي وإيصالاتي</h2>
-            <p class="lead">كل ما دفعتِه من هذا الحساب، الأحدث أولاً.</p>
+            <h2 id="h-pay">Payments and receipts</h2>
+            <p class="lead">Everything you have paid from this account, newest first.</p>
             <div class="scroll-x" tabindex="0" role="region" aria-labelledby="h-pay">
               <table class="t pay">
-                <thead><tr><th>التاريخ</th><th>البرنامج</th><th>المبلغ</th><th>الحالة</th><th>الإيصال</th></tr></thead>
+                <thead><tr><th>Date</th><th>Program</th><th>Amount</th><th>Status</th><th>Receipt</th></tr></thead>
                 <tbody>
-                  <tr><td class="num">6 ديسمبر 2026</td><td>استشراف المستقبل وبناء السيناريوهات</td><td class="num">180.000 د.ك</td><td><span class="stamp ok">مدفوعة</span></td><td><bdi class="num">R-2026-0318</bdi> <button class="rowlink" data-toast="نُزّل الإيصال R-2026-0318 ملف PDF">تنزيل<span class="vh"> الإيصال R-2026-0318</span></button></td></tr>
-                  <tr><td class="num">18 نوفمبر 2026</td><td>بناء القيادات والقدرات المؤسسية<small>ألغيتِ التسجيل، وطلب الاسترجاع عند الدكتورة</small></td><td class="num">320.000 د.ك</td><td><span class="stamp wait">بانتظار الاسترجاع</span></td><td><bdi class="num">R-2026-0291</bdi> <button class="rowlink" data-toast="نُزّل الإيصال R-2026-0291 ملف PDF">تنزيل<span class="vh"> الإيصال R-2026-0291</span></button></td></tr>
-                  <tr><td class="num">9 مارس 2026</td><td>ورش الاستراتيجية للقيادات التنفيذية<small>رُدّ المبلغ إلى بطاقتك في 16 مارس</small></td><td class="num">240.000 د.ك</td><td><span class="stamp off">مُستردة</span></td><td><bdi class="num">R-2026-0057</bdi> <button class="rowlink" data-toast="نُزّل الإيصال R-2026-0057 ملف PDF">تنزيل<span class="vh"> الإيصال R-2026-0057</span></button></td></tr>
+                  <tr><td class="num">6 Dec 2026</td><td>Foresight &amp; Futures Thinking</td><td class="num">KWD 180.000</td><td><span class="stamp ok">Paid</span></td><td><span class="num">R-2026-0318</span> <button class="rowlink" data-toast="Receipt R-2026-0318 downloaded as a PDF">Download<span class="vh"> receipt R-2026-0318</span></button></td></tr>
+                  <tr><td class="num">18 Nov 2026</td><td>Leadership &amp; Capability Building<small>You cancelled the registration, and the refund request is with Dr. Manal</small></td><td class="num">KWD 320.000</td><td><span class="stamp wait">Refund pending</span></td><td><span class="num">R-2026-0291</span> <button class="rowlink" data-toast="Receipt R-2026-0291 downloaded as a PDF">Download<span class="vh"> receipt R-2026-0291</span></button></td></tr>
+                  <tr><td class="num">9 Mar 2026</td><td>Executive Strategy Workshops<small>The amount was returned to your card on 16 March</small></td><td class="num">KWD 240.000</td><td><span class="stamp off">Refunded</span></td><td><span class="num">R-2026-0057</span> <button class="rowlink" data-toast="Receipt R-2026-0057 downloaded as a PDF">Download<span class="vh"> receipt R-2026-0057</span></button></td></tr>
                 </tbody>
               </table>
             </div>
-            <p class="fixed">الدفع يتم عبر KNET. بيانات بطاقتك لا تمرّ بنا ولا نحفظ منها شيئاً.</p>
+            <p class="fixed">Payments are made through KNET. Your card details never pass through us, and we store none of them.</p>
           </section>
 
           <section id="priv" aria-labelledby="h-priv">
-            <h2 id="h-priv">بياناتي وخصوصيتي</h2>
+            <h2 id="h-priv">Data and privacy</h2>
             <dl class="dl">
               <div>
-                <dt>ما نحفظه عنك</dt>
-                <dd>اسمك وجوالك وبريدك وجهتك<small>ومعها تسجيلاتك ومدفوعاتك، حضورك وغيابك، نتائج اختباراتك، وشهاداتك. إجاباتك في الاستبيان تُحفظ بلا اسمك.</small></dd>
+                <dt>What we keep about you</dt>
+                <dd>Your name, mobile, email and organization<small>Along with your registrations and payments, your attendance record, your exam results and your certificates. Your survey answers are stored without your name.</small></dd>
               </div>
               <div>
-                <dt>الدكتورة</dt>
-                <dd>ترى كل ما في حسابك<small>لأنها من تدير الدفعات وتُصدر الشهادات. الاستبيان يصلها بلا اسمك.</small></dd>
+                <dt>Dr. Manal</dt>
+                <dd>Sees everything in your account<small>Because she runs the cohorts and issues the certificates. Survey answers reach her without your name.</small></dd>
               </div>
               <div>
-                <dt>وزارة التخطيط</dt>
-                <dd>ترى حضورك وغيابك وشهاداتك فقط<small>لا ترى نتائج اختباراتك ولا مدفوعاتك ولا إجاباتك في الاستبيان.</small></dd>
+                <dt>Ministry of Planning</dt>
+                <dd>Sees only your attendance and certificates<small>It does not see your exam results, your payments or your survey answers.</small></dd>
               </div>
               <div>
-                <dt>نسخة من بياناتك</dt>
-                <dd>ملف واحد فيه كل ما سبق</dd>
-                <dd><button class="lbtn" data-toast="جُهّزت نسخة بياناتك ونُزّلت ملفاً واحداً">تنزيل نسخة من بياناتي</button></dd>
+                <dt>A copy of your data</dt>
+                <dd>One file with everything listed above</dd>
+                <dd><button class="lbtn" data-toast="Your data copy is ready and has been downloaded as one file">Download a copy of my data</button></dd>
               </div>
               <div data-row="del">
-                <dt>حذف بياناتك</dt>
-                <dd class="val">تطلبينه هنا وتنفّذه الدكتورة</dd>
-                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">طلب حذف بياناتي</button></dd>
+                <dt>Delete your data</dt>
+                <dd class="val">You request it here, and Dr. Manal carries it out</dd>
+                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">Request deletion of my data</button></dd>
                 <dd class="ed" hidden>
                   <div class="notice">
                     <form novalidate data-step="del">
-                      <p><b>هذا ما يحدث إذا أرسلتِ الطلب:</b></p>
+                      <p><b>This is what happens if you send the request:</b></p>
                       <ul>
-                        <li>يصل الطلب إلى الدكتورة، وهي من تنفّذه. حسابك يعمل كما هو حتى ذلك الحين.</li>
-                        <li>عند التنفيذ يُمحى اسمك وجوالك وبريدك ويُغلق حسابك، فلا تدخلين به بعدها.</li>
-                        <li>أرقام شهاداتك تبقى صالحة للتحقق، لكن بلا اسمك.</li>
-                        <li>تقارير وزارة التخطيط السابقة تُظهر مكانك «متدرب محذوف».</li>
-                        <li>بعد التنفيذ لا يمكن استعادة شيء.</li>
+                        <li>The request goes to Dr. Manal, who carries it out. Until then your account works as usual.</li>
+                        <li>When it is carried out, your name, mobile and email are erased and your account is closed, so you can no longer sign in with it.</li>
+                        <li>Your certificate numbers remain valid for verification, but without your name.</li>
+                        <li>Earlier Ministry of Planning reports show “Removed trainee” in your place.</li>
+                        <li>Once it is carried out, nothing can be restored.</li>
                       </ul>
-                      <div class="field"><label class="chk long"><input type="checkbox" id="delok" aria-describedby="delmsg">قرأتُ ما سبق، وأعرف أن الحذف بعد تنفيذه لا يمكن التراجع عنه.</label><span class="msg" id="delmsg" hidden>أشّري على هذا الإقرار أولاً؛ الطلب لا يُرسل بدونه.</span></div>
-                      <div class="row"><button class="btn sm" type="submit">إرسال الطلب</button><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                      <div class="field"><label class="chk long"><input type="checkbox" id="delok" aria-describedby="delmsg">I have read the points above, and I understand that deletion cannot be undone once it is carried out.</label><span class="msg" id="delmsg" hidden>Tick this confirmation first. The request cannot be sent without it.</span></div>
+                      <div class="row"><button class="btn sm" type="submit">Send request</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                     </form>
                   </div>
                 </dd>
                 <dd class="sent" id="delsent" hidden>
-                  <span class="stamp wait" id="delstamp">طلب الحذف بانتظار الدكتورة</span>
-                  <p>أُرسل طلبك اليوم. حسابك يعمل كما هو حتى تنفّذه الدكتورة، ويصلك بريد عند التنفيذ. ما دام الطلب لم يُنفَّذ فلك أن تسحبيه.</p>
-                  <button class="lbtn" id="delundo">تراجع عن الطلب</button>
+                  <span class="stamp wait" id="delstamp">Deletion request with Dr. Manal</span>
+                  <p>Your request was sent today. Your account works as usual until Dr. Manal carries it out, and you will get an email when she does. Until then you can withdraw the request.</p>
+                  <button class="lbtn" id="delundo">Withdraw request</button>
                 </dd>
               </div>
             </dl>
-            <p class="synthetic">الأسماء والتواريخ والمبالغ تجريبية. <a href="index.html">خريطة الشاشات</a></p>
+            <p class="synthetic">Names, dates and amounts are sample data. <a href="index.html">Screen map</a></p>
           </section>
         </div>
       </div>
@@ -290,41 +294,41 @@ $$('[data-cancel]').forEach(b=>b.addEventListener('click',()=>openRow(b.closest(
 
 const check={
   tel(inp){let d=inp.value.replace(/\D/g,'');if(d.startsWith('965'))d=d.slice(3);
-    if(!/^[569]\d{7}$/.test(d))return bad(inp,'اكتبي رقم جوال كويتياً من 8 أرقام بعد <bdi>+965</bdi>.')?'':'';
-    const v=`+965 ${d.slice(0,4)} ${d.slice(4)}`;if(v===CUR.tel){bad(inp,'هذا رقمك الحالي. اكتبي الرقم الجديد.');return ''}bad(inp,'');return v},
+    if(!/^[569]\d{7}$/.test(d))return bad(inp,'Enter a Kuwaiti mobile number: 8 digits after +965.')?'':'';
+    const v=`+965 ${d.slice(0,4)} ${d.slice(4)}`;if(v===CUR.tel){bad(inp,'This is your current number. Enter the new one.');return ''}bad(inp,'');return v},
   email(inp){const v=inp.value.trim().toLowerCase();
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){bad(inp,'اكتبي البريد كاملاً، مثل <bdi>name@example.com</bdi>.');return ''}
-    if(v===CUR.email){bad(inp,'هذا بريدك الحالي. اكتبي البريد الجديد.');return ''}bad(inp,'');return v}
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){bad(inp,'Enter the full email address, for example name@example.com.');return ''}
+    if(v===CUR.email){bad(inp,'This is your current email. Enter the new one.');return ''}bad(inp,'');return v}
 };
 document.addEventListener('submit',e=>{
   const f=e.target,row=f.closest('[data-row]');if(!row)return;e.preventDefault();
   const kind=row.dataset.row,s=f.dataset.step;
   if(s==='save'){const i=$('i-name'),v=i.value.trim().replace(/\s+/g,' ');
-    if(bad(i,v.length<3?'اكتبي اسمك الكامل كما تريدينه في الشهادة.':'')){i.focus();return}
-    $('v-name').textContent=v;i.defaultValue=v;openRow(row,false);ttToast('حُفظ اسمك');}
+    if(bad(i,v.length<3?'Enter your full name as you want it on the certificate.':'')){i.focus();return}
+    $('v-name').textContent=v;i.defaultValue=v;openRow(row,false);ttToast('Your name has been saved');}
   if(s==='ask'){const i=f.querySelector('input'),v=check[kind](i);if(!v){i.focus();return}
     pending=v;step(row,'code');row.querySelector('[data-to]').textContent=v;row.querySelector('.otp input').focus();
-    ttToast(kind==='tel'?'أُرسل الرمز في رسالة نصية':'أُرسل الرمز إلى البريد الجديد');}
+    ttToast(kind==='tel'?'Code sent by text message':'Code sent to the new email');}
   if(s==='code'){const ins=$$('.otp input',f),code=ins.map(x=>x.value).join('');
-    if(bad(ins[0],code.length<4?'أدخلي الأرقام الأربعة كلها.':code!=='1234'?'الرمز غير صحيح. راجعي الرسالة وأعيدي إدخاله؛ لم يتغير شيء في حسابك.':'')){ins.forEach(x=>x.value='');ins[0].focus();return}
-    CUR[kind]=pending;$('v-'+kind).textContent=pending;openRow(row,false);ttToast(kind==='tel'?'تحقّقنا من الرقم وصار جوالك الجديد':'تحقّقنا من البريد وصار بريدك الجديد');}
+    if(bad(ins[0],code.length<4?'Enter all four digits.':code!=='1234'?'That code is not correct. Check the message and enter it again. Nothing in your account has changed.':'')){ins.forEach(x=>x.value='');ins[0].focus();return}
+    CUR[kind]=pending;$('v-'+kind).textContent=pending;openRow(row,false);ttToast(kind==='tel'?'Number verified. It is now your mobile number':'Email verified. It is now your email');}
   if(s==='pwd'){const c=$('p-cur'),n=$('p-new'),r=$('p-rep');
-    const e1=bad(c,!c.value?'اكتبي كلمة المرور الحالية.':c.value!==CUR.pwd?'كلمة المرور الحالية غير صحيحة. أعيدي كتابتها؛ وإن نسيتِها فاخرجي واطلبي كلمة جديدة من صفحة الدخول.':'');
-    const e2=bad(n,n.value.length<8?'كلمة المرور الجديدة أقصر من 8 أحرف. زيديها.':n.value===c.value?'الجديدة مطابقة للحالية. اختاري كلمة مختلفة.':'');
-    const e3=bad(r,r.value!==n.value?'الإعادة لا تطابق كلمة المرور الجديدة. اكتبيها مرة أخرى.':'');
+    const e1=bad(c,!c.value?'Enter your current password.':c.value!==CUR.pwd?'The current password is not correct. Enter it again. If you have forgotten it, sign out and request a new one from the sign-in page.':'');
+    const e2=bad(n,n.value.length<8?'The new password is shorter than 8 characters. Make it longer.':n.value===c.value?'The new password is the same as the current one. Choose a different one.':'');
+    const e3=bad(r,r.value!==n.value?'This does not match the new password. Enter it again.':'');
     if(e1||e2||e3){(e1?c:e2?n:r).focus();return}
-    CUR.pwd=n.value;$('v-pwd').textContent='غُيّرت اليوم، 15 ديسمبر 2026';f.querySelector('.hint').hidden=true;openRow(row,false);ttToast('تغيّرت كلمة المرور. الأجهزة الأخرى تبقى داخلة');}
+    CUR.pwd=n.value;$('v-pwd').textContent='Changed today, 15 December 2026';f.querySelector('.hint').hidden=true;openRow(row,false);ttToast('Password changed. Your other devices stay signed in');}
   if(s==='del'){const k=$('delok');if(bad(k,k.checked?'':$('delmsg').innerHTML)){k.focus();return}
     openRow(row,false,true);$$('.val,.act',row).forEach(x=>x.hidden=true);
     $('delsent').hidden=false;const st=$('delstamp');st.classList.remove('press');void st.offsetWidth;st.classList.add('press');
-    $('delundo').focus();ttToast('أُرسل طلب الحذف إلى الدكتورة');}
+    $('delundo').focus();ttToast('Deletion request sent to Dr. Manal');}
 });
 $('delundo').addEventListener('click',()=>{const row=$('delsent').closest('[data-row]');$('delsent').hidden=true;
-  $$('.val,.act',row).forEach(x=>x.hidden=false);row.querySelector('[data-edit]').focus();ttToast('سُحب طلب الحذف، وحسابك كما كان');});
+  $$('.val,.act',row).forEach(x=>x.hidden=false);row.querySelector('[data-edit]').focus();ttToast('Deletion request withdrawn. Your account is unchanged');});
 
-$$('input[name=lang]').forEach(r=>r.addEventListener('change',()=>{$('langnote').hidden=r.value!=='en';ttToast(r.value==='en'?'حُفظت اللغة: الإنجليزية':'حُفظت اللغة: العربية')}));
+$$('input[name=lang]').forEach(r=>r.addEventListener('change',()=>{$('langnote').hidden=r.value!=='ar';ttToast(r.value==='ar'?'Language saved: Arabic':'Language saved: English')}));
 $('notif').addEventListener('change',e=>{const g=e.target.closest('[role=group]'),name=g.querySelector('b').textContent,on=$$('input',g).filter(i=>i.checked).length;
-  ttToast(on?`حُفظ: ${name}`:`حُفظ: لن يصلك «${name}»`)});
+  ttToast(on?`Saved: ${name}`:`Saved: “${name}” is turned off`)});
 
 const links=$$('.toc a'),secs=links.map(a=>document.querySelector(a.getAttribute('href')));
 const mark=id=>links.forEach(a=>a.getAttribute('href')==='#'+id?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current'));

@@ -1,29 +1,29 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>خريطة الشاشات — Think Tank</title>
+<title>Screen map — Think Tank Strategists</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
 <style>
 .head{display:grid;grid-template-columns:auto 1fr;gap:var(--s-32);align-items:center;padding-block:var(--s-48) var(--s-32)}
 .head img{height:84px}
-.head p{color:var(--cream-2);max-width:60ch;margin:var(--s-8) 0 0;font-weight:300}
+.head p{color:var(--cream-2);max-width:60ch;margin:var(--s-8) 0 0}
 .route{padding:var(--s-32) var(--s-48);margin-bottom:var(--s-96)}
-.route h2{font-size:var(--fs-28);margin:var(--s-48) 0 var(--s-8);padding-bottom:var(--s-8);border-bottom:2px solid var(--ink)}
-.route h3{font-size:var(--fs-18);margin:var(--s-24) 0 0}
+.route h2{font-size:var(--fs-28);margin:var(--s-48) 0 var(--s-8);padding-bottom:var(--s-8);border-bottom:1px solid var(--line-strong)}
 .route h2:first-of-type{margin-top:0}
+.route h3{font-size:var(--fs-18);margin:var(--s-24) 0 0}
 .route .who{font-size:var(--fs-14);color:var(--ink-2);margin-bottom:var(--s-8)}
 .route ol{list-style:none;margin:0;padding:0}
-.route li a{display:grid;grid-template-columns:44px 1fr auto;gap:var(--s-16);align-items:baseline;padding:var(--s-12) 0;border-bottom:1.5px dashed var(--card-edge);text-decoration:none;transition:padding .35s var(--ease)}
+.route li a{display:grid;grid-template-columns:44px 1fr auto;gap:var(--s-16);align-items:baseline;padding:var(--s-12) 0;border-bottom:1px solid var(--card-edge);text-decoration:none;transition:padding .35s var(--ease)}
 .route li a:hover{padding-inline-start:var(--s-12)}
-.route li b{font-weight:700;font-size:var(--fs-18)}
+.route li b{font-weight:600;font-size:var(--fs-18);font-family:var(--font-head)}
 .route li span{display:block;font-size:var(--fs-13);color:var(--ink-2)}
-.route li i{font-style:normal;font-weight:800;font-size:var(--fs-22);color:var(--ribbon);font-variant-numeric:tabular-nums}
-.route li u{text-decoration:none;font-size:var(--fs-13);color:var(--ribbon);font-weight:700;white-space:nowrap}
+.route li i{font-style:normal;font-weight:700;font-size:var(--fs-22);color:var(--ribbon);font-variant-numeric:tabular-nums;font-family:var(--font-head)}
+.route li u{text-decoration:none;font-size:var(--fs-13);color:var(--ribbon);font-weight:600;white-space:nowrap}
 @media (max-width:900px){.head{grid-template-columns:1fr}.route{padding:var(--s-24) var(--s-16)}.route li a{grid-template-columns:32px 1fr}.route li u{display:none}}
 </style>
 </head>
@@ -32,66 +32,65 @@
   <header class="head">
     <img src="assets/logo-white.png" alt="Think Tank Strategists">
     <div>
-      <h1>إحدى وثلاثون شاشة في ثلاثة أقسام</h1>
-      <p>الموقع الرئيسي، وبوابة العميل، وبوابة الدكتورة. افتح أي شاشة وتنقّل منها بأزرارها وقوائمها.</p>
+      <h1>Thirty-one screens in three parts</h1>
+      <p>The public site, the client portal, and Dr. Manal's portal. Open any screen and move on from it with its own buttons and menus.</p>
     </div>
   </header>
-
   <main class="sheet route">
-    <p style="margin:0 0 var(--s-24)"><a class="btn sm" href="deck.html">العرض التقديمي</a></p>
-    <h2>القسم الأول: الموقع الرئيسي</h2>
-    <h3>للزائر وللعموم</h3><p class="who">قبل أن يصير الزائر متدرباً، ولأي طرف يتحقق من شهادة</p>
+    <p class="row" style="margin:0 0 var(--s-24)"><a class="btn sm" href="deck.html">Presentation</a><a class="btn sec sm" href="start.html">Change design</a></p>
+    <h2>Part one: the public site</h2>
+    <h3>For visitors and the public</h3><p class="who">Before a visitor becomes a trainee, and for anyone verifying a certificate</p>
     <ol>
-      <li><a href="01-home.html"><i>1</i><div><b>الرئيسية</b><span>البطاقة، الدفعات القادمة، البرامج، وباب الجهات</span></div><u>افتح</u></a></li>
-      <li><a href="02-program.html"><i>2</i><div><b>صفحة البرنامج</b><span>المحتوى، جدول الجلسات، ودفعات البرنامج</span></div><u>افتح</u></a></li>
-      <li><a href="03-register.html"><i>3</i><div><b>التسجيل وتأكيد الرمز</b><span>ينشأ الحساب ويُتحقق منه قبل الدفع</span></div><u>افتح</u></a></li>
-      <li><a href="04-pay.html"><i>4</i><div><b>الدفع والتأكيد</b><span>KNET، الإيصال، وحالة فشل الدفع</span></div><u>افتح</u></a></li>
-      <li><a href="17-login.html"><i>17</i><div><b>الدخول</b><span>يوجّه المتدرب والجهة والدكتورة كلاً لبوابته</span></div><u>افتح</u></a></li>
-      <li><a href="18-for-orgs.html"><i>18</i><div><b>للجهات</b><span>طلب عرض لبرنامج مغلق، أو طلب حساب لجهة</span></div><u>افتح</u></a></li>
-      <li><a href="21-activate.html"><i>21</i><div><b>تفعيل الدعوة</b><span>موظف أسندت له جهته مقعداً</span></div><u>افتح</u></a></li>
-      <li><a href="19-articles.html"><i>19</i><div><b>المقالات</b><span>مقال مفتوح وقائمة مقالات</span></div><u>افتح</u></a></li>
-      <li><a href="12-verify.html"><i>12</i><div><b>التحقق من شهادة</b><span>صالحة، ملغاة، أو غير موجودة</span></div><u>افتح</u></a></li>
+      <li><a href="01-home.html"><i>1</i><div><b>Home</b><span>Upcoming cohorts, programs, and the door for organizations</span></div><u>Open</u></a></li>
+      <li><a href="02-program.html"><i>2</i><div><b>Program page</b><span>Content, session schedule, and the program's cohorts</span></div><u>Open</u></a></li>
+      <li><a href="03-register.html"><i>3</i><div><b>Register and confirm the code</b><span>The account is created and verified before payment</span></div><u>Open</u></a></li>
+      <li><a href="04-pay.html"><i>4</i><div><b>Payment and confirmation</b><span>KNET, the receipt, and the failed-payment path</span></div><u>Open</u></a></li>
+      <li><a href="17-login.html"><i>17</i><div><b>Sign in</b><span>Sends the trainee, the organization and Dr. Manal each to their portal</span></div><u>Open</u></a></li>
+      <li><a href="18-for-orgs.html"><i>18</i><div><b>For organizations</b><span>Request a proposal for an in-house program, or request an account</span></div><u>Open</u></a></li>
+      <li><a href="21-activate.html"><i>21</i><div><b>Activate an invitation</b><span>An employee whose organization assigned them a seat</span></div><u>Open</u></a></li>
+      <li><a href="19-articles.html"><i>19</i><div><b>Articles</b><span>One open article and a list</span></div><u>Open</u></a></li>
+      <li><a href="12-verify.html"><i>12</i><div><b>Verify a certificate</b><span>Valid, revoked, or not found</span></div><u>Open</u></a></li>
     </ol>
-    <h2>القسم الثاني: بوابة العميل</h2>
-    <h3>المتدرب</h3><p class="who">نورة الصباح بعد أن تأكد تسجيلها</p>
+    <h2>Part two: the client portal</h2>
+    <h3>Trainee</h3><p class="who">Noura Al-Sabah, once her registration is confirmed</p>
     <ol>
-      <li><a href="05-my-cohorts.html"><i>5</i><div><b>دفعاتي وجلساتي</b><span>الجلسات، المواد، الاستبيان، وإلغاء التسجيل</span></div><u>افتح</u></a></li>
-      <li><a href="13-course.html"><i>13</i><div><b>صفّي</b><span>فصول البرنامج وتقدّم المتدربة فيها</span></div><u>افتح</u></a></li>
-      <li><a href="14-chapter.html"><i>14</i><div><b>الفصل</b><span>الفيديو، المعلومات، المواد، الواجب، الاستبيان</span></div><u>افتح</u></a></li>
-      <li><a href="15-exam.html"><i>15</i><div><b>اختبار الفصل</b><span>الأسئلة، النتيجة، والمحاولة الثانية</span></div><u>افتح</u></a></li>
-      <li><a href="06-my-certificate.html"><i>6</i><div><b>شهاداتي</b><span>الشهادة الصادرة، وما لم يصدر بعد ولماذا</span></div><u>افتح</u></a></li>
-      <li><a href="20-account.html"><i>20</i><div><b>حسابي</b><span>بياناتي، الأمان، التنبيهات، مدفوعاتي، خصوصيتي</span></div><u>افتح</u></a></li>
+      <li><a href="05-my-cohorts.html"><i>5</i><div><b>My cohorts</b><span>Sessions, materials, survey, and cancelling a registration</span></div><u>Open</u></a></li>
+      <li><a href="13-course.html"><i>13</i><div><b>My classroom</b><span>The program's chapters and progress</span></div><u>Open</u></a></li>
+      <li><a href="14-chapter.html"><i>14</i><div><b>Chapter</b><span>Video, information, materials, assignment, survey</span></div><u>Open</u></a></li>
+      <li><a href="15-exam.html"><i>15</i><div><b>Chapter exam</b><span>Questions, result, and the second attempt</span></div><u>Open</u></a></li>
+      <li><a href="06-my-certificate.html"><i>6</i><div><b>My certificates</b><span>The issued certificate, and what has not been issued and why</span></div><u>Open</u></a></li>
+      <li><a href="20-account.html"><i>20</i><div><b>My account</b><span>Details, security, notifications, payments, privacy</span></div><u>Open</u></a></li>
     </ol>
-    <h3>الجهة</h3><p class="who">خالد الفهد، مسؤول التدريب في بنك المثال</p>
+    <h3>Organization</h3><p class="who">Khalid Al-Fahad, training contact at Example Bank</p>
     <ol>
-      <li><a href="07-org-seats.html"><i>7</i><div><b>حجز المقاعد وإسنادها</b><span>حجز، دفع، ثم دعوة الموظفين</span></div><u>افتح</u></a></li>
-      <li><a href="08-org-report.html"><i>8</i><div><b>مشاركة الموظفين</b><span>الحضور والشهادات، والتقرير بعد اكتمال الدفعة</span></div><u>افتح</u></a></li>
-      <li><a href="22-org-proposals.html"><i>22</i><div><b>طلبات العروض</b><span>طلب عرض، قبوله أو رفضه، ودفع السعر المتفق عليه</span></div><u>افتح</u></a></li>
-      <li><a href="23-org-account.html"><i>23</i><div><b>حساب الجهة</b><span>بيانات الجهة ومسؤولها والتنبيهات</span></div><u>افتح</u></a></li>
+      <li><a href="07-org-seats.html"><i>7</i><div><b>Seats</b><span>Reserve, pay, then invite employees</span></div><u>Open</u></a></li>
+      <li><a href="08-org-report.html"><i>8</i><div><b>Employee participation</b><span>Attendance and certificates, and the report after completion</span></div><u>Open</u></a></li>
+      <li><a href="22-org-proposals.html"><i>22</i><div><b>Proposal requests</b><span>Request a proposal, accept or decline the quote, pay the agreed price</span></div><u>Open</u></a></li>
+      <li><a href="23-org-account.html"><i>23</i><div><b>Organization account</b><span>The organization, its contact, and notifications</span></div><u>Open</u></a></li>
     </ol>
-    <h2>القسم الثالث: بوابة الدكتورة</h2>
-    <h3>التشغيل اليومي</h3><p class="who">المستخدمة الوحيدة من جهة الشركة</p>
+    <h2>Part three: Dr. Manal's portal</h2>
+    <h3>Daily operations</h3><p class="who">The only user on the firm's side</p>
     <ol>
-      <li><a href="09-admin-inbox.html"><i>9</i><div><b>ما ينتظرك</b><span>استرجاع، حساب جهة، ودفعة لم تبدأ</span></div><u>افتح</u></a></li>
-      <li><a href="24-admin-cohorts.html"><i>24</i><div><b>الدفعات</b><span>كل الدفعات بحالاتها، وإنشاء دفعة</span></div><u>افتح</u></a></li>
-      <li><a href="10-admin-cohort.html"><i>10</i><div><b>الدفعة</b><span>التسجيلات، بدء الدفعة وإغلاقها، تغيير الموعد</span></div><u>افتح</u></a></li>
-      <li><a href="11-admin-attendance.html"><i>11</i><div><b>الحضور والشهادات</b><span>كشف الجلسة، ثم إصدار الشهادات بعد الإغلاق</span></div><u>افتح</u></a></li>
-      <li><a href="29-admin-certificates.html"><i>29</i><div><b>الشهادات</b><span>بحث، وإلغاء شهادة بسبب مكتوب</span></div><u>افتح</u></a></li>
+      <li><a href="09-admin-inbox.html"><i>9</i><div><b>Waiting for you</b><span>A refund, an organization account, a cohort that has not started</span></div><u>Open</u></a></li>
+      <li><a href="24-admin-cohorts.html"><i>24</i><div><b>Cohorts</b><span>All cohorts by status, and creating a cohort</span></div><u>Open</u></a></li>
+      <li><a href="10-admin-cohort.html"><i>10</i><div><b>Cohort</b><span>Registrations, start and close, reschedule</span></div><u>Open</u></a></li>
+      <li><a href="11-admin-attendance.html"><i>11</i><div><b>Attendance and certificates</b><span>The session sheet, then issuing certificates</span></div><u>Open</u></a></li>
+      <li><a href="29-admin-certificates.html"><i>29</i><div><b>Certificates</b><span>Search, and revoke with a written reason</span></div><u>Open</u></a></li>
     </ol>
-    <h3>المحتوى</h3><p class="who">البرامج وفصولها والمقالات</p>
+    <h3>Content</h3><p class="who">Programs, their chapters, and articles</p>
     <ol>
-      <li><a href="25-admin-programs.html"><i>25</i><div><b>البرامج والمقالات</b><span>نشر برنامج أو مقال</span></div><u>افتح</u></a></li>
-      <li><a href="16-admin-course.html"><i>16</i><div><b>بناء محتوى البرنامج</b><span>الفصول وعناصرها، تصحيح الواجبات، نتائج الاستبيان</span></div><u>افتح</u></a></li>
+      <li><a href="25-admin-programs.html"><i>25</i><div><b>Programs and articles</b><span>Publish a program or an article</span></div><u>Open</u></a></li>
+      <li><a href="16-admin-course.html"><i>16</i><div><b>Build program content</b><span>Chapters and their items, grading, survey results</span></div><u>Open</u></a></li>
     </ol>
-    <h3>العملاء والمال</h3><p class="who">المتدربون والجهات والعروض والمدفوعات</p>
+    <h3>Clients and money</h3><p class="who">Trainees, organizations, proposals and payments</p>
     <ol>
-      <li><a href="30-admin-trainees.html"><i>30</i><div><b>المتدربون</b><span>سجل المتدرب، تعطيل الحساب، حذف البيانات عند الطلب</span></div><u>افتح</u></a></li>
-      <li><a href="26-admin-orgs.html"><i>26</i><div><b>الجهات</b><span>اعتماد حسابات مسؤولي التدريب</span></div><u>افتح</u></a></li>
-      <li><a href="27-admin-proposals.html"><i>27</i><div><b>طلبات العروض</b><span>مراجعة، تسعير، وإنشاء دفعة مغلقة</span></div><u>افتح</u></a></li>
-      <li><a href="28-admin-payments.html"><i>28</i><div><b>المدفوعات</b><span>المدفوعات والاسترجاع</span></div><u>افتح</u></a></li>
-      <li><a href="31-admin-report.html"><i>31</i><div><b>التقرير الشامل</b><span>عبر كل الجهات والبرامج</span></div><u>افتح</u></a></li>
+      <li><a href="30-admin-trainees.html"><i>30</i><div><b>Trainees</b><span>The trainee record, deactivating an account, removing data on request</span></div><u>Open</u></a></li>
+      <li><a href="26-admin-orgs.html"><i>26</i><div><b>Organizations</b><span>Approving training-contact accounts</span></div><u>Open</u></a></li>
+      <li><a href="27-admin-proposals.html"><i>27</i><div><b>Proposal requests</b><span>Review, quote, and create an in-house cohort</span></div><u>Open</u></a></li>
+      <li><a href="28-admin-payments.html"><i>28</i><div><b>Payments</b><span>Payments and refunds</span></div><u>Open</u></a></li>
+      <li><a href="31-admin-report.html"><i>31</i><div><b>Full report</b><span>Across all organizations and programs</span></div><u>Open</u></a></li>
     </ol>
-    <p class="synthetic" style="margin-top:var(--s-24)">نموذج للعرض: الأسماء والتواريخ والمبالغ تجريبية، والأزرار تغيّر الحالة على الصفحة فقط. الترقيم هو ترتيب البناء، لا ترتيب القصة.</p>
+    <p class="synthetic" style="margin-top:var(--s-24)">A demonstration: names, dates and amounts are sample data, and buttons change state on the page only. The numbers are the build order, not the story order.</p>
   </main>
 </div>
 </body>

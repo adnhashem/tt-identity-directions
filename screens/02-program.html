@@ -1,32 +1,33 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>استشراف المستقبل وبناء السيناريوهات — Think Tank Strategists</title>
+<title>Foresight &amp; Futures Thinking — Think Tank Strategists</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
 <style>
 [hidden]{display:none!important}
 .intro{display:grid;grid-template-columns:1.3fr .7fr;gap:var(--s-64);align-items:end;padding-block:var(--s-32) var(--s-64)}
-.intro h1{font-size:clamp(2rem,4.2vw,3.1rem);max-width:15ch;text-shadow:0 2px 0 rgba(0,0,0,.25)}
-.intro h1 em{font-style:normal;color:var(--brass)}
-.intro .lede{font-weight:300;font-size:var(--fs-18);color:var(--cream-2);max-width:46ch;margin:var(--s-16) 0 0}
-.for{padding-block-start:var(--s-16);border-block-start:1.5px dashed rgba(246,239,225,.3)}
+.intro h1{font-size:clamp(2rem,4.2vw,3.1rem);max-width:16ch}
+.intro h1 em{font-style:normal;color:var(--ribbon)}
+.intro .lede{font-size:var(--fs-18);color:var(--cream-2);max-width:50ch;margin:var(--s-16) 0 0}
+.for{padding-block-start:var(--s-16);border-block-start:1px solid var(--line-strong)}
 .for h2{font-size:var(--fs-18);margin-bottom:var(--s-8)}
 .for p{color:var(--cream-2);font-size:var(--fs-14);margin:0}
 .board{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--s-64);align-items:start;padding-bottom:var(--s-96)}
 .board>*{min-width:0}
-.agenda{padding:var(--s-64) var(--s-48) var(--s-32)}
-.agenda header{display:flex;justify-content:space-between;align-items:end;gap:var(--s-16);flex-wrap:wrap;padding-bottom:var(--s-12);border-bottom:2px solid var(--ink)}
+.agenda{padding:var(--s-48) var(--s-48) var(--s-32)}
+.agenda header{padding-bottom:var(--s-16);border-bottom:1px solid var(--line-strong)}
 .agenda header h2{font-size:var(--fs-28)}
-.agenda header p{margin:0;font-size:var(--fs-13);color:var(--ink-2)}
-.agenda header img{height:var(--s-48);display:block}
-.day{display:grid;grid-template-columns:var(--s-96) 1fr;gap:var(--s-24);padding-block:var(--s-24);border-bottom:1.5px dashed var(--card-edge)}
-.day .d b{display:block;font-size:var(--fs-56);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.agenda header p{margin:var(--s-4) 0 0;font-size:var(--fs-13);color:var(--ink-2)}
+.day{display:grid;grid-template-columns:var(--s-96) 1fr;gap:var(--s-24);padding-block:var(--s-24);border-bottom:1px solid var(--card-edge)}
+.day .d b{display:block;font-family:var(--font-head);font-size:var(--fs-56);font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
 .day .d span{display:block;font-size:var(--fs-13);color:var(--ink-2);margin-top:var(--s-4)}
+.day .d span+span{margin-top:0}
 .day h3{font-size:var(--fs-18);margin-bottom:var(--s-8)}
 .day dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:var(--s-4) var(--s-16);font-size:var(--fs-14)}
 .day dt{font-variant-numeric:tabular-nums;color:var(--ink-2)}
@@ -36,157 +37,151 @@
 .leave{margin-top:var(--s-64)}
 .leave h2{margin-bottom:var(--s-8)}
 .leave ul{list-style:none;margin:0;padding:0}
-.leave li{padding-block:var(--s-16);border-bottom:1.5px dashed rgba(246,239,225,.3)}
+.leave li{padding-block:var(--s-16);border-bottom:1px solid var(--card-edge)}
 .leave li:last-child{border:0}
-.leave li b{display:block;font-size:var(--fs-18);font-weight:700}
-.leave li span{display:block;color:var(--cream-2);font-size:var(--fs-14);max-width:54ch}
+.leave li b{display:block;font-size:var(--fs-18);font-weight:600}
+.leave li span{display:block;color:var(--cream-2);font-size:var(--fs-14);max-width:58ch}
 .booking{position:sticky;top:var(--s-24)}
 .booking>h2{font-size:var(--fs-22)}
-.tickets{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-12);margin-block:var(--s-24) var(--s-24)}
-.tickets .stub[aria-pressed=true]{transform:translateY(calc(var(--s-12)*-1)) rotate(-1.5deg)}
+.tickets{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-12);margin-block:var(--s-16) var(--s-24)}
 #pass h3{font-size:var(--fs-28)}
 #pass .kind{margin-top:var(--s-4)}
 #pass .note{font-size:var(--fs-13);color:var(--ink-2);margin:var(--s-8) 0 var(--s-16)}
 .orgline{margin-top:var(--s-32);display:flex;gap:var(--s-16);align-items:center;justify-content:space-between;flex-wrap:wrap}
-.orgline p{margin:0;font-size:var(--fs-14);color:var(--cream-2);max-width:26ch}
-footer{background:var(--baize-deep);border-top:1px solid #ffffff14;padding-block:var(--s-32);font-size:var(--fs-13);color:var(--cream-2)}
+.orgline p{margin:0;font-size:var(--fs-14);color:var(--cream-2);max-width:30ch}
 @media (max-width:900px){
   .intro,.board{grid-template-columns:1fr}
   .intro{gap:var(--s-32);padding-block:var(--s-16) var(--s-48)}
   .board{gap:var(--s-48)}
   .booking{position:static;order:-1}
-  .agenda{padding:var(--s-64) var(--s-24) var(--s-24);transform:none}
+  .agenda{padding:var(--s-32) var(--s-24) var(--s-24)}
   .day{grid-template-columns:var(--s-64) 1fr;gap:var(--s-16)}
   .day .d b{font-size:var(--fs-36)}
-  .tickets .stub{padding-inline-start:var(--s-12)}
   .tickets .stub b{font-size:var(--fs-18)}
 }
 </style>
 </head>
 <body class="table">
 <div class="wrap">
-  <nav class="nav" aria-label="الرئيسية">
+  <nav class="nav" aria-label="Main">
     <a href="01-home.html"><img src="assets/logo-white.png" alt="Think Tank Strategists"></a>
     <ul>
-      <li><a href="01-home.html" aria-current="page">البرامج</a></li>
-      <li><a href="19-articles.html">المقالات</a></li>
-      <li><a href="18-for-orgs.html">للجهات</a></li>
-      <li><a href="12-verify.html">تحقق من شهادة</a></li>
-      <li class="keep"><a href="17-login.html">دخول</a></li>
-      <li class="keep"><a class="pill" href="#" lang="en" data-toast="النسخة الإنجليزية خارج شاشات العرض">English</a></li>
+      <li><a href="01-home.html" aria-current="page">Programs</a></li>
+      <li><a href="19-articles.html">Articles</a></li>
+      <li><a href="18-for-orgs.html">For organizations</a></li>
+      <li><a href="12-verify.html">Verify a certificate</a></li>
+      <li class="keep"><a href="17-login.html">Sign in</a></li>
+      <li class="keep"><a class="btn sm" href="03-register.html">Register</a></li>
     </ul>
   </nav>
 
   <header class="intro">
     <div>
-      <h1>استشراف المستقبل وبناء <em>السيناريوهات</em></h1>
-      <p class="lede">ثلاثة صباحات مع الدكتورة منال الحساوي، تتعلّم فيها كيف تقرأ ما هو قادم على قطاعك، وتكتب له أكثر من مستقبل محتمل، ثم تختبر قراراتك أمام كل واحد منها.</p>
+      <h1>Foresight &amp; <em>Futures Thinking</em></h1>
+      <p class="lede">Three mornings with Dr. Manal Al-Hasawi. You learn to read what is coming for your sector, write more than one plausible future for it, and test your decisions against each one.</p>
     </div>
     <div class="for">
-      <h2>لمن هذا البرنامج</h2>
-      <p>لمن يتخذ قرارات يظهر أثرها بعد سنوات: قيادات في الجهات الحكومية، والخدمات المالية، والشركات العائلية، والمؤسسات غير الربحية.</p>
+      <h2>Who this program is for</h2>
+      <p>People whose decisions play out over years: leaders in government, financial services, family businesses and nonprofits.</p>
     </div>
   </header>
 
   <main class="board">
     <div>
-      <section class="sheet clip tilt-l lay agenda" aria-labelledby="ag">
+      <section class="sheet lay agenda" aria-labelledby="ag">
         <header>
-          <div>
-            <h2 id="ag">جدول الجلسات</h2>
-            <p>قاعة الشركة · من 9:00 إلى 13:00 · باللغة العربية</p>
-          </div>
-          <img src="assets/logo-dark.png" alt="">
+          <h2 id="ag">Session schedule</h2>
+          <p>Company training hall · 9:00–13:00 · Delivered in Arabic</p>
         </header>
 
         <div class="day">
-          <div class="d"><b data-d="0">14</b><span data-w="0">الاثنين</span><span data-m>ديسمبر</span></div>
+          <div class="d"><b data-d="0">14</b><span data-w="0">Monday</span><span data-m>December</span></div>
           <div>
-            <h3>قراءة الإشارات</h3>
+            <h3>Reading the signals</h3>
             <dl>
-              <dt>9:00</dt><dd>الاتجاهات الكبرى التي تمسّ قطاعك في السنوات العشر القادمة</dd>
-              <dt>10:30</dt><dd class="rest">استراحة</dd>
-              <dt>10:45</dt><dd>تمرين في مجموعات: خريطة القوى المؤثرة على جهتك</dd>
-              <dt>12:30</dt><dd>خلاصة اليوم وما تحضّره للغد</dd>
+              <dt>9:00</dt><dd>The major trends that will touch your sector over the next ten years</dd>
+              <dt>10:30</dt><dd class="rest">Break</dd>
+              <dt>10:45</dt><dd>Group exercise: map the forces acting on your organization</dd>
+              <dt>12:30</dt><dd>Day summary and what to prepare for tomorrow</dd>
             </dl>
           </div>
         </div>
 
         <div class="day">
-          <div class="d"><b data-d="1">15</b><span data-w="1">الثلاثاء</span><span data-m>ديسمبر</span></div>
+          <div class="d"><b data-d="1">15</b><span data-w="1">Tuesday</span><span data-m>December</span></div>
           <div>
-            <h3>بناء السيناريوهات</h3>
+            <h3>Building scenarios</h3>
             <dl>
-              <dt>9:00</dt><dd>اختيار المحورين الأقل يقيناً والأكبر أثراً</dd>
-              <dt>10:30</dt><dd class="rest">استراحة</dd>
-              <dt>10:45</dt><dd>كل مجموعة تكتب أربعة سيناريوهات لجهتها</dd>
-              <dt>12:15</dt><dd>عرض السيناريوهات ونقاشها</dd>
+              <dt>9:00</dt><dd>Choosing the two axes with the least certainty and the most impact</dd>
+              <dt>10:30</dt><dd class="rest">Break</dd>
+              <dt>10:45</dt><dd>Each group writes four scenarios for its organization</dd>
+              <dt>12:15</dt><dd>Scenario presentations and discussion</dd>
             </dl>
           </div>
         </div>
 
         <div class="day">
-          <div class="d"><b data-d="2">16</b><span data-w="2">الأربعاء</span><span data-m>ديسمبر</span></div>
+          <div class="d"><b data-d="2">16</b><span data-w="2">Wednesday</span><span data-m>December</span></div>
           <div>
-            <h3>من السيناريو إلى القرار</h3>
+            <h3>From scenario to decision</h3>
             <dl>
-              <dt>9:00</dt><dd>اختبار استراتيجيتك الحالية أمام كل سيناريو</dd>
-              <dt>10:30</dt><dd class="rest">استراحة</dd>
-              <dt>10:45</dt><dd>مؤشرات الإنذار المبكر: كيف تعرف أي سيناريو بدأ يتحقق</dd>
-              <dt>12:15</dt><dd>خطة التسعين يوماً، ثم الختام</dd>
+              <dt>9:00</dt><dd>Testing your current strategy against each scenario</dd>
+              <dt>10:30</dt><dd class="rest">Break</dd>
+              <dt>10:45</dt><dd>Early warning indicators: how to tell which scenario is starting to unfold</dd>
+              <dt>12:15</dt><dd>The 90-day plan, then closing</dd>
             </dl>
           </div>
         </div>
-        <p class="foot">الجلسات الثلاث حضورية ومتصلة؛ كل يوم يبني على الذي قبله.</p>
+        <p class="foot">All three sessions are in person and connected; each day builds on the one before.</p>
       </section>
 
       <section class="leave" aria-labelledby="lv">
-        <h2 id="lv">تخرج من القاعة ومعك</h2>
+        <h2 id="lv">What you leave with</h2>
         <ul>
-          <li><b>خريطة للقوى التي ستغيّر قطاعك</b><span>مرتّبة حسب أثرها ودرجة اليقين فيها، لا قائمة عناوين عامة.</span></li>
-          <li><b>أربعة سيناريوهات مكتوبة لجهتك</b><span>كتبتها أنت مع مجموعتك، وتستطيع عرضها على مجلسك كما هي.</span></li>
-          <li><b>قائمة مؤشرات إنذار مبكر</b><span>تراقبها كل ربع سنة لتعرف أي سيناريو يقترب.</span></li>
-          <li><b>خطة تسعين يوماً</b><span>ما الذي تبدأ به مع فريقك في أول أسبوع بعد الورشة.</span></li>
+          <li><b>A map of the forces that will reshape your sector</b><span>Ranked by impact and by how certain they are, not a list of generic headlines.</span></li>
+          <li><b>Four written scenarios for your organization</b><span>Written by you and your group, ready to present to your board as they are.</span></li>
+          <li><b>A list of early warning indicators</b><span>Review them every quarter to see which scenario is getting closer.</span></li>
+          <li><b>A 90-day plan</b><span>What you start on with your team in the first week after the workshop.</span></li>
         </ul>
       </section>
     </div>
 
     <aside class="booking" aria-labelledby="bk">
-      <h2 id="bk">اختر دفعتك</h2>
-      <div class="tickets" role="group" aria-label="دفعات البرنامج">
-        <button class="stub" aria-pressed="true" data-k="0"><b>14 ديسمبر</b><span>3 جلسات</span><span>بقي 4 مقاعد</span><u>TTS</u></button>
-        <button class="stub" aria-pressed="false" data-k="1"><b>9 مارس</b><span>3 جلسات</span><span>20 مقعداً متاحاً</span><u>TTS</u></button>
+      <h2 id="bk">Choose your cohort</h2>
+      <div class="tickets" role="group" aria-label="Program cohorts">
+        <button class="stub" aria-pressed="true" data-k="0"><b>14 Dec</b><span>3 sessions</span><span>4 seats left</span></button>
+        <button class="stub" aria-pressed="false" data-k="1"><b>9 Mar</b><span>3 sessions</span><span>20 seats open</span></button>
       </div>
 
       <article class="pass lay" id="pass" style="--i:2" aria-live="polite">
-        <h3 id="ctitle">دفعة 14 ديسمبر</h3>
-        <div class="kind">ورشة عامة · بالعربية</div>
+        <h3 id="ctitle">14 December cohort</h3>
+        <div class="kind">Public workshop · In Arabic</div>
         <div class="perf kv">
-          <div><small>الأيام</small><strong id="cdays">14 – 16 ديسمبر</strong></div>
-          <div><small>الوقت</small><strong>9:00 – 13:00</strong></div>
-          <div><small>المكان</small><strong>قاعة الشركة</strong></div>
-          <div><small>الرسم</small><strong>180 د.ك</strong></div>
+          <div><small>Dates</small><strong id="cdays">14–16 December</strong></div>
+          <div><small>Time</small><strong>9:00–13:00</strong></div>
+          <div><small>Venue</small><strong>Company training hall</strong></div>
+          <div><small>Fee</small><strong>KWD 180.000</strong></div>
         </div>
         <div class="seats" id="seats"></div>
         <p class="note" id="seatnote"></p>
-        <a class="btn wide" href="03-register.html" data-cta="WF-CTA-006">تسجيل</a>
+        <a class="btn wide" href="03-register.html" data-cta="WF-CTA-006">Register</a>
       </article>
 
       <div class="orgline">
-        <p>تريد البرنامج لفريق جهتك وحده؟ نرسل لكم عرضاً بسعره وموعده.</p>
-        <a class="btn quiet sm" href="18-for-orgs.html" data-cta="WF-CTA-020">طلب عرض</a>
+        <p>Want this program for your own team? We will send a quote with the price and dates.</p>
+        <a class="btn quiet sm" href="18-for-orgs.html" data-cta="WF-CTA-020">Request a proposal</a>
       </div>
-      <p class="synthetic" style="margin-top:var(--s-24)">التواريخ والرسوم وأعداد المقاعد تجريبية.</p>
+      <p class="synthetic" style="margin-top:var(--s-24)">Dates, fees and seat counts are sample data.</p>
     </aside>
   </main>
 </div>
-<footer><div class="wrap spread"><span><bdi>Think Tank Strategists</bdi> · الكويت · الأحد إلى الخميس 9 – 5</span><a href="index.html">خريطة الشاشات</a></div></footer>
+<footer class="sitefoot"><div class="wrap spread"><span>Think Tank Strategists · Kuwait · Sunday to Thursday, 9:00–17:00</span><a href="index.html">Screen map</a></div></footer>
 
 <script src="tt.js"></script>
 <script>
 const K=[
- {title:'دفعة 14 ديسمبر',days:'14 – 16 ديسمبر',month:'ديسمبر',d:['14','15','16'],w:['الاثنين','الثلاثاء','الأربعاء'],taken:16,note:'بقي 4 مقاعد من 20'},
- {title:'دفعة 9 مارس',days:'9 – 11 مارس',month:'مارس',d:['9','10','11'],w:['الثلاثاء','الأربعاء','الخميس'],taken:0,note:'المقاعد العشرون كلها متاحة'}];
+ {title:'14 December cohort',days:'14–16 December',month:'December',d:['14','15','16'],w:['Monday','Tuesday','Wednesday'],taken:16,note:'4 of 20 seats left'},
+ {title:'9 March cohort',days:'9–11 March',month:'March',d:['9','10','11'],w:['Tuesday','Wednesday','Thursday'],taken:0,note:'All 20 seats are open'}];
 const $=id=>document.getElementById(id),all=s=>[...document.querySelectorAll(s)];
 function fill(k){const c=K[k];
   $('ctitle').textContent=c.title;$('cdays').textContent=c.days;$('seatnote').textContent=c.note;

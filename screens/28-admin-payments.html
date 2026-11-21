@@ -1,15 +1,16 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>المدفوعات والاسترجاع — إدارة Think Tank</title>
+<title>Payments and refunds — Think Tank administration</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
 <style>
-.filter{display:flex;gap:var(--s-12) var(--s-16);align-items:end;flex-wrap:wrap;padding-bottom:var(--s-24);margin-bottom:var(--s-16);border-bottom:1.5px dashed var(--card-edge)}
+.filter{display:flex;gap:var(--s-12) var(--s-16);align-items:end;flex-wrap:wrap;padding-bottom:var(--s-24);margin-bottom:var(--s-16);border-bottom:1px solid var(--card-edge)}
 .filter .field{flex:1 1 180px;max-width:260px}
 .filter .btn{min-height:48px}
 .count{margin:0 0 var(--s-4);font-size:var(--fs-14);color:var(--ink-2)}
@@ -17,11 +18,11 @@
 .pay{min-width:960px}
 .pay td{height:56px}
 .pay td:first-child{white-space:nowrap;color:var(--ink-2);font-variant-numeric:tabular-nums}
-.pay td:nth-child(2){font-weight:700}
+.pay td:nth-child(2){font-weight:600}
 .pay td small{display:block;font-size:var(--fs-12);font-weight:400;color:var(--ink-2);line-height:1.6}
 .pay th.amt,.pay td.amt{text-align:end;padding-inline-end:var(--s-24)}
-.pay td.amt{font-weight:700;font-variant-numeric:tabular-nums}
-.pay tr.you td{background:rgba(138,35,50,.05)}
+.pay td.amt{font-weight:600;font-variant-numeric:tabular-nums}
+.pay tr.you td{background:var(--accent-soft)}
 .pay tr.has-sub td{border-bottom:0}
 .pay tr.sub td{height:auto;padding:0 6px var(--s-16);white-space:normal;color:inherit}
 .pay .in{position:sticky;inset-inline-start:0;max-width:min(68ch,calc(100vw - var(--s-64)));font-size:var(--fs-14)}
@@ -30,8 +31,8 @@
 .pay .in .field{margin-bottom:var(--s-12)}
 .pay .in .field textarea{min-height:72px}
 .pay .in.said p{margin:0;font-size:var(--fs-13)}
-.totals{display:flex;gap:var(--s-8) var(--s-32);flex-wrap:wrap;margin:var(--s-16) 0 var(--s-4);padding-top:var(--s-12);border-top:2px solid var(--ink);font-size:var(--fs-14);color:var(--ink-2)}
-.totals b{color:var(--ink);font-size:var(--fs-16);font-variant-numeric:tabular-nums;margin-inline-start:var(--s-4)}
+.totals{display:flex;gap:var(--s-8) var(--s-32);flex-wrap:wrap;margin:var(--s-16) 0 var(--s-4);padding-top:var(--s-12);border-top:1px solid var(--line-strong);font-size:var(--fs-14);color:var(--ink-2)}
+.totals b{color:var(--ink);font-size:var(--fs-16);font-variant-numeric:tabular-nums;margin-inline-start:var(--s-4);white-space:nowrap}
 .fine{font-size:var(--fs-13);color:var(--ink-2);max-width:72ch;margin:0}
 .fine+.fine{margin-top:var(--s-8)}
 .foot-notes{margin-top:var(--s-32)}
@@ -39,55 +40,55 @@
 </head>
 <body class="desk">
 <div class="shell">
-  <nav class="side" aria-label="الإدارة">
-    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>الإدارة</span></div>
-    <a href="09-admin-inbox.html">ما ينتظرك <span class="n">3</span></a>
-    <a href="24-admin-cohorts.html">الدفعات</a>
-    <a href="25-admin-programs.html">البرامج</a>
-    <a href="26-admin-orgs.html">الجهات <span class="n">1</span></a>
-    <a href="27-admin-proposals.html">طلبات العروض <span class="n">2</span></a>
-    <a href="28-admin-payments.html" aria-current="page">المدفوعات <span class="n">1</span></a>
-    <a href="29-admin-certificates.html">الشهادات</a>
-    <a href="30-admin-trainees.html">المتدربون</a>
-    <a href="31-admin-report.html">التقرير الشامل</a>
-    <div class="foot">د. منال الحساوي<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  <nav class="side" aria-label="Administration">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>Administration</span></div>
+    <a href="09-admin-inbox.html">Waiting for you <span class="n">3</span></a>
+    <a href="24-admin-cohorts.html">Cohorts</a>
+    <a href="25-admin-programs.html">Programs</a>
+    <a href="26-admin-orgs.html">Organizations <span class="n">1</span></a>
+    <a href="27-admin-proposals.html">Proposal requests <span class="n">2</span></a>
+    <a href="28-admin-payments.html" aria-current="page">Payments <span class="n">1</span></a>
+    <a href="29-admin-certificates.html">Certificates</a>
+    <a href="30-admin-trainees.html">Trainees</a>
+    <a href="31-admin-report.html">Full report</a>
+    <div class="foot">Dr. Manal Al-Hasawi<br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
   </nav>
 
   <main class="work">
     <div class="sheet">
       <header class="top">
-        <div><h1>المدفوعات والاسترجاع</h1><div class="crumb" id="crumb"></div></div>
+        <div><h1>Payments and refunds</h1><div class="crumb" id="crumb"></div></div>
       </header>
 
-      <form class="filter" id="filter" aria-label="تصفية المدفوعات">
-        <div class="field"><label for="f-period">الفترة</label>
-          <select id="f-period"><option value="">كل الفترات</option><option value="12">ديسمبر 2026</option><option value="11">نوفمبر 2026</option></select></div>
-        <div class="field"><label for="f-state">الحالة</label>
-          <select id="f-state"><option value="">كل الحالات</option><option value="paid">مدفوعة</option><option value="started">بدأت</option><option value="failed">فاشلة</option><option value="expired">منقضية</option><option value="refund">بانتظار الاسترجاع</option><option value="refunded">مُستردة</option><option value="declined">رُفض استرجاعها</option></select></div>
-        <div class="field"><label for="f-cohort">الدفعة</label>
-          <select id="f-cohort"><option value="">كل الدفعات</option><option value="dec">استشراف المستقبل · 14 ديسمبر</option><option value="jan">ورش الاستراتيجية · 8 يناير</option><option value="feb">بناء القيادات · 2 فبراير</option></select></div>
-        <button class="btn sm" type="submit" data-cta="WF-CTA-051">عرض المدفوعات</button>
+      <form class="filter" id="filter" aria-label="Filter payments">
+        <div class="field"><label for="f-period">Period</label>
+          <select id="f-period"><option value="">All periods</option><option value="12">December 2026</option><option value="11">November 2026</option></select></div>
+        <div class="field"><label for="f-state">Status</label>
+          <select id="f-state"><option value="">All statuses</option><option value="paid">Paid</option><option value="started">Started</option><option value="failed">Failed</option><option value="expired">Expired</option><option value="refund">Refund pending</option><option value="refunded">Refunded</option><option value="declined">Refund declined</option></select></div>
+        <div class="field"><label for="f-cohort">Cohort</label>
+          <select id="f-cohort"><option value="">All cohorts</option><option value="dec">Foresight &amp; Futures Thinking · 14 Dec</option><option value="jan">Executive Strategy Workshops · 8 Jan</option><option value="feb">Leadership &amp; Capability Building · 2 Feb</option></select></div>
+        <button class="btn sm" type="submit" data-cta="WF-CTA-051">View payments</button>
       </form>
 
-      <section aria-label="قائمة المدفوعات">
+      <section aria-label="Payments list">
         <p class="count" id="count" role="status"></p>
         <div class="scroll-x" id="tablewrap">
           <table class="t pay">
-            <thead><tr><th>التاريخ</th><th>الدافع</th><th>عن ماذا</th><th class="amt">المبلغ (د.ك)</th><th>الطريقة</th><th>الحالة</th><th>رقم الإيصال</th></tr></thead>
+            <thead><tr><th>Date</th><th>Payer</th><th>For</th><th class="amt">Amount (KWD)</th><th>Method</th><th>Status</th><th>Receipt no.</th></tr></thead>
             <tbody id="rows"></tbody>
           </table>
         </div>
         <div class="empty" id="empty" hidden>
-          <h2>لا مدفوعات بهذه الشروط</h2>
-          <p>غيّري الفترة أو الحالة أو الدفعة، أو <button class="lbtn" type="button" id="reset">أظهري كل المدفوعات</button></p>
+          <h2>No payments match these filters</h2>
+          <p>Change the period, status or cohort, or <button class="lbtn" type="button" id="reset">show all payments</button></p>
         </div>
         <p class="totals" id="totals"></p>
-        <p class="fine" id="totalnote">العمليات التي بدأت ولم تكتمل، والفاشلة، والمنقضية لا تدخل في أي مجموع.</p>
+        <p class="fine" id="totalnote">Payments that were started but not completed, failed or expired are not counted in any total.</p>
       </section>
 
       <div class="foot-notes">
-        <p class="fine">بيانات البطاقات لا تُحفظ عندنا أبداً؛ المتدرب يدفع على صفحة KNET ونستلم نتيجة العملية ورقم الإيصال فقط. مزوّد خدمة الدفع لم يُختر بعد، والمتاح الآن KNET وحده.</p>
-        <p class="synthetic" style="margin-top:var(--s-16)">الأسماء والتواريخ والمبالغ وأرقام الإيصالات تجريبية. <a href="index.html">خريطة الشاشات</a></p>
+        <p class="fine">Card details are never stored with us. The trainee pays on the KNET page, and we receive only the result of the payment and the receipt number. The payment service provider has not been chosen yet; KNET is the only method available for now.</p>
+        <p class="synthetic" style="margin-top:var(--s-16)">Names, dates, amounts and receipt numbers are sample data. <a href="index.html">Screen map</a></p>
       </div>
     </div>
   </main>
@@ -97,57 +98,57 @@
 const $=id=>document.getElementById(id);
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const money=n=>n.toLocaleString('en-US',{minimumFractionDigits:3});
-const kd=n=>`${n.toLocaleString('en-US')} د.ك`;
-const ST={paid:['ok','مدفوعة'],started:['wait','بدأت'],failed:['err','فاشلة'],expired:['off','منقضية'],refund:['you','بانتظار الاسترجاع'],refunded:['off','مُستردة'],declined:['off','رُفض استرجاعها']};
-// m: month · c: cohort · f: feminine · note: one line under the row
+const kd=n=>`KWD ${n.toLocaleString('en-US')}`;
+const ST={paid:['ok','Paid'],started:['wait','Started'],failed:['err','Failed'],expired:['off','Expired'],refund:['you','Refund pending'],refunded:['off','Refunded'],declined:['off','Refund declined']};
+const FS='Foresight &amp; Futures Thinking · 14 Dec',SS='Executive Strategy Workshops · 8 Jan',LS='Leadership &amp; Capability Building · 2 Feb';
+// m: month · c: cohort · org: paid by an organization · note: one line under the row
 const P=[
- {id:'p12',d:'6 ديسمبر 2026',m:12,who:'طلال الحربي',what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد',amt:180,k:'started',c:'dec'},
- {id:'p11',d:'5 ديسمبر 2026',m:12,who:'هيا القحطاني',f:1,what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد',amt:180,k:'failed',c:'dec'},
- {id:'p10',d:'4 ديسمبر 2026',m:12,who:'عبدالله العازمي',what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد · التسجيل ملغى',amt:180,k:'refund',c:'dec',rc:'R-2026-0331',
-  note:'<b>نجاح دفع وصل لتسجيل ملغى.</b> انقضت مهلة الدفع فأُلغي تسجيله، ثم وصل تأكيد البنك بعدها. المبلغ عندنا بلا مقعد يقابله.'},
- {id:'p9',d:'3 ديسمبر 2026',m:12,who:'بنك المثال',org:1,what:'ورش الاستراتيجية · 8 يناير',s:'4 مقاعد × 240',amt:960,k:'paid',c:'jan',rc:'R-2026-0327'},
- {id:'p8',d:'2 ديسمبر 2026',m:12,who:'وزارة التخطيط',org:1,what:'بناء القيادات · 2 فبراير',s:'سعر متفق عليه · 16 مقعداً',amt:4800,k:'paid',c:'feb',rc:'R-2026-0322'},
- {id:'p7',d:'30 نوفمبر 2026',m:11,who:'Hannah Clarke',en:1,f:1,what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد',amt:180,k:'paid',c:'dec',rc:'R-2026-0320'},
- {id:'p6',d:'29 نوفمبر 2026',m:11,who:'نورة الصباح',f:1,what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد',amt:180,k:'paid',c:'dec',rc:'R-2026-0318'},
- {id:'p5',d:'28 نوفمبر 2026',m:11,who:'سارة العنزي',f:1,what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد · التسجيل ملغى',amt:180,k:'refund',c:'dec',rc:'R-2026-0315',
-  note:'ألغت تسجيلها قبل 8 أيام من بداية الدفعة، ضمن مهلة الاسترجاع، وطلبت استرجاع الرسم.'},
- {id:'p4',d:'27 نوفمبر 2026',m:11,who:'فهد الشمري',what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد',amt:180,k:'paid',c:'dec',rc:'R-2026-0311'},
- {id:'p3',d:'26 نوفمبر 2026',m:11,who:'يوسف الرشيدي',what:'ورش الاستراتيجية · 8 يناير',s:'مقعد واحد',amt:240,k:'expired',c:'jan'},
- {id:'p2',d:'20 نوفمبر 2026',m:11,who:'مريم الكندري',f:1,what:'بناء القيادات · 2 فبراير',s:'مقعد واحد · التسجيل ملغى',amt:320,k:'refunded',c:'feb',rc:'R-2026-0298',
-  note:'اعتمدتِ الاسترجاع في 22 نوفمبر، وعاد المبلغ عن طريق البنك.'},
- {id:'p1',d:'12 نوفمبر 2026',m:11,who:'بدر العتيبي',what:'ورش الاستراتيجية · 8 يناير',s:'مقعد واحد · التسجيل ملغى',amt:240,k:'declined',c:'jan',rc:'R-2026-0287',
-  note:'سبب الرفض: طلب الاسترجاع بعد انتهاء مهلته.'}];
+ {id:'p12',d:'6 Dec',m:12,who:'Talal Al-Harbi',what:FS,s:'1 seat',amt:180,k:'started',c:'dec'},
+ {id:'p11',d:'5 Dec',m:12,who:'Haya Al-Qahtani',what:FS,s:'1 seat',amt:180,k:'failed',c:'dec'},
+ {id:'p10',d:'4 Dec',m:12,who:'Abdullah Al-Azmi',what:FS,s:'1 seat · registration cancelled',amt:180,k:'refund',c:'dec',rc:'R-2026-0331',
+  note:"<b>A successful payment arrived for a cancelled registration.</b> The payment window expired and the registration was cancelled; the bank's confirmation arrived after that. We hold the amount with no seat against it."},
+ {id:'p9',d:'3 Dec',m:12,who:'Example Bank',org:1,what:SS,s:'4 seats × 240',amt:960,k:'paid',c:'jan',rc:'R-2026-0327'},
+ {id:'p8',d:'2 Dec',m:12,who:'Ministry of Planning',org:1,what:LS,s:'Agreed price · 16 seats',amt:4800,k:'paid',c:'feb',rc:'R-2026-0322'},
+ {id:'p7',d:'30 Nov',m:11,who:'Hannah Clarke',what:FS,s:'1 seat',amt:180,k:'paid',c:'dec',rc:'R-2026-0320'},
+ {id:'p6',d:'29 Nov',m:11,who:'Noura Al-Sabah',what:FS,s:'1 seat',amt:180,k:'paid',c:'dec',rc:'R-2026-0318'},
+ {id:'p5',d:'28 Nov',m:11,who:'Sarah Al-Enezi',what:FS,s:'1 seat · registration cancelled',amt:180,k:'refund',c:'dec',rc:'R-2026-0315',
+  note:'Cancelled the registration 8 days before the cohort starts, within the refund window, and asked for the fee to be refunded.'},
+ {id:'p4',d:'27 Nov',m:11,who:'Fahad Al-Shammari',what:FS,s:'1 seat',amt:180,k:'paid',c:'dec',rc:'R-2026-0311'},
+ {id:'p3',d:'26 Nov',m:11,who:'Yousef Al-Rashidi',what:SS,s:'1 seat',amt:240,k:'expired',c:'jan'},
+ {id:'p2',d:'20 Nov',m:11,who:'Maryam Al-Kandari',what:LS,s:'1 seat · registration cancelled',amt:320,k:'refunded',c:'feb',rc:'R-2026-0298',
+  note:'You approved the refund on 22 November, and the amount was returned through the bank.'},
+ {id:'p1',d:'12 Nov',m:11,who:'Bader Al-Otaibi',what:SS,s:'1 seat · registration cancelled',amt:240,k:'declined',c:'jan',rc:'R-2026-0287',
+  note:'Reason for declining: the refund was requested after the refund window had closed.'}];
 let F={period:'',state:'',cohort:''},ask=null,fresh='';   // ask: {id,kind}
 
-const plural=n=>n===0?'لا عمليات':n===1?'عملية واحدة':n===2?'عمليتان':n<=10?`${n} عمليات`:`${n} عملية`;
+const plural=n=>n===0?'No payments':`${n} ${n===1?'payment':'payments'}`;
 const waitN=()=>P.filter(p=>p.k==='refund').length;
-const waitW=n=>n===0?'لا شيء ينتظر قرارك':n===1?'واحدة تنتظر قرارك':n===2?'اثنتان تنتظران قرارك':`${n} تنتظر قرارك`;
+const waitW=n=>n===0?'nothing waiting for your decision':`${n} waiting for your decision`;
 const shown=()=>P.filter(p=>(!F.period||p.m===+F.period)&&(!F.state||p.k===F.state)&&(!F.cohort||p.c===F.cohort));
-const who=p=>p.en?`<bdi lang="en">${p.who}</bdi>`:p.who;
 
 function sub(p){
-  if(ask&&ask.id===p.id&&ask.kind==='approve')return `<div class="in"><p><b>اعتماد الاسترجاع لا يمكن التراجع عنه.</b> يعود مبلغ ${kd(p.amt)} إلى ${p.who} عن طريق البنك، وقد يستغرق وصوله بضعة أيام عمل، و${p.f?'تُبلَّغ':'يُبلَّغ'} بذلك.</p>
-    <div class="row"><button class="btn sm" data-yes="${p.id}">تأكيد الاعتماد</button><button class="btn quiet sm" data-no="${p.id}">تراجع</button></div></div>`;
-  if(ask&&ask.id===p.id&&ask.kind==='decline')return `<div class="in"><div class="field" id="wf"><label for="why">سبب الرفض (يُرسل إلى ${p.who})</label><textarea id="why" aria-describedby="wm" placeholder="مثال: طلب الاسترجاع بعد انتهاء مهلته"></textarea><span class="msg" id="wm" hidden>اكتبي السبب أولاً؛ الرفض بلا سبب لا يُحفظ.</span></div>
-    <div class="row"><button class="btn sm" data-yes="${p.id}">تأكيد الرفض</button><button class="btn quiet sm" data-no="${p.id}">تراجع</button></div></div>`;
+  if(ask&&ask.id===p.id&&ask.kind==='approve')return `<div class="in"><p><b>Approving a refund cannot be undone.</b> ${kd(p.amt)} goes back to ${p.who} through the bank. It may take a few business days to arrive, and ${p.who} is notified.</p>
+    <div class="row"><button class="btn sm" data-yes="${p.id}">Confirm approval</button><button class="btn quiet sm" data-no="${p.id}">Cancel</button></div></div>`;
+  if(ask&&ask.id===p.id&&ask.kind==='decline')return `<div class="in"><div class="field" id="wf"><label for="why">Reason for declining (sent to ${p.who})</label><textarea id="why" aria-describedby="wm" placeholder="Example: the refund was requested after the refund window had closed"></textarea><span class="msg" id="wm" hidden>Enter the reason first. A refund cannot be declined without one.</span></div>
+    <div class="row"><button class="btn sm" data-yes="${p.id}">Confirm decline</button><button class="btn quiet sm" data-no="${p.id}">Cancel</button></div></div>`;
   if(p.k==='refund')return `<div class="in"><p>${p.note}</p>
-    <div class="row"><button class="btn sec sm" data-cta="WF-CTA-043" data-ask="approve" data-id="${p.id}" aria-label="اعتماد الاسترجاع: ${p.who}">اعتماد الاسترجاع</button><button class="btn quiet sm" data-cta="WF-CTA-044" data-ask="decline" data-id="${p.id}" aria-label="رفض الاسترجاع: ${p.who}">رفض الاسترجاع</button></div></div>`;
+    <div class="row"><button class="btn sec sm" data-cta="WF-CTA-043" data-ask="approve" data-id="${p.id}" aria-label="Approve refund: ${p.who}">Approve refund</button><button class="btn quiet sm" data-cta="WF-CTA-044" data-ask="decline" data-id="${p.id}" aria-label="Decline refund: ${p.who}">Decline refund</button></div></div>`;
   return p.note?`<div class="in said"><p>${p.note}</p></div>`:'';
 }
 function render(){
   const L=shown(),w=waitN();
-  $('crumb').textContent=`${plural(P.length)} منذ 1 نوفمبر 2026 · ${waitW(w)}`;
+  $('crumb').textContent=`${plural(P.length)} since 1 November 2026 · ${waitW(w)}`;
   const any=F.period||F.state||F.cohort;
-  $('count').innerHTML=L.length?`<b>${plural(L.length)}</b>${any?` من ${P.length} بهذه الشروط`:''} · الأحدث أولاً`:'';
+  $('count').innerHTML=L.length?`<b>${plural(L.length)}</b>${any?` of ${P.length} match these filters`:''} · newest first`:'';
   $('rows').innerHTML=L.map(p=>{
     const [cls,word]=ST[p.k],s=sub(p);
-    return `<tr class="${s?'has-sub':''}${p.k==='refund'?' you':''}" id="${p.id}"><td>${p.d}</td><td>${who(p)}${p.org?'<small>جهة</small>':''}</td><td>${p.what}<small>${p.s}</small></td><td class="amt">${money(p.amt)}</td><td>KNET</td><td><span class="stamp ${cls}${fresh===p.id?' press':''}" tabindex="-1">${word}</span></td><td>${p.rc?`<bdi class="num">${p.rc}</bdi>`:'<span class="muted">لم يصدر</span>'}</td></tr>`
+    return `<tr class="${s?'has-sub':''}${p.k==='refund'?' you':''}" id="${p.id}"><td>${p.d}</td><td>${p.who}${p.org?'<small>Organization</small>':''}</td><td>${p.what}<small>${p.s}</small></td><td class="amt">${money(p.amt)}</td><td>KNET</td><td><span class="stamp ${cls}${fresh===p.id?' press':''}" tabindex="-1">${word}</span></td><td>${p.rc?`<span class="num">${p.rc}</span>`:'<span class="muted">Not issued</span>'}</td></tr>`
       +(s?`<tr class="sub${p.k==='refund'?' you':''}"><td colspan="7">${s}</td></tr>`:'');
   }).join('');
   fresh='';
   const sum=ks=>L.filter(p=>ks.includes(p.k)).reduce((a,p)=>a+p.amt,0);
   $('tablewrap').hidden=$('totals').hidden=$('totalnote').hidden=!L.length;$('empty').hidden=!!L.length;
-  $('totals').innerHTML=`<span>المحصَّل<b>${money(sum(['paid','declined']))}</b> د.ك</span><span>المُسترد<b>${money(sum(['refunded']))}</b> د.ك</span><span>بانتظار قرارك<b>${money(sum(['refund']))}</b> د.ك</span>`;
+  $('totals').innerHTML=`<span>Collected <b>KWD ${money(sum(['paid','declined']))}</b></span><span>Refunded <b>KWD ${money(sum(['refunded']))}</b></span><span>Waiting for your decision <b>KWD ${money(sum(['refund']))}</b></span>`;
 }
 function apply(){F={period:$('f-period').value,state:$('f-state').value,cohort:$('f-cohort').value};ask=null;render()}
 $('filter').addEventListener('submit',e=>{e.preventDefault();apply()});
@@ -163,8 +164,8 @@ document.addEventListener('click',e=>{
     if(ask.kind==='decline'){
       const w=$('why'),v=w.value.trim();
       if(!v){$('wm').hidden=false;$('wf').classList.add('bad');w.focus();return}
-      p.k='declined';p.note=`سبب الرفض: ${esc(v)}`;ttToast(`رُفض الاسترجاع وأُرسل السبب إلى ${p.who}`);
-    }else{p.k='refunded';p.note='اعتمدتِ الاسترجاع اليوم. يعود المبلغ عن طريق البنك خلال أيام عمل.';ttToast(`اعتُمد الاسترجاع وأُبلغ${p.f?'ت':''} ${p.who}`)}
+      p.k='declined';p.note=`Reason for declining: ${esc(v)}`;ttToast(`Refund declined and the reason sent to ${p.who}`);
+    }else{p.k='refunded';p.note='You approved the refund today. The amount goes back through the bank within a few business days.';ttToast(`Refund approved and ${p.who} notified`)}
     ask=null;fresh=p.id;
     // keep the row in view even when the list is filtered by the old state
     if(F.state){F.state='';$('f-state').value=''}

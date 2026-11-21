@@ -1,20 +1,19 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>مقاعد موظفيك — بوابة الجهة</title>
+<title>Seats for your employees — Organization portal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
 <style>
 .side .foot a{padding-inline:0}
 [hidden]{display:none!important}
 .work{min-width:0}
-bdi{white-space:nowrap}
 .meta{font-size:var(--fs-14);color:var(--ink-2);margin:var(--s-4) 0 0}
-.lbtn{font:inherit;background:none;border:0;padding:0;cursor:pointer;min-height:44px;display:inline-flex;align-items:center}
 .synthetic{margin:var(--s-48) 0 0}
 .synthetic .lbtn{font-size:inherit;margin-inline:var(--s-8)}
 @media (max-width:900px){.btn.sm{min-height:44px}}
@@ -27,20 +26,22 @@ bdi{white-space:nowrap}
 .path{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-8);list-style:none;margin:var(--s-32) 0;padding:0}
 .path li{border-top:3px solid var(--card-edge);padding-top:var(--s-8);color:var(--ink-2);font-size:var(--fs-13)}
 .path li b{display:block;font-size:var(--fs-16)}
-.path li.done{border-color:var(--ink-2)}
-.path li[aria-current]{border-color:var(--ribbon);color:var(--ink)}
+.path li.done{border-color:var(--line-strong)}
+.path li[aria-current]{border-color:var(--accent-hi);color:var(--ink)}
 .qty{display:flex;align-items:center;gap:var(--s-8)}
-.qty button{width:var(--s-48);height:var(--s-48);border-radius:var(--r-btn);border:1.5px solid var(--ink);background:var(--card-hi);font:inherit;font-size:var(--fs-22);font-weight:700;color:var(--ink);cursor:pointer;line-height:1}
-.qty button:active{transform:translateY(1px)}
-.qty input{width:var(--s-96);text-align:center;font-size:var(--fs-22);font-weight:700;font-variant-numeric:tabular-nums}
+.qty button{width:var(--s-48);height:var(--s-48);border-radius:var(--r-btn);border:1px solid var(--line-strong);background:var(--card-hi);font:inherit;font-size:var(--fs-22);font-weight:600;color:var(--ink);cursor:pointer;line-height:1}
+.qty button:hover{border-color:var(--ink)}
+.qty button:active{transform:scale(.96)}
+.qty input{width:var(--s-96);text-align:center;font-size:var(--fs-22);font-weight:600;font-variant-numeric:tabular-nums}
 .pick{display:grid;grid-template-columns:auto 1fr auto;gap:var(--s-32);align-items:end}
 .total small{display:block;font-size:var(--fs-13);color:var(--ink-2)}
-.total strong{font-size:var(--fs-28);font-weight:800;font-variant-numeric:tabular-nums;line-height:1.3}
-.rows{list-style:none;margin:var(--s-16) 0 var(--s-24);padding:0;border-top:2px solid var(--ink)}
+.total strong{font-family:var(--font-head);font-size:var(--fs-28);font-weight:600;font-variant-numeric:tabular-nums;line-height:1.3}
+.rows{list-style:none;margin:var(--s-16) 0 var(--s-24);padding:0;border-top:1px solid var(--line-strong)}
 .rows>li{display:grid;grid-template-columns:6rem 1fr auto auto;gap:var(--s-8) var(--s-16);align-items:center;padding:var(--s-16) var(--s-8);border-bottom:1px solid var(--card-edge)}
-.rows>li>b{font-weight:700}
-.rows .who strong{display:block;font-weight:700}
-.rows .who span{display:block;font-size:var(--fs-13);color:var(--ink-2)}
+.rows>li>b{font-weight:600}
+.rows .who{min-width:0}
+.rows .who strong{display:block;font-weight:600}
+.rows .who span{display:block;font-size:var(--fs-13);color:var(--ink-2);overflow-wrap:anywhere}
 .rows form{grid-column:1/-1;display:grid;gap:var(--s-16);padding-top:var(--s-8)}
 .payline{display:flex;gap:var(--s-24);align-items:center;flex-wrap:wrap;margin-top:var(--s-24)}
 .sum{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s-16);flex-wrap:wrap}
@@ -51,26 +52,26 @@ bdi{white-space:nowrap}
 </head>
 <body class="desk">
 <div class="shell">
-  <nav class="side" aria-label="بنك المثال">
-    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>بنك المثال</span></div>
-    <a href="07-org-seats.html" aria-current="page">المقاعد</a>
-    <a href="08-org-report.html">مشاركة الموظفين</a>
-    <a href="22-org-proposals.html">طلبات العروض</a>
-    <a href="23-org-account.html">حساب الجهة</a>
-    <div class="foot">خالد الفهد · مسؤول التدريب<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  <nav class="side" aria-label="Example Bank">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>Example Bank</span></div>
+    <a href="07-org-seats.html" aria-current="page">Seats</a>
+    <a href="08-org-report.html">Employee participation</a>
+    <a href="22-org-proposals.html">Proposal requests</a>
+    <a href="23-org-account.html">Organization account</a>
+    <div class="foot">Khalid Al-Fahad · Training contact<br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
   </nav>
   <main class="work">
     <div class="sheet">
       <header class="top">
-        <div><h1>مقاعد موظفيك</h1><div class="crumb">احجز مقاعد في دفعة عامة، ادفع رسمها، ثم أسند كل مقعد لموظف</div></div>
-        <a class="btn sec sm" href="22-org-proposals.html" data-cta="WF-CTA-021">طلب عرض لجهتي</a>
+        <div><h1>Seats for your employees</h1><div class="crumb">Reserve seats in a public cohort, pay for them, then assign each seat to an employee</div></div>
+        <a class="btn sec sm" href="22-org-proposals.html" data-cta="WF-CTA-021">Request a proposal for my organisation</a>
       </header>
 
       <section aria-labelledby="ch">
         <div class="cohort">
           <div>
-            <h2 id="ch">بناء القيادات والقدرات المؤسسية</h2>
-            <p class="meta">تبدأ 2 فبراير · 5 جلسات · قاعة الشركة · 320 د.ك للمقعد</p>
+            <h2 id="ch">Leadership &amp; Capability Building</h2>
+            <p class="meta">Starts 2 February 2027 · 5 sessions · Think Tank office · KWD 320.000 per seat</p>
           </div>
           <div>
             <div class="seats" id="seats" data-cap="24" data-taken="13" data-mine="0"></div>
@@ -78,79 +79,79 @@ bdi{white-space:nowrap}
           </div>
         </div>
 
-        <ol class="path" id="path" aria-label="مراحل المقعد">
-          <li data-s="A"><b>الحجز</b><span>تختار عدد المقاعد</span></li>
-          <li data-s="B"><b>الدفع</b><span>يثبّت المقاعد لجهتك</span></li>
-          <li data-s="C"><b>الإسناد</b><span>مقعد لكل موظف</span></li>
+        <ol class="path" id="path" aria-label="Seat steps">
+          <li data-s="A"><b>Reserve</b><span>Choose how many seats</span></li>
+          <li data-s="B"><b>Pay</b><span>Secures the seats for your organization</span></li>
+          <li data-s="C"><b>Assign</b><span>One seat per employee</span></li>
         </ol>
 
         <div id="A">
           <div class="pick">
             <div class="field">
-              <label for="q">عدد المقاعد</label>
+              <label for="q">Number of seats</label>
               <div class="qty">
-                <button type="button" id="minus" aria-label="مقعد أقل">−</button>
+                <button type="button" id="minus" aria-label="One seat fewer">−</button>
                 <input id="q" inputmode="numeric" value="3" aria-describedby="qmsg">
-                <button type="button" id="plus" aria-label="مقعد إضافي">+</button>
+                <button type="button" id="plus" aria-label="One more seat">+</button>
               </div>
             </div>
             <div class="total" aria-live="polite"><small id="calc"></small><strong id="tot"></strong></div>
-            <button class="btn" id="reserve" data-cta="WF-CTA-012">حجز مقاعد</button>
+            <button class="btn" id="reserve" data-cta="WF-CTA-012">Reserve seats</button>
           </div>
           <p class="notice" id="qmsg" role="status" hidden style="margin-top:var(--s-16)"></p>
-          <p class="meta" style="margin-top:var(--s-16)">الحجز لا يخصم شيئاً. المقاعد تُحفظ لجهتك حتى تنتهي مهلة الدفع.</p>
+          <p class="meta" style="margin-top:var(--s-16)">Reserving charges nothing. The seats are held for your organization until the payment deadline.</p>
         </div>
 
         <div id="BC" hidden>
           <div class="sum"><h3 id="sumt"></h3><span class="meta" id="sumn"></span></div>
           <ul class="rows" id="rows"></ul>
           <div id="B">
-            <p class="notice"><span><b>المقاعد لم تُدفع بعد.</b> المقعد غير المدفوع يُفرَّغ تلقائياً عند انتهاء مهلة الدفع ويعود متاحاً لغيركم.</span></p>
+            <p class="notice"><span><b>These seats are not paid for yet.</b> An unpaid seat is released automatically at the payment deadline and becomes available to others.</span></p>
             <div class="payline">
-              <button class="btn" id="pay" data-cta="WF-CTA-013">دفع رسم المقاعد</button>
+              <button class="btn" id="pay" data-cta="WF-CTA-013">Pay seat fees</button>
               <div class="total"><small id="calc2"></small><strong id="tot2"></strong></div>
             </div>
           </div>
           <div id="C" hidden>
-            <p class="priv">سترى عن كل موظف حضوره وغيابه وشهادته، من <a class="link" href="08-org-report.html">مشاركة الموظفين</a>. نتائج اختباراته وإجاباته في الاستبيان لا تظهر لجهتك.</p>
-            <p class="priv" id="alldone" hidden><b>كل المقاعد مُسنَدة.</b> تبديل أي موظف متاح حتى الجلسة الأولى في 2 فبراير.</p>
+            <p class="priv">For each employee you will see attendance, absences and the certificate, under <a class="link" href="08-org-report.html">Staff participation</a>. Exam results and survey answers are never shown to your organization.</p>
+            <p class="priv" id="alldone" hidden><b>All seats are assigned.</b> You can swap an employee until the first session on 2 February 2027.</p>
           </div>
         </div>
-        <p class="synthetic">الأسماء والتواريخ والمبالغ تجريبية. <button class="lbtn link" id="reset" hidden>إعادة العرض من البداية</button> &nbsp;<a href="index.html">خريطة الشاشات</a></p>
+        <p class="synthetic">Names, dates and amounts are sample data. <button class="lbtn link" id="reset" hidden>Restart the demo</button> &nbsp;<a href="index.html">Screen map</a></p>
       </section>
     </div>
   </main>
 </div>
 <script src="tt.js"></script>
 <script>
-const CAP=24,TAKEN=13,FEE=320,FREE=CAP-TAKEN,$=id=>document.getElementById(id);
+const CAP=24,TAKEN=13,FEE=320,FREE=CAP-TAKEN,ORG='Example Bank',$=id=>document.getElementById(id);
 let state='A',qty=3,seats=[],open=-1,fresh=-1,msg='';
-const money=n=>n.toLocaleString('en-US')+'.000 د.ك';
-const word=n=>n===1?'مقعد واحد':n===2?'مقعدان':n<=10?n+' مقاعد':n+' مقعداً';
+const money=n=>'KWD '+n.toLocaleString('en-US')+'.000';
+const word=n=>n===1?'1 seat':n+' seats';
 const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function drawSeats(){const mine=state==='A'?0:qty,s=$('seats');s.dataset.mine=mine;
   s.innerHTML=Array.from({length:CAP},(_,i)=>`<s class="${i<TAKEN?'':i<TAKEN+mine?'mine':'free'}"></s>`).join('');
-  $('legend').innerHTML=`<span><span class="seats"><s></s></span>${TAKEN} لمتدربين آخرين</span>`+(mine?`<span><span class="seats"><s class="mine"></s></span>${mine} لبنك المثال</span>`:'')+`<span><span class="seats"><s class="free"></s></span>${FREE-mine} شاغرة</span>`;}
-function drawA(){$('q').value=qty;$('calc').textContent=`${word(qty)} × ${FEE} د.ك`;$('tot').textContent=money(qty*FEE);$('qmsg').hidden=!msg;$('qmsg').textContent=msg;}
-function setQty(n){msg='';if(!Number.isFinite(n)||n<1){n=1;msg='أقل حجز مقعد واحد.'}
-  if(n>FREE){n=FREE;msg=`الشاغر في هذه الدفعة ${FREE} مقعداً فقط، فثبّتنا العدد عليه. لعدد أكبر استخدم «طلب عرض لجهتي» لبرنامج مغلق.`}
+  $('legend').innerHTML=`<span><span class="seats"><s></s></span>${TAKEN} other trainees</span>`+(mine?`<span><span class="seats"><s class="mine"></s></span>${mine} ${ORG}</span>`:'')+`<span><span class="seats"><s class="free"></s></span>${FREE-mine} available</span>`;}
+function drawA(){$('q').value=qty;$('calc').textContent=`${word(qty)} × ${money(FEE)}`;$('tot').textContent=money(qty*FEE);$('qmsg').hidden=!msg;$('qmsg').textContent=msg;}
+function setQty(n){msg='';if(!Number.isFinite(n)||n<1){n=1;msg='The minimum reservation is 1 seat.'}
+  if(n>FREE){n=FREE;msg=`Only ${FREE} seats are available in this cohort, so we set the number to ${FREE}. For a larger group, use "Request a proposal for my organisation" to ask for an in-house program.`}
   qty=n;drawA();drawSeats();}
-function row(i){const e=seats[i],n=`<b>المقعد ${i+1}</b>`;
+function row(i){const e=seats[i],n=`<b>Seat ${i+1}</b>`;
   const form=`<form data-i="${i}" novalidate><div class="grid-2">
-    <div class="field"><label for="n${i}">اسم الموظف</label><input id="n${i}" autocomplete="off"><span class="msg" hidden>اكتب اسم الموظف.</span></div>
-    <div class="field"><label for="e${i}">بريد العمل</label><input id="e${i}" type="email" dir="ltr" autocomplete="off" placeholder="name@gulfbank.example"><span class="msg" hidden></span></div></div>
-    <div class="row"><button class="btn sm" type="submit">حفظ وإرسال الدعوة</button><button class="btn quiet sm" type="button" data-act="close">تراجع</button></div></form>`;
-  if(state==='B')return `<li>${n}<div class="who"><span>يُسنَد لموظف بعد الدفع</span></div><span class="stamp wait">محجوز</span></li>`;
-  if(!e)return `<li>${n}<div class="who"><span>مدفوع · لم يُسنَد لموظف بعد</span></div><span class="stamp you">ينتظر إسنادك</span>${open===i?form:`<span class="act"><button class="btn sec sm" data-cta="WF-CTA-014" data-act="open" data-i="${i}">إسناد المقعد</button></span>`}</li>`;
-  return `<li>${n}<div class="who"><strong>${esc(e.name)}</strong><span><bdi>${esc(e.email)}</bdi> · أُرسلت له دعوة لتفعيل حسابه</span></div><span class="stamp ok${fresh===i?' press':''}">مُسنَد</span>${open===i?form:`<span class="act"><button class="lbtn link" data-cta="WF-CTA-017" data-act="open" data-i="${i}">تبديل الموظف</button></span>`}</li>`;}
+    <div class="field"><label for="n${i}">Employee name</label><input id="n${i}" autocomplete="off"><span class="msg" hidden>Enter the employee's name.</span></div>
+    <div class="field"><label for="e${i}">Work email</label><input id="e${i}" type="email" autocomplete="off" placeholder="name@examplebank.example"><span class="msg" hidden></span></div></div>
+    <div class="row"><button class="btn sm" type="submit">Save and send invitation</button><button class="btn quiet sm" type="button" data-act="close">Cancel</button></div></form>`;
+  if(state==='B')return `<li>${n}<div class="who"><span>Assigned to an employee after payment</span></div><span class="stamp wait">Reserved</span></li>`;
+  if(!e)return `<li>${n}<div class="who"><span>Paid · not yet assigned to an employee</span></div><span class="stamp you">Needs you</span>${open===i?form:`<span class="act"><button class="btn sec sm" data-cta="WF-CTA-014" data-act="open" data-i="${i}">Assign seat</button></span>`}</li>`;
+  return `<li>${n}<div class="who"><strong>${esc(e.name)}</strong><span>${esc(e.email)} · invitation sent to activate the account</span></div><span class="stamp ok${fresh===i?' press':''}">Assigned</span>${open===i?form:`<span class="act"><button class="lbtn link" data-cta="WF-CTA-017" data-act="open" data-i="${i}">Swap employee</button></span>`}</li>`;}
 function draw(){$('A').hidden=state!=='A';$('BC').hidden=state==='A';$('B').hidden=state!=='B';$('C').hidden=state!=='C';$('reset').hidden=state==='A';
   document.querySelectorAll('#path li').forEach(li=>{const o='ABC'.indexOf(li.dataset.s),c='ABC'.indexOf(state);li.classList.toggle('done',o<c);o===c?li.setAttribute('aria-current','step'):li.removeAttribute('aria-current')});
   drawSeats();
   if(state==='A'){drawA();return}
   const done=seats.filter(Boolean).length;
-  $('sumt').textContent=state==='B'?`${word(qty)} محجوزة لبنك المثال`:`${word(qty)} مدفوعة`;
-  $('sumn').textContent=state==='B'?'بانتظار الدفع':`أُسند ${done} من ${qty}`;
-  $('calc2').textContent=`${word(qty)} × ${FEE} د.ك`;$('tot2').textContent=money(qty*FEE);
+  $('sumt').textContent=state==='B'?`${word(qty)} reserved for ${ORG}`:`${word(qty)} paid`;
+  $('sumn').textContent=state==='B'?'Awaiting payment':`${done} of ${qty} assigned`;
+  $('calc2').textContent=`${word(qty)} × ${money(FEE)}`;$('tot2').textContent=money(qty*FEE);
   $('alldone').hidden=!(state==='C'&&done===qty);
   $('rows').innerHTML=seats.map((_,i)=>row(i)).join('');fresh=-1;
   if(open>-1)$('n'+open).focus();}
@@ -158,17 +159,17 @@ $('minus').addEventListener('click',()=>setQty(qty-1));
 $('plus').addEventListener('click',()=>setQty(qty+1));
 let clampedAt=0;
 $('q').addEventListener('change',()=>{setQty(parseInt($('q').value.replace(/\D/g,''),10));if(msg)clampedAt=Date.now()});
-$('reserve').addEventListener('click',()=>{if(Date.now()-clampedAt<600)return;setQty(parseInt($('q').value.replace(/\D/g,''),10));if(msg)return;state='B';seats=Array(qty).fill(null);draw();ttToast(`حُجزت ${word(qty)} لبنك المثال`)});
-$('pay').addEventListener('click',()=>{state='C';draw();ttToast(`دُفع ${money(qty*FEE)} بـKNET وثُبّتت المقاعد`)});
+$('reserve').addEventListener('click',()=>{if(Date.now()-clampedAt<600)return;setQty(parseInt($('q').value.replace(/\D/g,''),10));if(msg)return;state='B';seats=Array(qty).fill(null);draw();ttToast(`${word(qty)} reserved for ${ORG}`)});
+$('pay').addEventListener('click',()=>{state='C';draw();ttToast(`${money(qty*FEE)} paid by KNET. The seats are confirmed.`)});
 $('reset').addEventListener('click',()=>{state='A';qty=3;seats=[];open=-1;msg='';draw()});
 $('rows').addEventListener('click',e=>{const b=e.target.closest('[data-act]');if(!b)return;open=b.dataset.act==='open'?+b.dataset.i:-1;draw()});
 $('rows').addEventListener('submit',e=>{e.preventDefault();const i=+e.target.dataset.i,n=$('n'+i),m=$('e'+i),name=n.value.trim(),email=m.value.trim().toLowerCase();
   const badN=!name,dup=seats.some((s,k)=>s&&k!==i&&s.email===email),badE=!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)||dup;
   n.closest('.field').classList.toggle('bad',badN);n.nextElementSibling.hidden=!badN;
   m.closest('.field').classList.toggle('bad',badE);m.nextElementSibling.hidden=!badE;
-  m.nextElementSibling.textContent=dup?'هذا البريد مُسنَد له مقعد آخر في هذه الدفعة. اكتب بريد موظف مختلف.':'اكتب بريد العمل كاملاً، مثل name@gulfbank.example';
+  m.nextElementSibling.textContent=dup?'This email already has another seat in this cohort. Enter a different employee\'s email.':'Enter the full work email, such as name@examplebank.example';
   if(badN||badE){(badN?n:m).focus();return}
-  const swap=!!seats[i];seats[i]={name,email};open=-1;fresh=i;draw();ttToast(swap?`أُسند المقعد إلى ${name} وأُلغيت دعوة الموظف السابق`:`أُسند المقعد وأُرسلت الدعوة إلى ${name}`)});
+  const swap=!!seats[i];seats[i]={name,email};open=-1;fresh=i;draw();ttToast(swap?`Seat reassigned to ${name}. The previous invitation was cancelled.`:`Seat assigned. Invitation sent to ${name}.`)});
 draw();
 </script>
 </body>

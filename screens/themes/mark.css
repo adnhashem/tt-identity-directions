@@ -1,0 +1,34 @@
+/* Design "The mark assembles": quiet white, graphite, deep teal. Overrides the base (line) tokens in tt.css. */
+:root{
+  --accent:#101418;--accent-hi:#0b6b6b;--on-accent:#ffffff;--accent-soft:#dcefee;--field:#ffffff;--inverse:#101418;--on-inverse:#ffffff;
+  --baize:#eef0f1;--baize-deep:#e0e3e6;--baize-hi:#ffffff;--card:#ffffff;--card-hi:#ffffff;--card-lo:#f4f5f6;--paper:#ffffff;
+  --card-edge:rgba(16,20,24,.13);--line-strong:rgba(16,20,24,.34);
+  --ink:#101418;--ink-2:#4c555e;--cream:#101418;--cream-2:#4c555e;
+  --ribbon:#0b6b6b;--ribbon-hi:#0e8585;--ribbon-dark:#075353;--brass:#0b6b6b;--brass-hi:#0e8585;--brass-dark:#075353;--brass-ink:#0b6b6b;
+  --ok:#1c5f3d;--wait:#6b4f0d;--err:#a8431a;--off:#5d666f;
+  --sh-object:0 34px 56px -36px rgba(16,20,24,.5),0 1px 0 #fff inset;--sh-sheet:0 34px 50px -34px rgba(16,20,24,.45),0 2px 5px rgba(16,20,24,.06),0 1px 0 #fff inset;--sh-low:0 14px 24px -16px rgba(16,20,24,.4),0 1px 0 #fff inset;
+  --font-head:'Albert Sans','Segoe UI',sans-serif;--font-body:'Albert Sans','Segoe UI',sans-serif;
+}
+html{scrollbar-color:#77808a #dfe2e4}
+::selection{background:#0b6b6b;color:#fff}
+:focus-visible{outline-color:#0b6b6b}
+body.table,body.desk{background:var(--baize);background-attachment:scroll}
+body.table::before,body.desk::before{opacity:.16;mix-blend-mode:multiply}
+h1,h2{font-weight:800;letter-spacing:-.035em}
+img[src*="logo-white"]{filter:invert(1) brightness(.22)}
+.btn{box-shadow:0 14px 22px -14px rgba(16,20,24,.7)}
+.btn:hover{background:#0b6b6b}
+.btn.sec:hover{background:#dcefee}
+.pass,.sheet,.cert{background:#ffffff;border-color:transparent}
+.cert{box-shadow:inset 0 0 0 8px #fff,inset 0 0 0 9px var(--card-edge),var(--sh-sheet)}
+.stamp.you{background:#0b6b6b;border-color:#0b6b6b;color:#fff}
+.side .n{background:#0b6b6b;color:#fff}
+.side a[aria-current]{background:#fff;box-shadow:var(--sh-low)}
+.seats s{background:#101418} .seats s.free{border-color:rgba(16,20,24,.4)} .seats s.mine{background:#0b6b6b}
+.tick[aria-pressed=true]{background:#0b6b6b;border-color:#0b6b6b}
+.field input::placeholder,.field textarea::placeholder{color:#7b848d}
+.notice{background:#f6f7f8} .notice.err{background:#fbeee8}
+.skel{background:linear-gradient(90deg,#e8ebed,#f6f7f8,#e8ebed);background-size:200% 100%}
+.seal{color:#101418;background:radial-gradient(circle at 35% 30%,#fff,#eef0f1);box-shadow:inset 0 0 0 4px #fff,inset 0 0 0 5px #0b6b6b,0 10px 20px -12px rgba(16,20,24,.5)}
+.steps li[aria-current]{background:#fff;box-shadow:inset 0 -2px 0 #0b6b6b,var(--sh-low)}
+.sitefoot{background:#e0e3e6}

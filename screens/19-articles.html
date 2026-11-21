@@ -1,39 +1,39 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>مقالات وأبحاث — Think Tank Strategists</title>
+<title>Articles and research — Think Tank Strategists</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
 <style>
 .read{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:var(--s-64);align-items:start;padding-block:var(--s-32) var(--s-96)}
 .read>*{min-width:0}
 .page{padding:var(--s-64) var(--s-64) var(--s-48)}
 .page>*{max-width:40rem;margin-inline:auto}
-.page h1{font-size:clamp(1.75rem,3.4vw,2.6rem);line-height:1.45}
-.page .meta{font-size:var(--fs-13);color:var(--ink-2);margin:var(--s-16) auto var(--s-32);padding-bottom:var(--s-24);border-bottom:2px solid var(--ink)}
-.page p{font-size:var(--fs-18);line-height:2.05;font-weight:400;margin-bottom:var(--s-24);text-wrap:pretty}
-.page p.meta{font-size:var(--fs-13);line-height:1.8}
-.page .open{font-size:var(--fs-22);font-weight:300;line-height:1.9}
-.page .pull{font-size:var(--fs-28);font-weight:800;line-height:1.6;color:var(--ribbon);margin-block:var(--s-48);text-wrap:balance}
-.page .after{margin-top:var(--s-48);padding-top:var(--s-24);border-top:1.5px dashed var(--card-edge);font-size:var(--fs-16);line-height:1.9;color:var(--ink-2)}
+.page h1{font-size:clamp(1.75rem,3.4vw,2.6rem);line-height:1.18}
+.page p{font-size:var(--fs-18);line-height:1.75;margin-bottom:var(--s-24);text-wrap:pretty}
+.page p.meta{font-size:var(--fs-13);line-height:1.7;color:var(--ink-2);margin:var(--s-16) auto var(--s-32);padding-bottom:var(--s-24);border-bottom:1px solid var(--line-strong)}
+.page .open{font-size:var(--fs-22);line-height:1.6}
+.page .pull{font-family:var(--font-head);font-size:var(--fs-28);font-weight:600;line-height:1.3;letter-spacing:-.01em;color:var(--ribbon);margin-block:var(--s-48);text-wrap:balance}
+.page .after{margin-top:var(--s-48);padding-top:var(--s-24);border-top:1px solid var(--card-edge);font-size:var(--fs-16);line-height:1.7;color:var(--ink-2)}
 .shelf{position:sticky;top:var(--s-32);padding-top:var(--s-16)}
 .shelf h2{font-size:var(--fs-18);margin-bottom:var(--s-8)}
 .shelf ul{list-style:none;margin:0 0 var(--s-32);padding:0}
-.shelf li button{display:block;width:100%;min-height:44px;text-align:start;font:inherit;color:var(--cream);background:none;border:0;border-top:1.5px dashed rgba(246,239,225,.3);padding:var(--s-16) 0;cursor:pointer;transition:padding .35s var(--ease)}
+.shelf li button{display:block;width:100%;min-height:44px;text-align:start;font:inherit;color:var(--cream);background:none;border:0;border-top:1px solid var(--card-edge);padding:var(--s-16) 0;cursor:pointer;transition:padding .35s var(--ease)}
 .shelf li button:hover{padding-inline-start:var(--s-8)}
-.shelf li b{display:block;font-weight:500;line-height:1.7}
+.shelf li b{display:block;font-weight:500;line-height:1.5}
 .shelf li span{display:block;font-size:var(--fs-13);color:var(--cream-2);margin-top:var(--s-4)}
-.shelf .go{padding-top:var(--s-24);border-top:1.5px dashed rgba(246,239,225,.3)}
+.shelf .go{padding-top:var(--s-24);border-top:1px solid var(--card-edge)}
 .shelf .go p{font-size:var(--fs-14);color:var(--cream-2);margin-bottom:var(--s-16)}
 .shelf .synthetic{margin:var(--s-32) 0 0}
 @media (max-width:900px){
   .read{grid-template-columns:minmax(0,1fr);gap:var(--s-48);padding-block:var(--s-8) var(--s-48)}
   .page{padding:var(--s-32) var(--s-24)}
-  .page p{font-size:var(--fs-16);line-height:2}
+  .page p{font-size:var(--fs-16);line-height:1.7}
   .page .open{font-size:var(--fs-18)}
   .page .pull{font-size:var(--fs-22);margin-block:var(--s-32)}
   .shelf{position:static;padding-top:0}
@@ -44,54 +44,54 @@
 </head>
 <body class="table">
 <div class="wrap">
-  <nav class="nav" aria-label="الرئيسية">
+  <nav class="nav" aria-label="Main">
     <a href="01-home.html"><img src="assets/logo-white.png" alt="Think Tank Strategists"></a>
     <ul>
-      <li><a href="01-home.html">البرامج</a></li>
-      <li><a href="19-articles.html" aria-current="page">المقالات</a></li>
-      <li><a href="18-for-orgs.html">للجهات</a></li>
-      <li><a href="12-verify.html">تحقق من شهادة</a></li>
-      <li class="keep"><a href="17-login.html">دخول</a></li>
-      <li class="keep"><a class="pill" href="#" lang="en" data-toast="النسخة الإنجليزية خارج شاشات العرض">English</a></li>
+      <li><a href="01-home.html">Programs</a></li>
+      <li><a href="19-articles.html" aria-current="page">Articles</a></li>
+      <li><a href="18-for-orgs.html">For organizations</a></li>
+      <li><a href="12-verify.html">Verify a certificate</a></li>
+      <li class="keep"><a href="17-login.html">Sign in</a></li>
+      <li class="keep"><a class="btn sm" href="03-register.html">Register</a></li>
     </ul>
   </nav>
 
   <main class="read">
     <article class="sheet page" aria-labelledby="t">
-      <h1 id="t">الإشارات الضعيفة: كيف تقرأ الجهة الحكومية ما لم يصبح خبراً بعد</h1>
-      <p class="meta">9 نوفمبر 2026 · مقال في الاستشراف · قراءته في 4 دقائق</p>
+      <h1 id="t">Weak signals: how a government organization reads what is not yet news</h1>
+      <p class="meta">9 November 2026 · Foresight · 4 min read</p>
 
-      <p class="open">معظم التغييرات الكبيرة لا تأتي فجأة. تسبقها علامات صغيرة متفرقة، يراها كثيرون ولا يكتبها أحد.</p>
+      <p class="open">Most big changes do not arrive suddenly. They are preceded by small, scattered signs that many people notice and nobody writes down.</p>
 
-      <p>طلب غير معتاد يتكرر عند مكتب خدمة المراجعين. مهارة يبحث عنها الخريجون خارج ما تدرّسه الجامعات. تطبيق صغير يحلّ مشكلة لم تلتفت إليها جهة رسمية. نسمّي هذه العلامات «إشارات ضعيفة»، لأنها لا تظهر في التقارير الدورية ولا في المؤشرات التي تُقاس كل ربع سنة. ومن يلتقطها مبكراً يكسب الوقت، والوقت أثمن ما في التخطيط.</p>
+      <p>An unusual request that keeps coming up at the public service counter. A skill graduates look for outside what universities teach. A small app that solves a problem no official body has paid attention to. We call these signs weak signals, because they do not show up in periodic reports or in the indicators measured every quarter. Whoever picks them up early gains time, and time is the most valuable thing in planning.</p>
 
-      <p>في القطاع العام الخليجي سبب إضافي يجعل قراءتها صعبة. الخطط الوطنية طويلة الأمد، وهذا مصدر قوة، لكنه يجعل المؤسسة تنظر إلى ما اتفقت على قياسه فقط. والإشارة الضعيفة تقع غالباً خارج المؤشر: عند الموظف الذي يقابل الجمهور، أو في شكوى لا تصنيف لها، أو في سؤال يطرحه موظف جديد ولا يجد من يجيبه.</p>
+      <p>In the Gulf public sector there is one more reason they are hard to read. National plans are long-term, and that is a source of strength, but it also trains an organization to look only at what it has agreed to measure. A weak signal usually sits outside the indicator: with the employee who meets the public, in a complaint that fits no category, or in a question a new hire asks and nobody can answer.</p>
 
-      <p class="pull">ما لا خانة له في النموذج لا يصل إلى طاولة القرار.</p>
+      <p class="pull">What has no box on the form never reaches the decision table.</p>
 
-      <p>القراءة الجيدة لا تحتاج إلى إدارة جديدة، بل إلى عادة. ثلاثة أسئلة تكفي للبدء: ما الذي رأيناه هذا الشهر ولم نكن نراه قبل سنة؟ من تأثّر به أولاً؟ وماذا لو صار هو القاعدة بعد خمس سنوات؟ تُكتب الإجابات في سجل واحد مفتوح لكل الإدارات، ويُراجع في جلسة قصيرة كل شهر. ولا يُطلب من أحد أن يثبت أن إشارته مهمة؛ يكفي أن يصفها بدقة ويذكر أين رآها.</p>
+      <p>Reading signals well does not take a new department. It takes a habit. Three questions are enough to start: What did we see this month that we were not seeing a year ago? Who was affected first? And what if it became the norm in five years? The answers go into a single log that is open to every department and reviewed in a short session each month. Nobody is asked to prove that their signal matters. It is enough to describe it precisely and say where they saw it.</p>
 
-      <p>والخطأ الشائع أن تُعامل الإشارة كأنها تنبؤ. الإشارة لا تقول ما سيحدث، بل توسّع ما نعدّه ممكناً. ولهذا لا تُستعمل وحدها: تُجمع الإشارات المتقاربة، ثم تُبنى منها عدة سيناريوهات تُختبر عليها الخطة الحالية. إن صمدت الخطة أمامها كلها فذاك اطمئنان له سند، وإن اهتزّت أمام واحد منها عرفت المؤسسة أين تستعد، قبل أن يصير الأمر خبراً في الصحف.</p>
+      <p>The common mistake is to treat a signal as a prediction. A signal does not say what will happen; it widens what we consider possible. That is why it is never used alone. Related signals are grouped, and several scenarios are built from them to test the current plan against. If the plan holds up against all of them, that is reassurance with evidence behind it. If it wobbles against one, the organization knows where to prepare, before the matter becomes a headline.</p>
 
-      <p class="after">قراءة الإشارات هي الجلسة الأولى في برنامج <a class="link" href="02-program.html">استشراف المستقبل وبناء السيناريوهات</a>، وفيها يعمل المشاركون على إشارات من قطاعاتهم.</p>
+      <p class="after">Reading the signals is the first session of <a class="link" href="02-program.html">Foresight &amp; Futures Thinking</a>, where participants work on signals from their own sectors.</p>
     </article>
 
-    <aside class="shelf" aria-label="مقالات أخرى">
-      <h2>مقالات وأبحاث أخرى</h2>
+    <aside class="shelf" aria-label="Other articles">
+      <h2>More articles and research</h2>
       <ul>
-        <li><button type="button" data-toast="مقال واحد مفتوح في هذا العرض"><b>السيناريو ليس توقعاً: أربعة أخطاء عند بناء البدائل</b><span>21 أكتوبر 2026</span></button></li>
-        <li><button type="button" data-toast="مقال واحد مفتوح في هذا العرض"><b>لماذا تتعثر الخطة الاستراتيجية في سنتها الثانية</b><span>30 سبتمبر 2026</span></button></li>
-        <li><button type="button" data-toast="مقال واحد مفتوح في هذا العرض"><b>القيادات الوسطى: من ينفّذ الاستراتيجية فعلاً</b><span>8 سبتمبر 2026</span></button></li>
+        <li><button type="button" data-toast="Only one article is open in this demo"><b>A scenario is not a forecast: four mistakes when building alternatives</b><span>21 October 2026</span></button></li>
+        <li><button type="button" data-toast="Only one article is open in this demo"><b>Why the strategic plan stumbles in its second year</b><span>30 September 2026</span></button></li>
+        <li><button type="button" data-toast="Only one article is open in this demo"><b>Middle managers: who actually carries out the strategy</b><span>8 September 2026</span></button></li>
       </ul>
       <div class="go">
-        <p>ما تقرؤه هنا يُمارَس في القاعة، في دفعات حضورية صغيرة.</p>
-        <a class="btn wide" href="01-home.html" data-cta="WF-CTA-005">استعراض البرامج</a>
+        <p>What you read here is practiced in the room, in small in-person cohorts.</p>
+        <a class="btn wide" href="01-home.html" data-cta="WF-CTA-005">Browse programs</a>
       </div>
-      <p class="synthetic">المقال والعناوين والتواريخ نصوص تجريبية للعرض.</p>
+      <p class="synthetic">The article, titles and dates are sample content for this demo.</p>
     </aside>
   </main>
 </div>
-<footer class="sitefoot"><div class="wrap spread"><span><bdi>Think Tank Strategists</bdi> · الكويت · الأحد إلى الخميس 9 – 5</span><a href="index.html">خريطة الشاشات</a></div></footer>
+<footer class="sitefoot"><div class="wrap spread"><span>Think Tank Strategists · Kuwait · Sunday to Thursday, 9:00–17:00</span><a href="index.html">Screen map</a></div></footer>
 
 <script src="tt.js"></script>
 </body>

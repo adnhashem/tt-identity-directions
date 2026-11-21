@@ -1,27 +1,27 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>دفع الرسم — Think Tank Strategists</title>
+<title>Pay fee — Think Tank Strategists</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
 <style>
 [hidden]{display:none!important}
-.stamp.big{-webkit-mask:var(--rough) center/200px 120px,linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.62));mask:var(--rough) center/200px 120px,linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.62))}
 .steps{margin-top:var(--s-16)}
 .pay{display:grid;grid-template-columns:.85fr 1.15fr;gap:var(--s-64);align-items:start;padding-bottom:var(--s-96)}
 .pay>*{min-width:0}
 .say{padding-top:var(--s-32)}
-.say h1{font-size:clamp(1.9rem,3.6vw,2.75rem);text-shadow:0 2px 0 rgba(0,0,0,.25);max-width:14ch}
+.say h1{font-size:clamp(1.9rem,3.6vw,2.75rem);max-width:16ch}
 .say h1:focus{outline:0}
-.say .lede{font-weight:300;font-size:var(--fs-18);color:var(--cream-2);max-width:34ch;margin:var(--s-16) 0 var(--s-24)}
+.say .lede{font-size:var(--fs-18);color:var(--cream-2);max-width:36ch;margin:var(--s-16) 0 var(--s-24)}
 .say .synthetic{margin-top:var(--s-16)}
 .textbtn{background:none;border:0;padding:0;font:inherit;font-size:var(--fs-14);cursor:pointer;text-decoration:underline;text-underline-offset:5px;min-height:44px}
 .bill{padding:var(--s-48)}
-.bill header{display:flex;justify-content:space-between;align-items:center;gap:var(--s-16);flex-wrap:wrap;padding-bottom:var(--s-12);border-bottom:2px solid var(--ink)}
+.bill header{display:flex;justify-content:space-between;align-items:center;gap:var(--s-16);flex-wrap:wrap;padding-bottom:var(--s-16);border-bottom:1px solid var(--line-strong)}
 .bill header h2{font-size:var(--fs-22)}
 .bill header p{margin:0;font-size:var(--fs-13);color:var(--ink-2)}
 .lines{margin:0}
@@ -29,110 +29,109 @@
 .lines dt{font-size:var(--fs-13);color:var(--ink-2)}
 .lines dd{margin:0;font-weight:500}
 .lines .sum{border-bottom:0;padding-block:var(--s-16) var(--s-8)}
-.lines .sum dd{font-size:var(--fs-28);font-weight:800;font-variant-numeric:tabular-nums;line-height:1.3}
-.knet{font-size:var(--fs-14);color:var(--ink-2);margin:0 0 var(--s-16);padding-top:var(--s-16);border-top:1.5px dashed var(--card-edge)}
+.lines .sum dd{font-family:var(--font-head);font-size:var(--fs-28);font-weight:600;font-variant-numeric:tabular-nums;line-height:1.3}
+.knet{font-size:var(--fs-14);color:var(--ink-2);margin:0 0 var(--s-16);padding-top:var(--s-16);border-top:1px solid var(--card-edge)}
 .knet b{color:var(--ink)}
 .notice{margin-top:var(--s-16)}
 .notice:focus{outline:0}
 .busy{display:grid;gap:var(--s-16)}
-.busy p{margin:0;font-weight:700}
+.busy p{margin:0;font-weight:600}
 .busy .skel:nth-of-type(1){width:70%}.busy .skel:nth-of-type(2){width:90%}.busy .skel:nth-of-type(3){width:55%}.busy .skel:nth-of-type(4){width:80%;height:var(--s-48)}
-.receipt .stamp.big{flex:none;margin-inline-end:var(--s-12)}
+.receipt .stamp.big{flex:none}
 .receipt h2:focus{outline:0}
 .receipt .go{margin-top:var(--s-24)}
-footer{background:var(--baize-deep);border-top:1px solid #ffffff14;padding-block:var(--s-32);font-size:var(--fs-13);color:var(--cream-2)}
 @media (max-width:900px){
   .pay{grid-template-columns:1fr;gap:var(--s-32)}
   .say{padding-top:0}
-  .bill{padding:var(--s-32) var(--s-24);transform:none}
+  .bill{padding:var(--s-32) var(--s-24)}
   .lines div{grid-template-columns:var(--s-64) 1fr}
 }
 </style>
 </head>
 <body class="table">
 <div class="wrap">
-  <nav class="nav" aria-label="الرئيسية">
+  <nav class="nav" aria-label="Main">
     <a href="01-home.html"><img src="assets/logo-white.png" alt="Think Tank Strategists"></a>
     <ul>
-      <li><a href="01-home.html" aria-current="page">البرامج</a></li>
-      <li><a href="19-articles.html">المقالات</a></li>
-      <li><a href="18-for-orgs.html">للجهات</a></li>
-      <li><a href="12-verify.html">تحقق من شهادة</a></li>
-      <li class="keep"><a href="17-login.html">دخول</a></li>
-      <li class="keep"><a class="pill" href="#" lang="en" data-toast="النسخة الإنجليزية خارج شاشات العرض">English</a></li>
+      <li><a href="01-home.html" aria-current="page">Programs</a></li>
+      <li><a href="19-articles.html">Articles</a></li>
+      <li><a href="18-for-orgs.html">For organizations</a></li>
+      <li><a href="12-verify.html">Verify a certificate</a></li>
+      <li class="keep"><a href="17-login.html">Sign in</a></li>
+      <li class="keep"><a class="btn sm" href="03-register.html">Register</a></li>
     </ul>
   </nav>
 
-  <ol class="steps" aria-label="خطوات الحجز">
-    <li class="done">بياناتك</li>
-    <li class="done">تأكيد الرمز</li>
-    <li aria-current="step">الدفع</li>
+  <ol class="steps" aria-label="Booking steps">
+    <li class="done">Your details</li>
+    <li class="done">Confirm code</li>
+    <li aria-current="step">Payment</li>
   </ol>
 
   <main class="pay">
     <div class="say">
-      <h1 id="h" tabindex="-1">بقيت خطوة واحدة: دفع الرسم</h1>
-      <p class="lede" id="lede">مقعدك في دفعة 14 ديسمبر محجوز لك الآن، ويتأكد نهائياً حين يصلنا الدفع قبل انتهاء المهلة.</p>
-      <button type="button" class="textbtn on-baize" id="tryfail">جرّب حالة فشل الدفع</button>
-      <p class="synthetic">الاسم والمبلغ ورقم الإيصال تجريبية، ولا يُخصم شيء في هذا العرض.</p>
+      <h1 id="h" tabindex="-1">One step left: pay the fee</h1>
+      <p class="lede" id="lede">Your seat in the 14 December cohort is reserved for you now. It is confirmed once we receive your payment before the deadline.</p>
+      <button type="button" class="textbtn on-baize" id="tryfail">Try the failed-payment state</button>
+      <p class="synthetic">The name, amount and receipt number are sample data. Nothing is charged in this demo.</p>
     </div>
 
     <div aria-live="polite">
-      <section class="sheet tilt-l lay bill" id="summary" aria-labelledby="sm">
+      <section class="sheet lay bill" id="summary" aria-labelledby="sm">
         <header>
-          <h2 id="sm">ملخص الحجز</h2>
-          <span class="stamp wait" id="status">بانتظار الدفع</span>
+          <h2 id="sm">Booking summary</h2>
+          <span class="stamp wait" id="status">Awaiting payment</span>
         </header>
         <dl class="lines">
-          <div><dt>البرنامج</dt><dd>استشراف المستقبل وبناء السيناريوهات</dd></div>
-          <div><dt>الأيام</dt><dd>14 و15 و16 ديسمبر 2026، من 9:00 إلى 13:00</dd></div>
-          <div><dt>المتدربة</dt><dd>نورة الصباح</dd></div>
-          <div class="sum"><dt>المبلغ</dt><dd>180.000 د.ك</dd></div>
+          <div><dt>Program</dt><dd>Foresight &amp; Futures Thinking</dd></div>
+          <div><dt>Dates</dt><dd>14, 15 and 16 December 2026, 9:00–13:00</dd></div>
+          <div><dt>Trainee</dt><dd>Noura Al-Sabah</dd></div>
+          <div class="sum"><dt>Amount</dt><dd>KWD 180.000</dd></div>
         </dl>
-        <p class="knet"><b>الدفع ببطاقة KNET فقط.</b> تكتبين بيانات البطاقة في صفحة البنك نفسه، ولا تمرّ علينا ولا نحفظها.</p>
+        <p class="knet"><b>Payment is by KNET card only.</b> You enter your card details on your bank's own page. They never pass through us and we do not store them.</p>
 
-        <button class="btn wide" id="paybtn" data-cta="WF-CTA-008">دفع الرسم</button>
+        <button class="btn wide" id="paybtn" data-cta="WF-CTA-008">Pay fee</button>
 
         <div class="notice err" id="failed" role="alert" tabindex="-1" hidden>
-          <div><b>لم يكتمل الدفع.</b> لم يُخصم أي مبلغ من بطاقتك، ومقعدك ما زال محجوزاً لك. أعيدي المحاولة متى شئتِ قبل انتهاء المهلة.</div>
+          <div><b>The payment did not go through.</b> Nothing was charged to your card, and your seat is still reserved for you. Try again any time before the deadline.</div>
         </div>
-        <button class="btn wide" id="retry" data-cta="WF-CTA-009" style="margin-top:var(--s-16)" hidden>إكمال الدفع</button>
+        <button class="btn wide" id="retry" data-cta="WF-CTA-009" style="margin-top:var(--s-16)" hidden>Complete payment</button>
       </section>
 
       <section class="sheet bill busy" id="busy" aria-busy="true" hidden>
-        <p>نتأكد من إتمام الدفع مع البنك…</p>
+        <p>Confirming the payment with the bank…</p>
         <div class="skel"></div><div class="skel"></div><div class="skel"></div><div class="skel"></div>
       </section>
 
       <section class="sheet lay bill receipt" id="receipt" aria-labelledby="rc" hidden>
         <header>
           <div>
-            <h2 id="rc" tabindex="-1">إيصال دفع</h2>
-            <p>رقم الإيصال <bdi>R-2026-0318</bdi></p>
+            <h2 id="rc" tabindex="-1">Payment receipt</h2>
+            <p>Receipt no. <span class="num">R-2026-0318</span></p>
           </div>
-          <span class="stamp big ok press">مؤكد</span>
+          <span class="stamp big ok press">Confirmed</span>
         </header>
         <dl class="lines">
-          <div><dt>المتدربة</dt><dd>نورة الصباح</dd></div>
-          <div><dt>البرنامج</dt><dd>استشراف المستقبل وبناء السيناريوهات، دفعة 14 ديسمبر</dd></div>
-          <div><dt>التاريخ</dt><dd>6 ديسمبر 2026</dd></div>
-          <div><dt>طريقة الدفع</dt><dd>KNET</dd></div>
-          <div class="sum"><dt>المدفوع</dt><dd>180.000 د.ك</dd></div>
+          <div><dt>Trainee</dt><dd>Noura Al-Sabah</dd></div>
+          <div><dt>Program</dt><dd>Foresight &amp; Futures Thinking, 14 December cohort</dd></div>
+          <div><dt>Date</dt><dd>6 December 2026</dd></div>
+          <div><dt>Method</dt><dd>KNET</dd></div>
+          <div class="sum"><dt>Paid</dt><dd>KWD 180.000</dd></div>
         </dl>
-        <a class="btn wide go" href="05-my-cohorts.html" data-cta="WF-CTA-028">عرض جلساتي</a>
+        <a class="btn wide go" href="05-my-cohorts.html" data-cta="WF-CTA-028">View my sessions</a>
       </section>
     </div>
   </main>
 </div>
-<footer><div class="wrap spread"><span><bdi>Think Tank Strategists</bdi> · الكويت · الأحد إلى الخميس 9 – 5</span><a href="index.html">خريطة الشاشات</a></div></footer>
+<footer class="sitefoot"><div class="wrap spread"><span>Think Tank Strategists · Kuwait · Sunday to Thursday, 9:00–17:00</span><a href="index.html">Screen map</a></div></footer>
 
 <script src="tt.js"></script>
 <script>
 const $=id=>document.getElementById(id),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const view=v=>['summary','busy','receipt'].forEach(id=>$(id).hidden=id!==v);
 function done(){view('receipt');
-  $('h').textContent='تم الدفع، ومقعدك مؤكد';
-  $('lede').textContent='نراك يوم الاثنين 14 ديسمبر، 9:00 صباحاً في قاعة الشركة. هذا الإيصال ومواعيد جلساتك الثلاث تجدينها في صفحتك.';
+  $('h').textContent='Payment received. Your seat is confirmed';
+  $('lede').textContent='See you on Monday 14 December at 9:00 in the company training hall. This receipt and the times of your three sessions are in your portal.';
   $('rc').focus({preventScroll:true});}
 function pay(){$('tryfail').hidden=true;
   if(rm){done();return}
@@ -141,7 +140,7 @@ $('paybtn').addEventListener('click',pay);
 $('retry').addEventListener('click',pay);
 $('tryfail').addEventListener('click',()=>{
   $('paybtn').remove();$('tryfail').hidden=true;
-  const s=$('status');s.className='stamp err press';s.textContent='لم يكتمل الدفع';
+  const s=$('status');s.className='stamp err press';s.textContent='Payment failed';
   $('failed').hidden=false;$('retry').hidden=false;$('failed').focus();});
 </script>
 </body>

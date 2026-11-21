@@ -1,13 +1,14 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>طلبات العروض — إدارة Think Tank</title>
+<title>Proposal requests — Think Tank administration</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
 <style>
 [tabindex="-1"]:focus{outline:0}
 .tabs{margin-bottom:var(--s-16)}
@@ -16,17 +17,17 @@
 .count b{color:var(--ink);font-variant-numeric:tabular-nums}
 .led td{padding-block:var(--s-12)}
 .led small{display:block;font-size:var(--fs-13);color:var(--ink-2);line-height:1.6}
-.led .ref bdi{font-weight:700;font-variant-numeric:tabular-nums}
+.led .ref b{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
 .led .when{white-space:nowrap}
 .led td:last-child{text-align:end}
 .led .m{display:none}
 .led tr.open>td{border-bottom-color:transparent}
-.led tr.det>td{padding:0 6px var(--s-32)}
+.led tr.det>td{padding:0 6px var(--s-32);text-align:start}
 /* the opened request: what they asked beside what you answer */
 .det .in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:var(--s-24) var(--s-48);align-items:start}
-.det h2.dh{font-size:var(--fs-13);font-weight:500;color:var(--ink-2);padding-bottom:var(--s-4);border-bottom:1px solid var(--ink)}
+.det h2.dh{font-size:var(--fs-13);font-weight:500;color:var(--ink-2);padding-bottom:var(--s-4);border-bottom:1px solid var(--line-strong)}
 .det .dl>div{grid-template-columns:minmax(96px,150px) minmax(0,1fr);padding:var(--s-8) 0;border-bottom:1px solid var(--card-edge);font-size:var(--fs-14)}
-.det .dl dd.big{font-size:var(--fs-18);font-weight:700;font-variant-numeric:tabular-nums}
+.det .dl dd.big{font-size:var(--fs-18);font-weight:600;font-variant-numeric:tabular-nums}
 .det .say{margin:var(--s-16) 0 0;font-size:var(--fs-14);color:var(--ink-2);max-width:56ch}
 .det .say b{color:var(--ink)}
 .det .go{margin-top:var(--s-16)}
@@ -45,40 +46,40 @@
 </head>
 <body class="desk">
 <div class="shell">
-  <nav class="side" aria-label="الإدارة">
-    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>الإدارة</span></div>
-    <a href="09-admin-inbox.html">ما ينتظرك <span class="n">3</span></a>
-    <a href="24-admin-cohorts.html">الدفعات</a>
-    <a href="25-admin-programs.html">البرامج</a>
-    <a href="26-admin-orgs.html">الجهات <span class="n">1</span></a>
-    <a href="27-admin-proposals.html" aria-current="page">طلبات العروض <span class="n">2</span></a>
-    <a href="28-admin-payments.html">المدفوعات <span class="n">1</span></a>
-    <a href="29-admin-certificates.html">الشهادات</a>
-    <a href="30-admin-trainees.html">المتدربون</a>
-    <a href="31-admin-report.html">التقرير الشامل</a>
-    <div class="foot">د. منال الحساوي<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  <nav class="side" aria-label="Administration">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>Administration</span></div>
+    <a href="09-admin-inbox.html">Waiting for you <span class="n">3</span></a>
+    <a href="24-admin-cohorts.html">Cohorts</a>
+    <a href="25-admin-programs.html">Programs</a>
+    <a href="26-admin-orgs.html">Organizations <span class="n">1</span></a>
+    <a href="27-admin-proposals.html" aria-current="page">Proposal requests <span class="n">2</span></a>
+    <a href="28-admin-payments.html">Payments <span class="n">1</span></a>
+    <a href="29-admin-certificates.html">Certificates</a>
+    <a href="30-admin-trainees.html">Trainees</a>
+    <a href="31-admin-report.html">Full report</a>
+    <div class="foot">Dr. Manal Al-Hasawi<br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
   </nav>
 
   <main class="work">
     <div class="sheet">
       <header class="top">
-        <div><h1>طلبات العروض</h1><div class="crumb" id="crumb"></div></div>
+        <div><h1>Proposal requests</h1><div class="crumb" id="crumb"></div></div>
       </header>
 
-      <section aria-label="طلبات الجهات لبرامج مغلقة">
-        <div class="tabs scroll-x" role="tablist" aria-label="تصفية بالحالة" id="tabs"></div>
+      <section aria-label="Requests from organizations for in-house programs">
+        <div class="tabs scroll-x" role="tablist" aria-label="Filter by status" id="tabs"></div>
         <p class="count" id="count" role="status"></p>
-        <div class="scroll-x" id="panel" role="tabpanel" aria-label="الطلبات">
+        <div class="scroll-x" id="panel" role="tabpanel" aria-label="Requests">
           <table class="t led">
-            <thead><tr><th>الطلب</th><th class="x">الجهة</th><th class="x">البرنامج</th><th class="x">المشاركون</th><th class="x">وصل في</th><th>الحالة</th><th><span class="vh">فتح الطلب</span></th></tr></thead>
+            <thead><tr><th>Request</th><th class="x">Organization</th><th class="x">Program</th><th class="x">Participants</th><th class="x">Received</th><th>Status</th><th><span class="vh">Open request</span></th></tr></thead>
             <tbody id="rows"></tbody>
           </table>
         </div>
         <div class="empty" id="empty" hidden>
           <h2 id="emh"></h2><p id="emp"></p>
-          <p><button class="lbtn" type="button" id="clear">اعرضي كل الطلبات</button></p>
+          <p><button class="lbtn" type="button" id="clear">Show all requests</button></p>
         </div>
-        <p class="synthetic tail">الجهات والأسماء والأسعار تجريبية، واليوم في العرض 6 ديسمبر 2026. <a href="index.html">خريطة الشاشات</a></p>
+        <p class="synthetic tail">Organizations, names and prices are sample data. Today in this demo is 6 December 2026. <a href="index.html">Screen map</a></p>
       </section>
     </div>
   </main>
@@ -87,91 +88,92 @@
 <script>
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const MON=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
-const pl=(n,one,two,few,many)=>n===1?one:n===2?two:n>=3&&n<=10?`${n} ${few}`:`${n} ${many}`;
-const money=n=>n.toLocaleString('en-US',{minimumFractionDigits:3,maximumFractionDigits:3})+' د.ك';
+const MON=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const pl=(n,one,many)=>`${n} ${n===1?one:many}`;
+const money=n=>'KWD '+n.toLocaleString('en-US',{minimumFractionDigits:3,maximumFractionDigits:3});
 const pt=iso=>{const [y,m,d]=iso.split('-').map(Number);return {y,m,d}};
 const date=iso=>{const {y,m,d}=pt(iso);return `${d} ${MON[m-1]} ${y}`};
-const range=(a,b)=>{if(!a&&!b)return 'لم تُحدَّد';if(!b||a===b)return date(a);if(!a)return date(b);const x=pt(a),y=pt(b);
-  return x.y===y.y&&x.m===y.m?`${x.d} – ${y.d} ${MON[y.m-1]} ${y.y}`:`${x.d} ${MON[x.m-1]} – ${date(b)}`};
-const people=n=>pl(n,'مشارك واحد','مشاركان','مشاركين','مشاركاً');
+const range=(a,b)=>{if(!a&&!b)return 'Not set';if(!b||a===b)return date(a);if(!a)return date(b);const x=pt(a),y=pt(b);
+  return x.y===y.y&&x.m===y.m?`${x.d}–${y.d} ${MON[y.m-1]} ${y.y}`:`${x.d} ${MON[x.m-1]} – ${date(b)}`};
+const people=n=>pl(n,'participant','participants');
 
-// the lifecycle runs on these keys; the Arabic words are display only
-const ST={new:['you','جديد · ينتظرك'],review:['you','قيد المراجعة'],priced:['wait','مُسعَّر'],accepted:['you','مقبول'],rejected:['off','مرفوض']};
-const TAB={new:'جديد',review:'قيد المراجعة',priced:'مُسعَّر',accepted:'مقبول',rejected:'مرفوض'};
+// the lifecycle runs on these keys; the words are display only
+const ST={new:['you','New'],review:['you','In review'],priced:['wait','Quoted'],accepted:['you','Accepted'],rejected:['off','Declined']};
+const TAB={new:'New',review:'In review',priced:'Quoted',accepted:'Accepted',rejected:'Declined'};
 const ORDER=['new','review','priced','accepted','rejected'];
-const EMPTY={new:['لا طلبات جديدة','كل ما وصلك بدأتِ مراجعته. الطلب الجديد يظهر هنا فور إرساله.'],review:['لا طلبات قيد المراجعة','لا عرض ينتظر أن تسعّريه.'],
-  priced:['لا عروض عند الجهات','لا عرض مُرسل ينتظر رداً.'],accepted:['لا عروض مقبولة','حين تقبل جهة عرضاً يظهر هنا لتنشئي دفعتها.'],rejected:['لا عروض مرفوضة','لم ترفض أي جهة عرضاً.']};
+const EMPTY={new:['No new requests','You have started reviewing everything that came in. A new request appears here as soon as it is sent.'],review:['No requests in review','No quote is waiting for you to price it.'],
+  priced:['No quotes with organizations','No sent quote is waiting for an answer.'],accepted:['No accepted quotes','When an organization accepts a quote, it appears here so you can create its cohort.'],rejected:['No declined quotes','No organization has declined a quote.']};
+const FS='Foresight &amp; Futures Thinking',SS='Executive Strategy Workshops',LS='Leadership &amp; Capability Building';
 const Q=[
- {ref:'Q-2026-014',org:'هيئة النموذج',who:'ناصر العلي',prog:'استشراف المستقبل',n:25,got:'2026-12-03',s:'new',
-  want:'فبراير 2027، ثلاثة أيام متتالية',where:'مقر الهيئة',lang:'العربية',note:'نريد أن يكون التطبيق على خطة الهيئة 2030. المشاركون مديرو إدارات.'},
- {ref:'Q-2026-011',org:'بنك المثال',who:'منى السالم',f:1,prog:'ورش الاستراتيجية للقيادات التنفيذية',n:20,got:'2026-11-24',s:'priced',
-  want:'يناير 2027، يومان',where:'قاعة الشركة',lang:'الإنجليزية',note:'المشاركون من الإدارة التنفيذية وبعضهم لا يقرأ العربية.',
-  quote:{price:4200,from:'2027-01-25',to:'2027-01-26',valid:'2026-12-20',note:'السعر يشمل المواد المطبوعة وشهادات المشاركين.',sent:'2026-11-30'}},
- {ref:'Q-2026-009',org:'وزارة التخطيط',who:'أمل الرشيد',f:1,prog:'استشراف المستقبل',n:18,got:'2026-11-12',s:'accepted',
-  want:'يناير 2027، ثلاثة أيام',where:'مقر الوزارة',lang:'العربية',note:'نفضّل الفترة الصباحية.',
-  quote:{price:3600,from:'2027-01-18',to:'2027-01-20',valid:'2026-12-10',note:'ثلاث جلسات صباحية في مقر الوزارة.',sent:'2026-11-19'},answered:'2026-12-01'},
- {ref:'Q-2026-007',org:'شركة النموذج القابضة',who:'فيصل الدوسري',prog:'بناء القيادات والقدرات المؤسسية',n:30,got:'2026-11-18',s:'review',since:'2026-11-20',
-  want:'مارس 2027، خمس جلسات أسبوعية',where:'مقر الشركة',lang:'العربية',note:'المشاركون مديرو الصف الثاني في الشركات التابعة.'},
- {ref:'Q-2026-003',org:'مؤسسة المثال الخيرية',who:'هدى المنصور',f:1,prog:'بناء القيادات والقدرات المؤسسية',n:12,got:'2026-08-24',s:'rejected',
-  want:'أكتوبر 2026',where:'قاعة الشركة',lang:'العربية',note:'فريق صغير من مديري البرامج.',
-  quote:{price:2400,from:'2026-10-19',to:'2026-10-23',valid:'2026-09-15',note:'خمس جلسات مسائية.',sent:'2026-08-31'},answered:'2026-09-09',why:'الميزانية المعتمدة لهذا العام لا تكفي.'}];
+ {ref:'Q-2026-014',org:'Sample Authority',who:'Nasser Al-Ali',prog:FS,n:25,got:'2026-12-03',s:'new',
+  want:'February 2027, three consecutive days',where:"The authority's offices",lang:'Arabic',note:"We would like the exercises built around the authority's 2030 plan. The participants are department directors."},
+ {ref:'Q-2026-011',org:'Example Bank',who:'Mona Al-Salem',prog:SS,n:20,got:'2026-11-24',s:'priced',
+  want:'January 2027, two days',where:'Think Tank training room',lang:'English',note:'The participants are from executive management, and some of them do not read Arabic.',
+  quote:{price:4200,from:'2027-01-25',to:'2027-01-26',valid:'2026-12-20',note:'The price includes printed materials and certificates for the participants.',sent:'2026-11-30'}},
+ {ref:'Q-2026-009',org:'Ministry of Planning',who:'Amal Al-Rasheed',prog:FS,n:18,got:'2026-11-12',s:'accepted',
+  want:'January 2027, three days',where:"The ministry's offices",lang:'Arabic',note:'We prefer morning sessions.',
+  quote:{price:3600,from:'2027-01-18',to:'2027-01-20',valid:'2026-12-10',note:"Three morning sessions at the ministry's offices.",sent:'2026-11-19'},answered:'2026-12-01'},
+ {ref:'Q-2026-007',org:'Sample Holding Co.',who:'Faisal Al-Dosari',prog:LS,n:30,got:'2026-11-18',s:'review',since:'2026-11-20',
+  want:'March 2027, five weekly sessions',where:"The company's offices",lang:'Arabic',note:'The participants are second-line managers in the subsidiaries.'},
+ {ref:'Q-2026-003',org:'Example Foundation',who:'Huda Al-Mansour',prog:LS,n:12,got:'2026-08-24',s:'rejected',
+  want:'October 2026',where:'Think Tank training room',lang:'Arabic',note:'A small team of program managers.',
+  quote:{price:2400,from:'2026-10-19',to:'2026-10-23',valid:'2026-09-15',note:'Five evening sessions.',sent:'2026-08-31'},answered:'2026-09-09',why:"This year's approved budget does not cover it."}];
 Q.forEach(q=>{q.draft={price:'',from:'',to:'',valid:'',note:''}});
 let filter='all',open='Q-2026-014',fresh='',err=null,making=false,said='';
 const mine=q=>q.s==='new'||q.s==='review'||(q.s==='accepted'&&!q.cohort);
 
 function head(){
   const n=Q.filter(mine).length;
-  $('crumb').textContent=`${pl(Q.length,'طلب واحد','طلبان','طلبات','طلباً')} · ${n===0?'لا شيء ينتظرك':n===1?'واحد ينتظرك':n===2?'اثنان ينتظرانك':n+' تنتظرك'}`;
+  $('crumb').textContent=`${pl(Q.length,'proposal request','proposal requests')} · ${n===0?'nothing needs you':n===1?'1 needs you':n+' need you'}`;
   const tab=(k,label,c)=>`<button role="tab" type="button" aria-selected="${filter===k}" aria-controls="panel" data-k="${k}"${filter===k?'':' tabindex="-1"'}>${label}<i>${c}</i></button>`;
-  $('tabs').innerHTML=tab('all','الكل',Q.length)+ORDER.map(k=>tab(k,TAB[k],Q.filter(q=>q.s===k).length)).join('');
+  $('tabs').innerHTML=tab('all','All',Q.length)+ORDER.map(k=>tab(k,TAB[k],Q.filter(q=>q.s===k).length)).join('');
 }
-const stampOf=q=>{const [c,w]=q.cohort?['ok','دفعة أُنشئت']:ST[q.s];return `<span class="stamp ${c}${fresh===q.ref?' press':''}"><span class="vh">حالة الطلب: </span>${w}</span>`};
-const asked=q=>`<div><h2 class="dh">ما طلبته الجهة</h2><dl class="dl">
-  <div><dt>مسؤول التدريب</dt><dd>${q.who} · ${q.org}</dd></div>
-  <div><dt>البرنامج</dt><dd>${q.prog}، مغلقاً لموظفيها</dd></div>
-  <div><dt>عدد المشاركين</dt><dd class="num">${people(q.n)}</dd></div>
-  <div><dt>الموعد المفضّل</dt><dd>${q.want}</dd></div>
-  <div><dt>المكان</dt><dd>${q.where}</dd></div>
-  <div><dt>لغة التقديم</dt><dd>${q.lang}</dd></div>
-  <div><dt>ما كتبوه</dt><dd>«${q.note}»</dd></div></dl></div>`;
+const stampOf=q=>{const [c,w]=q.cohort?['ok','Cohort created']:ST[q.s];return `<span class="stamp ${c}${fresh===q.ref?' press':''}"><span class="vh">Request status: </span>${w}</span>`};
+const asked=q=>`<div><h2 class="dh">What the organization asked for</h2><dl class="dl">
+  <div><dt>Training contact</dt><dd>${q.who} · ${q.org}</dd></div>
+  <div><dt>Program</dt><dd>${q.prog}, in-house for its employees</dd></div>
+  <div><dt>Participants</dt><dd class="num">${people(q.n)}</dd></div>
+  <div><dt>Preferred dates</dt><dd>${q.want}</dd></div>
+  <div><dt>Location</dt><dd>${q.where}</dd></div>
+  <div><dt>Delivery language</dt><dd>${q.lang}</dd></div>
+  <div><dt>Their note</dt><dd>“${q.note}”</dd></div></dl></div>`;
 const quoted=q=>`<dl class="dl">
-  <div><dt>السعر المتفق عليه</dt><dd class="big">${money(q.quote.price)}</dd></div>
-  <div><dt>المواعيد المقترحة</dt><dd>${range(q.quote.from,q.quote.to)}</dd></div>
-  <div><dt>العرض صالح حتى</dt><dd>${q.quote.valid?date(q.quote.valid):'بلا تاريخ انتهاء'}</dd></div>
-  ${q.quote.note?`<div><dt>ملاحظتك للجهة</dt><dd>${esc(q.quote.note)}</dd></div>`:''}</dl>`;
+  <div><dt>Agreed price</dt><dd class="big">${money(q.quote.price)}</dd></div>
+  <div><dt>Proposed dates</dt><dd>${range(q.quote.from,q.quote.to)}</dd></div>
+  <div><dt>Quote valid until</dt><dd>${q.quote.valid?date(q.quote.valid):'No expiry date'}</dd></div>
+  ${q.quote.note?`<div><dt>Your note to the organization</dt><dd>${esc(q.quote.note)}</dd></div>`:''}</dl>`;
 const note=()=>said?`<div class="notice" role="status" tabindex="-1" id="said"><div>${said}</div></div>`:'';
 
 function answer(q){
   const d=q.draft,bad=k=>err&&err[k]?' bad':'',msg=k=>err&&err[k]?`<span class="msg">${err[k]}</span>`:'';
-  if(q.s==='new')return `<div><h2 class="dh">ما تفعلينه الآن</h2>
-    <p class="say">الطلب لم يُفتح بعد. ببدء المراجعة تعرف ${q.org} أن طلبها بين يديك، ثم تكتبين السعر والمواعيد.</p>
-    <p class="go"><button class="btn" type="button" data-cta="WF-CTA-022" data-act="review">بدء المراجعة</button></p></div>`;
-  if(q.s==='review')return `<div><h2 class="dh">عرضك لـ${q.org}</h2>${note()}
+  if(q.s==='new')return `<div><h2 class="dh">What you do now</h2>
+    <p class="say">This request has not been opened yet. When you start the review, ${q.org} is told that its request is with you. Then you enter the price and the dates.</p>
+    <p class="go"><button class="btn" type="button" data-cta="WF-CTA-022" data-act="review">Start review</button></p></div>`;
+  if(q.s==='review')return `<div><h2 class="dh">Your quote for ${q.org}</h2>${note()}
     <div class="qf">
-      <div class="field w2${bad('price')}"><label for="q-price">السعر المتفق عليه (د.ك)</label><input id="q-price" data-k="price" type="number" min="0" step="0.001" inputmode="decimal" value="${esc(d.price)}" aria-describedby="h-price"><span class="hint" id="h-price">سعر واحد للدفعة كلها (${people(q.n)})، لا للمقعد.</span>${msg('price')}</div>
-      <div class="field${bad('from')}"><label for="q-from">الموعد المقترح: من</label><input id="q-from" data-k="from" type="date" min="2026-12-07" value="${d.from}">${msg('from')}</div>
-      <div class="field${bad('to')}"><label for="q-to">إلى</label><input id="q-to" data-k="to" type="date" min="2026-12-07" value="${d.to}">${msg('to')}</div>
-      <div class="field w2"><label for="q-valid">العرض صالح حتى</label><input id="q-valid" data-k="valid" type="date" min="2026-12-07" value="${d.valid}"></div>
-      <div class="field w2"><label for="q-note">ملاحظة للجهة</label><textarea id="q-note" data-k="note" placeholder="ما يشمله السعر، أو شرط للموعد">${esc(d.note)}</textarea></div>
+      <div class="field w2${bad('price')}"><label for="q-price">Agreed price (KWD)</label><input id="q-price" data-k="price" type="number" min="0" step="0.001" inputmode="decimal" value="${esc(d.price)}" aria-describedby="h-price"><span class="hint" id="h-price">One price for the whole cohort (${people(q.n)}), not per seat.</span>${msg('price')}</div>
+      <div class="field${bad('from')}"><label for="q-from">Proposed dates: from</label><input id="q-from" data-k="from" type="date" min="2026-12-07" value="${d.from}">${msg('from')}</div>
+      <div class="field${bad('to')}"><label for="q-to">To</label><input id="q-to" data-k="to" type="date" min="2026-12-07" value="${d.to}">${msg('to')}</div>
+      <div class="field w2"><label for="q-valid">Quote valid until</label><input id="q-valid" data-k="valid" type="date" min="2026-12-07" value="${d.valid}"></div>
+      <div class="field w2"><label for="q-note">Note to the organization</label><textarea id="q-note" data-k="note" placeholder="What the price covers, or a condition on the dates">${esc(d.note)}</textarea></div>
     </div>
-    <p class="go"><button class="btn" type="button" data-cta="WF-CTA-023" data-act="send">إرسال العرض</button></p></div>`;
-  if(q.s==='priced')return `<div><h2 class="dh">العرض المُرسل</h2>${quoted(q)}${note()}
-    <p class="say"><b>العرض عند ${q.org} منذ ${date(q.quote.sent)}.</b> لا شيء مطلوب منك الآن. حين يقبله ${q.f?'مسؤولة':'مسؤول'} التدريب أو يرفضه يتغيّر الطلب هنا ويصلك تنبيه.</p></div>`;
-  if(q.s==='accepted'&&q.cohort)return `<div><h2 class="dh">العرض المقبول</h2>${quoted(q)}${note()}
-    <p class="say"><b>دفعة هذا الطلب:</b> <a class="link" href="10-admin-cohort.html" id="made">${range(q.cohort.from,q.cohort.to)} · ${q.cohort.cap} مقعداً، مغلقة لـ${q.org}</a>. الطلب الواحد تُنشأ له دفعة واحدة.</p></div>`;
-  if(q.s==='accepted')return `<div><h2 class="dh">العرض المقبول</h2>${quoted(q)}
-    <p class="say"><b>قبلت ${q.org} العرض في ${date(q.answered)}.</b> بقي أن تنشئي دفعتها المغلقة ليصلها رابط الدفع.</p>
+    <p class="go"><button class="btn" type="button" data-cta="WF-CTA-023" data-act="send">Send quote</button></p></div>`;
+  if(q.s==='priced')return `<div><h2 class="dh">Quote sent</h2>${quoted(q)}${note()}
+    <p class="say"><b>The quote has been with ${q.org} since ${date(q.quote.sent)}.</b> Nothing is needed from you now. When the training contact accepts or declines it, the request changes here and you are notified.</p></div>`;
+  if(q.s==='accepted'&&q.cohort)return `<div><h2 class="dh">Accepted quote</h2>${quoted(q)}${note()}
+    <p class="say"><b>Cohort for this request:</b> <a class="link" href="10-admin-cohort.html" id="made">${range(q.cohort.from,q.cohort.to)} · ${pl(q.cohort.cap,'seat','seats')}, in-house for ${q.org}</a>. Each request gets one cohort.</p></div>`;
+  if(q.s==='accepted')return `<div><h2 class="dh">Accepted quote</h2>${quoted(q)}
+    <p class="say"><b>${q.org} accepted the quote on ${date(q.answered)}.</b> What remains is to create its in-house cohort, so that it receives the payment link.</p>
     ${making?`<div class="qf">
-      <div class="field${bad('from')}"><label for="c-from">تاريخ البداية</label><input id="c-from" data-c="from" type="date" min="2026-12-07" value="${q.mk.from}">${msg('from')}</div>
-      <div class="field${bad('to')}"><label for="c-to">تاريخ النهاية</label><input id="c-to" data-c="to" type="date" min="2026-12-07" value="${q.mk.to}">${msg('to')}</div>
-      <div class="field w2${bad('cap')}"><label for="c-cap">السعة (مقعداً)</label><input id="c-cap" data-c="cap" type="number" min="1" step="1" inputmode="numeric" value="${esc(q.mk.cap)}" aria-describedby="h-cap"><span class="hint" id="h-cap">تساوي عدد المشاركين في الطلب: ${q.n}.</span>${msg('cap')}</div>
+      <div class="field${bad('from')}"><label for="c-from">Start date</label><input id="c-from" data-c="from" type="date" min="2026-12-07" value="${q.mk.from}">${msg('from')}</div>
+      <div class="field${bad('to')}"><label for="c-to">End date</label><input id="c-to" data-c="to" type="date" min="2026-12-07" value="${q.mk.to}">${msg('to')}</div>
+      <div class="field w2${bad('cap')}"><label for="c-cap">Capacity (seats)</label><input id="c-cap" data-c="cap" type="number" min="1" step="1" inputmode="numeric" value="${esc(q.mk.cap)}" aria-describedby="h-cap"><span class="hint" id="h-cap">Matches the number of participants in the request: ${q.n}.</span>${msg('cap')}</div>
     </div>
-    <p class="go row"><button class="btn" type="button" data-act="save">حفظ الدفعة</button><button class="btn quiet" type="button" data-act="nomake">تراجع</button></p>`
-    :`<p class="go"><button class="btn" type="button" data-cta="WF-CTA-026" data-act="make">إنشاء دفعة مغلقة</button></p>`}</div>`;
-  return `<div><h2 class="dh">العرض الذي رُفض</h2>${quoted(q)}
-    <p class="say"><b>رفضت ${q.org} العرض في ${date(q.answered)}.</b> كتبوا: «${q.why}»</p>
-    <p class="say">الطلب مغلق نهائياً. إن أرادت الجهة برنامجاً آخر ترسل طلباً جديداً.</p></div>`;
+    <p class="go row"><button class="btn" type="button" data-act="save">Save cohort</button><button class="btn quiet" type="button" data-act="nomake">Cancel</button></p>`
+    :`<p class="go"><button class="btn" type="button" data-cta="WF-CTA-026" data-act="make">Create in-house cohort</button></p>`}</div>`;
+  return `<div><h2 class="dh">Declined quote</h2>${quoted(q)}
+    <p class="say"><b>${q.org} declined the quote on ${date(q.answered)}.</b> They wrote: “${q.why}”</p>
+    <p class="say">This request is closed for good. If the organization wants another program, it sends a new request.</p></div>`;
 }
 
 function rows(){
@@ -179,14 +181,14 @@ function rows(){
   $('rows').innerHTML=list.map(q=>{
     const on=open===q.ref;
     return `<tr${on?' class="open"':''} id="r-${q.ref}">
-      <td class="ref"><bdi>${q.ref}</bdi><small class="m">${q.org} · ${people(q.n)}</small></td>
+      <td class="ref"><b>${q.ref}</b><small class="m">${q.org} · ${people(q.n)}</small></td>
       <td class="x">${q.org}</td><td class="x">${q.prog}</td><td class="x num">${q.n}</td><td class="x when">${date(q.got)}</td>
       <td>${stampOf(q)}</td>
-      <td><button class="rowlink" type="button" data-open="${q.ref}" aria-expanded="${on}"${on?` aria-controls="d-${q.ref}"`:''} aria-label="${on?'إغلاق':'افتحي'} الطلب ${q.ref}، ${q.org}">${on?'إغلاق':'افتحي'}</button></td></tr>`
+      <td><button class="rowlink" type="button" data-open="${q.ref}" aria-expanded="${on}"${on?` aria-controls="d-${q.ref}"`:''} aria-label="${on?'Close':'Open'} request ${q.ref}, ${q.org}">${on?'Close':'Open'}</button></td></tr>`
       +(on?`<tr class="det" id="d-${q.ref}"><td colspan="7"><div class="in">${asked(q)}${answer(q)}</div></td></tr>`:'');}).join('');
   const none=!list.length;$('panel').hidden=none;$('empty').hidden=!none;
   if(none){[$('emh').textContent,$('emp').textContent]=EMPTY[filter]}
-  $('count').innerHTML=list.length===Q.length?`<b>${Q.length}</b> طلبات، الأحدث أولاً`:`تظهر <b>${list.length}</b> من <b>${Q.length}</b>`;
+  $('count').innerHTML=list.length===Q.length?`<b>${Q.length}</b> requests, newest first`:`Showing <b>${list.length}</b> of <b>${Q.length}</b>`;
   fresh='';
 }
 const render=()=>{head();rows()};
@@ -198,7 +200,7 @@ $('tabs').addEventListener('click',e=>{const t=e.target.closest('[role=tab]');if
 $('tabs').addEventListener('keydown',e=>{
   if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;
   const all=[...$('tabs').children],i=all.findIndex(t=>t.getAttribute('aria-selected')==='true');
-  e.preventDefault();all[(i+(e.key==='ArrowLeft'?1:-1)+all.length)%all.length].click()});
+  e.preventDefault();all[(i+(e.key==='ArrowRight'?1:-1)+all.length)%all.length].click()});
 $('clear').addEventListener('click',()=>{filter='all';render();$('tabs').firstElementChild.focus()});
 document.addEventListener('input',e=>{const d=e.target.dataset,q=open&&cur();if(!q)return;
   if(d.k)q.draft[d.k]=e.target.value;else if(d.c)q.mk[d.c]=e.target.value});
@@ -209,30 +211,30 @@ document.addEventListener('click',e=>{
   if(!d.act)return;const q=cur();
   if(d.act==='review'){
     q.s='review';q.since='2026-12-06';fresh=q.ref;filter='all';
-    said=`<b>بدأت المراجعة.</b> أُبلغ ${q.who} أن الطلب بين يديك. اكتبي السعر والمواعيد ثم أرسلي العرض.`;
-    render();$('q-price').focus();ttToast('بدأت مراجعة الطلب');
+    said=`<b>Review started.</b> ${q.who} has been told that the request is with you. Enter the price and the dates, then send the quote.`;
+    render();$('q-price').focus();ttToast('Review started');
   }
   else if(d.act==='send'){
     const p=q.draft.price.trim(),x=q.draft;err={};
-    if(!p)err.price='اكتبي السعر بالدينار. العرض بلا سعر لا يُرسل.';
-    else if(!(+p>0))err.price='السعر يجب أن يكون أكبر من صفر. البرنامج المغلق يُسعَّر دائماً.';
-    if(x.from&&x.to&&x.to<x.from)err.to='نهاية الموعد قبل بدايته. اختاري يوم البداية نفسه أو يوماً بعده.';
+    if(!p)err.price='Enter the price in Kuwaiti dinars. A quote cannot be sent without a price.';
+    else if(!(+p>0))err.price='The price must be greater than zero. An in-house program is always priced.';
+    if(x.from&&x.to&&x.to<x.from)err.to='The end date is before the start date. Choose the start date itself or a later day.';
     if(Object.keys(err).length){said='';rows();$(err.price?'q-price':'q-to').focus();return}
     err=null;q.quote={price:+p,from:x.from,to:x.to,valid:x.valid,note:x.note.trim(),sent:'2026-12-06'};q.s='priced';fresh=q.ref;filter='all';
-    said=`<b>أُرسل العرض إلى ${q.who}.</b> السعر مسجَّل على هذا الطلب وحده، ولا يظهر في الموقع العام أبداً.`;
-    render();$('said').focus();ttToast(`أُرسل العرض إلى ${q.org}`);
+    said=`<b>Quote sent to ${q.who}.</b> The price is recorded on this request only and never appears on the public site.`;
+    render();$('said').focus();ttToast(`Quote sent to ${q.org}`);
   }
   else if(d.act==='make'){q.mk={from:q.quote.from,to:q.quote.to,cap:String(q.n)};making=true;err=null;rows();$('c-from').focus()}
   else if(d.act==='nomake'){making=false;err=null;rows();document.querySelector('[data-act="make"]').focus()}
   else if(d.act==='save'){
     const m=q.mk,c=m.cap.trim();err={};
-    if(!m.from)err.from='اختاري يوم الجلسة الأولى.';
-    if(!m.to)err.to='اختاري يوم الجلسة الأخيرة.';else if(m.from&&m.to<m.from)err.to='النهاية قبل البداية. اختاري يوم البداية نفسه أو يوماً بعده.';
-    if(!c)err.cap='اكتبي عدد المقاعد.';else if(!(Number.isInteger(+c)&&+c>=1))err.cap='السعة عدد صحيح، مقعد واحد على الأقل.';
+    if(!m.from)err.from='Choose the day of the first session.';
+    if(!m.to)err.to='Choose the day of the last session.';else if(m.from&&m.to<m.from)err.to='The end date is before the start date. Choose the start date itself or a later day.';
+    if(!c)err.cap='Enter the number of seats.';else if(!(Number.isInteger(+c)&&+c>=1))err.cap='Capacity is a whole number, at least 1 seat.';
     if(Object.keys(err).length){rows();$(err.from?'c-from':err.to?'c-to':'c-cap').focus();return}
     err=null;making=false;q.cohort={from:m.from,to:m.to,cap:+c};fresh=q.ref;
-    said=`<b>أُنشئت الدفعة المغلقة.</b> أُرسل إلى ${q.who} رابط دفع واحد بالسعر المتفق عليه، ${money(q.quote.price)}.`;
-    render();$('made').focus();ttToast('أُنشئت الدفعة وأُرسل رابط الدفع');
+    said=`<b>In-house cohort created.</b> ${q.who} has been sent one payment link for the agreed price, ${money(q.quote.price)}.`;
+    render();$('made').focus();ttToast('Cohort created and payment link sent');
   }
 });
 render();

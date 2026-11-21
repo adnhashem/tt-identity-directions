@@ -1,0 +1,24 @@
+/* Design "Depth of time": midnight, pearl, gold. Overrides the base (line) tokens in tt.css. */
+:root{
+  --accent:#e3b548;--accent-hi:#f3cf78;--on-accent:#0a111e;--accent-soft:rgba(227,181,72,.14);--field:#0a111e;--inverse:#eef1f6;--on-inverse:#0a111e;
+  --baize:#0a111e;--baize-deep:#070c15;--baize-hi:#13213f;--card:#16233a;--card-hi:#1c2c48;--card-lo:#121d31;--paper:#16233a;
+  --card-edge:rgba(238,241,246,.14);--line-strong:rgba(238,241,246,.32);
+  --ink:#eef1f6;--ink-2:#a4b0c2;--cream:#eef1f6;--cream-2:#a4b0c2;
+  --ribbon:#f3cf78;--ribbon-hi:#f8dc98;--ribbon-dark:#d9a936;--brass:#e3b548;--brass-hi:#f3cf78;--brass-dark:#b88f2c;--brass-ink:#e3b548;
+  --ok:#8fd6ae;--wait:#9fc2ff;--err:#ff9d8a;--off:#93a0b4;
+  --r-card:12px;--r-sheet:12px;--r-btn:6px;
+  --font-head:'Onest','Segoe UI',sans-serif;--font-body:'Onest','Segoe UI',sans-serif;
+}
+html{scrollbar-color:#4d5b72 #070c15}
+body.table,body.desk{background:linear-gradient(180deg,#13213f 0,var(--baize) 640px) no-repeat,var(--baize);background-attachment:scroll}
+h1,h2{font-weight:800;letter-spacing:-.035em}
+.btn{border-radius:6px;font-weight:700;box-shadow:0 1px 0 rgba(255,255,255,.35) inset,0 14px 24px -14px rgba(0,0,0,.7)}
+.btn.sec,.btn.quiet{border-radius:6px}
+.pass,.sheet,.cert,.stub,.work>.sheet{border-radius:12px}
+.pass,.sheet,.cert{background:linear-gradient(180deg,rgba(34,52,84,.97),rgba(22,35,58,.97))}
+.stamp,.stamp.big{border-radius:5px}
+.field input,.field select,.field textarea{border-radius:6px}
+.field input::placeholder,.field textarea::placeholder{color:#8794a8}
+.side a,.tabs [role=tab]{border-radius:6px}
+.skel{background:linear-gradient(90deg,#16233a,#213354,#16233a);background-size:200% 100%}
+.seal{background:radial-gradient(circle at 35% 30%,#2a3d62,#16233a);box-shadow:inset 0 0 0 4px #16233a,inset 0 0 0 5px var(--accent),0 10px 20px -10px #000}

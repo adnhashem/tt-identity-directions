@@ -1,13 +1,14 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>التسجيل في دفعة 14 ديسمبر — Think Tank Strategists</title>
+<title>Register for the 14 December cohort — Think Tank Strategists</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
 <style>
 [hidden]{display:none!important}
 .steps{margin-top:var(--s-16)}
@@ -16,25 +17,23 @@
 .form{padding:var(--s-48)}
 .form h1{font-size:var(--fs-28)}
 .form h1:focus{outline:0}
-.form .sub{color:var(--ink-2);font-size:var(--fs-14);max-width:48ch}
-.field input[dir=ltr]{text-align:left}
-.tel{display:flex;direction:ltr;gap:var(--s-8)}
-.tel span{display:grid;place-items:center;padding-inline:var(--s-12);border:1.5px solid var(--card-edge);border-radius:6px;background:var(--card);font-weight:500;font-variant-numeric:tabular-nums}
+.form .sub{color:var(--ink-2);font-size:var(--fs-14);max-width:52ch}
+.tel{display:flex;gap:var(--s-8)}
+.tel span{display:grid;place-items:center;padding-inline:var(--s-12);border:1px solid var(--line-strong);border-radius:10px;background:var(--field);color:var(--ink);font-weight:500;font-variant-numeric:tabular-nums}
+.tel input{min-width:0}
 .notice>div{flex:1}
 .notice .btn{margin-top:var(--s-8)}
-.textbtn{background:none;border:0;padding:0;font:inherit;font-weight:700;cursor:pointer;text-decoration:underline;min-height:44px}
+.textbtn{background:none;border:0;padding:0;font:inherit;font-weight:600;cursor:pointer;text-decoration:underline;min-height:44px}
 #otpf{justify-items:center;gap:var(--s-12);padding-block:var(--s-16)}
 #otpf .msg{text-align:center;font-size:var(--fs-14)}
 .below{margin:var(--s-24) 0 0;font-size:var(--fs-14);color:var(--ink-2)}
 .side-pass{display:grid;justify-items:center;padding-top:var(--s-16)}
-#pass{width:min(380px,100%)}
-#pass img{height:var(--s-64);margin-top:var(--s-12);display:block}
-#pass h2{font-size:var(--fs-22);margin-top:var(--s-16)}
+#pass{width:min(400px,100%)}
+#pass h2{font-size:var(--fs-22)}
 #pass .kind{margin-top:var(--s-4)}
 #pass .held{font-size:var(--fs-14);margin:var(--s-16) 0 0}
 #pass .cap{font-size:var(--fs-13);color:var(--ink-2);margin:var(--s-8) 0 0}
 .side-pass .synthetic{margin-top:var(--s-32);text-align:center}
-footer{background:var(--baize-deep);border-top:1px solid #ffffff14;padding-block:var(--s-32);font-size:var(--fs-13);color:var(--cream-2)}
 @media (max-width:900px){
   .book{grid-template-columns:1fr;gap:var(--s-48)}
   .form{padding:var(--s-32) var(--s-24)}
@@ -44,109 +43,108 @@ footer{background:var(--baize-deep);border-top:1px solid #ffffff14;padding-block
 </head>
 <body class="table">
 <div class="wrap">
-  <nav class="nav" aria-label="الرئيسية">
+  <nav class="nav" aria-label="Main">
     <a href="01-home.html"><img src="assets/logo-white.png" alt="Think Tank Strategists"></a>
     <ul>
-      <li><a href="01-home.html" aria-current="page">البرامج</a></li>
-      <li><a href="19-articles.html">المقالات</a></li>
-      <li><a href="18-for-orgs.html">للجهات</a></li>
-      <li><a href="12-verify.html">تحقق من شهادة</a></li>
-      <li class="keep"><a href="17-login.html">دخول</a></li>
-      <li class="keep"><a class="pill" href="#" lang="en" data-toast="النسخة الإنجليزية خارج شاشات العرض">English</a></li>
+      <li><a href="01-home.html" aria-current="page">Programs</a></li>
+      <li><a href="19-articles.html">Articles</a></li>
+      <li><a href="18-for-orgs.html">For organizations</a></li>
+      <li><a href="12-verify.html">Verify a certificate</a></li>
+      <li class="keep"><a href="17-login.html">Sign in</a></li>
+      <li class="keep"><a class="btn sm" href="03-register.html">Register</a></li>
     </ul>
   </nav>
 
-  <ol class="steps" aria-label="خطوات الحجز">
-    <li aria-current="step">بياناتك</li>
-    <li>تأكيد الرمز</li>
-    <li>الدفع</li>
+  <ol class="steps" aria-label="Booking steps">
+    <li aria-current="step">Your details</li>
+    <li>Confirm code</li>
+    <li>Payment</li>
   </ol>
 
   <main class="book">
     <div class="sheet lay form">
       <form class="stack" id="f1" novalidate>
-        <h1>اكتب بياناتك لنحجز مقعدك</h1>
-        <p class="sub">بهذه البيانات نفتح لك حساباً تتابع منه جلساتك وحضورك وشهادتك.</p>
+        <h1>Enter your details to reserve your seat</h1>
+        <p class="sub">We use these details to open your account, where you follow your sessions, attendance and certificate.</p>
 
         <div class="field">
-          <label for="name">الاسم الكامل</label>
+          <label for="name">Full name</label>
           <input id="name" autocomplete="name" aria-describedby="name-h name-m">
-          <span class="hint" id="name-h">كما تريده أن يظهر على الشهادة.</span>
+          <span class="hint" id="name-h">As you want it to appear on your certificate.</span>
           <span class="msg" id="name-m" hidden></span>
         </div>
 
         <div class="field">
-          <label for="phone">رقم الجوال</label>
-          <div class="tel"><span>+965</span><input id="phone" dir="ltr" inputmode="numeric" autocomplete="tel-national" maxlength="9" placeholder="5000 0000" aria-describedby="phone-m"></div>
+          <label for="phone">Mobile number</label>
+          <div class="tel"><span>+965</span><input id="phone" inputmode="numeric" autocomplete="tel-national" maxlength="9" placeholder="5000 0000" aria-describedby="phone-m"></div>
           <span class="msg" id="phone-m" hidden></span>
         </div>
 
         <div class="field">
-          <label for="email">البريد الإلكتروني</label>
-          <input id="email" type="email" dir="ltr" autocomplete="email" placeholder="name@example.com" aria-describedby="email-m">
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="email" placeholder="name@example.com" aria-describedby="email-m">
           <span class="msg" id="email-m" hidden></span>
         </div>
 
         <div class="notice" id="taken" role="alert" hidden>
           <div>
-            <b>هذا البريد له حساب عندنا.</b> لكل شخص حساب واحد حتى يبقى حضوره وشهاداته في مكان واحد. ادخل بحسابك وسجّل في الدفعة منه.
-            <br><a class="btn sec sm" id="tologin" href="17-login.html">ادخل بحسابك</a>
+            <b>This email already has an account.</b> Each person has one account, so attendance and certificates stay in one place. Log in and register for the cohort from your account.
+            <br><a class="btn sec sm" id="tologin" href="17-login.html">Log in to your account</a>
           </div>
         </div>
 
         <div class="field">
-          <label for="pass1">كلمة السر</label>
-          <input id="pass1" type="password" dir="ltr" autocomplete="new-password" aria-describedby="pass1-h pass1-m">
-          <span class="hint" id="pass1-h">8 أحرف أو أكثر.</span>
+          <label for="pass1">Password</label>
+          <input id="pass1" type="password" autocomplete="new-password" aria-describedby="pass1-h pass1-m">
+          <span class="hint" id="pass1-h">8 characters or more.</span>
           <span class="msg" id="pass1-m" hidden></span>
         </div>
 
-        <button class="btn wide" data-cta="WF-CTA-006">تسجيل</button>
-        <p class="below">عندك حساب؟ <a class="link" href="17-login.html">ادخل</a></p>
+        <button class="btn wide" data-cta="WF-CTA-006">Register</button>
+        <p class="below">Already have an account? <a class="link" href="17-login.html">Log in</a></p>
       </form>
 
       <form class="stack" id="f2" novalidate hidden>
         <div class="spread" style="align-items:center">
-          <h1 id="h2" tabindex="-1">أدخل الرمز الذي وصلك</h1>
-          <span class="stamp you press">بانتظار التحقق</span>
+          <h1 id="h2" tabindex="-1">Enter the code we sent you</h1>
+          <span class="stamp you press">Awaiting verification</span>
         </div>
-        <p class="sub">فتحنا حسابك، وبقي أن نتأكد أن الجوال جوالك. أرسلنا رمزاً من 4 أرقام في رسالة نصية إلى <bdi id="sentto"></bdi>.</p>
+        <p class="sub">Your account is open. We just need to confirm the mobile number is yours. We sent a 4-digit code by text message to <span class="num" id="sentto"></span>.</p>
 
         <div class="field" id="otpf">
-          <div class="otp" role="group" aria-label="رمز التأكيد، 4 أرقام">
-            <input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="الرقم الأول">
-            <input inputmode="numeric" maxlength="1" aria-label="الرقم الثاني">
-            <input inputmode="numeric" maxlength="1" aria-label="الرقم الثالث">
-            <input inputmode="numeric" maxlength="1" aria-label="الرقم الرابع">
+          <div class="otp" role="group" aria-label="Confirmation code, 4 digits">
+            <input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="First digit">
+            <input inputmode="numeric" maxlength="1" aria-label="Second digit">
+            <input inputmode="numeric" maxlength="1" aria-label="Third digit">
+            <input inputmode="numeric" maxlength="1" aria-label="Fourth digit">
           </div>
           <span class="msg" id="otp-m" role="alert" hidden></span>
         </div>
 
-        <button class="btn wide" data-cta="WF-CTA-016">تأكيد الرمز</button>
-        <p class="below">ما وصلك الرمز؟ <button type="button" class="link textbtn" id="resend">إرسال رمز جديد</button></p>
+        <button class="btn wide" data-cta="WF-CTA-016">Confirm code</button>
+        <p class="below">Didn't get the code? <button type="button" class="link textbtn" id="resend">Send a new code</button></p>
       </form>
     </div>
 
-    <aside class="side-pass" aria-label="الدفعة التي تحجز فيها">
-      <article class="pass hole tilt-r lay" id="pass" style="--i:2">
-        <img src="assets/logo-dark.png" alt="">
-        <h2>استشراف المستقبل وبناء السيناريوهات</h2>
-        <div class="kind">ورشة عامة · بالعربية</div>
+    <aside class="side-pass" aria-label="The cohort you are booking">
+      <article class="pass lay" id="pass" style="--i:2">
+        <h2>Foresight &amp; Futures Thinking</h2>
+        <div class="kind">Public workshop · In Arabic</div>
         <div class="perf kv">
-          <div><small>الأيام</small><strong>14 – 16 ديسمبر</strong></div>
-          <div><small>الجلسات</small><strong>3 جلسات</strong></div>
-          <div><small>الوقت</small><strong>9:00 – 13:00</strong></div>
-          <div><small>الرسم</small><strong>180 د.ك</strong></div>
+          <div><small>Dates</small><strong>14–16 December</strong></div>
+          <div><small>Sessions</small><strong>3 sessions</strong></div>
+          <div><small>Time</small><strong>9:00–13:00</strong></div>
+          <div><small>Fee</small><strong>KWD 180.000</strong></div>
         </div>
         <div class="seats" data-cap="20" data-taken="16" data-mine="1"></div>
-        <p class="cap">بقي 4 مقاعد من 20، والمقعد الملوّن مقعدك.</p>
-        <p class="held">يُحجز المقعد باسمك عند التسجيل، ويبقى لك حتى تنتهي مهلة الدفع.</p>
+        <p class="cap">4 of 20 seats left. The highlighted seat is yours.</p>
+        <p class="held">The seat is reserved in your name when you register, and stays yours until the payment deadline passes.</p>
       </article>
-      <p class="synthetic">البيانات تجريبية ولا تُرسل رسائل حقيقية. رمز التأكيد في هذا العرض 1234.</p>
+      <p class="synthetic">This is sample data and no real messages are sent. The confirmation code in this demo is 1234.</p>
     </aside>
   </main>
 </div>
-<footer><div class="wrap spread"><span><bdi>Think Tank Strategists</bdi> · الكويت · الأحد إلى الخميس 9 – 5</span><a href="index.html">خريطة الشاشات</a></div></footer>
+<footer class="sitefoot"><div class="wrap spread"><span>Think Tank Strategists · Kuwait · Sunday to Thursday, 9:00–17:00</span><a href="index.html">Screen map</a></div></footer>
 
 <script src="tt.js"></script>
 <script>
@@ -154,10 +152,10 @@ const $=s=>document.querySelector(s),all=s=>[...document.querySelectorAll(s)];
 const f1=$('#f1'),f2=$('#f2'),steps=all('.steps li'),email=$('#email'),phone=$('#phone');
 const digits=()=>phone.value.replace(/\D/g,'');
 const rules={
-  name:v=>v.trim()?'':'اكتب اسمك الكامل.',
-  phone:()=>!digits()?'اكتب رقم جوالك؛ نرسل إليه رمز التأكيد.':digits().length===8?'':'رقم الجوال في الكويت 8 أرقام. راجع الرقم.',
-  email:v=>!v.trim()?'اكتب بريدك الإلكتروني؛ نرسل إليه الإيصال والشهادة.':/^\S+@\S+\.\S+$/.test(v.trim())?'':'البريد غير مكتمل. مثال: name@example.com',
-  pass1:v=>!v?'اختر كلمة سر لحسابك.':v.length>=8?'':'كلمة السر قصيرة. اكتب 8 أحرف أو أكثر.'};
+  name:v=>v.trim()?'':'Enter your full name.',
+  phone:()=>!digits()?'Enter your mobile number. We send the confirmation code to it.':digits().length===8?'':'Kuwait mobile numbers have 8 digits. Check the number.',
+  email:v=>!v.trim()?'Enter your email. We send your receipt and certificate to it.':/^\S+@\S+\.\S+$/.test(v.trim())?'':'The email is incomplete. Example: name@example.com',
+  pass1:v=>!v?'Choose a password for your account.':v.length>=8?'':'The password is too short. Use 8 characters or more.'};
 function check(id){const i=$('#'+id),m=$('#'+id+'-m'),e=rules[id](i.value);
   m.textContent=e;m.hidden=!e;i.closest('.field').classList.toggle('bad',!!e);i.setAttribute('aria-invalid',String(!!e));return !e}
 const isTaken=()=>email.value.trim().toLowerCase()==='noura@example.com';
@@ -181,10 +179,10 @@ boxes[0].addEventListener('paste',e=>{const t=(e.clipboardData.getData('text')||
   e.preventDefault();boxes.forEach((b,i)=>b.value=t[i]||'');boxes[Math.min(t.length,4)-1].focus()});
 f2.addEventListener('submit',e=>{e.preventDefault();
   const code=boxes.map(b=>b.value).join('');
-  if(code.length<4){otpErr('اكتب الأرقام الأربعة التي وصلتك في الرسالة.');(boxes.find(b=>!b.value)||boxes[0]).focus();return}
+  if(code.length<4){otpErr('Enter the four digits from the text message.');(boxes.find(b=>!b.value)||boxes[0]).focus();return}
   if(code==='1234'){otpErr('');location.href='04-pay.html';return}
-  otpErr('الرمز غير صحيح. جرّب مرة ثانية أو اطلب رمزاً جديداً');clearBoxes();});
-$('#resend').addEventListener('click',()=>{otpErr('');clearBoxes();ttToast('أرسلنا رمزاً جديداً إلى جوالك');});
+  otpErr('That code is not correct. Try again or request a new code.');clearBoxes();});
+$('#resend').addEventListener('click',()=>{otpErr('');clearBoxes();ttToast('We sent a new code to your mobile');});
 </script>
 </body>
 </html>

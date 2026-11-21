@@ -1,52 +1,54 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>صفّي — استشراف المستقبل وبناء السيناريوهات — بوابة المتدرب</title>
+<title>My classroom — Foresight &amp; Futures Thinking — Trainee portal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
 <style>
 .side .foot a{padding-inline:0}
 .work{min-width:0}
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .lbtn{font:inherit;background:none;border:0;padding:0;cursor:pointer;min-height:44px;display:inline-flex;align-items:center;text-align:start}
 .synthetic{margin:var(--s-48) 0 0}
 .work header.top h1{max-width:22ch}
 .crumb{max-width:62ch;margin:var(--s-4) 0 0}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-/* progress: one punched strip, six holes per chapter */
+/* progress: one segmented bar, six segments per chapter, filling left to right */
 .prog{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s-48);align-items:center;margin-bottom:var(--s-48)}
 .tally{margin:0;font-size:var(--fs-14);color:var(--ink-2);white-space:nowrap}
-.tally b{font-size:var(--fs-56);font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1;margin-inline:var(--s-4)}
+.tally b{font-family:var(--font-head);font-size:var(--fs-56);font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1;margin-inline-end:var(--s-8)}
 .punch{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-16)}
 .punch div{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--s-4)}
-.punch i{height:var(--s-16);border:1.5px solid var(--ink);border-radius:2px}
-.punch i.on{background:var(--ink);box-shadow:inset 0 -3px 0 #0005}
+.punch i{height:var(--s-8);border-radius:var(--s-4);background:var(--card-edge)}
+.punch i.on{background:var(--ink)}
 .punch small{grid-column:1/-1;font-size:var(--fs-12);color:var(--ink-2);line-height:1.5;margin-top:var(--s-4)}
 
 .lead{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s-8) var(--s-24);flex-wrap:wrap;margin-bottom:var(--s-12)}
 .lead h2{margin:0}
 .lead p{margin:0;font-size:var(--fs-14);color:var(--ink-2)}
 
-.chap{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
-.chap li{display:grid;grid-template-columns:4.5rem minmax(0,1fr) 7rem 11.5rem;gap:var(--s-24);align-items:center;padding:var(--s-24) var(--s-8);border-bottom:1px solid var(--card-edge)}
-.chap .now{background:linear-gradient(90deg,transparent,rgba(138,35,50,.07))}
-.chap b{font-size:var(--fs-28);font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
-.chap b span{display:block;font-size:var(--fs-13);font-weight:400;color:var(--ink-2)}
+.chap{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-strong)}
+.chap li{display:grid;grid-template-columns:4.5rem minmax(0,1fr) 7.5rem 11.5rem;gap:var(--s-24);align-items:center;padding:var(--s-24) var(--s-12);border-bottom:1px solid var(--card-edge)}
+.chap .now{background:var(--accent-soft)}
+.chap b{font-family:var(--font-head);font-size:var(--fs-28);font-weight:600;line-height:1.1;font-variant-numeric:tabular-nums}
+.chap b span{display:block;font-family:var(--font-body);font-size:var(--fs-13);font-weight:400;color:var(--ink-2)}
+.chap b i{font-style:normal}
 .chap h3{font-size:var(--fs-18)}
 .chap p{margin:2px 0 0;font-size:var(--fs-13);color:var(--ink-2)}
 .chap p.has{font-size:var(--fs-14);color:var(--ink)}
+.chap .stamp{justify-self:start}
 .chap .go{display:flex;justify-content:flex-end}
 
-.files{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink);max-width:760px}
+.files{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-strong);max-width:760px}
 .files button{display:grid;grid-template-columns:3.5rem minmax(0,1fr) auto;gap:var(--s-16);align-items:center;width:100%;min-height:60px;padding:var(--s-8);font:inherit;text-align:start;color:var(--ink);background:none;border:0;border-bottom:1px solid var(--card-edge);cursor:pointer;transition:background .2s}
-.files button:hover{background:rgba(138,35,50,.05)}
-.files bdi{font-size:var(--fs-12);font-weight:800;text-align:center;border:1.5px solid var(--ink);border-radius:3px;line-height:1.9}
-.files strong{display:block;font-weight:700;font-size:var(--fs-14);line-height:1.6}
+.files button:hover{background:var(--accent-soft)}
+.files .ext{font-family:var(--font-head);font-size:var(--fs-12);font-weight:600;letter-spacing:.04em;text-align:center;border:1px solid var(--line-strong);border-radius:var(--s-4);line-height:1.9}
+.files strong{display:block;font-weight:600;font-size:var(--fs-14);line-height:1.6}
 .files span{display:block;font-size:var(--fs-12);color:var(--ink-2)}
 .files em{font-style:normal;font-size:var(--fs-13);color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
 #materials{scroll-margin-top:var(--s-24)}
@@ -60,7 +62,7 @@
   .btn.sm{min-height:44px}
   .prog{grid-template-columns:1fr;gap:var(--s-16);margin-bottom:var(--s-32)}
   .punch{gap:var(--s-8)} .punch div{gap:2px} .punch small{display:none}
-  .chap li{grid-template-columns:3.5rem minmax(0,1fr);gap:var(--s-8) var(--s-12);padding-inline:var(--s-4);align-items:start}
+  .chap li{grid-template-columns:3.5rem minmax(0,1fr);gap:var(--s-8) var(--s-12);padding-inline:var(--s-8);align-items:start}
   .chap .stamp{grid-column:2;justify-self:start}
   .chap .go{grid-column:2;justify-content:flex-start}
   .files button{grid-template-columns:3rem minmax(0,1fr) auto;gap:var(--s-12);padding-inline:0}
@@ -69,111 +71,111 @@
 </head>
 <body class="desk">
 <div class="shell">
-  <nav class="side" aria-label="بوابتي">
-    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>بوابتي</span></div>
-    <a href="05-my-cohorts.html">دفعاتي</a>
-    <a href="13-course.html" aria-current="page">صفّي</a>
-    <a href="06-my-certificate.html">شهاداتي</a>
-    <a href="20-account.html">حسابي</a>
-    <div class="foot">نورة الصباح<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  <nav class="side" aria-label="My portal">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>My portal</span></div>
+    <a href="05-my-cohorts.html">My cohorts</a>
+    <a href="13-course.html" aria-current="page">My classroom</a>
+    <a href="06-my-certificate.html">My certificates</a>
+    <a href="20-account.html">My account</a>
+    <div class="foot">Noura Al-Sabah<br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
   </nav>
   <main class="work">
     <div class="sheet">
       <header class="top">
         <div>
-          <h1>استشراف المستقبل وبناء السيناريوهات</h1>
-          <p class="crumb" id="crumb">دفعة 14 – 16 ديسمبر 2026 · الصف يرافق جلساتك الحضورية: تحضّرين فيه قبل الجلسة وتراجعين بعدها.</p>
+          <h1>Foresight &amp; Futures Thinking</h1>
+          <p class="crumb" id="crumb">Cohort of 14–16 December 2026 · The classroom goes with your in-person sessions: prepare here before each session and review after it.</p>
         </div>
-        <a class="btn sec sm" id="openmat" href="#materials" data-cta="WF-CTA-029">فتح المواد</a>
+        <a class="btn sec sm" id="openmat" href="#materials" data-cta="WF-CTA-029">Open materials</a>
       </header>
 
       <div id="v-full">
         <div class="prog">
-          <p class="tally">أنجزتِ <b id="done">8</b> من 24 عنصراً</p>
-          <div class="punch" id="punch" role="progressbar" aria-label="تقدّمك في البرنامج" aria-valuemin="0" aria-valuemax="24" aria-valuenow="8" aria-valuetext="8 من 24 عنصراً">
-            <div><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><small>لماذا نستشرف؟</small></div>
-            <div id="p2"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><small>قراءة الإشارات</small></div>
-            <div><i></i><i></i><i></i><i></i><i></i><i></i><small>بناء السيناريوهات</small></div>
-            <div><i></i><i></i><i></i><i></i><i></i><i></i><small>من السيناريو إلى القرار</small></div>
+          <p class="tally"><b id="done">8</b>of 24 items completed</p>
+          <div class="punch" id="punch" role="progressbar" aria-label="Your progress in the program" aria-valuemin="0" aria-valuemax="24" aria-valuenow="8" aria-valuetext="8 of 24 items">
+            <div><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><small>Why foresight?</small></div>
+            <div id="p2"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><small>Reading the signals</small></div>
+            <div><i></i><i></i><i></i><i></i><i></i><i></i><small>Building scenarios</small></div>
+            <div><i></i><i></i><i></i><i></i><i></i><i></i><small>From scenario to decision</small></div>
           </div>
         </div>
 
         <section aria-labelledby="t1">
           <div class="lead">
-            <h2 id="t1">الفصول</h2>
-            <p>الترتيب مقترح وليس إلزامياً؛ افتحي أي فصل متى شئتِ.</p>
+            <h2 id="t1">Chapters</h2>
+            <p>The order is a suggestion, not a rule. Open any chapter whenever you like.</p>
           </div>
           <ol class="chap">
             <li>
-              <b>6 <span>من 6</span></b>
+              <b>6 <span>of 6</span></b>
               <div>
-                <h3>لماذا نستشرف؟</h3>
-                <p class="has">فيديو 12 دقيقة · معلومات · مادة واحدة · واجب · اختبار · استبيان</p>
-                <p>الفصل الأول · يرافق جلسة 14 ديسمبر</p>
+                <h3>Why foresight?</h3>
+                <p class="has">12-minute video · Information · 1 file · Assignment · Exam · Survey</p>
+                <p>Chapter 1 · Goes with the 14 December session</p>
               </div>
-              <span class="stamp ok">مكتمل</span>
-              <div class="go"><button class="lbtn link" data-toast="في هذا العرض فصل واحد مفتوح: «قراءة الإشارات»">إعادة فتح الفصل</button></div>
+              <span class="stamp ok">Completed</span>
+              <div class="go"><button class="lbtn link" data-toast="In this demo only one chapter is open: Reading the signals">Reopen chapter</button></div>
             </li>
             <li class="now" id="c2" aria-current="true">
-              <b><span class="vh">أنجزتِ </span><i id="n2" style="font-style:normal">2</i> <span>من 6</span></b>
+              <b><span class="vh">Completed </span><i id="n2">2</i> <span>of 6</span></b>
               <div>
-                <h3>قراءة الإشارات</h3>
-                <p class="has">فيديو 18 دقيقة · معلومات · مادتان · واجب · اختبار · استبيان</p>
-                <p>الفصل الثاني · يرافق جلسة اليوم 15 ديسمبر</p>
+                <h3>Reading the signals</h3>
+                <p class="has">18-minute video · Information · 2 files · Assignment · Exam · Survey</p>
+                <p>Chapter 2 · Goes with today's session, 15 December</p>
               </div>
-              <span class="stamp you" id="s2">تكملين منه</span>
-              <div class="go" id="g2"><a class="btn" href="14-chapter.html" data-cta="WF-CTA-030">متابعة المحتوى</a></div>
+              <span class="stamp you" id="s2">In progress</span>
+              <div class="go" id="g2"><a class="btn" href="14-chapter.html" data-cta="WF-CTA-030">Follow content</a></div>
             </li>
             <li>
-              <b>0 <span>من 6</span></b>
+              <b>0 <span>of 6</span></b>
               <div>
-                <h3>بناء السيناريوهات</h3>
-                <p class="has">فيديو 24 دقيقة · معلومات · مادتان · واجب · اختبار · استبيان</p>
-                <p>الفصل الثالث · يرافق جلسة 16 ديسمبر</p>
+                <h3>Building scenarios</h3>
+                <p class="has">24-minute video · Information · 2 files · Assignment · Exam · Survey</p>
+                <p>Chapter 3 · Goes with the 16 December session</p>
               </div>
-              <span class="stamp off">لم يبدأ</span>
-              <div class="go"><button class="lbtn link" data-toast="في هذا العرض فصل واحد مفتوح: «قراءة الإشارات»">فتح الفصل</button></div>
+              <span class="stamp off">Not started</span>
+              <div class="go"><button class="lbtn link" data-toast="In this demo only one chapter is open: Reading the signals">Open chapter</button></div>
             </li>
             <li>
-              <b>0 <span>من 6</span></b>
+              <b>0 <span>of 6</span></b>
               <div>
-                <h3>من السيناريو إلى القرار</h3>
-                <p class="has">فيديو 15 دقيقة · معلومات · مادة واحدة · واجب · اختبار · استبيان</p>
-                <p>الفصل الرابع · بعد الجلسة الأخيرة</p>
+                <h3>From scenario to decision</h3>
+                <p class="has">15-minute video · Information · 1 file · Assignment · Exam · Survey</p>
+                <p>Chapter 4 · After the last session</p>
               </div>
-              <span class="stamp off">لم يبدأ</span>
-              <div class="go"><button class="lbtn link" data-toast="في هذا العرض فصل واحد مفتوح: «قراءة الإشارات»">فتح الفصل</button></div>
+              <span class="stamp off">Not started</span>
+              <div class="go"><button class="lbtn link" data-toast="In this demo only one chapter is open: Reading the signals">Open chapter</button></div>
             </li>
           </ol>
         </section>
 
         <section id="materials" tabindex="-1" aria-labelledby="t2">
           <div class="lead">
-            <h2 id="t2">مواد البرنامج</h2>
-            <p>ست مواد للتنزيل. الفيديو يُشاهَد داخل فصله ولا يُنزَّل.</p>
+            <h2 id="t2">Program materials</h2>
+            <p>Six files to download. Videos are watched inside their chapter and cannot be downloaded.</p>
           </div>
           <ul class="files">
-            <li><button data-toast="بدأ تنزيل «ملخّص: لماذا نستشرف؟» (تنزيل تجريبي)"><bdi>PDF</bdi><span><strong>ملخّص: لماذا نستشرف؟</strong><span>الفصل الأول</span></span><em>1.2 ميغابايت</em></button></li>
-            <li><button data-toast="بدأ تنزيل «كرّاسة قراءة الإشارات» (تنزيل تجريبي)"><bdi>PDF</bdi><span><strong>كرّاسة قراءة الإشارات</strong><span>الفصل الثاني</span></span><em>2.4 ميغابايت</em></button></li>
-            <li><button data-toast="بدأ تنزيل «قالب رصد الإشارات» (تنزيل تجريبي)"><bdi>XLSX</bdi><span><strong>قالب رصد الإشارات</strong><span>الفصل الثاني</span></span><em>86 كيلوبايت</em></button></li>
-            <li><button data-toast="بدأ تنزيل «دليل بناء السيناريوهات» (تنزيل تجريبي)"><bdi>PDF</bdi><span><strong>دليل بناء السيناريوهات</strong><span>الفصل الثالث</span></span><em>3.1 ميغابايت</em></button></li>
-            <li><button data-toast="بدأ تنزيل «قالب محاور السيناريو» (تنزيل تجريبي)"><bdi>PPTX</bdi><span><strong>قالب محاور السيناريو</strong><span>الفصل الثالث</span></span><em>640 كيلوبايت</em></button></li>
-            <li><button data-toast="بدأ تنزيل «ورقة العمل: من السيناريو إلى القرار» (تنزيل تجريبي)"><bdi>PDF</bdi><span><strong>ورقة العمل: من السيناريو إلى القرار</strong><span>الفصل الرابع</span></span><em>0.9 ميغابايت</em></button></li>
+            <li><button data-toast="Downloading “Summary: Why foresight?” (sample download)"><b class="ext">PDF</b><span><strong>Summary: Why foresight?</strong><span>Chapter 1</span></span><em>1.2 MB</em></button></li>
+            <li><button data-toast="Downloading “Reading the signals workbook” (sample download)"><b class="ext">PDF</b><span><strong>Reading the signals workbook</strong><span>Chapter 2</span></span><em>2.4 MB</em></button></li>
+            <li><button data-toast="Downloading “Signal scanning template” (sample download)"><b class="ext">XLSX</b><span><strong>Signal scanning template</strong><span>Chapter 2</span></span><em>86 KB</em></button></li>
+            <li><button data-toast="Downloading “Scenario building guide” (sample download)"><b class="ext">PDF</b><span><strong>Scenario building guide</strong><span>Chapter 3</span></span><em>3.1 MB</em></button></li>
+            <li><button data-toast="Downloading “Scenario axes template” (sample download)"><b class="ext">PPTX</b><span><strong>Scenario axes template</strong><span>Chapter 3</span></span><em>640 KB</em></button></li>
+            <li><button data-toast="Downloading “Worksheet: From scenario to decision” (sample download)"><b class="ext">PDF</b><span><strong>Worksheet: From scenario to decision</strong><span>Chapter 4</span></span><em>0.9 MB</em></button></li>
           </ul>
         </section>
-        <p class="demo"><button class="lbtn" id="toempty">اعرضي حالة برنامج بلا محتوى مسجّل</button></p>
+        <p class="demo"><button class="lbtn" id="toempty">Show a program with no recorded content</button></p>
       </div>
 
       <div id="v-empty" hidden>
         <div class="empty">
-          <h2 id="eh" tabindex="-1">لا محتوى مسجّلاً لهذا البرنامج</h2>
-          <p>هذا البرنامج حضوري فقط، فلا فصول ولا واجبات ولا اختبارات هنا. يكفي أن تحضري جلساتك، ومواعيدها ومكانها في دفعاتك.</p>
-          <a class="btn" href="05-my-cohorts.html">الذهاب إلى دفعاتي</a>
+          <h2 id="eh" tabindex="-1">This program has no recorded content</h2>
+          <p>This program is in person only, so there are no chapters, assignments or exams here. All you need to do is attend your sessions. Their times and place are in My cohorts.</p>
+          <a class="btn" href="05-my-cohorts.html">Go to My cohorts</a>
         </div>
-        <p class="demo"><button class="lbtn" id="tofull">العودة إلى الصف الذي فيه محتوى</button></p>
+        <p class="demo"><button class="lbtn" id="tofull">Back to the classroom with content</button></p>
       </div>
 
-      <p class="synthetic">الأسماء والتواريخ والمحتوى تجريبية. <a href="index.html">خريطة الشاشات</a></p>
+      <p class="synthetic">Names, dates and content are sample data. <a href="index.html">Screen map</a></p>
     </div>
   </main>
 </div>
@@ -182,15 +184,15 @@
 const $=id=>document.getElementById(id);
 const store=(()=>{try{return JSON.parse(sessionStorage.getItem('tt-class'))||{}}catch(e){return{}}})();
 
-// الفصل الثاني يقرأ ما أُنجز في شاشتَي الفصل والاختبار خلال الجلسة نفسها
+// chapter 2 reads what was completed on the chapter and exam screens during this browser session
 const n2=2+!!store.video+!!store.hw+!!(store.exam&&store.exam.passed)+!!store.survey, total=6+n2;
 $('n2').textContent=n2;$('done').textContent=total;
 [...$('p2').querySelectorAll('i')].forEach((c,i)=>c.classList.toggle('on',i<n2));
-$('punch').setAttribute('aria-valuenow',total);$('punch').setAttribute('aria-valuetext',total+' من 24 عنصراً');
+$('punch').setAttribute('aria-valuenow',total);$('punch').setAttribute('aria-valuetext',total+' of 24 items');
 if(n2===6){
-  $('s2').className='stamp ok';$('s2').textContent='مكتمل';
+  $('s2').className='stamp ok';$('s2').textContent='Completed';
   $('c2').classList.remove('now');$('c2').removeAttribute('aria-current');
-  $('g2').innerHTML='<a class="link lbtn" href="14-chapter.html">إعادة فتح الفصل</a>';
+  $('g2').innerHTML='<a class="link lbtn" href="14-chapter.html">Reopen chapter</a>';
 }
 
 $('openmat').addEventListener('click',()=>$('materials').focus({preventScroll:true}));
@@ -198,7 +200,7 @@ $('openmat').addEventListener('click',()=>$('materials').focus({preventScroll:tr
 const crumbFull=$('crumb').textContent;
 const view=empty=>{
   $('v-full').hidden=empty;$('v-empty').hidden=!empty;$('openmat').hidden=empty;
-  $('crumb').textContent=empty?'دفعة 14 – 16 ديسمبر 2026 · برنامج حضوري':crumbFull;
+  $('crumb').textContent=empty?'Cohort of 14–16 December 2026 · In-person program':crumbFull;
   scrollTo(0,0);(empty?$('eh'):$('toempty')).focus({preventScroll:true});
 };
 $('toempty').addEventListener('click',()=>view(true));

@@ -1,34 +1,33 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>اختبار فصل قراءة الإشارات — بوابة المتدرب</title>
+<title>Exam: Reading the signals — Trainee portal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
 <style>
 .side .foot a{padding-inline:0}
 .work{min-width:0}
-.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .synthetic{margin:var(--s-48) 0 0}
 .tally{margin:0;font-size:var(--fs-14);color:var(--ink-2);white-space:nowrap}
-.tally b{font-size:var(--fs-28);font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1;margin-inline:var(--s-4)}
-.assume{display:inline-block;line-height:1.7;font-size:var(--fs-12);font-weight:500;color:var(--ink-2);border:1.5px dashed var(--ink-2);border-radius:var(--s-4);padding:0 var(--s-8);white-space:nowrap}
+.tally b{font-family:var(--font-head);font-size:var(--fs-28);font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1;margin-inline-end:var(--s-4)}
 .note{font-size:var(--fs-14);color:var(--ink-2);max-width:66ch}
 
 .paper-col{max-width:760px}
-.q{display:grid;grid-template-columns:3.5rem minmax(0,1fr);gap:var(--s-16);border:0;border-bottom:1.5px dashed var(--card-edge);margin:0;padding:var(--s-32) 0;min-width:0;scroll-margin-top:var(--s-16)}
-.q:first-of-type{border-top:2px solid var(--ink)}
-.q>b{font-size:var(--fs-28);font-weight:800;line-height:1.3;font-variant-numeric:tabular-nums}
-.q>b span{display:block;font-size:var(--fs-12);font-weight:400;color:var(--ink-2)}
-.q h2{font-size:var(--fs-18);margin:0 0 var(--s-16);line-height:1.7}
+.q{display:grid;grid-template-columns:3.5rem minmax(0,1fr);gap:var(--s-16);border:0;border-bottom:1px solid var(--card-edge);margin:0;padding:var(--s-32) 0;min-width:0;scroll-margin-top:var(--s-16)}
+.q:first-of-type{border-top:1px solid var(--line-strong)}
+.q>b{font-family:var(--font-head);font-size:var(--fs-28);font-weight:600;line-height:1.3;font-variant-numeric:tabular-nums}
+.q>b span{display:block;font-family:var(--font-body);font-size:var(--fs-12);font-weight:400;color:var(--ink-2)}
+.q h2{font-size:var(--fs-18);margin:0 0 var(--s-16);line-height:1.5;letter-spacing:-.01em}
 .q .opts{display:grid;gap:var(--s-8)}
-.q label{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s-12);align-items:center;min-height:52px;padding:var(--s-8) var(--s-16);border:1.5px solid var(--card-edge);border-radius:6px;background:#fff;cursor:pointer;transition:border-color .15s,background .15s}
-.q label:hover{border-color:var(--ink-2)}
-.q input{width:20px;height:20px;margin:0;accent-color:var(--ribbon)}
-.q label:has(input:checked){border-color:var(--ink);background:var(--card);font-weight:700}
+.q label{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s-12);align-items:center;min-height:52px;padding:var(--s-8) var(--s-16);border:1px solid var(--card-edge);border-radius:10px;background:var(--field);color:var(--ink);cursor:pointer;transition:border-color .15s,background .15s}
+.q label:hover{border-color:var(--line-strong)}
+.q input{width:20px;height:20px;margin:0;accent-color:var(--accent-hi)}
+.q label:has(input:checked){border-color:var(--ink);background:var(--card-hi);font-weight:600}
 .q label:has(input:focus-visible){outline:2px solid var(--ribbon);outline-offset:2px}
 .q input:focus-visible{outline:0}
 
@@ -36,30 +35,30 @@
 .end p{margin:0}
 #confirm{margin-top:var(--s-32)}
 #confirm p{margin-bottom:var(--s-12);max-width:60ch}
-#confirm a{font-weight:700}
+#confirm a{font-weight:600;color:var(--ribbon)}
 
 .res{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s-64);align-items:start;max-width:920px}
 .score{display:grid;justify-items:start;gap:var(--s-16)}
 .score .n{margin:0;font-size:var(--fs-18);color:var(--ink-2);white-space:nowrap}
-.score .n b{font-size:var(--fs-56);font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
-.score .pct{margin:0;font-size:var(--fs-22);font-weight:700;font-variant-numeric:tabular-nums}
-.score .stamp{margin-top:var(--s-16)}
+.score .n b{font-family:var(--font-head);font-size:var(--fs-56);font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+.score .pct{margin:0;font-family:var(--font-head);font-size:var(--fs-22);font-weight:600;font-variant-numeric:tabular-nums}
+.score .stamp{margin-top:var(--s-8)}
 .res h2{font-size:var(--fs-22);margin-bottom:var(--s-8)}
 .res h2:focus{outline:0}
-.wrong{list-style:none;margin:var(--s-16) 0 0;padding:0;border-top:2px solid var(--ink)}
+.wrong{list-style:none;margin:var(--s-16) 0 0;padding:0;border-top:1px solid var(--line-strong)}
 .wrong li{padding:var(--s-16) 0;border-bottom:1px solid var(--card-edge)}
-.wrong strong{display:block;font-weight:700;margin-bottom:var(--s-4)}
+.wrong strong{display:block;font-weight:600;margin-bottom:var(--s-4)}
 .wrong dl{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px var(--s-16);margin:0;font-size:var(--fs-14)}
 .wrong dt{color:var(--ink-2)}
 .wrong dd{margin:0}
-.wrong dd.right{font-weight:700;color:var(--ok)}
+.wrong dd.right{font-weight:600;color:var(--ok)}
 .next{margin-top:var(--s-32)}
 .next p{max-width:60ch}
 
 @media (max-width:900px){
   .btn.sm{min-height:44px}
   .q{grid-template-columns:minmax(0,1fr);gap:var(--s-4);padding:var(--s-24) 0}
-  .q>b{font-size:var(--fs-14);font-weight:700;color:var(--ink-2)}
+  .q>b{font-family:var(--font-body);font-size:var(--fs-14);font-weight:600;color:var(--ink-2)}
   .q>b span{display:inline;font-size:inherit}
   .q label{padding-inline:var(--s-12)}
   .res{grid-template-columns:minmax(0,1fr);gap:var(--s-32)}
@@ -71,36 +70,36 @@
 </head>
 <body class="desk">
 <div class="shell">
-  <nav class="side" aria-label="بوابتي">
-    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>بوابتي</span></div>
-    <a href="05-my-cohorts.html">دفعاتي</a>
-    <a href="13-course.html" aria-current="page">صفّي</a>
-    <a href="06-my-certificate.html">شهاداتي</a>
-    <a href="20-account.html">حسابي</a>
-    <div class="foot">نورة الصباح<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  <nav class="side" aria-label="My portal">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>My portal</span></div>
+    <a href="05-my-cohorts.html">My cohorts</a>
+    <a href="13-course.html" aria-current="page">My classroom</a>
+    <a href="06-my-certificate.html">My certificates</a>
+    <a href="20-account.html">My account</a>
+    <div class="foot">Noura Al-Sabah<br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
   </nav>
   <main class="work">
     <div class="sheet">
       <header class="top">
         <div>
-          <h1>اختبار فصل قراءة الإشارات</h1>
-          <div class="crumb"><a href="13-course.html">استشراف المستقبل وبناء السيناريوهات</a> · <a href="14-chapter.html#exam">الفصل الثاني</a> · <span id="att">المحاولة 1 من 2</span></div>
+          <h1>Exam: Reading the signals</h1>
+          <div class="crumb"><a href="13-course.html">Foresight &amp; Futures Thinking</a> · <a href="14-chapter.html#exam">Chapter 2</a> · <span id="att">Attempt 1 of 2</span></div>
         </div>
-        <p class="tally" id="tally" aria-live="polite">أجبتِ عن <b id="ans">0</b> من 5</p>
+        <p class="tally" id="tally" aria-live="polite"><b id="ans">0</b>of 5 answered</p>
       </header>
 
       <div id="v-exam" class="paper-col">
-        <p class="note">خمسة أسئلة، لكل سؤال إجابة صحيحة واحدة. خذي وقتك، فلا عدّاد يحسب عليك؛ يكفيك نحو 10 دقائق. درجة النجاح 60%، أي ثلاث إجابات صحيحة. <span class="assume">افتراض</span></p>
+        <p class="note">Five questions, each with one correct answer. Take your time. There is no timer, and about 10 minutes is enough. The passing score is 60%, which is three correct answers. <span class="assume">assumption</span></p>
         <form id="form" novalidate></form>
         <div class="end" id="end">
-          <p class="note">راجعي إجاباتك قبل الإنهاء. التسليم نهائي لهذه المحاولة.</p>
-          <button class="btn" id="finish" type="button" aria-expanded="false" aria-controls="confirm">إنهاء الاختبار</button>
+          <p class="note">Check your answers before you finish. Submitting is final for this attempt.</p>
+          <button class="btn" id="finish" type="button" aria-expanded="false" aria-controls="confirm">Finish exam</button>
         </div>
         <div class="notice" id="confirm" hidden>
           <div>
             <p><b id="cq" tabindex="-1"></b> <span id="ctext"></span></p>
             <p id="cmiss" hidden></p>
-            <div class="row"><button class="btn sm" id="yes" type="button">تأكيد التسليم</button><button class="btn quiet sm" id="no" type="button">العودة إلى الأسئلة</button></div>
+            <div class="row"><button class="btn sm" id="yes" type="button">Confirm and submit</button><button class="btn quiet sm" id="no" type="button">Back to the questions</button></div>
           </div>
         </div>
       </div>
@@ -108,7 +107,7 @@
       <div id="v-result" hidden>
         <div class="res">
           <div class="score">
-            <p class="n"><b id="rs"></b> من 5</p>
+            <p class="n"><b id="rs"></b> of 5</p>
             <p class="pct" id="rp"></p>
             <span class="stamp big" id="rstamp"></span>
           </div>
@@ -121,7 +120,7 @@
         </div>
       </div>
 
-      <p class="synthetic">الأسماء والتواريخ والمحتوى تجريبية. <a href="index.html">خريطة الشاشات</a> · <a href="#" id="reset">إعادة العرض من أوله</a></p>
+      <p class="synthetic">Names, dates and content are sample data. <a href="index.html">Screen map</a> · <a href="#" id="reset">Restart the demo</a></p>
     </div>
   </main>
 </div>
@@ -133,18 +132,18 @@ const load=()=>{try{return JSON.parse(sessionStorage.getItem(KEY))||{}}catch(e){
 const save=p=>{const s=Object.assign(load(),p);try{sessionStorage.setItem(KEY,JSON.stringify(s))}catch(e){}return s};
 
 const Q=[
-  {q:'ما الذي يميّز الإشارة الضعيفة عن الاتجاه؟',o:['أنها مؤكدة بالأرقام منذ سنوات','أنها ظهور مبكر ومتفرّق لتغيّر لم يتّضح مساره بعد','أنها لا تصدر إلا عن جهة رسمية','أنها تخصّ قطاع التقنية دون غيره'],a:1},
-  {q:'تكررت إشارات متشابهة من مصادر لا علاقة بينها. ما الاستنتاج الأرجح؟',o:['أن المصادر ينقل بعضها عن بعض','أنها ضجيج يمكن تجاهله','أن اتجاهاً يتكوّن ويستحق المتابعة','أن التغيّر وقع وانتهى'],a:2},
-  {q:'أيّ مما يلي ليس من مجالات المسح الخمسة التي وردت في الفصل؟',o:['المجتمع','التقنية','البيئة','رأي الإدارة العليا'],a:3},
-  {q:'ما الخطأ الأكثر شيوعاً عند رصد الإشارات؟',o:['أن نلتقط فقط ما يؤكد رأينا','أن نسجّل مصدر كل إشارة','أن نرصد من خارج قطاعنا','أن نراجع الإشارات كل فترة'],a:0},
-  {q:'سجّلتِ إشارة جديدة تخصّ قطاعك. ما الخطوة الأنفع بعدها؟',o:['اعتبارها توقّعاً مؤكداً والبناء عليها','انتظار أن تظهر في التقارير الرسمية','تعميمها قبل التحقق من مصدرها','تحديد ما نراقبه لنعرف أنها تكبر'],a:3}
+  {q:'What sets a weak signal apart from a trend?',o:['It has been backed by data for years','It is an early, scattered sign of a change whose direction is not yet clear','It only ever comes from an official body','It applies to the technology sector and no other'],a:1},
+  {q:'Similar signals keep appearing from sources that have nothing to do with one another. What is the most likely conclusion?',o:['The sources are copying one another','It is noise that can be ignored','A trend is forming and is worth following','The change has already come and gone'],a:2},
+  {q:'Which of these is not one of the five scanning areas covered in the chapter?',o:['Society','Technology','The environment','Senior management\'s opinion'],a:3},
+  {q:'What is the most common mistake when scanning for signals?',o:['Collecting only the signals that confirm what we already believe','Recording the source of every signal','Scanning outside our own sector','Reviewing the signals at regular intervals'],a:0},
+  {q:'You have logged a new signal that affects your sector. What is the most useful next step?',o:['Treat it as a confirmed forecast and build on it','Wait for it to show up in official reports','Circulate it before checking its source','Decide what to watch to know that it is growing'],a:3}
 ];
-const ORD=['الأولى','الثانية'];
+const ORD=['first','second'];
 let ex=Object.assign({used:0,passed:false,score:0,ans:[]},load().exam);
 
 /* ---- state 1: the questions ---- */
 $('form').innerHTML=Q.map((x,i)=>`<fieldset class="q" id="q${i+1}" aria-labelledby="h${i+1}">
-  <b>${i+1} <span>من 5</span></b>
+  <b>${i+1} <span>of 5</span></b>
   <div><h2 id="h${i+1}">${x.q}</h2><div class="opts">${x.o.map((o,j)=>`<label><input type="radio" name="q${i+1}" value="${j}">${o}</label>`).join('')}</div></div>
 </fieldset>`).join('');
 const answers=()=>Q.map((_,i)=>{const c=document.querySelector(`input[name=q${i+1}]:checked`);return c?+c.value:null});
@@ -155,10 +154,10 @@ const ask=open=>{
   $('confirm').hidden=!open;$('end').hidden=open;$('finish').setAttribute('aria-expanded',open);
   if(!open){$('finish').focus();return}
   const miss=answers().map((a,i)=>a===null?i+1:0).filter(Boolean),n=ex.used+1;
-  $('cq').textContent=`تنهين المحاولة ${ORD[n-1]}؟`;
-  $('ctext').textContent='التسليم نهائي لهذه المحاولة، ولا تُعدَّل الإجابات بعده.'+(n<MAX?'':' وهي محاولتك الأخيرة.');
+  $('cq').textContent=`Finish your ${ORD[n-1]} attempt?`;
+  $('ctext').textContent='Submitting is final for this attempt, and answers cannot be changed afterwards.'+(n<MAX?'':' This is your last attempt.');
   $('cmiss').hidden=!miss.length;
-  if(miss.length)$('cmiss').innerHTML=(miss.length===1?'بقي سؤال بلا إجابة: ':'بقيت أسئلة بلا إجابة: ')+miss.map(m=>`<a href="#q${m}" data-q="${m}">السؤال ${m}</a>`).join('، ')+'. إن سلّمتِ الآن '+(miss.length===1?'يُحسب خاطئاً.':'تُحسب خاطئة.');
+  if(miss.length)$('cmiss').innerHTML=(miss.length===1?'One question has no answer: ':'Some questions have no answer: ')+miss.map(m=>`<a href="#q${m}" data-q="${m}">Question ${m}</a>`).join(', ')+'. If you submit now, '+(miss.length===1?'it counts as wrong.':'they count as wrong.');
   $('cq').focus();
 };
 $('finish').addEventListener('click',()=>ask(true));
@@ -174,25 +173,25 @@ $('yes').addEventListener('click',()=>{
   save({exam:ex});result(true);
 });
 
-/* ---- state 2: the result, computed from her answers ---- */
+/* ---- state 2: the result, computed from the trainee's answers ---- */
 const result=fresh=>{
   $('v-exam').hidden=true;$('v-result').hidden=false;$('tally').hidden=true;
   const pct=Math.round(ex.score*100/Q.length),left=MAX-ex.used;
-  $('att').textContent=`المحاولة ${ex.used} من ${MAX}`;
+  $('att').textContent=`Attempt ${ex.used} of ${MAX}`;
   $('rs').textContent=ex.score;$('rp').textContent=pct+'%';
-  const s=$('rstamp');s.className='stamp big '+(ex.passed?'ok':'err')+(fresh?' press':'');s.textContent=ex.passed?'ناجح':'لم ينجح';
-  $('rh').textContent=`نتيجة المحاولة ${ORD[ex.used-1]}`;
+  const s=$('rstamp');s.className='stamp big '+(ex.passed?'ok':'err')+(fresh?' press':'');s.textContent=ex.passed?'Passed':'Not passed';
+  $('rh').textContent=`Result of your ${ORD[ex.used-1]} attempt`;
   const bad=Q.map((x,i)=>({x,i,a:ex.ans[i]})).filter(r=>r.a!==r.x.a);
   $('rline').textContent=ex.passed
-    ?(bad.length?`تجاوزتِ درجة النجاح ${PASS}%. ${bad.length===1?'أخطأتِ في سؤال واحد:':'هذه الأسئلة التي أخطأتِ فيها:'}`:`أجبتِ عن الأسئلة الخمسة كلها إجابة صحيحة.`)
-    :`النتيجة دون درجة النجاح ${PASS}%. هذه الأسئلة التي لم تُحسب لك، ومعها الإجابة الصحيحة:`;
+    ?(bad.length?`You are above the ${PASS}% passing score. ${bad.length===1?'You got one question wrong:':'These are the questions you got wrong:'}`:`You answered all five questions correctly.`)
+    :`Your score is below the ${PASS}% passing score. These are the questions that did not count, with the correct answer for each:`;
   $('wrong').hidden=!bad.length;
-  $('wrong').innerHTML=bad.map(r=>`<li><strong>السؤال ${r.i+1}: ${r.x.q}</strong><dl><dt>إجابتك</dt><dd>${r.a===null?'لم تجيبي عنه':r.x.o[r.a]}</dd><dt>الصحيحة</dt><dd class="right">${r.x.o[r.x.a]}</dd></dl></li>`).join('');
+  $('wrong').innerHTML=bad.map(r=>`<li><strong>Question ${r.i+1}: ${r.x.q}</strong><dl><dt>Your answer</dt><dd>${r.a===null?'Not answered':r.x.o[r.a]}</dd><dt>Correct answer</dt><dd class="right">${r.x.o[r.x.a]}</dd></dl></li>`).join('');
   $('next').innerHTML=ex.passed
-    ?`<p class="note">سُجّل الاختبار مكتملاً في الفصل.</p><a class="btn" href="14-chapter.html#exam">العودة إلى الفصل</a>`
+    ?`<p class="note">The exam is now marked as completed in the chapter.</p><a class="btn" href="14-chapter.html#exam">Back to the chapter</a>`
     :left>0
-      ?`<p>بقيت لك محاولة واحدة، بالأسئلة نفسها. إن شئتِ <a class="link" href="14-chapter.html#info">راجعي معلومات الفصل</a> قبلها.</p><button class="btn" id="retry" type="button" data-cta="WF-CTA-031">بدء الاختبار</button>`
-      :`<p><b>استنفدتِ المحاولتين.</b> تواصلي مع الدكتورة منال الحساوي لتحدّد لك ما يلزم؛ نتيجتك محفوظة عندها.</p><a class="link" href="14-chapter.html#exam">العودة إلى الفصل</a>`;
+      ?`<p>You have one attempt left, with the same questions. You may want to <a class="link" href="14-chapter.html#info">review the chapter information</a> first.</p><button class="btn" id="retry" type="button" data-cta="WF-CTA-031">Start assessment</button>`
+      :`<p><b>You have used both attempts.</b> Contact Dr. Manal Al-Hasawi to agree on what comes next. She has your result on record.</p><a class="link" href="14-chapter.html#exam">Back to the chapter</a>`;
   const r=$('retry');if(r)r.addEventListener('click',start);
   scrollTo(0,0);$('rh').focus({preventScroll:true});
 };
@@ -200,7 +199,7 @@ const start=()=>{
   $('form').reset();tally();
   $('v-result').hidden=true;$('v-exam').hidden=false;$('tally').hidden=false;
   $('confirm').hidden=true;$('end').hidden=false;$('finish').setAttribute('aria-expanded',false);
-  $('att').textContent=`المحاولة ${ex.used+1} من ${MAX}`;
+  $('att').textContent=`Attempt ${ex.used+1} of ${MAX}`;
   scrollTo(0,0);document.querySelector('#q1 input').focus({preventScroll:true});
 };
 

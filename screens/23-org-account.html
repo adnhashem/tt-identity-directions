@@ -1,42 +1,45 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>حساب الجهة — بوابة الجهة</title>
+<title>Organization account — Organization portal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
 <style>
 .side .foot a{padding-inline:0}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 .rec{display:grid;grid-template-columns:11rem minmax(0,46rem);gap:var(--s-64);align-items:start}
 .toc{position:sticky;top:var(--s-24)}
-.toc ol{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
-.toc a{display:flex;align-items:center;min-height:var(--s-48);font-size:var(--fs-14);color:var(--ink-2);text-decoration:none;border-bottom:1.5px dashed var(--card-edge)}
+.toc ol{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-strong)}
+.toc a{display:flex;align-items:center;min-height:var(--s-48);font-size:var(--fs-14);color:var(--ink-2);text-decoration:none;border-bottom:1px solid var(--card-edge)}
 .toc a:hover{color:var(--ink)}
-.toc a[aria-current]{color:var(--ink);font-weight:700}
+.toc a[aria-current]{color:var(--ink);font-weight:600}
 .rec section{scroll-margin-top:var(--s-24)}
+.rec section+section{margin-top:var(--s-48)}
 .rec h2{margin-bottom:var(--s-4)}
 .lead{font-size:var(--fs-14);color:var(--ink-2);max-width:60ch;margin:0 0 var(--s-16)}
-.dl{border-top:2px solid var(--ink)}
+.dl{border-top:1px solid var(--line-strong)}
 .dl>div.open{align-items:start}
+.dl dd{overflow-wrap:anywhere}
 .dl dd small{display:block;font-size:var(--fs-13);font-weight:400;color:var(--ink-2);line-height:1.7;max-width:52ch}
 .dl .ed,.dl .sent{grid-column:2/-1;font-weight:400}
 .ed form{display:grid;gap:var(--s-16);max-width:26rem}
-.ed .otp{justify-content:flex-end}
+.ed .otp{justify-content:flex-start}
 .ed p,.sent p{font-size:var(--fs-14);margin:0}
 .ed .notice{display:block}
 .ed .notice form{max-width:none}
 .sent p{color:var(--ink-2);margin-top:var(--s-8);max-width:52ch}
 .chk{display:inline-flex;align-items:center;gap:var(--s-8);min-height:var(--s-48);font-size:var(--fs-14);cursor:pointer}
-.chk input{width:var(--s-24);height:var(--s-24);margin:0;accent-color:var(--ribbon);flex:none}
+.chk input{width:var(--s-24);height:var(--s-24);margin:0;accent-color:var(--accent);flex:none}
 .field .chk{font-size:var(--fs-14);font-weight:400;color:var(--ink)}
 .chk.long{align-items:flex-start;padding-block:var(--s-8)}
 .opts{display:flex;gap:var(--s-4) var(--s-24);flex-wrap:wrap}
-.notif{border-top:2px solid var(--ink);margin-top:var(--s-24)}
-.notif>div{display:grid;grid-template-columns:1fr auto;gap:var(--s-4) var(--s-24);align-items:center;padding:var(--s-8) 0;border-bottom:1.5px dashed var(--card-edge)}
+.notif{border-top:1px solid var(--line-strong);margin-top:var(--s-24)}
+.notif>div{display:grid;grid-template-columns:1fr auto;gap:var(--s-4) var(--s-24);align-items:center;padding:var(--s-8) 0;border-bottom:1px solid var(--card-edge)}
 .notif b{display:block;font-weight:500}
 .notif span.d{display:block;font-size:var(--fs-13);color:var(--ink-2)}
 .fixed{font-size:var(--fs-14);color:var(--ink-2);margin:var(--s-16) 0 0;max-width:60ch}
@@ -47,104 +50,105 @@
   .toc ol{display:grid;grid-template-columns:1fr 1fr;column-gap:var(--s-16)}
   .dl .ed,.dl .sent{grid-column:1/-1}
   .notif>div{grid-template-columns:1fr}
+  .dl dd.wide{grid-column:1/-1}
 }
 </style>
 </head>
 <body class="desk">
 <div class="shell">
-  <nav class="side" aria-label="بنك المثال">
-    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>بنك المثال</span></div>
-    <a href="07-org-seats.html">المقاعد</a>
-    <a href="08-org-report.html">مشاركة الموظفين</a>
-    <a href="22-org-proposals.html">طلبات العروض</a>
-    <a href="23-org-account.html" aria-current="page">حساب الجهة</a>
-    <div class="foot">خالد الفهد · مسؤول التدريب<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  <nav class="side" aria-label="Example Bank">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>Example Bank</span></div>
+    <a href="07-org-seats.html">Seats</a>
+    <a href="08-org-report.html">Employee participation</a>
+    <a href="22-org-proposals.html">Proposal requests</a>
+    <a href="23-org-account.html" aria-current="page">Organization account</a>
+    <div class="foot">Khalid Al-Fahad · Training contact<br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
   </nav>
   <main class="work">
     <div class="sheet">
       <header class="top">
-        <div><h1>حساب الجهة</h1><div class="crumb">بنك المثال · خالد الفهد، مسؤول التدريب</div></div>
-        <a class="btn sec sm" href="17-login.html">خروج</a>
+        <div><h1>Organization account</h1><div class="crumb">Example Bank · Khalid Al-Fahad, training contact</div></div>
+        <a class="btn sec sm" href="17-login.html">Sign out</a>
       </header>
 
       <div class="rec">
-        <nav class="toc" aria-label="أقسام حساب الجهة">
+        <nav class="toc" aria-label="Organization account sections">
           <ol>
-            <li><a href="#org">الجهة</a></li>
-            <li><a href="#me">بياناتك</a></li>
-            <li><a href="#sec">كلمة المرور</a></li>
-            <li><a href="#who">حسابات البنك</a></li>
-            <li><a href="#msg">التنبيهات</a></li>
+            <li><a href="#org">Organization</a></li>
+            <li><a href="#me">Your details</a></li>
+            <li><a href="#sec">Password</a></li>
+            <li><a href="#who">Portal access</a></li>
+            <li><a href="#msg">Notifications</a></li>
           </ol>
         </nav>
 
         <div>
           <section id="org" aria-labelledby="h-org">
-            <h2 id="h-org">الجهة</h2>
+            <h2 id="h-org">Organization</h2>
             <dl class="dl">
               <div>
-                <dt>اسم الجهة</dt>
-                <dd>بنك المثال<small>لا يُعدَّل من هنا. الدكتورة هي من ربطت حسابك بالبنك حين اعتمدته، وعلى هذا الربط وحده ترى بيانات موظفيه. إن تغيّر اسم الجهة أو انتقلتَ منها فراسل الدكتورة.</small></dd>
+                <dt>Organization name</dt>
+                <dd>Example Bank<small>This cannot be changed here. Dr. Manal linked your account to the bank when she approved it, and that link is what lets you see its employees' records. If the organization's name changes or you leave it, contact Dr. Manal.</small></dd>
               </div>
               <div>
-                <dt>الربط</dt>
-                <dd>اعتمدته الدكتورة في 6 ديسمبر 2026</dd>
+                <dt>Link</dt>
+                <dd>Approved by Dr. Manal on 6 December 2026</dd>
               </div>
               <div>
-                <dt>ما تراه عن موظفيك</dt>
-                <dd>الحضور والغياب والشهادات فقط<small>نتائج اختباراتهم وإجاباتهم في الاستبيان لا تظهر لجهتك. التفاصيل في <a class="link" href="08-org-report.html">مشاركة الموظفين</a>.</small></dd>
+                <dt>What you see about your employees</dt>
+                <dd>Attendance, absences and certificates only<small>Their exam results and survey answers are never shown to your organization. Details are under <a class="link" href="08-org-report.html">Staff participation</a>.</small></dd>
               </div>
             </dl>
           </section>
 
           <section id="me" aria-labelledby="h-me">
-            <h2 id="h-me">بياناتك</h2>
-            <p class="lead">بها تتواصل معك الدكتورة وعليها تصلك روابط الدفع. تغيير البريد أو الجوال لا يُعتمد إلا بعد رمز تحقق يصلك على الجديد.</p>
+            <h2 id="h-me">Your details</h2>
+            <p class="lead">Dr. Manal uses these to reach you, and payment links are sent to them. A new email or mobile number takes effect only after you enter a verification code sent to it.</p>
             <dl class="dl">
               <div data-row="name">
-                <dt>الاسم</dt>
-                <dd class="val" id="v-name">خالد الفهد</dd>
-                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">تعديل<span class="vh"> الاسم</span></button></dd>
+                <dt>Name</dt>
+                <dd class="val" id="v-name">Khalid Al-Fahad</dd>
+                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">Edit<span class="vh"> name</span></button></dd>
                 <dd class="ed" hidden>
                   <form novalidate data-step="save">
-                    <div class="field"><label for="i-name">الاسم</label><input id="i-name" value="خالد الفهد" autocomplete="name"><span class="hint">يظهر لموظفيك في دعوات تفعيل حساباتهم.</span><span class="msg" hidden></span></div>
-                    <div class="row"><button class="btn sm" type="submit">حفظ</button><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                    <div class="field"><label for="i-name">Name</label><input id="i-name" value="Khalid Al-Fahad" autocomplete="name"><span class="hint">Your employees see it in their account activation invitations.</span><span class="msg" hidden></span></div>
+                    <div class="row"><button class="btn sm" type="submit">Save</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                   </form>
                 </dd>
               </div>
               <div data-row="email">
-                <dt>البريد الرسمي</dt>
-                <dd class="val"><bdi id="v-email">k.alfahad@example.com</bdi></dd>
-                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">تعديل<span class="vh"> البريد الرسمي</span></button></dd>
+                <dt>Work email</dt>
+                <dd class="val"><span id="v-email">k.alfahad@example.com</span></dd>
+                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">Edit<span class="vh"> work email</span></button></dd>
                 <dd class="ed" hidden>
                   <form novalidate data-step="ask">
-                    <div class="field"><label for="i-email">بريد العمل الجديد</label><input id="i-email" type="email" dir="ltr" autocomplete="email" placeholder="name@example.com"><span class="hint">نرسل إليه رمزاً من 4 أرقام. به تدخل وعليه تصلك روابط الدفع والتقارير.</span><span class="msg" hidden></span></div>
-                    <div class="row"><button class="btn sm" type="submit">إرسال رمز التحقق</button><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                    <div class="field"><label for="i-email">New work email</label><input id="i-email" type="email" autocomplete="email" placeholder="name@example.com"><span class="hint">We will send it a 4-digit code. You sign in with this email, and payment links and reports are sent to it.</span><span class="msg" hidden></span></div>
+                    <div class="row"><button class="btn sm" type="submit">Send verification code</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                   </form>
                   <form novalidate data-step="code" hidden>
-                    <p>أرسلنا الرمز إلى <bdi data-to></bdi>. بريدك الحالي يبقى كما هو حتى تُدخل الرمز.</p>
-                    <div class="field"><span class="vh" id="l-email">رمز التحقق</span>
-                      <div class="otp" role="group" aria-labelledby="l-email"><input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="الخانة 1"><input inputmode="numeric" maxlength="1" aria-label="الخانة 2"><input inputmode="numeric" maxlength="1" aria-label="الخانة 3"><input inputmode="numeric" maxlength="1" aria-label="الخانة 4"></div>
-                      <span class="hint">في هذا العرض الرمز 1234.</span><span class="msg" hidden></span></div>
-                    <div class="row"><button class="btn sm" type="submit">تأكيد الرمز</button><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                    <p>We sent the code to <span data-to></span>. Your current email stays in place until you enter the code.</p>
+                    <div class="field"><span class="vh" id="l-email">Verification code</span>
+                      <div class="otp" role="group" aria-labelledby="l-email"><input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="Digit 1"><input inputmode="numeric" maxlength="1" aria-label="Digit 2"><input inputmode="numeric" maxlength="1" aria-label="Digit 3"><input inputmode="numeric" maxlength="1" aria-label="Digit 4"></div>
+                      <span class="hint">In this demo the code is 1234.</span><span class="msg" hidden></span></div>
+                    <div class="row"><button class="btn sm" type="submit">Confirm code</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                   </form>
                 </dd>
               </div>
               <div data-row="tel">
-                <dt>الجوال</dt>
-                <dd class="val"><bdi id="v-tel">+965 5000 0177</bdi></dd>
-                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">تعديل<span class="vh"> الجوال</span></button></dd>
+                <dt>Mobile</dt>
+                <dd class="val"><span id="v-tel">+965 5000 0177</span></dd>
+                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">Edit<span class="vh"> mobile</span></button></dd>
                 <dd class="ed" hidden>
                   <form novalidate data-step="ask">
-                    <div class="field"><label for="i-tel">رقم الجوال الجديد</label><input id="i-tel" dir="ltr" inputmode="tel" autocomplete="tel" value="+965 "><span class="hint">نرسل إليه رمزاً من 4 أرقام في رسالة نصية.</span><span class="msg" hidden></span></div>
-                    <div class="row"><button class="btn sm" type="submit">إرسال رمز التحقق</button><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                    <div class="field"><label for="i-tel">New mobile number</label><input id="i-tel" inputmode="tel" autocomplete="tel" value="+965 "><span class="hint">We will text it a 4-digit code.</span><span class="msg" hidden></span></div>
+                    <div class="row"><button class="btn sm" type="submit">Send verification code</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                   </form>
                   <form novalidate data-step="code" hidden>
-                    <p>أرسلنا الرمز إلى <bdi data-to></bdi>. رقمك الحالي يبقى كما هو حتى تُدخل الرمز.</p>
-                    <div class="field"><span class="vh" id="l-tel">رمز التحقق</span>
-                      <div class="otp" role="group" aria-labelledby="l-tel"><input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="الخانة 1"><input inputmode="numeric" maxlength="1" aria-label="الخانة 2"><input inputmode="numeric" maxlength="1" aria-label="الخانة 3"><input inputmode="numeric" maxlength="1" aria-label="الخانة 4"></div>
-                      <span class="hint">في هذا العرض الرمز 1234.</span><span class="msg" hidden></span></div>
-                    <div class="row"><button class="btn sm" type="submit">تأكيد الرمز</button><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                    <p>We sent the code to <span data-to></span>. Your current number stays in place until you enter the code.</p>
+                    <div class="field"><span class="vh" id="l-tel">Verification code</span>
+                      <div class="otp" role="group" aria-labelledby="l-tel"><input inputmode="numeric" autocomplete="one-time-code" maxlength="1" aria-label="Digit 1"><input inputmode="numeric" maxlength="1" aria-label="Digit 2"><input inputmode="numeric" maxlength="1" aria-label="Digit 3"><input inputmode="numeric" maxlength="1" aria-label="Digit 4"></div>
+                      <span class="hint">In this demo the code is 1234.</span><span class="msg" hidden></span></div>
+                    <div class="row"><button class="btn sm" type="submit">Confirm code</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                   </form>
                 </dd>
               </div>
@@ -152,55 +156,55 @@
           </section>
 
           <section id="sec" aria-labelledby="h-sec">
-            <h2 id="h-sec">كلمة المرور</h2>
+            <h2 id="h-sec">Password</h2>
             <dl class="dl">
               <div data-row="pwd">
-                <dt>كلمة المرور</dt>
-                <dd class="val" id="v-pwd">وضعتَها عند تفعيل الحساب في 6 ديسمبر 2026</dd>
-                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">تغيير<span class="vh"> كلمة المرور</span></button></dd>
+                <dt>Password</dt>
+                <dd class="val" id="v-pwd">Set when you activated the account on 6 December 2026</dd>
+                <dd class="act"><button class="lbtn" data-edit aria-expanded="false">Change<span class="vh"> password</span></button></dd>
                 <dd class="ed" hidden>
                   <form novalidate data-step="pwd">
-                    <div class="field"><label for="p-cur">كلمة المرور الحالية</label><input id="p-cur" type="password" dir="ltr" autocomplete="current-password"><span class="hint">في هذا العرض: <bdi>Khalid2026</bdi></span><span class="msg" hidden></span></div>
-                    <div class="field"><label for="p-new">كلمة المرور الجديدة</label><input id="p-new" type="password" dir="ltr" autocomplete="new-password"><span class="hint">8 أحرف أو أكثر.</span><span class="msg" hidden></span></div>
-                    <div class="field"><label for="p-rep">أعد كتابة الجديدة</label><input id="p-rep" type="password" dir="ltr" autocomplete="new-password"><span class="msg" hidden></span></div>
-                    <div class="row"><button class="btn sm" type="submit">حفظ كلمة المرور</button><button class="btn quiet sm" type="button" data-cancel>تراجع</button></div>
+                    <div class="field"><label for="p-cur">Current password</label><input id="p-cur" type="password" autocomplete="current-password"><span class="hint">In this demo: Khalid2026</span><span class="msg" hidden></span></div>
+                    <div class="field"><label for="p-new">New password</label><input id="p-new" type="password" autocomplete="new-password"><span class="hint">8 characters or more.</span><span class="msg" hidden></span></div>
+                    <div class="field"><label for="p-rep">Repeat the new password</label><input id="p-rep" type="password" autocomplete="new-password"><span class="msg" hidden></span></div>
+                    <div class="row"><button class="btn sm" type="submit">Save password</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
                   </form>
                 </dd>
               </div>
               <div>
-                <dt>آخر دخول</dt>
-                <dd>اليوم، الثلاثاء 15 ديسمبر 2026، الساعة 10:40 صباحاً<small>من حاسوب بمتصفح <bdi>Chrome</bdi>، الكويت</small></dd>
+                <dt>Last sign-in</dt>
+                <dd>Today, Tuesday 15 December 2026, at 10:40<small>From a computer using Chrome, in Kuwait</small></dd>
               </div>
             </dl>
           </section>
 
           <section id="who" aria-labelledby="h-who">
-            <h2 id="h-who">من له حساب من البنك</h2>
-            <p class="lead">كل من يحمل حساباً هنا يرى حضور موظفي البنك وشهاداتهم، ولهذا تعتمد الدكتورة كل مسؤول بنفسها وتربطه بالجهة.</p>
+            <h2 id="h-who">Who has portal access for the bank</h2>
+            <p class="lead">Anyone with an account here can see the attendance and certificates of the bank's employees. That is why Dr. Manal approves each training contact herself and links them to the organization.</p>
             <dl class="dl">
               <div>
-                <dt>مسؤول التدريب</dt>
-                <dd>خالد الفهد<small>أنت، وحسابك هو الوحيد لبنك المثال حالياً.</small></dd>
-                <dd><span class="stamp ok">معتمَد</span></dd>
+                <dt>Training contact</dt>
+                <dd>Khalid Al-Fahad<small>That is you. Yours is currently the only account for Example Bank.</small></dd>
+                <dd><span class="stamp ok">Approved</span></dd>
               </div>
               <div>
-                <dt>زميل آخر</dt>
-                <dd>لا يُضاف من هنا<small>اطلبه من الدكتورة، فتتواصل معك وتعتمد حسابه وتربطه ببنك المثال.</small></dd>
-                <dd><button class="lbtn" data-toast="وصل طلبك الدكتورة، وستتواصل معك لاعتماد زميلك">اطلب إضافة زميل</button></dd>
+                <dt>Another colleague</dt>
+                <dd>Cannot be added here<small>Ask Dr. Manal. She will contact you, approve the account and link it to Example Bank.</small></dd>
+                <dd class="wide"><button class="lbtn" data-toast="Request sent. Dr. Manal will contact you to approve your colleague.">Request a colleague's account</button></dd>
               </div>
             </dl>
           </section>
 
           <section id="msg" aria-labelledby="h-msg">
-            <h2 id="h-msg">التنبيهات</h2>
-            <p class="lead">اختياراتك هنا تُحفظ فور تغييرها.</p>
+            <h2 id="h-msg">Notifications</h2>
+            <p class="lead">Your choices here are saved as soon as you change them.</p>
             <div class="notif" id="notif">
-              <div role="group" aria-labelledby="n1"><div><b id="n1">قرب انتهاء مهلة دفع المقاعد</b><span class="d">قبل أن تُفرَّغ مقاعد حجزتها ولم تُدفع</span></div><div class="opts"><label class="chk"><input type="checkbox" checked>البريد</label><label class="chk"><input type="checkbox" checked>رسالة نصية</label></div></div>
-              <div role="group" aria-labelledby="n2"><div><b id="n2">موظف لم يفعّل دعوته</b><span class="d">إذا مرّت 3 أيام على الدعوة ولم يفعّل حسابه</span></div><div class="opts"><label class="chk"><input type="checkbox" checked>البريد</label><label class="chk"><input type="checkbox">رسالة نصية</label></div></div>
-              <div role="group" aria-labelledby="n3"><div><b id="n3">جاهزية التقرير</b><span class="d">حين يكتمل تقرير مشاركة موظفيك بعد آخر جلسة</span></div><div class="opts"><label class="chk"><input type="checkbox" checked>البريد</label><label class="chk"><input type="checkbox">رسالة نصية</label></div></div>
+              <div role="group" aria-labelledby="n1"><div><b id="n1">Seat payment deadline approaching</b><span class="d">Before seats you reserved but have not paid for are released</span></div><div class="opts"><label class="chk"><input type="checkbox" checked>Email</label><label class="chk"><input type="checkbox" checked>Text message</label></div></div>
+              <div role="group" aria-labelledby="n2"><div><b id="n2">Employee has not activated an invitation</b><span class="d">When 3 days pass after the invitation without the account being activated</span></div><div class="opts"><label class="chk"><input type="checkbox" checked>Email</label><label class="chk"><input type="checkbox">Text message</label></div></div>
+              <div role="group" aria-labelledby="n3"><div><b id="n3">Report ready</b><span class="d">When your staff participation report is complete after the last session</span></div><div class="opts"><label class="chk"><input type="checkbox" checked>Email</label><label class="chk"><input type="checkbox">Text message</label></div></div>
             </div>
-            <p class="fixed">إيصالات الدفع وردود الدكتورة على طلبات العروض تصلك دائماً على بريدك الرسمي.</p>
-            <p class="synthetic">الأسماء والتواريخ والمبالغ تجريبية. <a href="index.html">خريطة الشاشات</a></p>
+            <p class="fixed">Payment receipts and Dr. Manal's replies to proposal requests are always sent to your work email.</p>
+            <p class="synthetic">Names, dates and amounts are sample data. <a href="index.html">Screen map</a></p>
           </section>
         </div>
       </div>
@@ -210,7 +214,7 @@
 <script src="tt.js"></script>
 <script>
 const $=id=>document.getElementById(id),$$=(s,r=document)=>[...r.querySelectorAll(s)];
-const bad=(inp,text)=>{const f=inp.closest('.field'),m=f.querySelector('.msg');f.classList.toggle('bad',!!text);m.hidden=!text;if(text)m.innerHTML=text;inp.setAttribute('aria-invalid',!!text);return !!text};
+const bad=(inp,text)=>{const f=inp.closest('.field'),m=f.querySelector('.msg');f.classList.toggle('bad',!!text);m.hidden=!text;if(text)m.textContent=text;inp.setAttribute('aria-invalid',!!text);return !!text};
 const CUR={tel:'+965 5000 0177',email:'k.alfahad@example.com',pwd:'Khalid2026'};
 let pending='';
 
@@ -230,33 +234,33 @@ $$('[data-cancel]').forEach(b=>b.addEventListener('click',()=>openRow(b.closest(
 
 const check={
   tel(inp){let d=inp.value.replace(/\D/g,'');if(d.startsWith('965'))d=d.slice(3);
-    if(!/^[569]\d{7}$/.test(d))return bad(inp,'اكتب رقم جوال كويتياً من 8 أرقام بعد <bdi>+965</bdi>.')?'':'';
-    const v=`+965 ${d.slice(0,4)} ${d.slice(4)}`;if(v===CUR.tel){bad(inp,'هذا رقمك الحالي. اكتب الرقم الجديد.');return ''}bad(inp,'');return v},
+    if(!/^[569]\d{7}$/.test(d)){bad(inp,'Enter a Kuwaiti mobile number: 8 digits after +965.');return ''}
+    const v=`+965 ${d.slice(0,4)} ${d.slice(4)}`;if(v===CUR.tel){bad(inp,'This is your current number. Enter the new one.');return ''}bad(inp,'');return v},
   email(inp){const v=inp.value.trim().toLowerCase();
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){bad(inp,'اكتب بريد العمل كاملاً، مثل <bdi>name@example.com</bdi>.');return ''}
-    if(v===CUR.email){bad(inp,'هذا بريدك الحالي. اكتب البريد الجديد.');return ''}bad(inp,'');return v}
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)){bad(inp,'Enter the full work email, such as name@example.com.');return ''}
+    if(v===CUR.email){bad(inp,'This is your current email. Enter the new one.');return ''}bad(inp,'');return v}
 };
 document.addEventListener('submit',e=>{
   const f=e.target,row=f.closest('[data-row]');if(!row)return;e.preventDefault();
   const kind=row.dataset.row,s=f.dataset.step;
   if(s==='save'){const i=$('i-name'),v=i.value.trim().replace(/\s+/g,' ');
-    if(bad(i,v.length<3?'اكتب اسمك الكامل.':'')){i.focus();return}
-    $('v-name').textContent=v;i.defaultValue=v;openRow(row,false);ttToast('حُفظ اسمك');}
+    if(bad(i,v.length<3?'Enter your full name.':'')){i.focus();return}
+    $('v-name').textContent=v;i.defaultValue=v;openRow(row,false);ttToast('Name saved');}
   if(s==='ask'){const i=f.querySelector('input'),v=check[kind](i);if(!v){i.focus();return}
     pending=v;step(row,'code');row.querySelector('[data-to]').textContent=v;row.querySelector('.otp input').focus();
-    ttToast(kind==='tel'?'أُرسل الرمز في رسالة نصية':'أُرسل الرمز إلى البريد الجديد');}
+    ttToast(kind==='tel'?'Code sent by text message':'Code sent to the new email');}
   if(s==='code'){const ins=$$('.otp input',f),code=ins.map(x=>x.value).join('');
-    if(bad(ins[0],code.length<4?'أدخل الأرقام الأربعة كلها.':code!=='1234'?'الرمز غير صحيح. راجع الرسالة وأعد إدخاله؛ لم يتغير شيء في حسابك.':'')){ins.forEach(x=>x.value='');ins[0].focus();return}
-    CUR[kind]=pending;$('v-'+kind).textContent=pending;openRow(row,false);ttToast(kind==='tel'?'تحقّقنا من الرقم وصار جوالك الجديد':'تحقّقنا من البريد وصار بريدك الجديد');}
+    if(bad(ins[0],code.length<4?'Enter all four digits.':code!=='1234'?'That code is not correct. Check the message and enter it again. Nothing in your account has changed.':'')){ins.forEach(x=>x.value='');ins[0].focus();return}
+    CUR[kind]=pending;$('v-'+kind).textContent=pending;openRow(row,false);ttToast(kind==='tel'?'Number verified. It is now your mobile number.':'Email verified. It is now your work email.');}
   if(s==='pwd'){const c=$('p-cur'),n=$('p-new'),r=$('p-rep');
-    const e1=bad(c,!c.value?'اكتب كلمة المرور الحالية.':c.value!==CUR.pwd?'كلمة المرور الحالية غير صحيحة. أعد كتابتها؛ وإن نسيتَها فاخرج واطلب كلمة جديدة من صفحة الدخول.':'');
-    const e2=bad(n,n.value.length<8?'كلمة المرور الجديدة أقصر من 8 أحرف. زدها.':n.value===c.value?'الجديدة مطابقة للحالية. اختر كلمة مختلفة.':'');
-    const e3=bad(r,r.value!==n.value?'الإعادة لا تطابق كلمة المرور الجديدة. اكتبها مرة أخرى.':'');
+    const e1=bad(c,!c.value?'Enter your current password.':c.value!==CUR.pwd?'The current password is not correct. Enter it again. If you have forgotten it, sign out and request a new one from the sign-in page.':'');
+    const e2=bad(n,n.value.length<8?'The new password is shorter than 8 characters. Make it longer.':n.value===c.value?'The new password is the same as the current one. Choose a different one.':'');
+    const e3=bad(r,r.value!==n.value?'This does not match the new password. Enter it again.':'');
     if(e1||e2||e3){(e1?c:e2?n:r).focus();return}
-    CUR.pwd=n.value;$('v-pwd').textContent='غُيّرت اليوم، 15 ديسمبر 2026';f.querySelector('.hint').hidden=true;openRow(row,false);ttToast('تغيّرت كلمة المرور');}
+    CUR.pwd=n.value;$('v-pwd').textContent='Changed today, 15 December 2026';f.querySelector('.hint').hidden=true;openRow(row,false);ttToast('Password changed');}
 });
 $('notif').addEventListener('change',e=>{const g=e.target.closest('[role=group]'),name=g.querySelector('b').textContent,on=$$('input',g).filter(i=>i.checked).length;
-  ttToast(on?`حُفظ: ${name}`:`حُفظ: لن يصلك تنبيه «${name}»`)});
+  ttToast(on?`Saved: ${name}`:`Saved: no notifications for "${name}"`)});
 
 const links=$$('.toc a'),secs=links.map(a=>document.querySelector(a.getAttribute('href')));
 const mark=id=>links.forEach(a=>a.getAttribute('href')==='#'+id?a.setAttribute('aria-current','true'):a.removeAttribute('aria-current'));

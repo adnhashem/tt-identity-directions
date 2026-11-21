@@ -1,436 +1,365 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Think Tank Strategists — مقترح نظام التدريب</title>
+<title>Think Tank Strategists — Training system proposal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
 <style>
 html,body{height:100%}
 body{overflow:hidden}
-.deck{position:fixed;inset:0}
+.deck{position:fixed;inset:0;perspective:1600px}
 .slide{position:absolute;inset:0;display:grid;align-content:center;padding:clamp(20px,5vh,56px) clamp(20px,6vw,96px) clamp(84px,12vh,112px);visibility:hidden;opacity:0;transition:opacity .35s var(--ease),visibility 0s .35s;overflow-y:auto}
-.slide.on{visibility:visible;opacity:1;transition:opacity .45s var(--ease)}
-.slide.on .lay{animation:lay .8s var(--ease) both;animation-delay:calc(var(--i,0)*110ms + 120ms)}
-.slide:not(.on) .lay,.slide:not(.on) .swing{animation:none}
-.slide h1{font-size:clamp(2rem,5.4vw,4.6rem);max-width:17ch}
-.slide h2{font-size:clamp(1.7rem,3.8vw,3.2rem);max-width:22ch;margin-bottom:var(--s-12)}
-.slide h1 em,.slide h2 em{font-style:normal;color:var(--brass)}
-.lede{font-weight:300;font-size:clamp(1rem,1.6vw,1.3rem);color:var(--cream-2);max-width:46ch}
-.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,72px);align-items:center}
-.two.flip{grid-template-columns:.95fr 1.05fr}
+.slide.on{visibility:visible;opacity:1;transition:opacity .5s var(--ease)}
+.slide.on .lay{animation:rise .8s var(--ease) both;animation-delay:calc(var(--i,0)*100ms + 120ms)}
+.slide:not(.on) .lay{animation:none}
+/* each design moves between slides its own way */
+html[data-design=depth] .slide{transform:translateZ(-260px);filter:blur(6px);transition:opacity .5s var(--ease),transform .9s var(--ease),filter .9s var(--ease),visibility 0s .9s}
+html[data-design=depth] .slide.on{transform:none;filter:none;transition:opacity .6s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
+html[data-design=depth] .slide.gone{transform:translateZ(320px);filter:blur(8px)}
+html[data-design=mark] .slide{transform:scale(.985)} html[data-design=mark] .slide.on{transform:none;transition:opacity .5s var(--ease),transform .7s var(--ease)}
 
-/* cover */
-.cover .stage{display:grid;justify-items:center}
-.cover .pass{width:min(320px,70vw);text-align:center;padding:44px 28px 30px}
-.cover .pass img{height:96px}
-.cover .pass p{margin:18px 0 0;font-size:var(--fs-14);color:var(--ink-2)}
-.cover .lanyard{height:16vh}
+.slide h1{font-size:clamp(2rem,5.2vw,4.4rem);max-width:17ch}
+.slide h2{font-size:clamp(1.7rem,3.6vw,3rem);max-width:24ch;margin-bottom:var(--s-12)}
+.slide h2.sm{font-size:clamp(1.4rem,2.8vw,2.3rem)}
+.slide h1 em,.slide h2 em{font-style:normal;color:var(--brass)}
+.lede{font-size:clamp(1rem,1.5vw,1.25rem);color:var(--cream-2);max-width:48ch}
+.src{font-size:var(--fs-12);color:var(--cream-2);margin-top:var(--s-16)}
+.two{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,72px);align-items:center}
+.tagl{display:inline-block;justify-self:start;font:600 clamp(.8rem,1.05vw,.92rem) var(--font-head);color:var(--on-accent);background:var(--accent);padding:3px 14px;border-radius:var(--r-btn);margin-bottom:var(--s-12);box-shadow:0 8px 14px -8px #000}
+
+/* cover signature */
+.sig{position:relative;height:min(52vh,460px);color:var(--cream)}
+.sig svg,.sig canvas{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.sig .pl3{position:absolute;left:50%;top:50%;width:54%;height:60%;margin:-30% 0 0 -27%;border-radius:12px;background:linear-gradient(180deg,var(--card-hi),var(--card));border:1px solid var(--card-edge);box-shadow:var(--sh-sheet);display:grid;place-items:center;font:700 clamp(1.4rem,3vw,2.4rem) var(--font-head);color:var(--ink)}
+.sig .stage3{position:absolute;inset:0;perspective:1200px}
+.sig .cam3{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateY(-18deg) rotateX(6deg);animation:sway 9s ease-in-out infinite alternate}
+@keyframes sway{to{transform:rotateY(-10deg) rotateX(3deg)}}
 
 /* today */
-.print{position:relative;background:#fff;padding:10px 10px 34px;box-shadow:var(--sh-sheet);border-radius:2px}
-.print img{display:block;width:100%;height:auto}
-.print figcaption{position:absolute;inset-inline:10px;bottom:6px;font-size:var(--fs-12);color:var(--ink-2)}
+.print{position:relative;background:#fff;padding:10px 10px 34px;box-shadow:var(--sh-sheet);border-radius:2px;margin:0}
+.print img{display:block;width:100%;height:auto;filter:none!important}
+.print figcaption{position:absolute;inset-inline:10px;bottom:6px;font-size:var(--fs-12);color:#4a4a4a}
 .prints{position:relative;height:min(62vh,520px)}
 .prints .print{position:absolute;width:62%}
-.prints .print:first-child{inset-inline-start:0;top:0;transform:rotate(-3deg)}
-.prints .print:last-child{inset-inline-end:0;bottom:0;transform:rotate(2.5deg)}
+.prints .print:first-child{left:0;top:0} .prints .print:last-child{right:0;bottom:0}
 .facts{list-style:none;margin:var(--s-24) 0 0;padding:0;display:grid;gap:var(--s-12)}
 .facts li{display:grid;grid-template-columns:auto 1fr;gap:var(--s-16);align-items:baseline;font-size:clamp(.95rem,1.4vw,1.15rem)}
-.facts b{font-weight:800;font-size:1.5em;color:var(--brass);font-variant-numeric:tabular-nums;min-width:3.2ch}
-
-/* where the visitor stops */
-.trail{list-style:none;margin:var(--s-24) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-.trail li{position:relative;padding:var(--s-16) var(--s-16) var(--s-16) var(--s-24);border-block-start:2px solid rgba(246,239,225,.35);font-size:clamp(.9rem,1.3vw,1.05rem)}
-.trail li::before{content:"";position:absolute;top:-8px;inset-inline-start:0;width:14px;height:14px;border-radius:50%;background:var(--cream)}
-.trail li:last-child{border-color:var(--ribbon-hi)}
-.trail li:last-child::before{background:var(--ribbon-hi);box-shadow:0 0 0 5px rgba(165,49,69,.3)}
-.trail b{display:block;font-weight:700}
-.trail span{color:var(--cream-2);font-weight:300}
+.facts b{font:700 1.6em var(--font-head);color:var(--brass);font-variant-numeric:tabular-nums;min-width:2.4ch}
+.trail{list-style:none;margin:var(--s-24) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr)}
+.trail li{position:relative;padding:var(--s-16) var(--s-24) var(--s-16) 0;border-block-start:2px solid var(--line-strong);font-size:clamp(.9rem,1.25vw,1.05rem)}
+.trail li::before{content:"";position:absolute;top:-8px;left:0;width:14px;height:14px;border-radius:50%;background:var(--cream)}
+.trail li:last-child{border-color:var(--err)} .trail li:last-child::before{background:var(--err)}
+.trail b{display:block;font:600 1em var(--font-head)} .trail span{color:var(--cream-2)}
 .missing{display:flex;flex-wrap:wrap;gap:var(--s-12);margin-top:var(--s-32)}
-.missing .stamp{font-size:var(--fs-14);color:var(--cream-2);background:none}
+.missing .stamp{font-size:var(--fs-14)}
 
-/* five parts */
-.hand{position:relative;height:min(46vh,340px);margin-top:var(--s-32)}
-.hand .stub{position:absolute;width:min(230px,19vw);min-height:150px;inset-inline-start:calc(var(--i)*19%);top:calc(var(--i)*10px);transform:rotate(calc((var(--i) - 2)*3deg));transform-origin:50% 130%;cursor:default}
-.hand .stub:hover{transform:rotate(0) translateY(-22px);z-index:5}
-.hand .stub b{font-size:clamp(1rem,1.5vw,1.3rem)}
-.hand .stub span{font-size:clamp(.75rem,1vw,.85rem)}
-
-/* comparison */
-.cmp{padding:clamp(16px,3vh,32px) clamp(16px,3vw,40px)}
-.cmp table{width:100%;border-collapse:collapse;font-size:clamp(.82rem,1.25vw,1.05rem)}
-.cmp th{text-align:start;padding:8px 10px;font-weight:700;border-bottom:2px solid var(--ink)}
-.cmp th:nth-child(2){color:var(--ink-2);font-weight:500}
-.cmp td{padding:clamp(6px,1.2vh,12px) 10px;border-bottom:1.5px dashed var(--card-edge);vertical-align:top}
-.cmp td:first-child{font-weight:700;white-space:nowrap}
-.cmp td:nth-child(2){color:var(--ink-2)}
-.cmp td:nth-child(3){font-weight:500}
-.cmp tr:last-child td{border:0}
-
-/* journeys */
-.walk{list-style:none;margin:var(--s-32) 0 0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-16)}
-.walk li{padding:var(--s-24) var(--s-16) var(--s-16);min-height:150px}
-.walk li:nth-child(odd){transform:rotate(-1.4deg)} .walk li:nth-child(even){transform:rotate(1.2deg) translateY(10px)}
-.walk b{display:block;font-size:clamp(1rem,1.5vw,1.25rem);font-weight:700;line-height:1.5}
-.walk span{font-size:clamp(.8rem,1.1vw,.95rem);color:var(--ink-2)}
-.walk i{font-style:normal;display:block;font-weight:800;font-size:clamp(1.6rem,2.6vw,2.2rem);color:var(--ribbon);line-height:1;margin-bottom:var(--s-8);font-variant-numeric:tabular-nums}
-
-/* owner */
-.inbox{padding:clamp(18px,3vh,32px)}
-.inbox div{display:grid;grid-template-columns:auto 1fr;gap:var(--s-16);align-items:center;padding:var(--s-12) 0;border-bottom:1.5px dashed var(--card-edge);font-size:clamp(.85rem,1.2vw,1rem)}
-.inbox div:last-child{border:0}
-.does{list-style:none;margin:var(--s-24) 0 0;padding:0;display:grid;gap:var(--s-8);font-size:clamp(.95rem,1.4vw,1.15rem)}
-.does li{padding-inline-start:var(--s-24);position:relative}
-.does li::before{content:"";position:absolute;inset-inline-start:0;top:.75em;width:12px;height:2px;background:var(--brass)}
-
-/* decisions */
-.ask{list-style:none;margin:var(--s-24) 0 0;padding:0;display:grid;gap:0;max-width:70ch}
-.ask li{display:grid;grid-template-columns:auto 1fr;gap:var(--s-16);align-items:baseline;padding:clamp(8px,1.6vh,14px) 0;border-bottom:1px solid rgba(246,239,225,.2);font-size:clamp(.92rem,1.35vw,1.12rem)}
-.ask li span{color:var(--cream-2);font-weight:300;display:block;font-size:.88em}
-
-/* end */
-.end{justify-items:center;text-align:center}
-.end h2{max-width:20ch}
-.end .btn{min-height:64px;padding-inline:var(--s-48);font-size:var(--fs-22)}
-
-/* controls */
-.bar{position:fixed;z-index:10;inset-inline:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:var(--s-16);padding:var(--s-12) clamp(16px,4vw,48px);background:linear-gradient(180deg,transparent,rgba(11,36,29,.9) 45%)}
-.bar .seats s{width:14px;height:20px;transition:background .3s,border-color .3s}
-.bar .seats s.free{border-color:var(--cream-2)}
-.bar .seats s:not(.free){background:var(--brass);box-shadow:inset 0 -3px 0 #0004}
-.bar button{font:inherit;color:var(--cream);background:none;border:1.5px solid rgba(246,239,225,.4);border-radius:999px;min-width:48px;min-height:48px;padding-inline:var(--s-16);cursor:pointer;transition:background .2s,border-color .2s}
-.bar button:hover{background:rgba(246,239,225,.12);border-color:var(--cream)}
-.bar button[disabled]{opacity:.35;cursor:default}
-.bar .where{font-size:var(--fs-13);color:var(--cream-2);font-variant-numeric:tabular-nums;min-width:4ch;text-align:center}
-.bar .grp{display:flex;align-items:center;gap:var(--s-12)}
-.src{font-size:var(--fs-12);color:var(--cream-2);margin-top:var(--s-16)}
-
-@media (max-width:900px){
-  .two,.two.flip{grid-template-columns:1fr}
-  .slide{align-content:start;padding-top:28px}
-  .prints{height:auto;display:grid;gap:var(--s-16)} .prints .print{position:relative;width:100%;transform:none!important}
-  .trail,.walk{grid-template-columns:1fr 1fr} .walk li{transform:none!important;min-height:0}
-  .hand{height:auto;display:grid;gap:var(--s-12)} .hand .stub{position:relative;inset:auto;top:auto;width:100%;min-height:0;transform:none!important}
-  .cover .lanyard{display:none} .cmp td:first-child{white-space:normal}
-  .bar .seats{display:none}
-}
-@media (prefers-reduced-motion:reduce){.slide,.slide.on{transition:none}.slide.on .lay{animation:none}}
-
-/* three parts */
 .parts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.4vw,32px);margin-top:var(--s-32)}
 .parts .sheet{padding:clamp(18px,3vh,32px)}
-.parts .sheet:nth-child(1){transform:rotate(-1.4deg)} .parts .sheet:nth-child(3){transform:rotate(1.3deg)} .parts .sheet:nth-child(2){transform:translateY(12px)}
 .parts h3{font-size:clamp(1.15rem,2vw,1.7rem)}
-.parts .who{font-size:clamp(.8rem,1.1vw,.95rem);color:var(--ribbon);font-weight:700;margin-bottom:var(--s-8)}
+.parts .who{font-size:clamp(.8rem,1.05vw,.92rem);color:var(--ribbon);font-weight:600;margin-bottom:var(--s-8)}
 .parts ul{margin:var(--s-12) 0 0;padding-inline-start:18px;font-size:clamp(.8rem,1.15vw,1rem);color:var(--ink-2)}
-.parts .cnt{display:block;margin-top:var(--s-16);font-weight:800;font-size:clamp(1.4rem,2.4vw,2rem);font-variant-numeric:tabular-nums}
+.parts .cnt{display:block;margin-top:var(--s-16);font:700 clamp(1.4rem,2.4vw,2rem) var(--font-head);font-variant-numeric:tabular-nums}
 .parts .cnt small{font-size:.5em;font-weight:500;color:var(--ink-2)}
-/* part opener: journey + contents */
+
+.cmp{padding:clamp(16px,3vh,32px) clamp(16px,3vw,40px)}
+.cmp table{width:100%;border-collapse:collapse;font-size:clamp(.82rem,1.2vw,1.02rem)}
+.cmp th{text-align:left;padding:8px 10px;font:600 .95em var(--font-head);border-bottom:1px solid var(--line-strong)}
+.cmp th:nth-child(2),.cmp td:nth-child(2){color:var(--ink-2)}
+.cmp td{padding:clamp(6px,1.1vh,11px) 10px;border-bottom:1px solid var(--card-edge);vertical-align:top}
+.cmp td:first-child{font-weight:600;white-space:nowrap} .cmp td:nth-child(3){font-weight:500}
+.cmp tr:last-child td{border:0}
+
 .part{grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,64px);align-items:start}
-.tag{display:inline-block;font-size:clamp(.8rem,1.1vw,.95rem);font-weight:700;color:var(--ink);background:var(--brass);padding:2px 14px;border-radius:4px;margin-bottom:var(--s-12);box-shadow:inset 0 1px 0 #fff6,0 4px 8px -2px #0008}
-.steps-v{list-style:none;margin:var(--s-24) 0 0;padding:0;counter-reset:st}
-.steps-v li{position:relative;padding:0 var(--s-32) clamp(8px,1.8vh,16px) 0;font-size:clamp(.9rem,1.3vw,1.08rem);border-inline-start:2px solid rgba(246,239,225,.3);margin-inline-start:7px;padding-inline-start:var(--s-24);padding-inline-end:0}
+.steps-v{list-style:none;margin:var(--s-24) 0 0;padding:0}
+.steps-v li{position:relative;margin-left:7px;padding:0 0 clamp(8px,1.8vh,16px) var(--s-24);border-left:2px solid var(--line-strong);font-size:clamp(.9rem,1.25vw,1.06rem)}
 .steps-v li:last-child{border-color:transparent}
-.steps-v li::before{content:"";position:absolute;inset-inline-start:-8px;top:.45em;width:14px;height:14px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 4px var(--baize)}
-.steps-v b{font-weight:700} .steps-v span{display:block;color:var(--cream-2);font-weight:300;font-size:.9em}
+.steps-v li::before{content:"";position:absolute;left:-8px;top:.45em;width:14px;height:14px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 4px var(--baize)}
+.steps-v b{font:600 1em var(--font-head)} .steps-v span{display:block;color:var(--cream-2);font-size:.92em}
 .has{padding:clamp(18px,3vh,32px)}
 .has h3{font-size:clamp(1rem,1.5vw,1.25rem);margin-bottom:var(--s-8)}
-.has ul{list-style:none;margin:0;padding:0;font-size:clamp(.82rem,1.15vw,.98rem)}
-.has li{padding:clamp(5px,1vh,9px) 0;border-bottom:1.5px dashed var(--card-edge)}
-.has li:last-child{border:0}
-.has li b{font-weight:700}
-/* screens contact sheet */
+.has ul{list-style:none;margin:0;padding:0;font-size:clamp(.82rem,1.12vw,.98rem)}
+.has li{padding:clamp(5px,1vh,9px) 0;border-bottom:1px solid var(--card-edge)} .has li:last-child{border:0}
+.has li b{font-weight:600}
+
 .shots{display:grid;grid-template-columns:repeat(var(--cols,5),1fr);gap:clamp(10px,1.6vw,22px);margin-top:var(--s-24)}
-.shot{display:block;background:#fff;padding:6px 6px 0;border-radius:2px;text-decoration:none;color:var(--ink);box-shadow:var(--sh-low);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
-.shot:nth-child(odd){transform:rotate(-.8deg)} .shot:nth-child(even){transform:rotate(.7deg)}
-.shot:hover,.shot:focus-visible{transform:translateY(-8px) scale(1.03);box-shadow:var(--sh-sheet);z-index:3}
-.shot img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;background:var(--card)}
-.shot b{display:block;font-size:clamp(.72rem,1vw,.92rem);font-weight:700;padding:6px 4px 0;line-height:1.4}
+.shot{display:block;background:var(--card-hi);padding:6px 6px 0;border-radius:8px;border:1px solid var(--card-edge);text-decoration:none;color:var(--ink);box-shadow:var(--sh-low);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
+.shot:hover,.shot:focus-visible{transform:translateY(-8px) scale(1.03);box-shadow:var(--sh-sheet);border-color:var(--line-strong);z-index:3}
+.shot img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:4px;background:var(--card);filter:none!important}
+.shot b{display:block;font:600 clamp(.72rem,1vw,.92rem) var(--font-head);padding:6px 4px 0;line-height:1.4}
 .shot span{display:block;font-size:clamp(.69rem,.85vw,.78rem);color:var(--ink-2);padding:0 4px 8px;line-height:1.5}
-.slide h2.sm{font-size:clamp(1.4rem,2.8vw,2.3rem)}
 .split{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(20px,3.5vw,56px);align-items:start}
+
+.ask{list-style:none;margin:var(--s-24) 0 0;padding:0;max-width:76ch}
+.ask li{display:grid;grid-template-columns:auto 1fr;gap:var(--s-16);align-items:baseline;padding:clamp(6px,1.3vh,12px) 0;border-bottom:1px solid var(--card-edge);font-size:clamp(.92rem,1.3vw,1.1rem)}
+.ask li span{color:var(--cream-2);display:block;font-size:.88em}
+.end{justify-items:center;text-align:center}
 .gates{display:flex;gap:var(--s-16);justify-content:center;flex-wrap:wrap;margin-top:var(--s-32)}
-.gates .btn{min-height:60px;padding-inline:var(--s-32);font-size:var(--fs-18)}
-@media (max-width:900px){.parts,.part,.split{grid-template-columns:1fr}.parts .sheet{transform:none!important}.shots{grid-template-columns:1fr 1fr}.shot{transform:none!important}}
+.gates .btn{min-height:58px;padding-inline:var(--s-32);font-size:var(--fs-16)}
+
+.bar{position:fixed;z-index:10;inset-inline:0;bottom:0;display:flex;align-items:center;justify-content:space-between;gap:var(--s-16);padding:var(--s-12) clamp(16px,4vw,48px);background:linear-gradient(180deg,transparent,var(--baize) 55%)}
+.bar .seats s{width:14px;height:6px;border-radius:3px;transition:background .3s}
+.bar .seats s:not(.free){background:var(--brass)}
+.bar button,.bar a.sw{font:500 var(--fs-13) var(--font-head);color:var(--cream);background:none;border:1px solid var(--line-strong);border-radius:var(--r-btn);min-width:48px;min-height:44px;padding-inline:var(--s-16);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;transition:background .2s}
+.bar button:hover,.bar a.sw:hover{background:color-mix(in oklab,var(--cream) 12%,transparent)}
+.bar button[disabled]{opacity:.35;cursor:default}
+.bar .where{font-size:var(--fs-13);color:var(--cream-2);font-variant-numeric:tabular-nums;min-width:5ch;text-align:center}
+.bar .grp{display:flex;align-items:center;gap:var(--s-12)}
+@media (max-width:900px){.two,.part,.split,.parts{grid-template-columns:1fr}.slide{align-content:start;padding-top:28px}.prints{height:auto;display:grid;gap:var(--s-16)}.prints .print{position:relative;width:100%}.trail{grid-template-columns:1fr 1fr}.shots{grid-template-columns:1fr 1fr}.sig{height:240px}.bar .seats,.bar a.sw{display:none}.cmp td:first-child{white-space:normal}}
+@media (prefers-reduced-motion:reduce){.slide,.slide.on{transition:none!important;transform:none!important;filter:none!important}.slide.on .lay,.sig .cam3{animation:none}}
 </style>
 </head>
 <body class="table">
 <main class="deck" id="deck" aria-live="polite">
 
-  <section class="slide cover two on" aria-label="الغلاف">
+  <section class="slide two on" aria-label="Cover">
     <div>
-      <h1>من موقع يعرّف بالشركة إلى نظام <em>يشغّل التدريب</em></h1>
-      <p class="lede" style="margin-top:var(--s-24)">مقترح لـThink Tank Strategists: ما في الموقع اليوم، وما يضيفه النظام الجديد، ثم الشاشات نفسها.</p>
-      <p class="src">مقترح للنقاش · ديسمبر 2026 · كل ما فيه قابل للتعديل</p>
+      <h1>From a site that introduces the firm to a system that <em>runs the training</em></h1>
+      <p class="lede" style="margin-top:var(--s-24)">A proposal for Think Tank Strategists: what the site does today, what the new system adds, and then the screens themselves.</p>
+      <p class="src">For discussion · December 2026 · everything here can change</p>
     </div>
-    <div class="stage">
-      <div class="lanyard" aria-hidden="true"></div>
-      <div class="swing"><div class="clasp" aria-hidden="true"></div>
-        <div class="pass hole"><img src="assets/logo-dark.png" alt="Think Tank Strategists"><p>نظام التدريب · عرض الشاشات</p></div>
-      </div>
-    </div>
+    <div class="sig" id="sig" aria-hidden="true"></div>
   </section>
 
-  <section class="slide two" aria-label="الموقع اليوم">
+  <section class="slide two" aria-label="The site today">
     <div>
-      <h2>الموقع اليوم يعرّف بالشركة <em>جيداً</em></h2>
-      <p class="lede">هوية واضحة، وبرامج مشروحة، وطريقة عمل مكتوبة. هذا الأساس يبقى.</p>
+      <h2>Today the site introduces the firm, and does it <em>well</em></h2>
+      <p class="lede">A clear identity, programs explained, an approach written down. That foundation stays.</p>
       <ul class="facts">
-        <li class="lay" style="--i:0"><b>6</b><span>صفحات: الرئيسية، من نحن، الخدمات، التدريب، المنهج، التواصل</span></li>
-        <li class="lay" style="--i:1"><b>4</b><span>برامج تدريبية معروضة، عامة ومغلقة للجهات</span></li>
-        <li class="lay" style="--i:2"><b>1</b><span>نموذج تواصل تنتهي إليه كل الأزرار</span></li>
+        <li class="lay" style="--i:0"><b>6</b><span>pages: Home, About Us, Services, Training, Approach, Contact</span></li>
+        <li class="lay" style="--i:1"><b>4</b><span>training programs, public and in-house</span></li>
+        <li class="lay" style="--i:2"><b>1</b><span>contact form, where every button ends</span></li>
       </ul>
-      <p class="src">المصدر: قراءة thinktank.com.kw في 21 نوفمبر 2026.</p>
+      <p class="src">Source: thinktank.com.kw as read on 21 November 2026.</p>
     </div>
     <div class="prints">
-      <figure class="print lay" style="--i:1;margin:0"><img src="assets/old-home.jpg" alt="الصفحة الرئيسية الحالية"><figcaption>الرئيسية اليوم</figcaption></figure>
-      <figure class="print lay" style="--i:2;margin:0"><img src="assets/old-contact.jpg" alt="صفحة التواصل الحالية"><figcaption>صفحة التواصل اليوم</figcaption></figure>
+      <figure class="print lay" style="--i:1"><img src="assets/old-home.jpg" alt="The current home page"><figcaption>Home page today</figcaption></figure>
+      <figure class="print lay" style="--i:2"><img src="assets/old-contact.jpg" alt="The current contact page"><figcaption>Contact page today</figcaption></figure>
     </div>
   </section>
 
-  <section class="slide" aria-label="أين يتوقف الزائر">
-    <h2>لكن الزائر المهتم يتوقف عند <em>نموذج التواصل</em></h2>
-    <p class="lede">من يريد مقعداً في ورشة يمرّ اليوم بأربع محطات، والأخيرة خارج الموقع.</p>
+  <section class="slide" aria-label="Where the visitor stops">
+    <h2>But an interested visitor stops at <em>the contact form</em></h2>
+    <p class="lede">Someone who wants a seat in a workshop passes four stations today, and the last one is outside the site.</p>
     <ol class="trail">
-      <li class="lay" style="--i:0"><b>يقرأ عن البرنامج</b><span>صفحة التدريب بالإنجليزية</span></li>
-      <li class="lay" style="--i:1"><b>يضغط «Request a Program»</b><span>فيُنقل إلى صفحة التواصل</span></li>
-      <li class="lay" style="--i:2"><b>يكتب رسالة</b><span>الاسم، البريد، الاهتمام</span></li>
-      <li class="lay" style="--i:3"><b>ينتظر الرد</b><span>خلال يومي عمل، ثم الباقي بالهاتف والبريد</span></li>
+      <li class="lay" style="--i:0"><b>Reads about the program</b><span>on the Training page</span></li>
+      <li class="lay" style="--i:1"><b>Clicks "Request a Program"</b><span>and lands on Contact</span></li>
+      <li class="lay" style="--i:2"><b>Writes a message</b><span>name, email, interest</span></li>
+      <li class="lay" style="--i:3"><b>Waits for a reply</b><span>two business days, then phone and email</span></li>
     </ol>
-    <div class="missing" aria-label="ما لا يجده الزائر في الموقع اليوم">
-      <span class="stamp off lay" style="--i:4">مواعيد الدفعات</span><span class="stamp off lay" style="--i:5">الرسوم</span><span class="stamp off lay" style="--i:6">تسجيل ودفع</span><span class="stamp off lay" style="--i:7">محتوى عربي</span><span class="stamp off lay" style="--i:8">حساب للمتدرب أو للجهة</span><span class="stamp off lay" style="--i:9">تحقق من شهادة</span>
+    <div class="missing" aria-label="Not on the site today">
+      <span class="stamp off lay" style="--i:4">Cohort dates</span><span class="stamp off lay" style="--i:5">Fees</span><span class="stamp off lay" style="--i:6">Registration and payment</span><span class="stamp off lay" style="--i:7">Arabic content</span><span class="stamp off lay" style="--i:8">An account for trainees or organizations</span><span class="stamp off lay" style="--i:9">Certificate verification</span>
     </div>
   </section>
 
-  <section class="slide" aria-label="ثلاثة أقسام">
-    <h2>المقترح: نظام واحد من <em>ثلاثة أقسام</em></h2>
-    <p class="lede">لكل مستخدم بابه، وكلها تقرأ من البيانات نفسها.</p>
+  <section class="slide" aria-label="Three parts">
+    <h2>The proposal: one system in <em>three parts</em></h2>
+    <p class="lede">Each user has their own door, and all three read the same data.</p>
     <div class="parts">
-      <div class="sheet lay" style="--i:0"><div class="who">للزائر وللعموم</div><h3>الموقع الرئيسي</h3><ul><li>البرامج والدفعات بمواعيدها ورسومها</li><li>التسجيل والدفع بـKNET</li><li>باب الجهات، والمقالات</li><li>التحقق من الشهادة</li></ul><span class="cnt">9 <small>شاشات</small></span></div>
-      <div class="sheet lay" style="--i:1"><div class="who">للمتدرب ولمسؤول التدريب في الجهة</div><h3>بوابة العميل</h3><ul><li>دفعاته وجلساته وصفّه الإلكتروني</li><li>شهاداته وحسابه ومدفوعاته</li><li>للجهة: مقاعد، موظفون، عروض، تقرير</li></ul><span class="cnt">10 <small>شاشات</small></span></div>
-      <div class="sheet lay" style="--i:2"><div class="who">للدكتورة وحدها</div><h3>بوابة الدكتورة</h3><ul><li>ما ينتظر قرارها كل يوم</li><li>البرامج ومحتواها، والدفعات والحضور</li><li>الجهات والعروض والمدفوعات والشهادات</li></ul><span class="cnt">12 <small>شاشة</small></span></div>
+      <div class="sheet lay" style="--i:0"><div class="who">For visitors and the public</div><h3>The public site</h3><ul><li>Programs and cohorts with dates and fees</li><li>Registration and KNET payment</li><li>A door for organizations, and articles</li><li>Certificate verification</li></ul><span class="cnt">9 <small>screens</small></span></div>
+      <div class="sheet lay" style="--i:1"><div class="who">For trainees and training contacts</div><h3>The client portal</h3><ul><li>Cohorts, sessions and the online classroom</li><li>Certificates, account and payments</li><li>For organizations: seats, employees, proposals, report</li></ul><span class="cnt">10 <small>screens</small></span></div>
+      <div class="sheet lay" style="--i:2"><div class="who">For Dr. Manal only</div><h3>Dr. Manal's portal</h3><ul><li>What needs her decision each day</li><li>Programs and content, cohorts and attendance</li><li>Organizations, proposals, payments, certificates</li></ul><span class="cnt">12 <small>screens</small></span></div>
     </div>
   </section>
 
-  <section class="slide" aria-label="مقارنة">
-    <h2>اليوم والجديد، <em>بنداً بنداً</em></h2>
+  <section class="slide" aria-label="Comparison">
+    <h2>Today and the new system, <em>line by line</em></h2>
     <div class="sheet cmp lay" style="--i:0">
       <table>
-        <thead><tr><th></th><th>الموقع اليوم</th><th>النظام الجديد</th></tr></thead>
+        <thead><tr><th></th><th>The site today</th><th>The new system</th></tr></thead>
         <tbody>
-          <tr><td>اللغة</td><td>إنجليزي؛ زر العربية بلا محتوى</td><td>عربي أولاً، وإنجليزي كامل</td></tr>
-          <tr><td>المواعيد والرسوم</td><td>غير منشورة</td><td>لكل دفعة تاريخها ورسمها ومقاعدها الباقية</td></tr>
-          <tr><td>التسجيل</td><td>نموذج تواصل ورد خلال يومي عمل</td><td>تسجيل وحساب للمتدرب في دقائق</td></tr>
-          <tr><td>الدفع</td><td>لا يوجد في الموقع</td><td>KNET من الموقع، وإيصال فوري</td></tr>
-          <tr><td>الجهات</td><td>طلب برنامج عبر النموذج</td><td>حجز مقاعد، دعوة موظفين، وتقرير مشاركة</td></tr>
-          <tr><td>المحتوى</td><td>لا يوجد في الموقع</td><td>صف إلكتروني لكل برنامج: فصول فيها فيديو ومواد وواجب واختبار</td></tr>
-          <tr><td>الحضور</td><td>لا يوجد في الموقع</td><td>كشف لكل جلسة تؤشّر عليه الدكتورة</td></tr>
-          <tr><td>الشهادة</td><td>لا يوجد في الموقع</td><td>تصدر من النظام ويتحقق منها أي طرف برقمها</td></tr>
+          <tr><td>Language</td><td>English; the Arabic switch has no content</td><td>English and Arabic, both complete</td></tr>
+          <tr><td>Dates and fees</td><td>Not published</td><td>Every cohort shows its date, fee and seats left</td></tr>
+          <tr><td>Registration</td><td>A contact form and a two-day reply</td><td>Register and get an account in minutes</td></tr>
+          <tr><td>Payment</td><td>Not on the site</td><td>KNET on the site, with an instant receipt</td></tr>
+          <tr><td>Organizations</td><td>Request a program through the form</td><td>Reserve seats, invite employees, get a participation report</td></tr>
+          <tr><td>Content</td><td>Not on the site</td><td>An online classroom per program: chapters with video, materials, assignment, exam</td></tr>
+          <tr><td>Attendance</td><td>Not on the site</td><td>A sheet per session that Dr. Manal ticks</td></tr>
+          <tr><td>Certificate</td><td>Not on the site</td><td>Issued by the system; anyone can verify it by number</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <section class="slide part two" aria-label="القسم الأول: الموقع الرئيسي">
+  <section class="slide part two" aria-label="Part one: the public site">
     <div>
-      <span class="tag">القسم الأول</span>
-      <h2>الموقع الرئيسي: <em>رحلة الزائر</em></h2>
+      <span class="tagl">Part one</span>
+      <h2>The public site: <em>the visitor's journey</em></h2>
       <ol class="steps-v">
-        <li class="lay" style="--i:0"><b>يرى الدفعات القادمة</b><span>بتاريخها ورسمها وكم مقعداً بقي</span></li>
-        <li class="lay" style="--i:1"><b>يقرأ البرنامج</b><span>لمن هو، وماذا يخرج به، وجدول جلساته</span></li>
-        <li class="lay" style="--i:2"><b>يسجّل ويؤكد جواله</b><span>ينشأ حسابه برمز تحقق قبل الدفع</span></li>
-        <li class="lay" style="--i:3"><b>يدفع بـKNET</b><span>يتأكد مقعده ويصله الإيصال</span></li>
-        <li class="lay" style="--i:4"><b>يدخل بوابته</b><span>ومن هنا يبدأ القسم الثاني</span></li>
+        <li class="lay" style="--i:0"><b>Sees the upcoming cohorts</b><span>with date, fee and seats left</span></li>
+        <li class="lay" style="--i:1"><b>Reads the program</b><span>who it is for, what they leave with, the session schedule</span></li>
+        <li class="lay" style="--i:2"><b>Registers and confirms a mobile number</b><span>the account is created with a code before payment</span></li>
+        <li class="lay" style="--i:3"><b>Pays by KNET</b><span>the seat is confirmed and the receipt arrives</span></li>
+        <li class="lay" style="--i:4"><b>Enters their portal</b><span>where part two begins</span></li>
       </ol>
     </div>
     <div class="sheet has lay" style="--i:2">
-      <h3>ما في هذا القسم</h3>
+      <h3>What this part holds</h3>
       <ul>
-        <li><b>البرامج والدفعات</b> بالعربية والإنجليزية</li>
-        <li><b>التسجيل والدفع</b> دون مكالمة ولا بريد</li>
-        <li><b>للجهات</b>: طلب عرض لبرنامج مغلق، أو طلب حساب</li>
-        <li><b>تفعيل الدعوة</b> لموظف أسندت له جهته مقعداً</li>
-        <li><b>المقالات والأبحاث</b></li>
-        <li><b>التحقق من شهادة</b> لأي طرف معه رقمها</li>
+        <li><b>Programs and cohorts</b> in English and Arabic</li>
+        <li><b>Registration and payment</b> with no call and no email</li>
+        <li><b>For organizations</b>: request a proposal, or request an account</li>
+        <li><b>Invitation activation</b> for an employee given a seat</li>
+        <li><b>Articles and research</b></li>
+        <li><b>Certificate verification</b> for anyone holding a number</li>
       </ul>
     </div>
   </section>
 
-  <section class="slide" aria-label="شاشات الموقع الرئيسي">
-    <span class="tag" style="justify-self:start">القسم الأول · 9 شاشات</span>
-    <h2 class="sm">شاشات الموقع الرئيسي</h2>
-    <div class="shots" style="--cols:5">
-      <a class="shot lay" style="--i:0" href="01-home.html"><img src="assets/thumbs/01.jpg" alt="" loading="lazy"><b>الرئيسية</b><span>البطاقة والدفعات القادمة</span></a>
-      <a class="shot lay" style="--i:1" href="02-program.html"><img src="assets/thumbs/02.jpg" alt="" loading="lazy"><b>صفحة البرنامج</b><span>المحتوى وجدول الجلسات</span></a>
-      <a class="shot lay" style="--i:2" href="03-register.html"><img src="assets/thumbs/03.jpg" alt="" loading="lazy"><b>التسجيل</b><span>الحساب ورمز التحقق</span></a>
-      <a class="shot lay" style="--i:3" href="04-pay.html"><img src="assets/thumbs/04.jpg" alt="" loading="lazy"><b>الدفع</b><span>KNET والإيصال</span></a>
-      <a class="shot lay" style="--i:4" href="17-login.html"><img src="assets/thumbs/17.jpg" alt="" loading="lazy"><b>الدخول</b><span>يوجّه كل مستخدم لبوابته</span></a>
-      <a class="shot lay" style="--i:5" href="18-for-orgs.html"><img src="assets/thumbs/18.jpg" alt="" loading="lazy"><b>للجهات</b><span>طلب عرض أو طلب حساب</span></a>
-      <a class="shot lay" style="--i:6" href="21-activate.html"><img src="assets/thumbs/21.jpg" alt="" loading="lazy"><b>تفعيل الدعوة</b><span>موظف دعته جهته</span></a>
-      <a class="shot lay" style="--i:7" href="19-articles.html"><img src="assets/thumbs/19.jpg" alt="" loading="lazy"><b>المقالات</b><span>مقال مفتوح وقائمة</span></a>
-      <a class="shot lay" style="--i:8" href="12-verify.html"><img src="assets/thumbs/12.jpg" alt="" loading="lazy"><b>التحقق من شهادة</b><span>صالحة، ملغاة، غير موجودة</span></a>
-    </div>
+  <section class="slide" aria-label="Public site screens">
+    <span class="tagl">Part one · 9 screens</span>
+    <h2 class="sm">Screens of the public site</h2>
+    <div class="shots" style="--cols:5" data-shots='[["01","Home","Upcoming cohorts","01-home.html"],["02","Program page","Content and schedule","02-program.html"],["03","Register","Account and code","03-register.html"],["04","Payment","KNET and receipt","04-pay.html"],["17","Sign in","Routes each user to a portal","17-login.html"],["18","For organizations","Proposal or account request","18-for-orgs.html"],["21","Activate invitation","An invited employee","21-activate.html"],["19","Articles","An article and a list","19-articles.html"],["12","Verify a certificate","Valid, revoked, not found","12-verify.html"]]'></div>
   </section>
 
-  <section class="slide part two" aria-label="القسم الثاني: بوابة العميل">
+  <section class="slide part two" aria-label="Part two: the client portal">
     <div>
-      <span class="tag">القسم الثاني</span>
-      <h2>بوابة العميل: <em>رحلة المتدرب</em></h2>
+      <span class="tagl">Part two</span>
+      <h2>The client portal: <em>the trainee's journey</em></h2>
       <ol class="steps-v">
-        <li class="lay" style="--i:0"><b>يرى دفعاته وجلساته</b><span>أين ومتى، وما حضره منها</span></li>
-        <li class="lay" style="--i:1"><b>يدرس في صفّه الإلكتروني</b><span>فصول فيها فيديو ومعلومات ومواد</span></li>
-        <li class="lay" style="--i:2"><b>يسلّم الواجب ويؤدي الاختبار</b><span>ونتيجته فورية، وله محاولة ثانية</span></li>
-        <li class="lay" style="--i:3"><b>يعبّئ الاستبيان</b><span>مرة واحدة لكل فصل</span></li>
-        <li class="lay" style="--i:4"><b>يستلم شهادته</b><span>بعد أن تغلق الدكتورة الدفعة</span></li>
+        <li class="lay" style="--i:0"><b>Sees their cohorts and sessions</b><span>where and when, and what they attended</span></li>
+        <li class="lay" style="--i:1"><b>Studies in the online classroom</b><span>chapters with video, information and materials</span></li>
+        <li class="lay" style="--i:2"><b>Submits the assignment and takes the exam</b><span>an instant result, and a second attempt</span></li>
+        <li class="lay" style="--i:3"><b>Fills in the survey</b><span>once per chapter</span></li>
+        <li class="lay" style="--i:4"><b>Receives the certificate</b><span>after Dr. Manal closes the cohort</span></li>
       </ol>
     </div>
     <div class="sheet has lay" style="--i:2">
-      <h3>ما يراه العميل</h3>
+      <h3>What the client sees</h3>
       <ul>
-        <li><b>دفعاتي</b>: التسجيلات والجلسات والإلغاء</li>
-        <li><b>صفّي</b>: الفصول والتقدّم والمواد</li>
-        <li><b>شهاداتي</b>: الصادرة، وما لم يصدر ولماذا</li>
-        <li><b>حسابي</b>: بياناته، الأمان، التنبيهات، مدفوعاته، خصوصيته</li>
-        <li><b>ولا يرى</b> بيانات أي متدرب آخر</li>
+        <li><b>My cohorts</b>: registrations, sessions, cancelling</li>
+        <li><b>My classroom</b>: chapters, progress, materials</li>
+        <li><b>My certificates</b>: issued, and what is not yet and why</li>
+        <li><b>My account</b>: details, security, notifications, payments, privacy</li>
+        <li><b>Never</b> another trainee's data</li>
       </ul>
     </div>
   </section>
 
-  <section class="slide" aria-label="شاشات المتدرب">
-    <span class="tag" style="justify-self:start">القسم الثاني · المتدرب · 6 شاشات</span>
-    <h2 class="sm">شاشات المتدرب</h2>
-    <div class="shots" style="--cols:3;max-width:min(860px,100%)">
-      <a class="shot lay" style="--i:0" href="05-my-cohorts.html"><img src="assets/thumbs/05.jpg" alt="" loading="lazy"><b>دفعاتي وجلساتي</b><span>التسجيلات والجلسات</span></a>
-      <a class="shot lay" style="--i:1" href="13-course.html"><img src="assets/thumbs/13.jpg" alt="" loading="lazy"><b>صفّي</b><span>فصول البرنامج والتقدّم</span></a>
-      <a class="shot lay" style="--i:2" href="14-chapter.html"><img src="assets/thumbs/14.jpg" alt="" loading="lazy"><b>الفصل</b><span>فيديو، مواد، واجب، استبيان</span></a>
-      <a class="shot lay" style="--i:3" href="15-exam.html"><img src="assets/thumbs/15.jpg" alt="" loading="lazy"><b>الاختبار</b><span>الأسئلة والنتيجة</span></a>
-      <a class="shot lay" style="--i:4" href="06-my-certificate.html"><img src="assets/thumbs/06.jpg" alt="" loading="lazy"><b>شهاداتي</b><span>الصادرة وغير الصادرة</span></a>
-      <a class="shot lay" style="--i:5" href="20-account.html"><img src="assets/thumbs/20.jpg" alt="" loading="lazy"><b>حسابي</b><span>خمسة أقسام في صفحة</span></a>
-    </div>
+  <section class="slide" aria-label="Trainee screens">
+    <span class="tagl">Part two · trainee · 6 screens</span>
+    <h2 class="sm">The trainee's screens</h2>
+    <div class="shots" style="--cols:3;max-width:min(860px,100%)" data-shots='[["05","My cohorts","Registrations and sessions","05-my-cohorts.html"],["13","My classroom","Chapters and progress","13-course.html"],["14","Chapter","Video, materials, assignment, survey","14-chapter.html"],["15","Exam","Questions and result","15-exam.html"],["06","My certificates","Issued and not issued","06-my-certificate.html"],["20","My account","Five sections on one page","20-account.html"]]'></div>
   </section>
 
-  <section class="slide split" aria-label="الجهة العميلة">
+  <section class="slide split" aria-label="The organization">
     <div>
-      <span class="tag">القسم الثاني · الجهة</span>
-      <h2 class="sm">والعميل قد يكون <em>جهة</em></h2>
+      <span class="tagl">Part two · organization</span>
+      <h2 class="sm">And the client may be <em>an organization</em></h2>
       <ol class="steps-v">
-        <li class="lay" style="--i:0"><b>تطلب عرضاً لبرنامج مغلق، أو تحجز مقاعد</b><span>في أي دفعة عامة</span></li>
-        <li class="lay" style="--i:1"><b>تدفع مرة واحدة</b><span>رسم المقاعد، أو السعر المتفق عليه</span></li>
-        <li class="lay" style="--i:2"><b>تسند كل مقعد لموظف</b><span>تصله دعوة يفعّل بها حسابه</span></li>
-        <li class="lay" style="--i:3"><b>تتابع وتستخرج تقريرها</b><span>حضور وغياب وشهادات، بلا نتائج اختبارات</span></li>
+        <li class="lay" style="--i:0"><b>Requests a proposal, or reserves seats</b><span>in any public cohort</span></li>
+        <li class="lay" style="--i:1"><b>Pays once</b><span>the seat fees, or the agreed price</span></li>
+        <li class="lay" style="--i:2"><b>Assigns each seat to an employee</b><span>who receives an invitation to activate an account</span></li>
+        <li class="lay" style="--i:3"><b>Follows up and exports a report</b><span>attendance, absence and certificates; never exam results</span></li>
       </ol>
     </div>
-    <div>
-    <div class="shots" style="--cols:2">
-      <a class="shot lay" style="--i:0" href="07-org-seats.html"><img src="assets/thumbs/07.jpg" alt="" loading="lazy"><b>المقاعد</b><span>حجز، دفع، إسناد</span></a>
-      <a class="shot lay" style="--i:1" href="08-org-report.html"><img src="assets/thumbs/08.jpg" alt="" loading="lazy"><b>مشاركة الموظفين</b><span>الحضور والشهادات والتقرير</span></a>
-      <a class="shot lay" style="--i:2" href="22-org-proposals.html"><img src="assets/thumbs/22.jpg" alt="" loading="lazy"><b>طلبات العروض</b><span>العرض، القبول، الدفع</span></a>
-      <a class="shot lay" style="--i:3" href="23-org-account.html"><img src="assets/thumbs/23.jpg" alt="" loading="lazy"><b>حساب الجهة</b><span>بياناتها ومسؤولوها</span></a>
-    </div>
-    </div>
+    <div class="shots" style="--cols:2;margin-top:0" data-shots='[["07","Seats","Reserve, pay, assign","07-org-seats.html"],["08","Employee participation","Attendance, certificates, report","08-org-report.html"],["22","Proposal requests","Quote, acceptance, payment","22-org-proposals.html"],["23","Organization account","Details and contacts","23-org-account.html"]]'></div>
   </section>
 
-  <section class="slide part two" aria-label="القسم الثالث: بوابة الدكتورة">
+  <section class="slide part two" aria-label="Part three: Dr. Manal's portal">
     <div>
-      <span class="tag">القسم الثالث</span>
-      <h2>بوابة الدكتورة: <em>يومها في النظام</em></h2>
+      <span class="tagl">Part three</span>
+      <h2>Dr. Manal's portal: <em>her day in the system</em></h2>
       <ol class="steps-v">
-        <li class="lay" style="--i:0"><b>تفتح على ما ينتظرها</b><span>استرجاع، حساب جهة، دفعة لم تبدأ</span></li>
-        <li class="lay" style="--i:1"><b>تبني البرنامج ومحتواه</b><span>فصولاً فيها فيديو ومواد واختبار</span></li>
-        <li class="lay" style="--i:2"><b>تنشئ الدفعة وتبدؤها</b><span>بتاريخها وسعتها ورسمها</span></li>
-        <li class="lay" style="--i:3"><b>تؤشّر الحضور في كل جلسة</b><span>والنسبة تُحسب وحدها</span></li>
-        <li class="lay" style="--i:4"><b>تغلق الدفعة وتصدر الشهادات</b><span>لمن استحقها، برقم يُتحقق منه</span></li>
+        <li class="lay" style="--i:0"><b>Opens on what is waiting for her</b><span>a refund, an organization account, a cohort not yet started</span></li>
+        <li class="lay" style="--i:1"><b>Builds the program and its content</b><span>chapters with video, materials and an exam</span></li>
+        <li class="lay" style="--i:2"><b>Creates the cohort and starts it</b><span>with its date, capacity and fee</span></li>
+        <li class="lay" style="--i:3"><b>Ticks attendance in each session</b><span>the percentage calculates itself</span></li>
+        <li class="lay" style="--i:4"><b>Closes the cohort and issues certificates</b><span>to those who earned them, each with a verifiable number</span></li>
       </ol>
     </div>
     <div class="sheet has lay" style="--i:2">
-      <h3>ما تراه الدكتورة، وحدها</h3>
+      <h3>What Dr. Manal sees, and only she</h3>
       <ul>
-        <li><b>التشغيل</b>: الدفعات، الحضور، الشهادات</li>
-        <li><b>المحتوى</b>: البرامج، الفصول، تصحيح الواجبات، المقالات</li>
-        <li><b>العملاء</b>: المتدربون، الجهات، طلبات العروض</li>
-        <li><b>المال</b>: المدفوعات والاسترجاع</li>
-        <li><b>الصورة الكاملة</b>: تقرير عبر كل الجهات</li>
-        <li><b>وكل تغيير حساس</b> يُكتب في سجل</li>
+        <li><b>Operations</b>: cohorts, attendance, certificates</li>
+        <li><b>Content</b>: programs, chapters, grading, articles</li>
+        <li><b>Clients</b>: trainees, organizations, proposal requests</li>
+        <li><b>Money</b>: payments and refunds</li>
+        <li><b>The whole picture</b>: a report across all organizations</li>
+        <li><b>Every sensitive change</b> is written to a log</li>
       </ul>
     </div>
   </section>
 
-  <section class="slide" aria-label="شاشات التشغيل اليومي">
-    <span class="tag" style="justify-self:start">القسم الثالث · التشغيل · 5 شاشات</span>
-    <h2 class="sm">التشغيل اليومي</h2>
-    <div class="shots" style="--cols:5">
-      <a class="shot lay" style="--i:0" href="09-admin-inbox.html"><img src="assets/thumbs/09.jpg" alt="" loading="lazy"><b>ما ينتظرك</b><span>ما يحتاج قرارها اليوم</span></a>
-      <a class="shot lay" style="--i:1" href="24-admin-cohorts.html"><img src="assets/thumbs/24.jpg" alt="" loading="lazy"><b>الدفعات</b><span>كل الدفعات، وإنشاء دفعة</span></a>
-      <a class="shot lay" style="--i:2" href="10-admin-cohort.html"><img src="assets/thumbs/10.jpg" alt="" loading="lazy"><b>الدفعة</b><span>التسجيلات، البدء والإغلاق</span></a>
-      <a class="shot lay" style="--i:3" href="11-admin-attendance.html"><img src="assets/thumbs/11.jpg" alt="" loading="lazy"><b>الحضور والشهادات</b><span>كشف الجلسة ثم الإصدار</span></a>
-      <a class="shot lay" style="--i:4" href="29-admin-certificates.html"><img src="assets/thumbs/29.jpg" alt="" loading="lazy"><b>الشهادات</b><span>بحث وإلغاء بسبب مكتوب</span></a>
-    </div>
+  <section class="slide" aria-label="Daily operations screens">
+    <span class="tagl">Part three · operations · 5 screens</span>
+    <h2 class="sm">Daily operations</h2>
+    <div class="shots" style="--cols:5" data-shots='[["09","Waiting for you","What needs a decision today","09-admin-inbox.html"],["24","Cohorts","All cohorts, create one","24-admin-cohorts.html"],["10","Cohort","Registrations, start and close","10-admin-cohort.html"],["11","Attendance and certificates","The sheet, then issuing","11-admin-attendance.html"],["29","Certificates","Search and revoke","29-admin-certificates.html"]]'></div>
   </section>
 
-  <section class="slide" aria-label="شاشات المحتوى والعملاء والمال">
-    <span class="tag" style="justify-self:start">القسم الثالث · المحتوى والعملاء والمال · 7 شاشات</span>
-    <h2 class="sm">المحتوى، والعملاء، والمال</h2>
-    <div class="shots" style="--cols:4;max-width:min(1080px,100%)">
-      <a class="shot lay" style="--i:0" href="25-admin-programs.html"><img src="assets/thumbs/25.jpg" alt="" loading="lazy"><b>البرامج والمقالات</b><span>نشر برنامج أو مقال</span></a>
-      <a class="shot lay" style="--i:1" href="16-admin-course.html"><img src="assets/thumbs/16.jpg" alt="" loading="lazy"><b>بناء المحتوى</b><span>الفصول وعناصرها</span></a>
-      <a class="shot lay" style="--i:2" href="30-admin-trainees.html"><img src="assets/thumbs/30.jpg" alt="" loading="lazy"><b>المتدربون</b><span>السجل، التعطيل، حذف البيانات</span></a>
-      <a class="shot lay" style="--i:3" href="26-admin-orgs.html"><img src="assets/thumbs/26.jpg" alt="" loading="lazy"><b>الجهات</b><span>اعتماد الحسابات</span></a>
-      <a class="shot lay" style="--i:4" href="27-admin-proposals.html"><img src="assets/thumbs/27.jpg" alt="" loading="lazy"><b>طلبات العروض</b><span>مراجعة، تسعير، دفعة مغلقة</span></a>
-      <a class="shot lay" style="--i:5" href="28-admin-payments.html"><img src="assets/thumbs/28.jpg" alt="" loading="lazy"><b>المدفوعات</b><span>الاسترجاع والإيصالات</span></a>
-      <a class="shot lay" style="--i:6" href="31-admin-report.html"><img src="assets/thumbs/31.jpg" alt="" loading="lazy"><b>التقرير الشامل</b><span>عبر الجهات والبرامج</span></a>
-    </div>
+  <section class="slide" aria-label="Content, clients and money screens">
+    <span class="tagl">Part three · content, clients and money · 7 screens</span>
+    <h2 class="sm">Content, clients and money</h2>
+    <div class="shots" style="--cols:4;max-width:min(1080px,100%)" data-shots='[["25","Programs and articles","Publish a program or an article","25-admin-programs.html"],["16","Build content","Chapters and their items","16-admin-course.html"],["30","Trainees","Record, deactivate, remove data","30-admin-trainees.html"],["26","Organizations","Approve accounts","26-admin-orgs.html"],["27","Proposal requests","Review, quote, in-house cohort","27-admin-proposals.html"],["28","Payments","Refunds and receipts","28-admin-payments.html"],["31","Full report","Across organizations and programs","31-admin-report.html"]]'></div>
   </section>
 
-  <section class="slide" aria-label="قرارات مطلوبة">
-    <h2>خمسة أمور تحتاج <em>قرار الدكتورة</em></h2>
-    <p class="lede">بنينا الشاشات على افتراضات مكتوبة. هذه أهمها، وكلها تتغير بكلمة منها.</p>
+  <section class="slide" aria-label="Decisions needed">
+    <h2>Five things need <em>Dr. Manal's decision</em></h2>
+    <p class="lede">The screens are built on written assumptions. These are the main ones, and each changes with a word from her.</p>
     <ul class="ask">
-      <li class="lay" style="--i:0"><span class="stamp you">قرارك</span><div>ما الجهة التي ترخّص نشاط التدريب، وهل تطلب شيئاً من النظام؟<span>افترضنا: كشف الحضور والشهادات قابلان للتصدير، ولا شيء غيره</span></div></li>
-      <li class="lay" style="--i:1"><span class="stamp you">قرارك</span><div>ما نسبة الحضور التي تستحق بها الشهادة؟<span>افترضنا 80%؛ في برنامج من 3 جلسات تعني حضورها كلها</span></div></li>
-      <li class="lay" style="--i:2"><span class="stamp you">قرارك</span><div>حتى متى يُسترجع الرسم بعد الإلغاء؟<span>افترضنا 7 أيام قبل بداية الدفعة</span></div></li>
-      <li class="lay" style="--i:3"><span class="stamp you">قرارك</span><div>أي مزوّد لبوابة الدفع؟<span>مؤجَّل؛ الشاشات تقول KNET فقط</span></div></li>
-      <li class="lay" style="--i:4"><span class="stamp you">قرارك</span><div>كم برنامجاً ومتدرباً في السنة؟<span>يحدد حجم الخادم ومتطلبات الأداء</span></div></li>
+      <li class="lay" style="--i:0"><span class="stamp you">Yours</span><div>Which body licenses the training activity, and does it require anything of the system?<span>Assumed: attendance sheets and certificates can be exported, nothing more</span></div></li>
+      <li class="lay" style="--i:1"><span class="stamp you">Yours</span><div>What attendance earns the certificate?<span>Assumed 80%; in a three-session program that means attending all three</span></div></li>
+      <li class="lay" style="--i:2"><span class="stamp you">Yours</span><div>Until when is a fee refunded after cancelling?<span>Assumed 7 days before the cohort starts</span></div></li>
+      <li class="lay" style="--i:3"><span class="stamp you">Yours</span><div>Which payment provider?<span>Deferred; the screens say KNET only</span></div></li>
+      <li class="lay" style="--i:4"><span class="stamp you">Yours</span><div>How many programs and trainees a year?<span>It sets the server size and the performance targets</span></div></li>
     </ul>
   </section>
 
-  <section class="slide end" aria-label="الشاشات">
-    <h2>والآن <em>الشاشات نفسها</em></h2>
-    <p class="lede" style="margin-inline:auto">إحدى وثلاثون شاشة مترابطة في ثلاثة أقسام. الأسماء والمبالغ فيها تجريبية.</p>
+  <section class="slide end" aria-label="The screens">
+    <h2>And now <em>the screens themselves</em></h2>
+    <p class="lede" style="margin-inline:auto">Thirty-one linked screens in three parts. Names and amounts are sample data.</p>
     <div class="gates">
-      <a class="btn" href="01-home.html" id="enter">الموقع الرئيسي</a>
-      <a class="btn sec" href="05-my-cohorts.html">بوابة العميل</a>
-      <a class="btn sec" href="09-admin-inbox.html">بوابة الدكتورة</a>
+      <a class="btn" href="01-home.html" id="enter">The public site</a>
+      <a class="btn sec" href="05-my-cohorts.html">The client portal</a>
+      <a class="btn sec" href="09-admin-inbox.html">Dr. Manal's portal</a>
     </div>
-    <p style="margin-top:var(--s-24)"><a class="on-baize" href="index.html">أو افتح خريطة الشاشات كلها</a></p>
+    <p style="margin-top:var(--s-24)"><a class="link" href="index.html">Or open the map of all screens</a></p>
   </section>
 </main>
 
-<nav class="bar" aria-label="التنقل بين الشرائح">
-  <div class="grp"><button id="prev" aria-label="الشريحة السابقة">السابق</button><bdi class="where" id="where">1 / 10</bdi><button id="next" aria-label="الشريحة التالية">التالي</button></div>
+<nav class="bar" aria-label="Slides">
+  <div class="grp"><button id="prev" aria-label="Previous slide">Back</button><span class="where" id="where">1 / 15</span><button id="next" aria-label="Next slide">Next</button></div>
   <div class="seats" id="prog" aria-hidden="true"></div>
-  <div class="grp"><button id="full" aria-label="ملء الشاشة">ملء الشاشة</button></div>
+  <div class="grp"><a class="sw" href="start.html">Change design</a><button id="full" aria-label="Full screen">Full screen</button></div>
 </nav>
 
 <script>
-const slides=[...document.querySelectorAll('.slide')],N=slides.length,$=id=>document.getElementById(id);
+const D=window.TT_DESIGN||'line',rm=matchMedia('(prefers-reduced-motion:reduce)').matches,$=id=>document.getElementById(id);
+const slides=[...document.querySelectorAll('.slide')],N=slides.length;
+// screen thumbnails for this design
+document.querySelectorAll('[data-shots]').forEach(box=>{box.innerHTML=JSON.parse(box.dataset.shots).map(([n,name,line,href],i)=>`<a class="shot lay" style="--i:${i}" href="${href}"><img src="assets/thumbs/${D}/${n}.jpg" alt="" loading="lazy"><b>${name}</b><span>${line}</span></a>`).join('')});
+
+// the cover carries each design's own signature
+const sig=$('sig');
+if(D==='depth'){sig.innerHTML='<div class="stage3"><div class="cam3"><div class="pl3" style="transform:translate3d(90px,-50px,-520px);filter:blur(5px);opacity:.5">2030</div><div class="pl3" style="transform:translate3d(45px,-25px,-260px);filter:blur(2.5px);opacity:.75">2027</div><div class="pl3">Now</div></div></div>'}
+else if(D==='mark'){sig.innerHTML='<canvas width="900" height="760"></canvas>';const cv=sig.firstChild,g=cv.getContext('2d'),W=900,H=760,ink=getComputedStyle(document.documentElement).getPropertyValue('--ink').trim()||'#101418';
+  const seg=(a,b,n)=>Array.from({length:n},(_,i)=>({x:a[0]+(b[0]-a[0])*i/(n-1),y:a[1]+(b[1]-a[1])*i/(n-1)})),L=230,T=120,S=440,R=L+S,B=T+S;
+  const M=[].concat(seg([L,T],[R,T],56),seg([R,T],[R,B],56),seg([R,B],[L,B],56),seg([L,B],[L,T],56),seg([L+52,T+68],[R-52,T+68],42),seg([L+52,T+68],[L+52,T+120],8),seg([R-52,T+68],[R-52,T+120],8),seg([L+174,T+68],[L+174,B-60],42),seg([R-174,T+68],[R-174,B-60],42),seg([L+204,T+170],[L+204,B-60],26),seg([R-204,T+230],[R-204,B-60],22));
+  const P=M.map(t=>({x:Math.random()*W,y:Math.random()*H,vx:0,vy:0,tx:t.x,ty:t.y,r:2.6+Math.random()*2.6}));let mx=-999,my=-999;
+  sig.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();mx=(e.clientX-r.left)/r.width*W;my=(e.clientY-r.top)/r.height*H});sig.addEventListener('pointerleave',()=>mx=my=-999);
+  (function draw(){g.clearRect(0,0,W,H);g.fillStyle=ink;for(const p of P){if(rm){p.x=p.tx;p.y=p.ty}else{p.vx+=(p.tx-p.x)*.012;p.vy+=(p.ty-p.y)*.012;const ex=p.x-mx,ey=p.y-my,d2=ex*ex+ey*ey;if(d2<12000){const f=(12000-d2)/12000*1.5,d=Math.sqrt(d2)||1;p.vx+=ex/d*f;p.vy+=ey/d*f}p.vx*=.86;p.vy*=.86;p.x+=p.vx;p.y+=p.vy}g.beginPath();g.arc(p.x,p.y,p.r,0,7);g.fill()}
+    if(rm)return;if(slides[0].classList.contains('on'))requestAnimationFrame(draw);else setTimeout(()=>requestAnimationFrame(draw),500)})()}
+else{sig.innerHTML='<svg viewBox="0 0 900 460" preserveAspectRatio="none"><defs><linearGradient id="gg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a2332" stop-opacity=".5"/><stop offset="1" stop-color="#8a2332" stop-opacity="0"/></linearGradient></defs><path id="ar" fill="url(#gg)" d=""/><path id="ln" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M0 380 C 120 380 190 372 270 330 S 400 230 480 256 S 600 320 700 220 S 830 90 900 60"/><circle cx="270" cy="330" r="7" fill="#a92c3e" stroke="currentColor" stroke-width="2.2"/><circle cx="480" cy="256" r="6" fill="#14100e" stroke="currentColor" stroke-width="2.2"/><circle cx="700" cy="220" r="6" fill="#14100e" stroke="currentColor" stroke-width="2.2"/></svg>';
+  const ln=sig.querySelector('#ln'),len=ln.getTotalLength();sig.querySelector('#ar').setAttribute('d',ln.getAttribute('d')+' L900 460 L0 460 Z');
+  if(!rm){ln.style.strokeDasharray=len;ln.animate([{strokeDashoffset:len},{strokeDashoffset:0}],{duration:2400,easing:'cubic-bezier(.16,1,.3,1)',fill:'both'});sig.querySelector('#ar').animate([{opacity:0},{opacity:1}],{duration:1400,delay:1200,fill:'both'})}}
+
+// slides
 let i=Math.min(N-1,Math.max(0,(parseInt(location.hash.slice(1))||1)-1));
-function show(k){i=Math.min(N-1,Math.max(0,k));slides.forEach((s,j)=>{s.classList.toggle('on',j===i);s.inert=j!==i});
+function show(k){i=Math.min(N-1,Math.max(0,k));slides.forEach((s,j)=>{s.classList.toggle('on',j===i);s.classList.toggle('gone',j<i);s.inert=j!==i});
   $('where').textContent=`${i+1} / ${N}`;$('prev').disabled=i===0;$('next').disabled=i===N-1;
-  $('prog').innerHTML=slides.map((_,j)=>`<s class="${j<=i?'':'free'}"></s>`).join('');history.replaceState(null,'','#'+(i+1));
-  if(i===N-1)$('enter').focus({preventScroll:true})}
+  $('prog').innerHTML=slides.map((_,j)=>`<s class="${j<=i?'':'free'}"></s>`).join('');history.replaceState(null,'',location.search+'#'+(i+1))}
 $('prev').onclick=()=>show(i-1);$('next').onclick=()=>show(i+1);
 addEventListener('keydown',e=>{if(e.target.closest('a,button')&&(e.key===' '||e.key==='Enter'))return;
-  if(['ArrowLeft','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();show(i+1)}
-  else if(['ArrowRight','PageUp','Backspace'].includes(e.key)){e.preventDefault();show(i-1)}
+  if(['ArrowRight','PageDown',' ','Enter'].includes(e.key)){e.preventDefault();show(i+1)}
+  else if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){e.preventDefault();show(i-1)}
   else if(e.key==='Home')show(0);else if(e.key==='End')show(N-1);else if(e.key==='f'||e.key==='F')toggleFull()});
 function toggleFull(){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen?.()}
 $('full').onclick=toggleFull;
 let sx=null;addEventListener('touchstart',e=>sx=e.touches[0].clientX,{passive:true});
-addEventListener('touchend',e=>{if(sx===null)return;const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>60)show(i+(d>0?1:-1));sx=null},{passive:true});
+addEventListener('touchend',e=>{if(sx===null)return;const d=e.changedTouches[0].clientX-sx;if(Math.abs(d)>60)show(i+(d<0?1:-1));sx=null},{passive:true});
 show(i);
 </script>
 </body>

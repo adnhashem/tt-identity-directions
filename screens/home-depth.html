@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Think Tank Strategists — Strategy and foresight programs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="home-base.css">
+<style>
+:root{--bg:#0a111e;--bg2:#101a2c;--pane:#16233a;--fg:#eef1f6;--mut:#a4b0c2;--line:rgba(238,241,246,.14);--line2:rgba(238,241,246,.32);--gold:#e3b548;--gold2:#f3cf78;--ink:#0a111e;--ease:cubic-bezier(.16,1,.3,1)}
+html{scrollbar-color:#4d5b72 #070c15}
+::selection{background:var(--gold);color:var(--ink)}
+:focus-visible{outline:2px solid var(--gold2);outline-offset:3px}
+body{overflow-x:clip;background:linear-gradient(180deg,#13213f 0,var(--bg) 620px) no-repeat,var(--bg);color:var(--fg);font-family:'Onest',sans-serif}
+nav.top{display:flex;justify-content:space-between;align-items:center;padding-block:22px}
+nav.top img{height:54px}
+nav.top ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;align-items:center}
+nav.top a{text-decoration:none;font-size:14px;font-weight:500;color:var(--mut)} nav.top a:hover{color:var(--fg)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding-inline:24px;border-radius:6px;border:0;background:var(--gold);color:var(--ink);font-weight:700;font-size:14px;text-decoration:none;box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 14px 22px -14px #000;transition:transform .2s var(--ease),background .2s}
+.btn:hover{transform:translateY(-2px);background:var(--gold2)}
+nav.top a.btn{color:var(--ink);min-height:40px;padding-inline:18px}
+
+.hero{display:grid;grid-template-columns:.78fr 1.22fr;gap:32px;align-items:center;min-height:min(78svh,720px);padding-block:8px 40px}
+.hero h1{font-weight:800;font-size:clamp(2.5rem,5.2vw,4.6rem);line-height:1;letter-spacing:-.04em}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{color:var(--mut);font-size:1.08rem;max-width:38ch;margin:22px 0 28px}
+.dolly{display:inline-grid;grid-auto-flow:column;gap:0;border-radius:8px;box-shadow:inset 0 0 0 1px var(--line2);overflow:hidden}
+.dolly button{border:0;background:none;color:var(--mut);font:600 14px 'Onest';min-height:46px;padding-inline:20px;transition:background .3s,color .3s}
+.dolly button+button{box-shadow:-1px 0 0 var(--line2)}
+.dolly button[aria-pressed=true]{background:var(--fg);color:var(--ink)}
+.hint{font-size:13px;color:var(--mut);margin-top:12px}
+
+/* the scene: three planes in depth, and a camera that moves through them */
+.stage{position:relative;height:clamp(460px,52vw,640px);perspective:1500px;perspective-origin:42% 44%;contain:layout}
+.cam{position:absolute;inset:0;pointer-events:none;transform-style:preserve-3d;transform:rotateY(var(--ry,-16deg)) rotateX(var(--rx,5deg)) translate3d(calc(var(--f,0)*-60px),calc(var(--f,0)*34px),calc(var(--f,0)*var(--gap)));transition:transform 1.3s var(--ease);--gap:470px}
+.floor{position:absolute;left:50%;top:86%;width:1500px;height:2000px;margin-left:-750px;transform-origin:50% 0;transform:rotateX(90deg) translateY(-560px);
+  background:repeating-linear-gradient(0deg,transparent 0 233px,rgba(238,241,246,.16) 233px 235px),repeating-linear-gradient(90deg,transparent 0 148px,rgba(238,241,246,.06) 148px 150px);
+  -webkit-mask:radial-gradient(60% 55% at 50% 30%,#000,transparent 78%);mask:radial-gradient(60% 55% at 50% 30%,#000,transparent 78%);pointer-events:none}
+.pl{position:absolute;left:50%;top:50%;width:min(430px,82%);min-height:0;margin:-190px 0 0 -215px;padding:26px;border-radius:12px;
+  background:linear-gradient(180deg,rgba(34,52,84,.96),rgba(22,35,58,.96));border:1px solid var(--line);box-shadow:0 60px 80px -40px #000,inset 0 1px 0 rgba(255,255,255,.08);
+  transform:translate3d(calc(var(--i)*60px),calc(var(--i)*-34px),calc(var(--i)*var(--gap)*-1));
+  filter:blur(calc(var(--d)*3.2px));opacity:calc(1 - var(--d)*.3);transition:filter 1.1s var(--ease),opacity 1.1s var(--ease)}
+.pl{pointer-events:auto}
+.pl.past{opacity:0;pointer-events:none}
+.hero>div:first-child{position:relative;z-index:2}
+.pl .yr{font-weight:800;font-size:13px;letter-spacing:.02em;color:var(--gold)}
+.pl h2{font-weight:700;font-size:1.5rem;line-height:1.12;letter-spacing:-.02em;margin:6px 0 14px}
+.pl p{font-size:14px;color:var(--mut);margin-bottom:14px}
+.co{display:grid;grid-template-columns:64px 1fr auto;gap:14px;align-items:center;padding:12px 0;border-top:1px solid var(--line);color:var(--fg);text-decoration:none}
+.co b{font-weight:800;font-size:1.5rem;line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.co b small{display:block;font-size:11.5px;font-weight:600;letter-spacing:0;color:var(--mut);margin-top:4px}
+.co span{font-size:14px;font-weight:600;line-height:1.3} .co span small{display:block;font-weight:400;font-size:12.5px;color:var(--mut)}
+.co i{font-style:normal;font-size:13px;font-weight:700;color:var(--gold);white-space:nowrap}
+.co:hover span{color:var(--gold2)}
+.pl .btn{width:100%;margin-top:12px}
+.pl ul{margin:0;padding:0;list-style:none}
+.pl li{padding:10px 0;border-top:1px solid var(--line);font-size:14px}
+.pl li b{display:block;font-weight:700}
+
+.work{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start;padding-block:60px 100px}
+.work h2{font-weight:800;font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.04;letter-spacing:-.03em}
+.work p{color:var(--mut);margin-top:12px;max-width:36ch}
+.desk{position:relative;perspective:1400px}
+.sheet{border-radius:12px;background:linear-gradient(180deg,rgba(34,52,84,.98),rgba(22,35,58,.98));border:1px solid var(--line);box-shadow:0 50px 70px -40px #000,inset 0 1px 0 rgba(255,255,255,.08);padding:22px 26px;transform:rotateY(-5deg) rotateX(2deg);transform-origin:left center;transition:transform .8s var(--ease)}
+.desk:hover .sheet{transform:none}
+.sheet::before{content:"";position:absolute;inset:14px -14px -14px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(22,35,58,.5);transform:translateZ(-60px);z-index:-1}
+.sheet header{display:flex;justify-content:space-between;align-items:end;gap:12px;padding-bottom:12px;border-bottom:1px solid var(--line2)}
+.sheet h3{font-weight:700;font-size:1.1rem} .sheet header span{font-size:13px;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-weight:600;font-size:12px;color:var(--mut);padding:10px 6px}
+td{padding:11px 6px;border-top:1px solid var(--line)}
+td.n{font-variant-numeric:tabular-nums;font-weight:600}
+.tag{font-size:12px;font-weight:700;padding:2px 10px;border-radius:4px;border:1px solid currentColor}
+.tag.ok{color:#8fd6ae} .tag.wait{color:#e9c873} .tag.you{color:var(--ink);background:var(--gold);border-color:var(--gold)}
+.syn{font-size:12px;color:var(--mut);margin-top:12px}
+@media (max-width:900px){nav.top ul li:not(.keep){display:none}.hero,.work{grid-template-columns:1fr}.stage{height:auto;perspective:none}.cam{position:relative;transform:none!important;display:grid;gap:16px}.floor{display:none}.pl{position:relative;left:auto;top:auto;margin:0;width:100%;min-height:0;transform:none;filter:none;opacity:1}.pl.past{opacity:1;pointer-events:auto}.dolly,.hint{display:none}.sheet{transform:none}}
+@media (prefers-reduced-motion:reduce){.cam,.pl,.sheet{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top" aria-label="Main">
+    <a href="01-home.html"><img src="assets/logo-white.png" alt="Think Tank Strategists"></a>
+    <ul><li><a href="01-home.html" aria-current="page">Programs</a></li><li><a href="19-articles.html">Articles</a></li><li><a href="18-for-orgs.html">For organizations</a></li><li><a href="12-verify.html">Verify a certificate</a></li><li class="keep"><a href="17-login.html">Sign in</a></li><li class="keep"><a class="btn" href="03-register.html">Register</a></li></ul>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <h1>Strategy has <em>depth</em>. Look further in.</h1>
+      <p>Strategy and foresight programs for leaders, led by Dr. Manal Al-Hasawi. What is open now is in front; move forward to see the year ahead and the decade beyond it.</p>
+      <div class="dolly" role="group" aria-label="Move through time">
+        <button aria-pressed="true" data-f="0">Now</button><button aria-pressed="false" data-f="1">2027</button><button aria-pressed="false" data-f="2">2030</button>
+      </div>
+      <p class="hint">Or scroll over the scene. Move the pointer to look around.</p>
+    </div>
+    <div class="stage" id="stage">
+      <div class="cam" id="cam">
+        <div class="floor" aria-hidden="true"></div>
+        <article class="pl" style="--i:2;--d:2">
+          <div class="yr">2030 · THE DECADE</div>
+          <h2>The futures your organization should be ready for</h2>
+          <p>This is the horizon the foresight program works on: scanning for signals, building scenarios, and deciding what to do about them today.</p>
+          <ul><li><b>Foresight &amp; Futures Thinking</b>Next cohort 14 December 2026</li><li><b>VUCA-readiness track</b>Inside the foresight program</li></ul>
+          <a class="btn" href="02-program.html">Browse programs</a>
+        </article>
+        <article class="pl" style="--i:1;--d:1">
+          <div class="yr">2027 · THE YEAR AHEAD</div>
+          <h2>Build the team that carries the strategy</h2>
+          <a class="co" href="02-program.html"><b>08<small>JAN</small></b><span>Executive Strategy Workshops<small>2 days · English · KWD 240.000</small></span><i>Waitlist</i></a>
+          <a class="co" href="02-program.html"><b>02<small>FEB</small></b><span>Leadership &amp; Capability Building<small>5 sessions · Arabic · KWD 320.000</small></span><i>11 left</i></a>
+          <a class="btn" href="18-for-orgs.html">Request a proposal</a>
+        </article>
+        <article class="pl" style="--i:0;--d:0">
+          <div class="yr">NOW · OPEN FOR REGISTRATION</div>
+          <h2>Foresight &amp; Futures Thinking</h2>
+          <a class="co" href="02-program.html"><b>14<small>DEC</small></b><span>Public workshop · Arabic<small>3 mornings · KWD 180.000</small></span><i>4 of 20 left</i></a>
+          <a class="co" href="02-program.html"><b>09<small>MAR</small></b><span>Public workshop · Arabic<small>3 mornings · KWD 180.000</small></span><i>20 left</i></a>
+          <a class="btn" href="03-register.html">Register</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="work">
+    <div>
+      <h2>In the portals, depth becomes order.</h2>
+      <p>What needs a decision sits in front. Everything else waits behind it, one layer back, until it is needed.</p>
+    </div>
+    <div class="desk">
+      <div class="sheet">
+        <header><h3>Registrations · 14 December cohort</h3><span>16 of 20 seats</span></header>
+        <table>
+          <thead><tr><th>Trainee</th><th>Organization</th><th>Status</th><th>KWD</th></tr></thead>
+          <tbody>
+            <tr><td>Sarah Al-Enezi</td><td>Individual</td><td><span class="tag you">Refund requested</span></td><td class="n">180.000</td></tr>
+            <tr><td>Noura Al-Sabah</td><td>Ministry of Planning</td><td><span class="tag ok">Confirmed</span></td><td class="n">180.000</td></tr>
+            <tr><td>Hannah Clarke</td><td>Individual</td><td><span class="tag wait">Awaiting payment</span></td><td class="n">180.000</td></tr>
+            <tr><td>Abdulaziz Al-Mutairi</td><td>Example Bank</td><td><span class="tag ok">Confirmed</span></td><td class="n">—</td></tr>
+          </tbody>
+        </table>
+        <p class="syn">Names, dates and amounts are sample data.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer style="border-top:1px solid var(--line);padding-block:26px;font-size:13px;color:var(--mut)"><div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap"><span>Think Tank Strategists · Kuwait · Sunday to Thursday, 9:00–17:00</span><span><a href="17-login.html">Sign in to your portal</a> · <a href="index.html">Screen map</a> · <a href="deck.html">Presentation</a></span></div></footer>
+<script>try{sessionStorage.setItem("tt-design","depth")}catch(e){}</script>
+<script>
+const cam=document.getElementById('cam'),stage=document.getElementById('stage'),pls=[...document.querySelectorAll('.pl')],btns=[...document.querySelectorAll('.dolly button')];
+let f=0,lock=0;
+function go(n){f=Math.max(0,Math.min(2,n));cam.style.setProperty('--f',f);btns.forEach(b=>b.setAttribute('aria-pressed',+b.dataset.f===f));
+  pls.forEach(p=>{const i=+p.style.getPropertyValue('--i');p.style.setProperty('--d',Math.max(0,i-f));p.classList.toggle('past',i<f);p.inert=i<f})}
+btns.forEach(b=>b.addEventListener('click',()=>go(+b.dataset.f)));go(0);
+const desktop=matchMedia('(min-width:901px)'),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+stage.addEventListener('wheel',e=>{if(!desktop.matches)return;const dir=e.deltaY>0?1:-1;if((dir>0&&f===2)||(dir<0&&f===0))return;e.preventDefault();const now=Date.now();if(now<lock)return;lock=now+900;go(f+dir)},{passive:false});
+if(!rm)stage.addEventListener('pointermove',e=>{const r=stage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;cam.style.setProperty('--ry',(-16+x*-12)+'deg');cam.style.setProperty('--rx',(5+y*7)+'deg')});
+stage.addEventListener('pointerleave',()=>{cam.style.removeProperty('--ry');cam.style.removeProperty('--rx')});
+</script>
+</body>
+</html>
