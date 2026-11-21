@@ -1,0 +1,10 @@
+/* B — Daylight: her cream as the ground everywhere, espresso type, oxblood accent. */
+:root{--baize:#f5f0e8;--baize-deep:#e9e1d4;--baize-hi:#fbf8f3;--card:#fffdf9;--card-hi:#ffffff;--card-lo:#f8f3eb;--paper:#fffdf9;--card-edge:rgba(20,16,14,.13);--line-strong:rgba(20,16,14,.32);--ink:#14100e;--ink-2:#5b5148;--cream:#14100e;--cream-2:#5b5148;--ribbon:#8a2332;--ribbon-hi:#a92c3e;--ribbon-dark:#6d1b27;--brass:#8a2332;--brass-hi:#a92c3e;--brass-dark:#6d1b27;--brass-ink:#5b5148;--ok:#1f6b45;--wait:#7a5a12;--err:#a8431a;--off:#6f665a;--field:#ffffff;--inverse:#14100e;--on-inverse:#f5f0e8;--accent-soft:rgba(138,35,50,.1);--sh-object:0 30px 56px -34px rgba(20,16,14,.45),0 1px 0 #fff inset;--sh-sheet:0 26px 50px -32px rgba(20,16,14,.4),0 1px 0 #fff inset;--sh-low:0 12px 24px -16px rgba(20,16,14,.35),0 1px 0 #fff inset;}
+body.table,body.desk{background:radial-gradient(1100px 620px at 85% -12%,#fffdf9,transparent 62%),var(--baize);background-attachment:fixed}
+body.table::before,body.desk::before{opacity:.18;mix-blend-mode:multiply}
+.nav img,.side .brand img,.logo-auto{filter:invert(1) brightness(.25)}
+.field input::placeholder,.field textarea::placeholder{color:#8a7f72}
+.seats s.free{border-color:rgba(20,16,14,.4)}
+.skel{background:linear-gradient(90deg,#ece5da,#f8f3eb,#ece5da);background-size:200% 100%}
+.notice{background:#fffdf9}
+.seal{background:radial-gradient(circle at 35% 30%,#fff,#f1e9dd);box-shadow:inset 0 0 0 4px #fffdf9,inset 0 0 0 5px var(--accent),0 10px 20px -12px rgba(20,16,14,.5)}

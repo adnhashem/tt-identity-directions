@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Think Tank Strategists — look and feel sample</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<script>
+  const T=(new URLSearchParams(location.search).get('t')||'a').toLowerCase().replace(/[^a-e]/g,'')||'a';
+  document.write('<link rel="stylesheet" href="themes/'+T+'.css">');
+</script>
+<style>
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:var(--s-64);align-items:center;padding-block:var(--s-48) var(--s-64)}
+.hero h1{font-size:clamp(2.4rem,5.2vw,4.6rem);margin-bottom:var(--s-24)}
+.hero h1 em{font-style:normal;color:var(--brass)}
+.hero p{font-size:var(--fs-18);color:var(--cream-2);max-width:44ch;margin-bottom:var(--s-32)}
+.next{padding:var(--s-32)}
+.next h2{font-size:var(--fs-28);margin:var(--s-4) 0 var(--s-16)}
+.next .seats{margin:var(--s-16) 0 var(--s-8)}
+.list{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-16);padding-bottom:var(--s-64)}
+.list .stub b{font-size:var(--fs-22)}
+.sect{font-size:var(--fs-13);color:var(--cream-2);border-top:1px solid var(--card-edge);padding-top:var(--s-12);margin:0 0 var(--s-24)}
+.zone-desk{border-radius:16px;overflow:hidden;border:1px solid var(--card-edge);margin-bottom:var(--s-64);box-shadow:var(--sh-sheet)}
+.zone-desk .shell{min-height:0}
+.zone-desk .work>.sheet{min-height:0}
+.wait>div{display:grid;grid-template-columns:auto 1fr auto;gap:var(--s-16);align-items:center;padding:var(--s-16) 0;border-bottom:1px solid var(--card-edge)}
+.wait b{display:block;font-family:var(--font-head);font-weight:600}
+.wait span.m{font-size:var(--fs-13);color:var(--ink-2)}
+.formrow{display:grid;grid-template-columns:1fr 1fr auto;gap:var(--s-16);align-items:end}
+.pick{position:fixed;z-index:30;inset-inline:0;bottom:0;display:flex;gap:8px;justify-content:center;align-items:center;padding:10px 12px;background:rgba(14,11,9,.92);color:#f5f0e8;font:500 13px/1.4 'Inter',sans-serif;flex-wrap:wrap}
+.pick a{color:#f5f0e8;text-decoration:none;border:1px solid rgba(245,240,232,.35);border-radius:999px;padding:6px 14px;min-height:36px;display:inline-flex;align-items:center}
+.pick a[aria-current]{background:#f5f0e8;color:#14100e;border-color:#f5f0e8;font-weight:600}
+body{padding-bottom:64px}
+@media (max-width:900px){.hero,.list,.formrow{grid-template-columns:1fr}.wait>div{grid-template-columns:1fr}}
+</style>
+</head>
+<body class="table">
+<div class="wrap">
+  <nav class="nav" aria-label="Main">
+    <a href="#"><img src="assets/logo-white.png" alt="Think Tank Strategists"></a>
+    <ul>
+      <li><a href="#" aria-current="page">Programs</a></li>
+      <li><a href="#">Articles</a></li>
+      <li><a href="#">For organizations</a></li>
+      <li><a href="#">Verify a certificate</a></li>
+      <li class="keep"><a href="#">Sign in</a></li>
+      <li class="keep"><a class="btn sm" href="#">Register</a></li>
+    </ul>
+  </nav>
+
+  <section class="hero">
+    <div class="lay" style="--i:0">
+      <h1>See the future. <em>Shape the strategy.</em></h1>
+      <p>Strategy and foresight programs for leaders, led by Dr. Manal Al-Hasawi. Choose a cohort, reserve your seat and pay online.</p>
+      <div class="row"><a class="btn" href="#">Browse programs</a><a class="btn sec" href="#">For organizations</a></div>
+    </div>
+    <article class="pass next lay" style="--i:2">
+      <div class="kind">Next cohort · Public workshop · Arabic</div>
+      <h2>Foresight &amp; Futures Thinking</h2>
+      <div class="perf kv">
+        <div><small>Dates</small><strong>14–16 Dec 2026</strong></div>
+        <div><small>Sessions</small><strong>3 mornings</strong></div>
+        <div><small>Place</small><strong>Company hall</strong></div>
+        <div><small>Fee</small><strong>KWD 180.000</strong></div>
+      </div>
+      <div class="seats" data-cap="20" data-taken="16"></div>
+      <p class="muted" style="font-size:var(--fs-13)">4 of 20 seats left</p>
+      <a class="btn wide" href="#">Register</a>
+    </article>
+  </section>
+
+  <p class="sect">Upcoming cohorts</p>
+  <section class="list">
+    <button class="stub lay" style="--i:0" aria-pressed="true"><b>14 Dec</b><span>Foresight &amp; Futures Thinking</span><span>4 seats left · KWD 180.000</span></button>
+    <button class="stub lay" style="--i:1" aria-pressed="false"><b>8 Jan</b><span>Executive Strategy Workshops</span><span>Full · waitlist open</span></button>
+    <button class="stub lay" style="--i:2" aria-pressed="false"><b>2 Feb</b><span>Leadership &amp; Capability Building</span><span>11 seats left · KWD 320.000</span></button>
+  </section>
+
+  <p class="sect">Inside the portals: the same identity on a working screen</p>
+  <section class="zone-desk">
+    <div class="shell">
+      <nav class="side" aria-label="Administration">
+        <div class="brand"><img src="assets/logo-white.png" alt=""><span>Administration</span></div>
+        <a href="#" aria-current="page">Waiting for you <span class="n">3</span></a>
+        <a href="#">Cohorts</a><a href="#">Programs</a><a href="#">Organizations <span class="n">1</span></a><a href="#">Proposal requests</a><a href="#">Payments</a><a href="#">Certificates</a><a href="#">Trainees</a><a href="#">Report</a>
+        <div class="foot">Dr. Manal Al-Hasawi</div>
+      </nav>
+      <main class="work">
+        <div class="sheet">
+          <header class="top">
+            <div><h1>Waiting for you today</h1><div class="crumb">Sunday 6 December 2026 · 3 items need your decision</div></div>
+            <div class="row"><button class="btn sec sm">All cohorts</button><button class="btn sm">Create cohort</button></div>
+          </header>
+          <section class="wait">
+            <div><span class="stamp you">Refund</span><div><b>Sarah Al-Enezi asks for a refund</b><span class="m">Cancelled 8 days before the cohort starts · KWD 180.000 paid by KNET</span></div><div class="row"><button class="btn sm">Approve refund</button><button class="btn sec sm">Decline refund</button></div></div>
+            <div><span class="stamp you">Account</span><div><b>Khalid Al-Fahad requests an account for Example Bank</b><span class="m">He sees no employee data until you approve and link him</span></div><button class="btn sec sm">Approve account</button></div>
+          </section>
+          <section>
+            <h2>Registrations · 14 December cohort</h2>
+            <div class="tabs" role="tablist"><button role="tab" aria-selected="true">All 16</button><button role="tab" aria-selected="false">Confirmed</button><button role="tab" aria-selected="false">Awaiting payment</button><button role="tab" aria-selected="false">Cancelled</button></div>
+            <div class="scroll-x"><table class="t">
+              <thead><tr><th>Trainee</th><th>Organization</th><th>Status</th><th>Amount (KWD)</th><th></th></tr></thead>
+              <tbody>
+                <tr class="you"><td>Sarah Al-Enezi</td><td>Individual</td><td><span class="stamp you">Refund requested</span></td><td class="num">180.000</td><td><a class="rowlink" href="#">Review</a></td></tr>
+                <tr><td>Noura Al-Sabah</td><td>Ministry of Planning</td><td><span class="stamp ok">Confirmed</span></td><td class="num">180.000</td><td></td></tr>
+                <tr><td>Hannah Clarke</td><td>Individual</td><td><span class="stamp wait">Awaiting payment</span></td><td class="num">180.000</td><td></td></tr>
+                <tr><td>Fahad Al-Shammari</td><td>Individual</td><td><span class="stamp err">Payment failed</span></td><td class="num">180.000</td><td></td></tr>
+                <tr><td>Yousef Al-Rashidi</td><td>Individual</td><td><span class="stamp off">Cancelled</span></td><td class="num">180.000</td><td></td></tr>
+              </tbody>
+            </table></div>
+          </section>
+          <section>
+            <h2>Reschedule the cohort</h2>
+            <div class="formrow">
+              <div class="field"><label for="d1">New start date</label><input id="d1" value="21 December 2026"></div>
+              <div class="field"><label for="d2">Sessions</label><select id="d2"><option>3 mornings, 9:00–13:00</option></select></div>
+              <button class="btn sec">Reschedule</button>
+            </div>
+            <p class="synthetic" style="margin-top:var(--s-16)">Names, dates and amounts are sample data.</p>
+          </section>
+        </div>
+      </main>
+    </div>
+  </section>
+</div>
+
+<div class="pick" id="pick" aria-label="Proposals"></div>
+<script src="tt.js"></script>
+<script>
+const NAMES={a:'A · Her site, extended',b:'B · Daylight',c:'C · Dark front, light work',d:'D · Oxblood forward',e:'E · Quiet corporate'};
+document.getElementById('pick').innerHTML='<span>Proposal:</span>'+Object.entries(NAMES).map(([k,v])=>`<a href="?t=${k}"${k===T?' aria-current="true"':''}>${v}</a>`).join('')+'<a href="index.html">All five</a>';
+</script>
+</body>
+</html>

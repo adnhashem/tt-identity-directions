@@ -1,0 +1,10 @@
+/* C — Dark front, light work: public site dark like hers; portals work on cream with a dark side bar. */
+body.desk,.zone-desk{--baize:#f5f0e8;--baize-deep:#e9e1d4;--baize-hi:#fbf8f3;--card:#fffdf9;--card-hi:#ffffff;--card-lo:#f8f3eb;--paper:#fffdf9;--card-edge:rgba(20,16,14,.13);--line-strong:rgba(20,16,14,.32);--ink:#14100e;--ink-2:#5b5148;--cream:#14100e;--cream-2:#5b5148;--ribbon:#8a2332;--ribbon-hi:#a92c3e;--ribbon-dark:#6d1b27;--brass:#8a2332;--brass-hi:#a92c3e;--brass-dark:#6d1b27;--brass-ink:#5b5148;--ok:#1f6b45;--wait:#7a5a12;--err:#a8431a;--off:#6f665a;--field:#ffffff;--inverse:#14100e;--on-inverse:#f5f0e8;--accent-soft:rgba(138,35,50,.1);--sh-object:0 30px 56px -34px rgba(20,16,14,.45),0 1px 0 #fff inset;--sh-sheet:0 26px 50px -32px rgba(20,16,14,.4),0 1px 0 #fff inset;--sh-low:0 12px 24px -16px rgba(20,16,14,.35),0 1px 0 #fff inset;}
+body.desk,.zone-desk{background:var(--baize);color:var(--cream)}
+body.desk::before{opacity:.18;mix-blend-mode:multiply}
+body.desk .side,.zone-desk .side{--baize:#14100e;--baize-deep:#0e0b09;--baize-hi:#231b17;--card:#1b1613;--card-hi:#221b17;--card-lo:#191411;--paper:#1b1613;--card-edge:rgba(244,239,233,.14);--line-strong:rgba(244,239,233,.3);--ink:#f5f0e8;--ink-2:#b9afa2;--cream:#f5f0e8;--cream-2:#b9afa2;--ribbon:#e39aa6;--ribbon-hi:#efb6bf;--ribbon-dark:#c9788a;--brass:#d9c8b4;--ok:#86d3a4;--wait:#e2bd6a;--err:#f39a76;--off:#a39788;--field:#14100e;--inverse:#f5f0e8;--on-inverse:#14100e;--accent-soft:rgba(138,35,50,.2); background:linear-gradient(180deg,#1b1613,#14100e);color:var(--cream);box-shadow:1px 0 0 rgba(244,239,233,.08)}
+body.desk .field input::placeholder,.zone-desk .field input::placeholder{color:#8a7f72}
+body.desk .seats s.free,.zone-desk .seats s.free{border-color:rgba(20,16,14,.4)}
+body.desk .skel{background:linear-gradient(90deg,#ece5da,#f8f3eb,#ece5da);background-size:200% 100%}
+body.desk .work,.zone-desk .work{padding-inline-start:var(--s-24)}
+@media (max-width:900px){body.desk .work,.zone-desk .work{padding-inline-start:var(--s-8)}}

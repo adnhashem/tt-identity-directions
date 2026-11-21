@@ -1,0 +1,13 @@
+/* E — Quiet corporate: her dark palette, but squared and formal: no pills, tight radii, ruled tables. */
+:root{--r-card:4px;--r-sheet:4px;--r-btn:4px}
+.btn{border-radius:4px;letter-spacing:.01em}
+.pass,.sheet,.cert,.stub,.work>.sheet{border-radius:4px}
+.stamp,.stamp.big{border-radius:3px;text-transform:uppercase;letter-spacing:.06em;font-size:11px;padding:2px 8px}
+.field input,.field select,.field textarea,.notice,.tick{border-radius:3px}
+.side a{border-radius:3px}
+.side a[aria-current]{box-shadow:inset 3px 0 0 var(--accent-hi),inset 0 0 0 1px var(--card-edge)}
+.nav .pill,.toast{border-radius:3px}
+.t th{text-transform:uppercase;letter-spacing:.08em;font-size:11px}
+.pass,.sheet,.cert{background:var(--card);box-shadow:0 22px 44px -30px #000}
+h1,h2{letter-spacing:-.01em}
+.tabs [role=tab]{border-radius:3px 3px 0 0}
