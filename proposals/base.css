@@ -1,0 +1,19 @@
+/* Shared reset and the Arabic note block for the v2 directions. Each direction owns everything else. */
+*{box-sizing:border-box}
+html{overflow-x:clip}
+body{margin:0;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p{margin:0}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+img{display:block;max-width:100%}
+.wrap{max-width:1220px;margin-inline:auto;padding-inline:32px}
+.num{font-variant-numeric:tabular-nums}
+.note{direction:rtl;font-family:'Zain',sans-serif;font-size:1.1rem;line-height:1.75;padding-block:56px;background:#0e0b09;color:#d8cfc3}
+.note .wrap{display:grid;grid-template-columns:1.35fr 1fr;gap:48px}
+.note h4{font-size:1.5rem;font-weight:800;color:#f5f0e8;margin-bottom:8px}
+.note ul{margin:8px 0 0;padding-inline-start:22px}
+.note b{color:#f5f0e8}
+.note .chips{display:flex;margin-top:14px;border-radius:8px;overflow:hidden;width:max-content;border:1px solid rgba(245,240,232,.2)}
+.note .chips span{width:52px;height:36px}
+.note a{color:#e39aa6;font-weight:700}
+@media (max-width:900px){.wrap{padding-inline:18px}.note .wrap{grid-template-columns:1fr}}

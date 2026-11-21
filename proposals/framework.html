@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Think Tank Strategists — direction: The framework</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Zain:wght@400;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="base.css">
+<style>
+:root{--bg:#eceef2;--paper:#ffffff;--ink:#0f2238;--mut:#4d5a6b;--line:rgba(15,34,56,.14);--line2:rgba(15,34,56,.36);--ox:#8f5409;--ox2:#1f4474;--oxd:#0a1728;--ok:#1f6b45;--wait:#7a5a12;--ease:cubic-bezier(.16,1,.3,1)}
+html{scrollbar-color:#7d8794 #dfe2e7}
+::selection{background:var(--ink);color:var(--bg)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+body{background:var(--bg);color:var(--ink);font-family:'Schibsted Grotesk',sans-serif}
+nav.top{display:flex;justify-content:space-between;align-items:center;padding-block:22px;border-bottom:1px solid var(--line2)}
+nav.top img{height:54px}
+nav.top ul{display:flex;gap:30px;list-style:none;margin:0;padding:0;align-items:center}
+nav.top a{text-decoration:none;font-size:14px;font-weight:500;color:var(--mut)}
+nav.top a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding-inline:26px;border-radius:6px;border:0;background:var(--ink);color:var(--bg);font-weight:600;font-size:14px;text-decoration:none;box-shadow:0 14px 22px -14px rgba(15,34,56,.6);transition:transform .2s var(--ease),background .2s}
+.btn:hover{transform:translateY(-2px);background:#1f4474}
+nav.top a.btn{color:var(--bg);min-height:40px;padding-inline:18px}
+
+.hero{display:grid;grid-template-columns:.82fr 1.18fr;gap:56px;align-items:center;padding-block:56px 72px}
+.hero h1{font-weight:700;font-size:clamp(2.4rem,5vw,4.4rem);line-height:1.02;letter-spacing:-.035em}
+.hero h1 em{font-style:normal;color:var(--ox)}
+.hero p{color:var(--mut);font-size:1.1rem;max-width:38ch;margin:22px 0 0}
+
+/* the 2x2 */
+.fw{position:relative;padding:0 0 34px 34px}
+.ax{position:absolute;font-size:12px;font-weight:600;color:var(--mut);letter-spacing:.02em}
+.ax.y{left:0;top:0;bottom:34px;writing-mode:vertical-rl;transform:rotate(180deg);display:flex;justify-content:space-between}
+.ax.x{left:34px;right:0;bottom:0;display:flex;justify-content:space-between}
+.grid{display:grid;grid-template-columns:var(--c1,1fr) var(--c2,1fr);grid-template-rows:var(--r1,1fr) var(--r2,1fr);gap:10px;height:clamp(380px,40vw,500px);transition:grid-template-columns .7s var(--ease),grid-template-rows .7s var(--ease)}
+.q{position:relative;text-align:left;border:0;border-radius:10px;padding:20px 22px;background:var(--paper);color:var(--ink);overflow:hidden;
+  box-shadow:0 1px 0 #fff inset,0 22px 34px -26px rgba(15,34,56,.55),0 2px 4px rgba(15,34,56,.06);transition:background .45s var(--ease),color .45s var(--ease),box-shadow .45s var(--ease),transform .45s var(--ease);
+  animation:deal .9s var(--ease) both;animation-delay:calc(var(--i)*110ms + 200ms)}
+@keyframes deal{from{opacity:0;transform:translate(var(--dx),var(--dy)) scale(.94)}}
+.q:hover{transform:translateY(-3px)}
+.q[aria-pressed=true]{background:linear-gradient(160deg,var(--ox2),var(--ink) 55%,var(--oxd));color:#f4f6f9;box-shadow:0 1px 0 rgba(255,255,255,.18) inset,0 34px 44px -26px rgba(10,23,40,.8),0 4px 8px rgba(15,34,56,.12)}
+.q b{display:block;font-weight:700;font-size:clamp(1.05rem,1.7vw,1.4rem);line-height:1.15;letter-spacing:-.02em;max-width:14ch}
+.q span{display:block;font-size:13px;margin-top:6px;color:var(--mut)}
+.q[aria-pressed=true] span{color:#d5dde8}
+.q[aria-pressed=true] .d{color:#f1c477}
+.q{cursor:pointer}
+.q .more{position:absolute;inset:auto 22px 20px 22px;display:grid;grid-template-columns:auto 1fr;gap:6px 22px;align-items:end;opacity:0;transform:translateY(10px);transition:opacity .4s var(--ease) .15s,transform .5s var(--ease) .15s;pointer-events:none}
+.q[aria-pressed=true] .more{opacity:1;transform:none;pointer-events:auto}
+.more .d{font-weight:800;font-size:clamp(2.6rem,5vw,4.2rem);line-height:.85;letter-spacing:-.04em}
+.more .d small{display:block;font-size:13px;font-weight:600;letter-spacing:0;margin-top:8px}
+.more .f{font-size:13px;line-height:1.5;align-self:start;grid-column:2;grid-row:1}
+.more .d{grid-row:1/3}
+.more .go{grid-column:2;grid-row:2;justify-self:start}
+.more .go{display:inline-flex;align-items:center;min-height:44px;padding-inline:20px;border-radius:6px;background:#f1c477;color:var(--oxd);font-weight:700;font-size:14px;text-decoration:none;box-shadow:0 10px 16px -10px #000}
+
+/* the process chain */
+.chain{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:72px;border-radius:10px;overflow:hidden;box-shadow:0 26px 40px -30px rgba(15,34,56,.6)}
+.chain div{position:relative;padding:22px 26px 22px 40px;background:var(--paper);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 50%,calc(100% - 22px) 100%,0 100%,22px 50%);margin-right:-12px;animation:step .8s var(--ease) both;animation-delay:calc(var(--i)*140ms);animation-timeline:view();animation-range:entry 0% cover 35%}
+.chain div:first-child{clip-path:polygon(0 0,calc(100% - 22px) 0,100% 50%,calc(100% - 22px) 100%,0 100%);padding-left:26px}
+.chain div:last-child{margin-right:0;background:var(--ink);color:var(--bg)}
+.chain b{display:block;font-weight:700;font-size:1.1rem;letter-spacing:-.01em}
+.chain span{font-size:13px;color:var(--mut)}
+.chain div:last-child span{color:#c9d2de}
+@keyframes step{from{opacity:0;transform:translateX(-24px)}}
+
+.work{display:grid;grid-template-columns:.8fr 1.2fr;gap:56px;align-items:start;padding-bottom:100px}
+.work h2{font-weight:700;font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.08;letter-spacing:-.03em}
+.work p{color:var(--mut);margin-top:12px;max-width:36ch}
+.sheet{background:var(--paper);border-radius:10px;padding:26px 28px;box-shadow:0 1px 0 #fff inset,0 34px 50px -34px rgba(15,34,56,.55),0 2px 4px rgba(15,34,56,.06)}
+.sheet header{display:flex;justify-content:space-between;align-items:end;gap:16px;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.sheet h3{font-weight:700;font-size:1.1rem} .sheet header span{font-size:13px;color:var(--mut)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th{text-align:left;font-weight:600;font-size:12px;color:var(--mut);padding:10px 6px}
+td{padding:11px 6px;border-top:1px solid var(--line);vertical-align:middle}
+td.n{text-align:right;font-weight:700;font-variant-numeric:tabular-nums}
+.bar{display:block;width:160px;height:12px;background:repeating-linear-gradient(90deg,var(--line2) 0 1px,transparent 1px 16px)}
+.bar i{display:block;height:100%;width:var(--v);background:var(--ink);transform-origin:left;animation:grow 1.2s var(--ease) both;animation-timeline:view();animation-range:entry 0% cover 30%}
+.bar.low i{background:var(--ox)}
+@keyframes grow{from{transform:scaleX(0)}}
+.tag{font-size:12px;font-weight:700;padding:2px 9px;border-radius:4px;border:1.5px solid currentColor}
+.tag.ok{color:var(--ok)} .tag.no{color:var(--ox)} .tag.wait{color:var(--wait)}
+.syn{font-size:12px;color:var(--mut);margin-top:14px}
+@media (max-width:900px){nav.top ul li:not(.keep){display:none}.hero,.work{grid-template-columns:1fr}.grid{height:auto;grid-template-columns:1fr!important;grid-template-rows:none!important}.q{min-height:120px}.q[aria-pressed=true]{min-height:260px}.fw{padding:0}.ax{display:none}.chain{grid-template-columns:1fr 1fr}.chain div{clip-path:none!important;margin:0;padding:18px}.bar{width:90px}}
+@media (prefers-reduced-motion:reduce){.q,.chain div,.bar i{animation:none}.grid,.q,.q .more{transition:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top" aria-label="Main">
+    <a href="#"><img src="assets/logo-dark.png" alt="Think Tank Strategists"></a>
+    <ul><li><a href="#">Programs</a></li><li><a href="#">For organizations</a></li><li><a href="#">Verify a certificate</a></li><li class="keep"><a href="#">Sign in</a></li><li class="keep"><a class="btn" href="#">Register</a></li></ul>
+  </nav>
+
+  <section class="hero">
+    <div>
+      <h1>Four programs. <em>One framework</em> to choose by.</h1>
+      <p>Strategy and foresight programs led by Dr. Manal Al-Hasawi. Place your need on the grid: who it is for, and how far ahead you are looking.</p>
+    </div>
+    <div class="fw">
+      <div class="ax y" aria-hidden="true"><span>A whole team</span><span>One leader</span></div>
+      <div class="ax x" aria-hidden="true"><span>This year</span><span>The next decade</span></div>
+      <div class="grid" id="grid" role="group" aria-label="Programs by audience and horizon">
+        <div class="q" role="button" tabindex="0" style="--i:0;--dx:-30px;--dy:-30px" data-k="0" aria-pressed="false"><b>Executive Strategy Workshops</b><span>One leader · this year</span>
+          <div class="more"><div class="d">8<small>January 2027</small></div><div class="f">2 days · English<br>KWD 240.000 · full, waitlist open</div><a class="go" href="#">Join the waitlist</a></div></div>
+        <div class="q" role="button" tabindex="0" style="--i:1;--dx:30px;--dy:-30px" data-k="1" aria-pressed="true"><b>Foresight &amp; Futures Thinking</b><span>One leader · the next decade</span>
+          <div class="more"><div class="d">14<small>December 2026</small></div><div class="f">3 mornings · Arabic<br>KWD 180.000 · 4 of 20 seats left</div><a class="go" href="#">Register</a></div></div>
+        <div class="q" role="button" tabindex="0" style="--i:2;--dx:-30px;--dy:30px" data-k="2" aria-pressed="false"><b>Leadership &amp; Capability Building</b><span>A whole team · this year</span>
+          <div class="more"><div class="d">2<small>February 2027</small></div><div class="f">5 sessions · Arabic<br>KWD 320.000 · 11 of 24 seats left</div><a class="go" href="#">Register</a></div></div>
+        <div class="q" role="button" tabindex="0" style="--i:3;--dx:30px;--dy:30px" data-k="3" aria-pressed="false"><b>Custom In-House Programs</b><span>A whole team · the next decade</span>
+          <div class="more"><div class="d">Yours<small>Dates by agreement</small></div><div class="f">Designed for your team<br>Delivered at your offices</div><a class="go" href="#">Request a proposal</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="chain" aria-label="How a cohort runs">
+    <div style="--i:0"><b>Register</b><span>Pick a cohort, pay by KNET</span></div>
+    <div style="--i:1"><b>Learn</b><span>Sessions and an online classroom</span></div>
+    <div style="--i:2"><b>Prove</b><span>Attendance, assignment, exam</span></div>
+    <div style="--i:3"><b>Certify</b><span>A certificate anyone can verify</span></div>
+  </section>
+
+  <section class="work">
+    <div>
+      <h2>Inside the portals, every screen reads like a report.</h2>
+      <p>An organization sees its own people in one table: who attended, how much, and who earned the certificate.</p>
+    </div>
+    <div class="sheet">
+      <header><h3>Example Bank · Foresight &amp; Futures Thinking</h3><span>Completed 16 December 2026</span></header>
+      <table>
+        <thead><tr><th>Employee</th><th>Attendance</th><th></th><th>Certificate</th></tr></thead>
+        <tbody>
+          <tr><td>Abdulaziz Al-Mutairi</td><td><span class="bar" style="--v:100%"><i></i></span></td><td class="n">100%</td><td><span class="tag ok">Issued</span></td></tr>
+          <tr><td>Mishari Al-Ajmi</td><td><span class="bar" style="--v:100%"><i></i></span></td><td class="n">100%</td><td><span class="tag ok">Issued</span></td></tr>
+          <tr><td>Dalal Al-Khaled</td><td><span class="bar low" style="--v:67%"><i></i></span></td><td class="n">67%</td><td><span class="tag no">Not eligible</span></td></tr>
+        </tbody>
+      </table>
+      <p class="syn">Names, dates and amounts are sample data.</p>
+    </div>
+  </section>
+</div>
+
+<aside class="note">
+  <div class="wrap">
+    <div>
+      <h4>الاتجاه «الإطار»: لغة الاستشارات نفسها</h4>
+      <p>المصفوفة الرباعية هي أداة عمل الدكتورة مع الشركات. نجعلها واجهة الموقع: البرامج الأربعة موزّعة على محورين (لمن؟ وإلى أي مدى زمني؟)، والزائر يضع حاجته عليها فيظهر البرنامج ودفعته القادمة. الألوان: أبيض رمادي بارد وكحلي عميق، مع كهرماني للأرقام واللمسات. ألوان البنوك وبيوت الاستشارات.</p>
+      <ul><li><b>الحركة:</b> المربعات تُوزَّع عند الدخول، والمربع المختار يتمدد ويأخذ اللون، وسلسلة الخطوات تتتابع، والأعمدة ترسم نفسها.</li><li><b>العمق:</b> أوراق مرتفعة بظلال حقيقية، والمربع الكحلي المختار يرتفع فوق البقية.</li><li><b>في البوابات:</b> كل شاشة تقرير: جداول مسطّرة وأعمدة وأرقام واضحة.</li><li><b>الخطر:</b> يترك ألوانها الحالية تماماً؛ ويحتاج موافقتها على تصنيف برامجها بهذين المحورين.</li></ul>
+      <p style="margin-top:16px"><a href="index.html">كل الاتجاهات ←</a></p>
+    </div>
+    <div>
+      <h4>الألوان والخط</h4>
+      <div class="chips"><span style="background:#eceef2"></span><span style="background:#ffffff"></span><span style="background:#0f2238"></span><span style="background:#1f4474"></span><span style="background:#f1c477"></span></div>
+      <p style="margin-top:14px">الخط: Schibsted Grotesk للعناوين والنص، بأرقام واضحة للجداول.</p>
+    </div>
+  </div>
+</aside>
+
+<script>
+const grid=document.getElementById('grid'),qs=[...grid.querySelectorAll('.q')];
+function pick(k){qs.forEach(q=>q.setAttribute('aria-pressed',+q.dataset.k===k));
+  const col=k%2,row=k>1?1:0;grid.style.setProperty('--c1',col===0?'1.5fr':'1fr');grid.style.setProperty('--c2',col===1?'1.5fr':'1fr');
+  grid.style.setProperty('--r1',row===0?'1.55fr':'1fr');grid.style.setProperty('--r2',row===1?'1.55fr':'1fr')}
+qs.forEach(q=>{q.addEventListener('click',e=>{if(e.target.closest('.go'))return;pick(+q.dataset.k)});q.addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target===q){e.preventDefault();pick(+q.dataset.k)}})});pick(1);
+</script>
+</body>
+</html>
