@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>طلبات العروض — بوابة الجهة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<style>
+.side .foot a{padding-inline:0}
+.meta{font-size:var(--fs-14);color:var(--ink-2);margin:var(--s-4) 0 0}
+.newreq{display:grid;gap:var(--s-16);max-width:46rem;padding-bottom:var(--s-32);margin-bottom:var(--s-32);border-bottom:2px solid var(--ink)}
+.newreq h2{margin:0}
+.newreq .field a{color:var(--ribbon)}
+.reqs{list-style:none;margin:0;padding:0}
+.req{border-bottom:1.5px dashed var(--card-edge)}
+.req h3{font-size:inherit;font-weight:inherit;line-height:inherit}
+.rh{display:grid;grid-template-columns:7.5rem 1fr auto var(--s-16);gap:var(--s-4) var(--s-16);align-items:center;width:100%;min-height:var(--s-64);padding:var(--s-16) var(--s-8);font:inherit;color:var(--ink);text-align:start;background:none;border:0;cursor:pointer}
+.rh:hover strong{text-decoration:underline;text-underline-offset:5px}
+.rh .ref{font-weight:700;font-size:var(--fs-14)}
+.rh strong{display:block;font-weight:700;font-size:var(--fs-18);line-height:1.5}
+.rh .ti span{display:block;font-size:var(--fs-13);color:var(--ink-2)}
+.chev{width:var(--s-8);height:var(--s-8);border-right:2px solid var(--ink-2);border-bottom:2px solid var(--ink-2);transform:rotate(45deg);justify-self:center}
+.rh[aria-expanded=true] .chev{transform:rotate(-135deg)}
+.req.open{background:linear-gradient(180deg,rgba(138,35,50,.05),transparent var(--s-96))}
+.panel{padding:0 var(--s-8) var(--s-32);padding-inline-start:calc(7.5rem + var(--s-24));max-width:54rem}
+.path{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s-8);list-style:none;margin:var(--s-4) 0 var(--s-16);padding:0}
+.path li{border-top:3px solid var(--card-edge);padding-top:var(--s-8);color:var(--ink-2);font-size:var(--fs-13)}
+.path li b{display:block;font-size:var(--fs-14)}
+.path li.done{border-color:var(--ink-2)}
+.path li[aria-current]{border-color:var(--ribbon);color:var(--ink)}
+.panel .dl dd small{display:block;font-size:var(--fs-13);font-weight:400;color:var(--ink-2);line-height:1.7;max-width:52ch}
+.amt{font-size:var(--fs-22);font-weight:800;font-variant-numeric:tabular-nums}
+.acts{margin-top:var(--s-16)}
+.say{font-size:var(--fs-14);max-width:60ch;margin:var(--s-16) 0 0}
+.panel .notice{display:block;margin-top:var(--s-16)}
+.panel .notice form{display:grid;gap:var(--s-16)}
+.proc{display:grid;gap:var(--s-8);max-width:22rem;margin-top:var(--s-16);font-size:var(--fs-14)}
+.proc p{margin:0}
+.synthetic{margin:var(--s-48) 0 0}
+.synthetic .lbtn{font-size:inherit;margin-inline-start:var(--s-8)}
+@media (max-width:900px){
+  .rh{grid-template-columns:1fr auto;padding-inline:0}
+  .rh .ti{grid-column:1/-1;grid-row:2}
+  .chev{position:absolute;inset-inline-end:var(--s-4);bottom:var(--s-24)}
+  .rh{position:relative}.rh .ti{padding-inline-end:var(--s-32)}
+  .panel{padding-inline:0}
+  .path li span{display:none}
+}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="بنك المثال">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>بنك المثال</span></div>
+    <a href="07-org-seats.html">المقاعد</a>
+    <a href="08-org-report.html">مشاركة الموظفين</a>
+    <a href="22-org-proposals.html" aria-current="page">طلبات العروض</a>
+    <a href="23-org-account.html">حساب الجهة</a>
+    <div class="foot">خالد الفهد · مسؤول التدريب<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  </nav>
+  <main class="work">
+    <div class="sheet">
+      <header class="top">
+        <div><h1>طلبات العروض</h1><div class="crumb">برامج مغلقة لموظفي بنك المثال وحدهم · <span id="sum" aria-live="polite"></span></div></div>
+        <button class="btn sm" id="newbtn" data-cta="WF-CTA-021" aria-expanded="false" aria-controls="newf">طلب عرض لجهتي</button>
+      </header>
+
+      <form class="newreq" id="newf" novalidate hidden>
+        <h2>طلب عرض جديد</h2>
+        <p class="meta">تكتب ما تحتاجه الجهة، وتردّ الدكتورة بعرض مسعَّر للبرنامج كله: سعر واحد ومواعيد مقترحة. لا التزام عليك قبل أن تقبله.</p>
+        <div class="grid-2">
+          <div class="field"><label for="f-prog">البرنامج</label>
+            <select id="f-prog"><option value="">اختر البرنامج</option><option>استشراف المستقبل وبناء السيناريوهات</option><option>ورش الاستراتيجية للقيادات التنفيذية</option><option>بناء القيادات والقدرات المؤسسية</option><option value="other">برنامج آخر أشرحه في الهدف</option></select>
+            <span class="msg" hidden>اختر البرنامج، أو «برنامج آخر» واشرحه في الهدف.</span></div>
+          <div class="field"><label for="f-n">عدد المشاركين</label><input id="f-n" inputmode="numeric" autocomplete="off">
+            <span class="hint">لمقاعد قليلة في دفعة عامة لا تحتاج عرضاً؛ احجزها من <a href="07-org-seats.html">المقاعد</a>.</span>
+            <span class="msg" hidden>اكتب عدد المشاركين رقماً، من 1 فأكثر.</span></div>
+        </div>
+        <div class="field"><label for="f-when">الفترة</label><input id="f-when" autocomplete="off" placeholder="مثال: النصف الثاني من مارس 2027">
+          <span class="msg" hidden>اكتب الفترة التي تناسب الجهة، ولو تقريبية.</span></div>
+        <div class="field"><label for="f-goal">الهدف</label><textarea id="f-goal" placeholder="ما الذي تريد أن يخرج به موظفوك من البرنامج؟"></textarea>
+          <span class="msg" hidden>اكتب في سطر أو سطرين ما تريد أن يخرج به موظفوك؛ عليه تبني الدكتورة العرض.</span></div>
+        <div class="row"><button class="btn sm" type="submit">إرسال الطلب</button><button class="btn quiet sm" type="button" id="newno">تراجع</button></div>
+      </form>
+
+      <section aria-labelledby="lh">
+        <h2 class="vh" id="lh">طلبات بنك المثال</h2>
+        <ul class="reqs" id="list"></ul>
+        <div class="empty" id="empty" hidden>
+          <h3>لا طلبات عروض بعد</h3>
+          <p>العرض برنامج مغلق لموظفي بنك المثال وحدهم، بسعر واحد تدفعه الجهة. اطلبه، فتردّ الدكتورة بعرض مسعَّر تقبله أو ترفضه من هنا.</p>
+          <button class="btn sec sm" id="newbtn2" data-cta="WF-CTA-021">طلب عرض لجهتي</button>
+        </div>
+        <p class="synthetic">الأسماء والتواريخ والمبالغ تجريبية. <button class="lbtn" id="demo">عرض الحالة الفارغة</button><button class="lbtn" id="reset" hidden>إعادة العرض من البداية</button> &nbsp;<a href="index.html">خريطة الشاشات</a></p>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const TODAY='15 ديسمبر 2026';
+const people=n=>n===1?'مشارك واحد':n===2?'مشاركان':n<=10?n+' مشاركين':n+' مشاركاً';
+const count=n=>n===1?'طلب واحد':n===2?'طلبان':n<=10?n+' طلبات':n+' طلباً';
+const STAMP={new:['wait','جديد'],review:['wait','قيد المراجعة'],priced:['you','بانتظار ردّك'],accepted:['ok','مقبول'],declined:['off','مرفوض'],payable:['wait','بانتظار الدفع'],paying:['wait','بانتظار الدفع'],paid:['ok','مدفوع']};
+const STEP={new:1,review:1,priced:2,accepted:3,payable:3,paying:3,paid:4,declined:3};
+const seed=()=>[
+  {id:'Q-2026-011',prog:'ورش الاستراتيجية للقيادات التنفيذية',n:18,asked:'28 نوفمبر 2026',st:'priced',price:'3,600.000 د.ك',dates:'18 و19 يناير 2027، من 9:00 إلى 13:00',place:'يومان بالإنجليزية في مقر بنك المثال',until:'24 ديسمبر 2026'},
+  {id:'Q-2026-009',prog:'بناء القيادات والقدرات المؤسسية',n:24,asked:'9 نوفمبر 2026',st:'payable',price:'4,800.000 د.ك',cohort:'تبدأ 1 مارس 2027 · 5 جلسات · 24 مقعداً لبنك المثال'},
+  {id:'Q-2026-007',prog:'استشراف المستقبل وبناء السيناريوهات',n:30,asked:'11 ديسمبر 2026',st:'review',when:'الربع الثاني من 2027',goal:'تهيئة مديري الفروع للمشاركة في خطة البنك 2028.'},
+  {id:'Q-2026-003',prog:'ورش الاستراتيجية للقيادات التنفيذية',n:12,asked:'2 فبراير 2026',st:'declined',price:'2,400.000 د.ك',old:'رفضتَ العرض في 22 فبراير 2026، وكتبتَ السبب: «ميزانية التدريب لذلك الربع لم تُعتمد».'}
+];
+let reqs=seed(),open='Q-2026-011',seq=12,fresh='',dirty=false;
+const by=id=>reqs.find(r=>r.id===id);
+
+const path=r=>{const c=STEP[r.st],L=[['الطلب','ما تحتاجه الجهة'],['العرض المسعَّر','تعدّه الدكتورة'],['ردّك','قبول أو رفض'],['الدفع','مرة واحدة عن الجهة']];
+  return `<ol class="path" aria-label="مراحل الطلب">${L.map((l,i)=>`<li class="${i<c?'done':''}"${i===c&&r.st!=='declined'?' aria-current="step"':''}><b>${l[0]}</b><span>${l[1]}</span></li>`).join('')}</ol>`};
+const quote=r=>`<dl class="dl">
+  <div><dt>السعر المتفق عليه</dt><dd><span class="amt">${r.price}</span><small>للبرنامج كاملاً، ${people(r.n)}. الموظفون لا يدفعون شيئاً.</small></dd></div>
+  ${r.dates?`<div><dt>المواعيد المقترحة</dt><dd>${r.dates}<small>${r.place}</small></dd></div>`:''}
+  ${r.until&&r.st==='priced'?`<div><dt>العرض سارٍ حتى</dt><dd>${r.until}</dd></div>`:''}</dl>`;
+const sent=r=>`<dl class="dl"><div><dt>الفترة</dt><dd>${esc(r.when)}</dd></div><div><dt>الهدف</dt><dd>${esc(r.goal)}</dd></div></dl>`;
+function body(r){
+  if(r.st==='new')return sent(r)+`<p class="say"><b>لا شيء مطلوب منك الآن.</b> وصل طلبك الدكتورة اليوم، وتردّ عليه بعرض مسعَّر. يصلك بريد حين يصدر ويظهر هنا.</p>`;
+  if(r.st==='review')return sent(r)+`<p class="say"><b>لا شيء مطلوب منك الآن.</b> الدكتورة تراجع طلبك وتعدّ العرض المسعَّر. يصلك بريد حين يصدر ويظهر هنا.</p>`;
+  if(r.st==='priced')return quote(r)+`<div class="row acts" data-acts><button class="btn sm" data-cta="WF-CTA-024" data-id="${r.id}">قبول العرض</button><button class="btn sec sm" data-cta="WF-CTA-025" data-id="${r.id}" aria-expanded="false">رفض العرض</button></div>
+    <p class="meta" data-acts>ردّك نهائي: بعد القبول أو الرفض لا يتغير.</p>
+    <div class="notice" data-why hidden><form novalidate data-decline="${r.id}">
+      <p style="margin:0"><b>ترفض هذا العرض؟</b> يُغلق الطلب ولا يُعاد فتحه. إن أردت البرنامج لاحقاً فأرسل طلباً جديداً.</p>
+      <div class="field"><label for="why-${r.id}">سبب الرفض (اختياري، يصل الدكتورة)</label><textarea id="why-${r.id}" placeholder="مثال: الميزانية أقل من السعر، أو المواعيد لا تناسبنا"></textarea></div>
+      <div class="row"><button class="btn sm" type="submit">تأكيد الرفض</button><button class="btn quiet sm" type="button" data-keep>تراجع</button></div></form></div>`;
+  if(r.st==='accepted')return quote(r)+`<p class="say"><b>قبلتَ العرض اليوم، ${TODAY}.</b> تنشئ الدكتورة الآن الدفعة المغلقة لبنك المثال وترسل رابط دفع واحداً بالسعر المتفق عليه. يصلك الرابط على بريدك ويظهر في هذا الطلب.</p>`;
+  if(r.st==='declined')return quote(r)+`<p class="say">${r.old||`<b>رفضتَ العرض اليوم، ${TODAY}.</b> ${r.reason?'السبب الذي كتبته وصل الدكتورة. ':''}أُغلق الطلب.`} إن أردت البرنامج لاحقاً فأرسل طلباً جديداً.</p>`;
+  const head=`<dl class="dl"><div><dt>الدفعة المغلقة</dt><dd>${r.prog}<small>${r.cohort}</small></dd></div>
+    <div><dt>السعر المتفق عليه</dt><dd><span class="amt">${r.price}</span><small>دفعة واحدة عن الجهة كلها. الموظفون لا يدفعون شيئاً.</small></dd></div>`;
+  if(r.st==='paid')return head+`<div><dt>الدفع</dt><dd>اكتمل اليوم، ${TODAY}<small>بـKNET · الإيصال <bdi>R-2026-0342</bdi> وصل بريدك</small></dd></div></dl>
+    <p class="say"><b>المقاعد الـ24 صارت لبنك المثال.</b> بقي أن تدعو موظفيك: <a class="link" href="07-org-seats.html">أسند المقاعد وأرسل الدعوات من صفحة المقاعد</a></p>`;
+  return head+`<div><dt>الدفع</dt><dd>بدأ ولم يكتمل<small>أنشأت الدكتورة الدفعة وأرسلت رابط الدفع في 10 ديسمبر. يُدفع مرة واحدة بـKNET.</small></dd></div></dl>`+
+    (r.st==='paying'?`<div class="proc" role="status"><p>جارٍ الدفع عبر KNET، لا تغلق الصفحة</p><div class="skel"></div><div class="skel" style="width:60%"></div></div>`
+    :`<div class="row acts"><button class="btn sm" data-cta="WF-CTA-027" data-id="${r.id}">دفع السعر المتفق عليه</button></div>`);
+}
+function row(r){const o=open===r.id,[c,w]=STAMP[r.st];
+  return `<li class="req${o?' open':''}"><h3><button class="rh" id="h-${r.id}" data-open="${r.id}" aria-expanded="${o}" aria-controls="p-${r.id}">
+    <bdi class="ref num">${r.id}</bdi><span class="ti"><strong>${esc(r.prog)}</strong><span>برنامج مغلق · ${people(r.n)} · طُلب في ${r.asked}</span></span>
+    <span class="stamp ${c}${fresh===r.id?' press':''}">${w}</span><i class="chev" aria-hidden="true"></i></button></h3>
+    <div class="panel" id="p-${r.id}"${o?'':' hidden'}>${path(r)}${body(r)}</div></li>`}
+function draw(focus){const empty=!reqs.length;
+  $('list').hidden=empty;$('empty').hidden=!empty;$('demo').textContent=empty?'عرض الطلبات':'عرض الحالة الفارغة';$('reset').hidden=!dirty||empty;
+  $('list').innerHTML=reqs.map(row).join('');
+  const mine=reqs.filter(r=>r.st==='priced'||r.st==='payable').length;
+  $('sum').textContent=empty?'لا طلبات بعد':`${count(reqs.length)} · ${mine===0?'لا شيء ينتظرك':mine===1?'طلب واحد ينتظرك':mine===2?'طلبان ينتظرانك':mine+' طلبات تنتظرك'}`;
+  fresh='';if(focus&&$('h-'+focus))$('h-'+focus).focus();
+}
+const set=(id,st)=>{by(id).st=st;fresh=id;dirty=true;draw(id)};
+
+$('list').addEventListener('click',e=>{
+  const h=e.target.closest('[data-open]');if(h){open=open===h.dataset.open?'':h.dataset.open;draw(h.dataset.open);return}
+  const b=e.target.closest('button');if(!b)return;const panel=b.closest('.panel'),why=panel.querySelector('[data-why]');
+  const toggleWhy=o=>{why.hidden=!o;$$('[data-acts]',panel).forEach(x=>x.hidden=o);(o?why.querySelector('textarea'):panel.querySelector('[data-cta="WF-CTA-025"]')).focus()};
+  if(b.dataset.cta==='WF-CTA-024'){set(b.dataset.id,'accepted');ttToast('قُبل العرض، وأُبلغت الدكتورة')}
+  else if(b.dataset.cta==='WF-CTA-025')toggleWhy(true);
+  else if('keep' in b.dataset)toggleWhy(false);
+  else if(b.dataset.cta==='WF-CTA-027'){const id=b.dataset.id;by(id).st='paying';dirty=true;draw();
+    setTimeout(()=>{if(by(id)&&by(id).st==='paying'){set(id,'paid');ttToast('دُفع 4,800.000 د.ك بـKNET وثُبّتت المقاعد لبنك المثال')}},1500)}
+});
+$('list').addEventListener('submit',e=>{e.preventDefault();const id=e.target.dataset.decline,r=by(id);
+  r.reason=e.target.querySelector('textarea').value.trim();set(id,'declined');ttToast(r.reason?'رُفض العرض ووصل السبب الدكتورة':'رُفض العرض وأُبلغت الدكتورة')});
+
+const F=$('newf'),bad=(inp,is)=>{const f=inp.closest('.field'),m=f.querySelector('.msg');f.classList.toggle('bad',is);m.hidden=!is;inp.setAttribute('aria-invalid',is);return is};
+function form(o,from){F.hidden=!o;$('newbtn').hidden=o;$('newbtn').setAttribute('aria-expanded',o);$('newbtn2').hidden=o;
+  if(o){F.reset();$$('.field',F).forEach(f=>{f.classList.remove('bad');f.querySelector('.msg').hidden=true});open='';draw();$('f-prog').focus()}
+  else if(from!==false)(reqs.length?$('newbtn'):$('newbtn2')).focus();}
+$('newbtn').addEventListener('click',()=>form(true));
+$('newbtn2').addEventListener('click',()=>form(true));
+$('newno').addEventListener('click',()=>form(false));
+F.addEventListener('submit',e=>{e.preventDefault();
+  const p=$('f-prog'),n=$('f-n'),w=$('f-when'),g=$('f-goal'),num=parseInt(n.value.replace(/\D/g,''),10);
+  const e1=bad(p,!p.value),e2=bad(n,!(num>=1)||/[^\d\s]/.test(n.value.trim())),e3=bad(w,!w.value.trim()),e4=bad(g,!g.value.trim());
+  if(e1||e2||e3||e4){(e1?p:e2?n:e3?w:g).focus();return}
+  const id='Q-2026-0'+seq++;
+  reqs.unshift({id,prog:p.value==='other'?'برنامج آخر':p.value,n:num,asked:'اليوم، '+TODAY,st:'new',when:w.value.trim(),goal:g.value.trim()});
+  dirty=true;fresh=id;form(false,false);draw(id);ttToast(`أُرسل الطلب ${id} إلى الدكتورة`)});
+$('demo').addEventListener('click',()=>{reqs=reqs.length?[]:seed();open=reqs.length?'Q-2026-011':'';seq=12;dirty=false;form(false,false);draw();$('demo').focus()});
+$('reset').addEventListener('click',()=>{reqs=seed();open='Q-2026-011';seq=12;dirty=false;draw();$('demo').focus()});
+draw();
+</script>
+</body>
+</html>

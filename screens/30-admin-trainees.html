@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>المتدربون — إدارة Think Tank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<style>
+.find{display:flex;gap:var(--s-16);align-items:end;justify-content:space-between;flex-wrap:wrap;margin-bottom:var(--s-16)}
+.find .field{flex:1 1 280px;max-width:420px}
+.find .tabs{margin:0;border-bottom:0;box-shadow:inset 0 -2px 0 var(--ink);max-width:100%}
+.count{margin:0 0 var(--s-4);font-size:var(--fs-14);color:var(--ink-2)}
+.count b{color:var(--ink);font-variant-numeric:tabular-nums}
+.people{min-width:760px}
+.people td{height:60px}
+.people td small{display:block;font-size:var(--fs-12);font-weight:400;color:var(--ink-2);line-height:1.7}
+.people .who{font:inherit;font-weight:700;color:var(--ink);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-decoration-color:var(--card-edge);text-underline-offset:5px;min-height:28px;text-align:start}
+.people .who:hover{color:var(--ribbon);text-decoration-color:currentColor}
+.people .gone{color:var(--ink-2)}
+.people th.n,.people td.n{text-align:center;width:96px}
+.title{display:flex;gap:var(--s-24);align-items:center;flex-wrap:wrap}
+.title .stamp{font-size:var(--fs-16);padding:var(--s-4) var(--s-16);border-width:3px;border-radius:var(--s-8);transform:rotate(-4deg)}
+.ask{padding:0 0 var(--s-24);margin-bottom:var(--s-32);border-bottom:1.5px dashed var(--card-edge)}
+.ask h2:focus{outline:0}
+.ask ul{margin:0 0 var(--s-16);padding-inline-start:var(--s-24);max-width:64ch}
+.ask li{padding-block:var(--s-4)}
+.ask li::marker{color:var(--ribbon)}
+.check{display:flex;gap:var(--s-12);align-items:center;min-height:44px;font-weight:500;cursor:pointer;max-width:64ch}
+.check input{width:24px;height:24px;flex:none;accent-color:var(--ribbon);margin:0}
+.ask .msg{display:block;font-size:var(--fs-12);color:var(--err);font-weight:700}
+.ask .row{margin-top:var(--s-16)}
+#req,#said{margin-bottom:var(--s-24)}
+#req{align-items:center;justify-content:space-between;flex-wrap:wrap}
+#req p{margin:0;max-width:60ch}
+.rec th{position:relative}
+.rec td small{display:block;font-size:var(--fs-12);color:var(--ink-2);line-height:1.6}
+.rec td:first-child{font-weight:700}
+.rec.pays td:first-child,.rec.log td:first-child{font-weight:400;color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.rec td.amt,.rec th.amt{text-align:end;padding-inline-end:var(--s-24)}
+.rec td.amt{font-weight:700;font-variant-numeric:tabular-nums}
+.rec.regs{min-width:600px}.rec.pays{min-width:640px}.rec.log{min-width:560px}.rec.cer{min-width:520px}
+.rec.log td:last-child{white-space:nowrap;color:var(--ink-2)}
+.blank{color:var(--ink-2);font-weight:400}
+.fine{font-size:var(--fs-13);color:var(--ink-2);max-width:72ch;margin:var(--s-12) 0 0}
+.work #record section+section{margin-top:var(--s-32)}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="الإدارة">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>الإدارة</span></div>
+    <a href="09-admin-inbox.html">ما ينتظرك <span class="n">3</span></a>
+    <a href="24-admin-cohorts.html">الدفعات</a>
+    <a href="25-admin-programs.html">البرامج</a>
+    <a href="26-admin-orgs.html">الجهات <span class="n">1</span></a>
+    <a href="27-admin-proposals.html">طلبات العروض <span class="n">2</span></a>
+    <a href="28-admin-payments.html">المدفوعات <span class="n">1</span></a>
+    <a href="29-admin-certificates.html">الشهادات</a>
+    <a href="30-admin-trainees.html" aria-current="page">المتدربون</a>
+    <a href="31-admin-report.html">التقرير الشامل</a>
+    <div class="foot">د. منال الحساوي<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+
+      <!-- ===== the list ===== -->
+      <div id="list">
+        <header class="top">
+          <div><h1>المتدربون</h1><div class="crumb" id="crumb"></div></div>
+        </header>
+        <div class="find">
+          <div class="field"><label for="q">ابحثي بالاسم أو البريد أو رقم الجوال</label><input id="q" type="search" autocomplete="off" placeholder="مثال: نورة أو 5550"></div>
+          <div class="tabs" role="tablist" aria-label="حالة الحساب" id="tabs"></div>
+        </div>
+        <section aria-label="قائمة المتدربين" id="panel" role="tabpanel">
+          <p class="count" id="count" role="status"></p>
+          <div class="scroll-x" id="tablewrap">
+            <table class="t people">
+              <thead><tr><th>المتدرب</th><th>الجهة</th><th>الحساب</th><th class="n">التسجيلات</th><th class="n">الشهادات</th></tr></thead>
+              <tbody id="rows"></tbody>
+            </table>
+          </div>
+          <div class="empty" id="empty" hidden><h2 id="empty-h"></h2><p id="empty-p"></p></div>
+        </section>
+        <p class="fine">المتدرب ينشئ حسابه بنفسه، أو تدعوه جهته حين تخصّص له مقعداً. لا تُضاف الحسابات من هذه القائمة.</p>
+      </div>
+
+      <!-- ===== one trainee's record ===== -->
+      <div id="record" hidden>
+        <header class="top">
+          <div class="title">
+            <div><h1 id="r-name" tabindex="-1"></h1><div class="crumb"><a href="30-admin-trainees.html" id="back">المتدربون</a> · <span id="r-sub"></span></div></div>
+            <span class="stamp ok" id="r-stamp"><span class="vh">حالة الحساب: </span><span id="r-stw"></span></span>
+          </div>
+          <div class="row" id="r-acts"></div>
+        </header>
+
+        <div class="ask" id="ask" hidden></div>
+        <div class="notice" id="said" role="status" hidden></div>
+        <div class="notice" id="req" hidden></div>
+
+        <section aria-labelledby="h-det">
+          <h2 id="h-det"></h2>
+          <dl class="dl" id="r-dl"></dl>
+        </section>
+
+        <section aria-labelledby="h-reg">
+          <h2 id="h-reg"></h2>
+          <div class="scroll-x"><table class="t rec regs">
+            <thead><tr><th>الدفعة</th><th>الحالة</th><th>الحضور</th><th><span class="vh">رابط</span></th></tr></thead>
+            <tbody>
+              <tr><td>استشراف المستقبل وبناء السيناريوهات<small>14 – 16 ديسمبر 2026 · 3 جلسات</small></td><td><span class="stamp ok">مكتمل</span></td><td class="num"><bdi>100%</bdi> <span class="muted">· 3 من 3 جلسات</span></td><td><a class="rowlink" href="10-admin-cohort.html?state=completed">افتحي الدفعة</a></td></tr>
+              <tr><td>بناء القيادات والقدرات المؤسسية<small>يبدأ 2 فبراير 2027 · 5 جلسات</small></td><td><span class="stamp ok">مؤكد</span></td><td class="muted">لم تبدأ الدفعة بعد</td><td></td></tr>
+            </tbody>
+          </table></div>
+        </section>
+
+        <section aria-labelledby="h-pay">
+          <h2 id="h-pay"></h2>
+          <div class="scroll-x"><table class="t rec pays">
+            <thead><tr><th>التاريخ</th><th>عن ماذا</th><th class="amt">المبلغ (د.ك)</th><th>الحالة</th><th>رقم الإيصال</th></tr></thead>
+            <tbody>
+              <tr><td>29 نوفمبر 2026</td><td>استشراف المستقبل · دفعة 14 ديسمبر<small>مقعد واحد · KNET</small></td><td class="amt">180.000</td><td><span class="stamp ok">مدفوعة</span></td><td><bdi class="num">R-2026-0318</bdi></td></tr>
+            </tbody>
+          </table></div>
+          <p class="fine">مقعد دفعة 2 فبراير على حساب وزارة التخطيط بسعر متفق عليه، ودفعته تظهر باسم الجهة في <a class="link" href="28-admin-payments.html">المدفوعات</a>.</p>
+        </section>
+
+        <section aria-labelledby="h-cer">
+          <h2 id="h-cer"></h2>
+          <div class="scroll-x"><table class="t rec cer">
+            <thead><tr><th>الرقم</th><th>البرنامج</th><th>الحالة</th><th><span class="vh">رابط</span></th></tr></thead>
+            <tbody>
+              <tr><td><bdi class="num">TTS-2026-0142</bdi></td><td>استشراف المستقبل وبناء السيناريوهات<small>صدرت 17 ديسمبر 2026</small></td><td><span class="stamp ok">صادرة</span></td><td><a class="rowlink" href="12-verify.html">افتحي صفحة التحقق</a></td></tr>
+            </tbody>
+          </table></div>
+          <p class="fine" id="cer-note" hidden>رقم الشهادة ما زال صالحاً للتحقق، وصفحة التحقق تعرضه بلا اسم.</p>
+        </section>
+
+        <section aria-labelledby="h-log">
+          <h2 id="h-log">سجل التغييرات</h2>
+          <div class="scroll-x"><table class="t rec log">
+            <thead><tr><th>متى</th><th>ما حدث</th><th>من</th></tr></thead>
+            <tbody id="log"></tbody>
+          </table></div>
+          <p class="fine">السجل لا يُعدَّل ولا يُحذف منه شيء، حتى بعد تعطيل الحساب أو تجهيل البيانات.</p>
+        </section>
+
+        <p class="fine" id="demo">للعرض فقط: <button class="lbtn" type="button" id="toggle"></button></p>
+      </div>
+
+      <p class="synthetic" style="margin-top:var(--s-24)">الأسماء والأرقام والعناوين والتواريخ تجريبية. <a href="index.html">خريطة الشاشات</a></p>
+    </div>
+  </main>
+</div>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const qs=new URLSearchParams(location.search);
+// k: active | invited | pending | off | anon
+const T=[
+ {id:'noura',n:'نورة الصباح',f:1,e:'noura.alsabah@example.com',m:'+965 5550 0142',o:'وزارة التخطيط',k:'active',reg:2,cer:1},
+ {id:'aziz',n:'عبدالعزيز المطيري',e:'a.almutairi@example.com',m:'+965 5550 0117',o:'بنك المثال',k:'active',reg:1,cer:1},
+ {id:'dalal',n:'دلال الخالد',f:1,e:'d.alkhaled@example.com',m:'+965 5550 0121',o:'بنك المثال',k:'active',reg:1,cer:1},
+ {id:'meshari',n:'مشاري العجمي',e:'m.alajmi@example.com',m:'+965 5550 0126',o:'بنك المثال',k:'active',reg:2,cer:1},
+ {id:'hamad',n:'حمد السالم',e:'h.alsalem@example.com',m:'',o:'بنك المثال',k:'invited',reg:1,cer:0,note:'دعته جهته في 3 ديسمبر ولم يفعّل حسابه بعد'},
+ {id:'sara',n:'سارة العنزي',f:1,e:'sara.alenezi@example.com',m:'+965 5550 0133',o:'فردي',k:'active',reg:1,cer:0},
+ {id:'fahad',n:'فهد الشمري',e:'fahad.sh@example.com',m:'+965 5550 0138',o:'فردي',k:'active',reg:1,cer:1},
+ {id:'hannah',n:'Hannah Clarke',en:1,f:1,e:'hannah.clarke@example.com',m:'+965 5550 0151',o:'فردي',k:'active',reg:1,cer:0},
+ {id:'yousef',n:'يوسف الرشيدي',e:'y.alrashidi@example.com',m:'+965 5550 0156',o:'فردي',k:'active',reg:2,cer:1},
+ {id:'maryam',n:'مريم الكندري',f:1,e:'maryam.k@example.com',m:'+965 5550 0162',o:'فردي',k:'active',reg:2,cer:1},
+ {id:'ghadeer',n:'غدير المطوع',f:1,e:'ghadeer.m@example.com',m:'+965 5550 0170',o:'فردي',k:'pending',reg:0,cer:0,note:'أنشأت الحساب في 5 ديسمبر ولم تُدخل رمز التحقق'},
+ {id:'abdullah',n:'عبدالله العازمي',e:'a.alazmi@example.com',m:'+965 5550 0109',o:'فردي',k:'off',reg:1,cer:0,note:'عُطّل في 18 نوفمبر'}];
+const ST={active:['ok','فعّال'],invited:['wait','مدعو'],pending:['wait','بانتظار التحقق'],off:['off','معطَّل'],anon:['off','مجهَّل']};
+const TABS=[['','الكل'],['active','فعّال'],['invited','مدعو'],['pending','بانتظار التحقق'],['off','معطَّل']];
+const N=T[0];
+let tab='',q='',req=qs.get('req')!=='0',panel='',fresh=false;
+const LOG=[
+ ['17 ديسمبر 2026','09:05','صدرت الشهادة <bdi>TTS-2026-0142</bdi>','الدكتورة'],
+ ['16 ديسمبر 2026','13:20','سُجّل حضورها الجلسة الثالثة، فاكتمل حضورها 3 من 3','الدكتورة'],
+ ['29 نوفمبر 2026','19:40','تأكّد دفع 180 د.ك عن طريق KNET، إيصال <bdi>R-2026-0318</bdi>','النظام'],
+ ['24 نوفمبر 2026','10:14','تحقّقت من رقم جوالها برمز التحقق','هي'],
+ ['24 نوفمبر 2026','10:12','أُنشئ الحساب','هي']];
+const REQ=['20 ديسمبر 2026','21:30','طلبت حذف بياناتها من بوابتها','هي'];
+
+/* ---------- list ---------- */
+const plural=n=>n===0?'لا متدربين':n===1?'متدرب واحد':n===2?'متدربان':n<=10?`${n} متدربين`:`${n} متدرباً`;
+const cnt=k=>T.filter(t=>!k||t.k===k).length;
+const norm=s=>s.toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/\s+/g,' ').trim();
+const digits=s=>s.replace(/\D/g,'');
+const nm=t=>t.k==='anon'?'متدرب محذوف':t.n;
+function shown(){const s=norm(q),d=digits(q);
+  return T.filter(t=>(!tab||t.k===tab)&&(!s||norm(nm(t)).includes(s)||(t.e&&t.e.includes(s))||(d.length>2&&digits(t.m).includes(d))))}
+function list(){
+  const L=shown();
+  $('crumb').textContent=`${plural(T.length)} · ${cnt('active')} حسابات فعّالة`;
+  $('tabs').innerHTML=TABS.map(([k,w])=>`<button role="tab" type="button" data-tab="${k}" aria-controls="panel" aria-selected="${k===tab}" tabindex="${k===tab?0:-1}">${w} <span class="num">${cnt(k)}</span></button>`).join('');
+  $('count').innerHTML=L.length?`<b>${plural(L.length)}</b>${q.trim()?` يطابقون «${esc(q.trim())}»`:''}`:'';
+  $('tablewrap').hidden=!L.length;$('empty').hidden=!!L.length;
+  if(!L.length){
+    const none=!q.trim(),w=tab?TABS.find(t=>t[0]===tab)[1]:'';
+    $('empty-h').textContent=none?`لا حسابات بحالة «${w}»`:'لا متدرب بهذا الاسم أو البريد أو الرقم';
+    $('empty-p').innerHTML=none?'حين يصير حساب بهذه الحالة يظهر هنا.':`لم نجد «${esc(q.trim())}»${tab?` بين حسابات «${w}»`:''}. جرّبي جزءاً من الاسم أو آخر أربعة أرقام من الجوال، أو <button class="lbtn" type="button" id="clear">امسحي البحث</button>`;
+  }
+  $('rows').innerHTML=L.map(t=>{
+    const [cls,word]=ST[t.k],gone=t.k==='anon';
+    const label=gone?'متدرب محذوف':t.en?`<bdi lang="en">${t.n}</bdi>`:t.n;
+    const contact=gone?'مُسحت بيانات التواصل':[t.e&&`<bdi>${t.e}</bdi>`,t.m&&`<bdi>${t.m}</bdi>`].filter(Boolean).join(' · ');
+    return `<tr><td><button class="who${gone?' gone':''}" type="button" data-open="${t.id}">${label}</button><small>${contact}</small></td><td>${t.o}</td><td><span class="stamp ${cls}">${word}</span>${t.note?`<small>${t.note}</small>`:''}</td><td class="n num">${t.reg}</td><td class="n num">${t.cer}</td></tr>`}).join('');
+}
+function pick(k){tab=k;list();document.querySelector(`[data-tab="${k}"]`).focus()}
+$('q').addEventListener('input',e=>{q=e.target.value;list()});
+$('tabs').addEventListener('keydown',e=>{
+  const i=TABS.findIndex(t=>t[0]===tab),n=TABS.length,to={ArrowLeft:(i+1)%n,ArrowRight:(i+n-1)%n,Home:0,End:n-1}[e.key];
+  if(to===undefined)return;e.preventDefault();pick(TABS[to][0])});
+
+/* ---------- record ---------- */
+function record(){
+  const k=N.k,gone=k==='anon',[cls,word]=ST[k],st=$('r-stamp');
+  $('r-name').textContent=gone?'متدرب محذوف':N.n;
+  $('r-sub').textContent=gone?'سجل مجهَّل · وزارة التخطيط':'وزارة التخطيط · انضمت 24 نوفمبر 2026';
+  st.className='stamp '+cls;$('r-stw').textContent=word;
+  if(fresh){void st.offsetWidth;st.classList.add('press');fresh=false}
+  // actions exist only in the state that allows them
+  $('r-acts').innerHTML=k==='active'&&!panel?`<button class="btn quiet sm" data-cta="WF-CTA-048" data-panel="disable">تعطيل الحساب</button>`:'';
+  const r=$('req');r.hidden=!(req&&!gone&&!panel);
+  r.innerHTML=r.hidden?'':`<p><b>طلبت نورة حذف بياناتها في 20 ديسمبر.</b> التجهيل يمسح ما يعرّف بها ويُبقي ما يلزم لصحة الشهادات والتقارير.</p><button class="btn sm" data-cta="WF-CTA-053" data-panel="anon">تجهيل بيانات متدرب</button>`;
+  const blank='<span class="blank">مُسح</span>';
+  $('h-det').textContent=gone?'البيانات':'بياناتها';$('h-reg').textContent=gone?'التسجيلات':'تسجيلاتها';
+  $('h-pay').textContent=gone?'المدفوعات':'مدفوعاتها';$('h-cer').textContent=gone?'الشهادات':'شهاداتها';
+  $('r-dl').innerHTML=`<div><dt>الاسم</dt><dd>${gone?'متدرب محذوف':N.n}</dd><span></span></div>
+   <div><dt>الجوال</dt><dd>${gone?blank:`<bdi class="num">${N.m}</bdi>`}</dd><span></span></div>
+   <div><dt>البريد</dt><dd>${gone?blank:`<bdi>${N.e}</bdi>`}</dd><span></span></div>
+   <div><dt>الجهة</dt><dd>${N.o}</dd><span></span></div>`;
+  $('cer-note').hidden=!gone;
+  const L=[...(N.extra||[]),...(req||gone?[REQ]:[]),...LOG];
+  $('log').innerHTML=L.map(([d,t,what,by])=>`<tr><td>${d} · <bdi>${t}</bdi></td><td>${what}</td><td>${by}</td></tr>`).join('');
+  $('demo').hidden=gone||!!panel;
+  $('toggle').textContent=req?'أظهري السجل بلا طلب حذف':'أظهري السجل وفيه طلب حذف';
+}
+const PANEL={
+ disable:`<h2 tabindex="-1">تعطيل حساب نورة الصباح</h2>
+  <ul><li>يتوقف دخولها إلى بوابتها فوراً.</li><li>تسجيلاتها ومدفوعاتها وشهادتها وسجل التغييرات تبقى كما هي.</li><li>شهادتها تبقى صالحة في صفحة التحقق.</li><li>إعادة التفعيل غير متاحة في هذه النسخة.</li></ul>
+  <div class="row"><button class="btn" data-go="disable">تأكيد التعطيل</button><button class="btn quiet" data-back>تراجع</button></div>`,
+ anon:`<h2 tabindex="-1">تجهيل بيانات نورة الصباح لا يمكن التراجع عنه</h2>
+  <ul><li>يُمسح اسمها ورقم جوالها وبريدها.</li><li>يُغلق حسابها ولا تستطيع الدخول بعده.</li><li>رقم شهادتها يبقى صالحاً للتحقق، بلا اسم.</li><li>تقارير جهتها تعرضها باسم «متدرب محذوف».</li><li>سجل التغييرات يبقى كما هو.</li></ul>
+  <label class="check"><input type="checkbox" id="sure" aria-describedby="sm"><span>قرأتُ ما سيحدث، وأعرف أن التجهيل لا يُتراجع عنه.</span></label>
+  <span class="msg" id="sm" hidden>علّمي المربع أولاً؛ التجهيل لا يُنفَّذ بلا تأكيدك.</span>
+  <div class="row"><button class="btn" data-go="anon">تأكيد التجهيل</button><button class="btn quiet" data-back>تراجع</button></div>`};
+function openPanel(kind){panel=kind;const a=$('ask');a.innerHTML=PANEL[kind];a.hidden=false;$('said').hidden=true;record();a.querySelector('h2').focus()}
+function closePanel(){const was=panel;panel='';$('ask').hidden=true;$('ask').innerHTML='';record();return was}
+function say(html){const n=$('said');n.innerHTML=html;n.hidden=false}
+function go(kind){
+  if(kind==='disable'){
+    N.k='off';N.note='عطّلتِه اليوم';N.extra=[['اليوم','الآن','عُطّل الحساب وتوقف الدخول','الدكتورة'],...(N.extra||[])];
+    fresh=true;closePanel();say('<div><b>عُطّل الحساب وتوقف دخولها.</b> تسجيلاتها وسجلها باقية. إعادة التفعيل غير متاحة في هذه النسخة.</div>');
+    ttToast('عُطّل حساب نورة الصباح');
+  }else{
+    if(!$('sure').checked){$('sm').hidden=false;$('sure').focus();return}
+    N.k='anon';N.note='';N.extra=[['اليوم','الآن','جُهّلت البيانات بطلب صاحبتها: مُسح الاسم والجوال والبريد وأُغلق الحساب','الدكتورة'],...(N.extra||[])];
+    fresh=true;closePanel();say('<div><b>جُهّلت بيانات هذا السجل.</b> مُسح الاسم والجوال والبريد وأُغلق الحساب. لا إجراء بقي على هذا الحساب.</div>');
+    ttToast('جُهّلت البيانات');
+  }
+  list();$('r-name').focus();
+}
+
+/* ---------- switching views ---------- */
+function show(id,push){
+  const rec=id==='noura';
+  $('list').hidden=rec;$('record').hidden=!rec;
+  if(rec){record();document.title=`${N.k==='anon'?'متدرب محذوف':N.n} — المتدربون`}else{list();document.title='المتدربون — إدارة Think Tank'}
+  if(push){try{history.pushState({id:rec?id:''},'',rec?'?id=noura':location.pathname)}catch(_){}scrollTo(0,0);(rec?$('r-name'):document.querySelector('[data-open="noura"]')||$('q')).focus()}
+}
+addEventListener('popstate',()=>show(new URLSearchParams(location.search).get('id')||''));
+$('back').addEventListener('click',e=>{e.preventDefault();if(panel)closePanel();show('',true)});
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;const d=t.dataset;
+  if('tab' in d)pick(d.tab);
+  else if(t.id==='clear'){q='';$('q').value='';list();$('q').focus()}
+  else if(d.open){d.open==='noura'?show('noura',true):ttToast('سجل هذا المتدرب خارج شاشات العرض؛ افتحي سجل نورة الصباح')}
+  else if(d.panel)openPanel(d.panel);
+  else if('back' in d){const was=closePanel();const b=document.querySelector(`[data-panel="${was}"]`);if(b)b.focus()}
+  else if(d.go)go(d.go);
+  else if(t.id==='toggle'){req=!req;$('said').hidden=true;record();$('toggle').focus()}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&panel){const was=closePanel();const b=document.querySelector(`[data-panel="${was}"]`);if(b)b.focus()}});
+list();show(qs.get('id')||'');
+</script>
+</body>
+</html>

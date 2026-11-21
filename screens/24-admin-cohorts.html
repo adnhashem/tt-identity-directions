@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>الدفعات — إدارة Think Tank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<style>
+[tabindex="-1"]:focus{outline:0}
+.work header.top{align-items:center}
+/* the in-place form: a ruled band on the sheet, not a box */
+.ask{padding-bottom:var(--s-32);margin-bottom:var(--s-32);border-bottom:1.5px dashed var(--card-edge)}
+.ask h2{margin-bottom:var(--s-16)}
+.ask .notice{margin-bottom:var(--s-16);max-width:760px}
+.form{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:var(--s-16);align-items:start;max-width:760px;margin-bottom:var(--s-24)}
+.form .w3{grid-column:span 3}.form .w2{grid-column:span 2}.form .w6{grid-column:1/-1}
+.form .nl{grid-column:1/span 3}
+.form .hint a{color:var(--ribbon)}
+.fnote{margin:0;font-size:var(--fs-13);color:var(--ink-2)}
+/* filter bar */
+.tabs{margin-bottom:var(--s-16)}
+.tabs [role=tab] i{font-style:normal;font-size:var(--fs-12);font-variant-numeric:tabular-nums;margin-inline-start:var(--s-4);opacity:.75}
+.bar{display:flex;gap:var(--s-8) var(--s-24);align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:var(--s-8)}
+.bar p{margin:0;font-size:var(--fs-14);color:var(--ink-2)}
+.bar p b{color:var(--ink);font-variant-numeric:tabular-nums}
+.bar .field{grid-template-columns:auto auto;align-items:center;gap:var(--s-8)}
+.bar .field select{min-height:44px;width:auto}
+/* the ledger */
+.led td{padding-block:var(--s-12)}
+.led small{display:block;font-size:var(--fs-13);color:var(--ink-2);line-height:1.6}
+.led .when{white-space:nowrap}
+.led .when b,.led .prog b{display:block;font-weight:700;line-height:1.5}
+.led .when b{font-size:var(--fs-16);font-variant-numeric:tabular-nums}
+.led .cap{white-space:nowrap}
+.led .cap bdi{font-weight:700}
+.led .seats{flex-wrap:nowrap;gap:2px;margin-top:var(--s-4)}
+.led .seats s{width:6px;height:var(--s-12);border-radius:2px 2px 1px 1px;box-shadow:none}
+.led .seats s.free{border-width:1px}
+.led td:last-child{text-align:end}
+.led .m{display:none}
+.tail{margin-top:var(--s-24)}
+@media (max-width:900px){
+  .form{grid-template-columns:minmax(0,1fr)}.form .w3,.form .w2,.form .nl{grid-column:1}
+  .led .x{display:none}.led .m{display:block}
+  /* at phone width each ledger line stacks: date and stamp, then programme and link */
+  .led,.led tbody{display:block}.led thead{display:none}
+  .led tr{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s-4) var(--s-12);align-items:center;padding-block:var(--s-12);border-bottom:1px solid var(--card-edge)}
+  .led td{padding:0;border:0}
+  .led .when{grid-area:1/1}.led .when b,.led .when small{display:inline;font-size:var(--fs-14)}.led .when small{margin-inline-start:var(--s-4)}
+  .led td:nth-child(4){grid-area:1/2;justify-self:end}
+  .led .prog{grid-area:2/1}.led td:last-child{grid-area:2/2;align-self:end}
+  .bar .field{width:100%;grid-template-columns:auto 1fr}.bar .field select{width:100%}
+}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="الإدارة">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>الإدارة</span></div>
+    <a href="09-admin-inbox.html">ما ينتظرك <span class="n">3</span></a>
+    <a href="24-admin-cohorts.html" aria-current="page">الدفعات</a>
+    <a href="25-admin-programs.html">البرامج</a>
+    <a href="26-admin-orgs.html">الجهات <span class="n">1</span></a>
+    <a href="27-admin-proposals.html">طلبات العروض <span class="n">2</span></a>
+    <a href="28-admin-payments.html">المدفوعات <span class="n">1</span></a>
+    <a href="29-admin-certificates.html">الشهادات</a>
+    <a href="30-admin-trainees.html">المتدربون</a>
+    <a href="31-admin-report.html">التقرير الشامل</a>
+    <div class="foot">د. منال الحساوي<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+      <header class="top">
+        <div><h1>الدفعات</h1><div class="crumb" id="crumb"></div></div>
+        <div class="row" id="acts"><button class="btn" data-cta="WF-CTA-003" id="create">إنشاء دفعة</button></div>
+      </header>
+
+      <form class="ask" id="ask" hidden novalidate aria-labelledby="h-new">
+        <h2 id="h-new" tabindex="-1">دفعة جديدة</h2>
+        <div class="notice err" id="sum" role="alert" hidden></div>
+        <div class="form">
+          <div class="field w6" data-f="prog"><label for="f-prog">البرنامج</label>
+            <select id="f-prog" aria-describedby="h-prog"><option value="">اختاري البرنامج</option></select>
+            <span class="hint" id="h-prog">تظهر هنا البرامج المنشورة فقط. «التفكير المنظومي للقيادات» ما زال مسودة؛ انشريه من <a href="25-admin-programs.html">البرامج</a> ليظهر.</span>
+            <span class="msg" hidden></span></div>
+          <div class="field w3" data-f="type"><label for="f-type">نوع التسجيل</label>
+            <select id="f-type"><option value="">اختاري النوع</option><option value="public">عامة: يسجّل فيها أي متدرب من الموقع</option><option value="closed">مغلقة: لموظفي جهة واحدة</option></select>
+            <span class="msg" hidden></span></div>
+          <div class="field w3" data-f="org" id="orgf" hidden><label for="f-org">الجهة</label>
+            <select id="f-org"><option value="">اختاري الجهة</option></select>
+            <span class="msg" hidden></span></div>
+          <div class="field w3 nl" data-f="start"><label for="f-start">تاريخ البداية</label><input type="date" id="f-start" min="2026-12-07"><span class="msg" hidden></span></div>
+          <div class="field w3" data-f="end"><label for="f-end">تاريخ النهاية</label><input type="date" id="f-end" min="2026-12-07"><span class="msg" hidden></span></div>
+          <div class="field w2" data-f="cap"><label for="f-cap">السعة (مقعداً)</label><input type="number" id="f-cap" min="1" step="1" inputmode="numeric"><span class="msg" hidden></span></div>
+          <div class="field w2" data-f="n"><label for="f-n">عدد الجلسات</label><input type="number" id="f-n" min="1" step="1" inputmode="numeric"><span class="msg" hidden></span></div>
+          <div class="field w2" data-f="fee"><label for="f-fee">الرسم للمتدرب (د.ك)</label><input type="number" id="f-fee" min="0" step="0.001" inputmode="decimal" aria-describedby="h-fee"><span class="msg" hidden></span></div>
+          <span class="fnote w6" id="h-fee">الرسم صفر أو أكثر. إن كتبتِ 0 تأكّد تسجيل المتدرب فوراً بلا دفع.</span>
+        </div>
+        <div class="row"><button class="btn" type="submit">حفظ الدفعة</button><button class="btn quiet" type="button" id="back">تراجع</button></div>
+      </form>
+
+      <section aria-label="كل الدفعات">
+        <div class="tabs scroll-x" role="tablist" aria-label="تصفية بالحالة" id="tabs"></div>
+        <div class="bar">
+          <p id="count" role="status"></p>
+          <div class="field"><label for="ftype">النوع</label>
+            <select id="ftype"><option value="all">كل الأنواع</option><option value="public">عامة</option><option value="closed">مغلقة لجهة</option></select></div>
+        </div>
+        <div class="scroll-x" id="panel" role="tabpanel" aria-label="الدفعات">
+          <table class="t led" id="tbl">
+            <thead><tr><th>التاريخ</th><th>البرنامج</th><th class="x">النوع</th><th>الحالة</th><th class="x">المقاعد</th><th><span class="vh">فتح</span></th></tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <div class="empty" id="empty" hidden>
+          <h3 id="emh"></h3>
+          <p id="emp"></p>
+          <p><button class="lbtn" type="button" id="clear">اعرضي كل الدفعات</button></p>
+        </div>
+        <p class="synthetic tail">الأسماء والتواريخ والمبالغ تجريبية، واليوم في العرض 6 ديسمبر 2026. <a href="index.html">خريطة الشاشات</a></p>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const MON=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const pl=(n,one,two,few,many)=>n===1?one:n===2?two:n>=3&&n<=10?`${n} ${few}`:`${n} ${many}`;
+const money=n=>n.toLocaleString('en-US',{minimumFractionDigits:3,maximumFractionDigits:3})+' د.ك';
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const TODAY='2026-12-06';
+
+// everything branches on these keys; the Arabic words are display only
+const PROG={foresight:'استشراف المستقبل وبناء السيناريوهات',strategy:'ورش الاستراتيجية للقيادات التنفيذية',leaders:'بناء القيادات والقدرات المؤسسية',tailored:'برنامج مغلق مصمَّم للجهة'};
+const ORG={bank:'بنك المثال',ministry:'وزارة التخطيط',holding:'شركة النموذج القابضة',charity:'مؤسسة المثال الخيرية',authority:'هيئة النموذج'};
+const STATE={scheduled:['wait','مجدولة'],in_progress:['ok','جارية'],completed:['ok','مكتملة'],cancelled:['off','ملغاة']};
+const ORDER=['scheduled','in_progress','completed','cancelled'];
+const EMPTY={scheduled:'لا دفعات مجدولة',in_progress:'لا دفعة جارية الآن',completed:'لا دفعات مكتملة',cancelled:'لا دفعات ملغاة'};
+const DET='10-admin-cohort.html';
+let uid=0;
+const C=[
+ {d:'2026-10-12',p:'foresight',t:'public',s:'completed',cap:20,tk:18,n:3,fee:180,href:DET+'?state=completed'},
+ {d:'2026-11-02',p:'strategy',t:'closed',o:'ministry',s:'completed',cap:25,tk:22,n:2,href:DET+'?state=completed'},
+ {d:'2026-11-16',p:'leaders',t:'public',s:'cancelled',cap:24,tk:0,n:5,fee:320,note:'أُلغيت قبل بدايتها'},
+ {d:'2026-11-29',p:'leaders',t:'closed',o:'bank',s:'in_progress',cap:15,tk:15,n:5,note:'الجلسة 2 من 5',href:DET+'?state=in_progress'},
+ {d:'2026-12-14',p:'foresight',t:'public',s:'scheduled',cap:20,tk:16,n:3,fee:180},
+ {d:'2026-12-21',p:'foresight',t:'closed',o:'holding',s:'scheduled',cap:20,tk:20,n:3},
+ {d:'2027-01-08',p:'strategy',t:'public',s:'scheduled',cap:20,tk:20,n:2,fee:240,note:'قائمة انتظار 3'},
+ {d:'2027-02-02',p:'leaders',t:'public',s:'scheduled',cap:24,tk:13,n:5,fee:320}
+].map(c=>({id:++uid,...c}));
+let fState='all',fType='all',fresh=0;
+
+const parts=iso=>{const [y,m,d]=iso.split('-').map(Number);return {y,m,d}};
+const dayMon=iso=>{const {m,d}=parts(iso);return `${d} ${MON[m-1]}`};
+const sessions=n=>pl(n,'جلسة واحدة','جلستان','جلسات','جلسة');
+const feeText=c=>c.t==='closed'&&c.fee==null?'سعر متفق عليه مع الجهة':c.fee===0?'بلا رسم':money(c.fee);
+const typeText=c=>c.t==='closed'?`مغلقة · ${ORG[c.o]||esc(c.o)}`:'عامة';
+
+function crumb(){
+  const up=C.filter(c=>c.s==='scheduled').length,run=C.filter(c=>c.s==='in_progress').length;
+  $('crumb').textContent=`${pl(C.length,'دفعة واحدة','دفعتان','دفعات','دفعة')} · ${up} قادمة`+(run?` · ${run===1?'واحدة جارية الآن':run+' جارية الآن'}`:'');
+}
+function tabs(){
+  const pool=C.filter(c=>fType==='all'||c.t===fType);
+  const tab=(k,label,n)=>`<button role="tab" type="button" aria-selected="${fState===k}" aria-controls="panel" data-k="${k}"${fState===k?'':' tabindex="-1"'}>${label}<i>${n}</i></button>`;
+  $('tabs').innerHTML=tab('all','الكل',pool.length)+ORDER.map(k=>tab(k,STATE[k][1],pool.filter(c=>c.s===k).length)).join('');
+}
+function rows(){
+  const list=C.filter(c=>(fState==='all'||c.s===fState)&&(fType==='all'||c.t===fType)).sort((a,b)=>a.d<b.d?-1:1);
+  $('rows').innerHTML=list.map(c=>{
+    const [cls,word]=STATE[c.s],ratio=`<bdi class="num">${c.tk} / ${c.cap}</bdi>`;
+    const strip=c.s==='cancelled'?'':`<div class="seats" aria-hidden="true">${Array.from({length:c.cap},(_,i)=>`<s${i<c.tk?'':' class="free"'}></s>`).join('')}</div>`;
+    const meta=[sessions(c.n),feeText(c),c.note].filter(Boolean).join(' · ');
+    return `<tr id="c${c.id}">
+      <td class="when"><b>${dayMon(c.d)}</b><small class="num">${parts(c.d).y}</small></td>
+      <td class="prog"><b>${PROG[c.p]}</b><small>${meta}</small><small class="m">${typeText(c)} · ${ratio} مقعداً</small></td>
+      <td class="x">${c.t==='closed'?`مغلقة لجهة<small>${ORG[c.o]||esc(c.o)}</small>`:'عامة'}</td>
+      <td><span class="stamp ${cls}${fresh===c.id?' press':''}">${word}</span></td>
+      <td class="x cap">${ratio}${strip}</td>
+      <td><a class="rowlink" href="${c.href||DET}" aria-label="افتحي دفعة ${dayMon(c.d)}: ${PROG[c.p]}">افتحي الدفعة</a></td></tr>`}).join('');
+  const none=!list.length;
+  $('panel').hidden=none;$('empty').hidden=!none;
+  if(none){
+    $('emh').textContent=fState==='all'?'لا دفعات بهذا النوع':EMPTY[fState]+(fType==='closed'?' لجهة':fType==='public'?' عامة':'');
+    $('emp').textContent='غيّري التصفية، أو أنشئي دفعة جديدة من الزر في أعلى الصفحة.';
+  }
+  const total=C.length;
+  $('count').innerHTML=list.length===total?`<b>${total}</b> ${total<=10?'دفعات':'دفعة'}، من الأقدم إلى الأبعد موعداً`:`تظهر <b>${list.length}</b> من <b>${total}</b>`;
+  fresh=0;
+}
+function render(){crumb();tabs();rows()}
+
+// ---- filter ----
+$('tabs').addEventListener('click',e=>{const t=e.target.closest('[role=tab]');if(!t)return;fState=t.dataset.k;tabs();rows();$('tabs').querySelector('[aria-selected=true]').focus()});
+$('tabs').addEventListener('keydown',e=>{
+  if(e.key!=='ArrowLeft'&&e.key!=='ArrowRight')return;
+  const all=[...$('tabs').children],i=all.findIndex(t=>t.getAttribute('aria-selected')==='true');
+  const j=(i+(e.key==='ArrowLeft'?1:-1)+all.length)%all.length;e.preventDefault();all[j].click()});
+$('ftype').addEventListener('change',e=>{fType=e.target.value;tabs();rows()});
+$('clear').addEventListener('click',()=>{fState='all';fType='all';$('ftype').value='all';render();$('tabs').firstElementChild.focus()});
+
+// ---- create ----
+$('f-prog').insertAdjacentHTML('beforeend',Object.entries(PROG).map(([k,v])=>`<option value="${k}">${v}</option>`).join(''));
+$('f-org').insertAdjacentHTML('beforeend',Object.entries(ORG).map(([k,v])=>`<option value="${k}">${v}</option>`).join(''));
+const F=k=>$('ask').querySelector(`[data-f="${k}"]`);
+const clearErr=()=>{$('sum').hidden=true;$('ask').querySelectorAll('.field').forEach(f=>{f.classList.remove('bad');f.querySelector('.msg').hidden=true})};
+const openForm=()=>{$('ask').hidden=false;$('create').hidden=true;$('h-new').focus()};
+const closeForm=()=>{$('ask').hidden=true;$('ask').reset();$('orgf').hidden=true;clearErr();$('create').hidden=false};
+$('create').addEventListener('click',openForm);
+$('back').addEventListener('click',()=>{closeForm();$('create').focus()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('ask').hidden){closeForm();$('create').focus()}});
+$('f-type').addEventListener('change',e=>{$('orgf').hidden=e.target.value!=='closed'});
+$('ask').addEventListener('submit',e=>{
+  e.preventDefault();clearErr();
+  const v={prog:$('f-prog').value,type:$('f-type').value,org:$('f-org').value,start:$('f-start').value,end:$('f-end').value,cap:$('f-cap').value.trim(),n:$('f-n').value.trim(),fee:$('f-fee').value.trim()};
+  const missing=[],wrong=[];
+  const bad=(k,text)=>{const f=F(k),m=f.querySelector('.msg');f.classList.add('bad');m.textContent=text;m.hidden=false};
+  const need=(k,label,text)=>{if(!v[k]){missing.push(label);bad(k,text)}};
+  need('prog','البرنامج','اختاري البرنامج الذي تُقدَّم فيه الدفعة.');
+  need('type','نوع التسجيل','اختاري: عامة أم مغلقة لجهة.');
+  if(v.type==='closed')need('org','الجهة','اختاري الجهة التي تُغلق الدفعة لموظفيها.');
+  need('start','تاريخ البداية','اختاري يوم الجلسة الأولى.');
+  need('end','تاريخ النهاية','اختاري يوم الجلسة الأخيرة.');
+  need('cap','السعة','اكتبي عدد المقاعد.');
+  need('n','عدد الجلسات','اكتبي عدد الجلسات.');
+  need('fee','الرسم','اكتبي الرسم، أو 0 إن كانت الدفعة بلا رسم.');
+  if(v.start&&v.start<=TODAY){wrong.push('تاريخ البداية مضى');bad('start','هذا التاريخ مضى. اختاري يوماً بعد 6 ديسمبر 2026.')}
+  else if(v.start&&v.end&&v.end<v.start){wrong.push('تاريخ النهاية قبل تاريخ البداية');bad('end',`النهاية قبل البداية (${dayMon(v.start)}). اختاري يوم البداية نفسه أو يوماً بعده.`)}
+  if(v.cap&&!(Number.isInteger(+v.cap)&&+v.cap>=1)){wrong.push('السعة يجب أن تكون مقعداً واحداً على الأقل');bad('cap','السعة عدد صحيح، مقعد واحد على الأقل.')}
+  if(v.n&&!(Number.isInteger(+v.n)&&+v.n>=1)){wrong.push('عدد الجلسات يجب أن يكون جلسة واحدة على الأقل');bad('n','جلسة واحدة على الأقل.')}
+  if(v.fee&&!(+v.fee>=0)){wrong.push('الرسم لا يكون أقل من صفر');bad('fee','الرسم صفر أو أكثر.')}
+  if(missing.length||wrong.length){
+    $('sum').innerHTML=`<div><b>لم تُحفظ الدفعة.</b> ${missing.length?`ينقصها: ${missing.join('، ')}. `:''}${wrong.length?wrong.join('، ')+'. ':''}صحّحي ما هو معلَّم ثم احفظي.</div>`;
+    $('sum').hidden=false;$('ask').querySelector('.field.bad input,.field.bad select').focus();return}
+  const c={id:++uid,d:v.start,p:v.prog,t:v.type,s:'scheduled',cap:+v.cap,tk:0,n:+v.n,fee:+v.fee};if(v.type==='closed')c.o=v.org;
+  C.push(c);fresh=c.id;fState='all';fType='all';$('ftype').value='all';closeForm();render();
+  const tr=$('c'+c.id);tr.scrollIntoView({block:'center'});tr.querySelector('a').focus();
+  ttToast(`أُنشئت دفعة ${dayMon(c.d)} وهي الآن مجدولة`+(c.fee===0?'، والتسجيل فيها بلا دفع':''));
+});
+render();
+</script>
+</body>
+</html>

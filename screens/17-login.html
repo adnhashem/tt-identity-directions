@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>الدخول — Think Tank Strategists</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<style>
+.login{display:grid;grid-template-columns:.9fr 1.1fr;grid-template-areas:"say door" "other door";grid-template-rows:auto 1fr;column-gap:var(--s-96);padding-block:var(--s-48) var(--s-96);align-items:start}
+.login>*{min-width:0}
+.say{grid-area:say}
+.say h1{font-size:clamp(2rem,4vw,3rem);text-shadow:0 2px 0 rgba(0,0,0,.25)}
+.say .lede{font-weight:300;font-size:var(--fs-18);color:var(--cream-2);max-width:30ch;margin:var(--s-16) 0 0}
+.other{grid-area:other;margin-top:var(--s-48);padding-top:var(--s-24);border-top:1.5px dashed rgba(246,239,225,.3);max-width:44ch}
+.other p{font-size:var(--fs-14);color:var(--cream-2);margin-bottom:var(--s-16)}
+.other .row{gap:var(--s-24)}
+.lbtn.on-baize,.lbtn.on-baize:hover{color:var(--brass);font-size:var(--fs-14)}
+.door{grid-area:door;max-width:480px;width:100%;justify-self:center}
+.door .sheet{padding:var(--s-48)}
+.door .sheet.clip{padding-top:var(--s-64)}
+.door h2{font-size:var(--fs-22)}
+.door h2:focus{outline:0}
+.field input[dir=ltr]{text-align:left}
+.pwrow{display:flex;justify-content:space-between;align-items:center;gap:var(--s-12)}
+.pwrow{margin-block:calc(var(--s-12)*-1) calc(var(--s-8)*-1)}
+.pwrow .lbtn{padding:0}
+.notice>div{flex:1}
+.notice .stamp{margin-inline-start:var(--s-8)}
+.notice .lbtn{padding:0}
+.sent p{color:var(--ink-2);font-size:var(--fs-14);max-width:40ch}
+.demo{margin:var(--s-32) 0 0}
+.demo span{display:flex;align-items:center;justify-content:space-between;gap:var(--s-12);border-top:1px dashed rgba(246,239,225,.3)}
+.demo span:first-of-type{margin-top:var(--s-8)}
+.demo button{background:none;border:0;padding:0 var(--s-4);font:inherit;color:var(--brass);cursor:pointer;text-decoration:underline;text-underline-offset:5px;min-height:44px;direction:ltr}
+@media (max-width:900px){
+  .login{grid-template-columns:minmax(0,1fr);grid-template-areas:"say" "door" "other";row-gap:var(--s-32);padding-block:var(--s-16) var(--s-48)}
+  .door .sheet{padding:var(--s-32) var(--s-24)}
+  .door .sheet.clip{padding-top:var(--s-48)}
+  .other{margin-top:0}
+}
+</style>
+</head>
+<body class="table">
+<div class="wrap">
+  <nav class="nav" aria-label="الرئيسية">
+    <a href="01-home.html"><img src="assets/logo-white.png" alt="Think Tank Strategists"></a>
+    <ul>
+      <li><a href="01-home.html">البرامج</a></li>
+      <li><a href="19-articles.html">المقالات</a></li>
+      <li><a href="18-for-orgs.html">للجهات</a></li>
+      <li><a href="12-verify.html">تحقق من شهادة</a></li>
+      <li class="keep"><a href="17-login.html" aria-current="page">دخول</a></li>
+      <li class="keep"><a class="pill" href="#" lang="en" data-toast="النسخة الإنجليزية خارج شاشات العرض">English</a></li>
+    </ul>
+  </nav>
+
+  <main class="login">
+    <div class="say">
+      <h1>ادخل إلى حسابك</h1>
+      <p class="lede">منه تتابع جلساتك وحضورك وشهاداتك، أو مقاعد موظفي جهتك إن كنت مسؤول التدريب فيها.</p>
+    </div>
+
+    <div class="door">
+      <div class="sheet clip lay">
+        <form class="stack" id="f" novalidate>
+          <h2>بيانات الدخول</h2>
+
+          <div class="field">
+            <label for="who">البريد أو رقم الجوال</label>
+            <input id="who" dir="ltr" autocomplete="username" inputmode="email" spellcheck="false" autocapitalize="none" aria-describedby="who-m">
+            <span class="msg" id="who-m" hidden></span>
+          </div>
+
+          <div class="field">
+            <div class="pwrow"><label for="pw">كلمة السر</label><button type="button" class="lbtn" id="forgot">نسيت كلمة السر؟</button></div>
+            <input id="pw" type="password" dir="ltr" autocomplete="current-password" aria-describedby="pw-m">
+            <span class="msg" id="pw-m" hidden></span>
+          </div>
+
+          <div class="notice err" id="n-none" role="alert" hidden>
+            <div><b>لا يوجد حساب بـ<bdi id="typed"></bdi>.</b> راجع كتابته. وإن لم تسجّل عندنا من قبل، فالحساب يُفتح لك مع أول تسجيل في دفعة.
+              <br><a class="lbtn" href="03-register.html">سجّل وافتح حساباً</a></div>
+          </div>
+
+          <div class="notice" id="n-off" role="alert" hidden>
+            <div><b>هذا الحساب أُوقف</b><span class="stamp off">موقوف</span><br>لا يمكن الدخول به الآن، وبياناتك وشهاداتك محفوظة. تواصل مع الشركة لمعرفة السبب أو لإعادة تشغيله: <bdi>info@example.com</bdi>، من الأحد إلى الخميس.</div>
+          </div>
+
+          <div class="notice err" id="n-lock" role="alert" hidden>
+            <div><b>حاولت الدخول أكثر من مرة. انتظر 15 دقيقة ثم جرّب</b> <span class="assume">افتراض</span><br>أوقفنا المحاولات بعد 5 مرات بكلمة سر غير صحيحة حمايةً لحسابك. إن نسيت كلمة السر فغيّرها من «نسيت كلمة السر؟» ولا تنتظر.</div>
+          </div>
+
+          <button class="btn wide" id="go">دخول</button>
+        </form>
+
+        <div class="stack sent" id="sent" hidden>
+          <div class="spread" style="align-items:center">
+            <h2 id="sent-h" tabindex="-1">أرسلنا لك الرابط</h2>
+            <span class="stamp ok" id="sent-s">أُرسل</span>
+          </div>
+          <p>إن كان للبريد <bdi id="sentto"></bdi> حساب عندنا، يصلك خلال دقائق رابط تختار منه كلمة سر جديدة. الرابط صالح لساعة واحدة، وكلمتك الحالية تبقى كما هي حتى تغيّرها.</p>
+          <p>لم يصلك؟ انظر في البريد غير المرغوب أولاً.</p>
+          <button type="button" class="btn sec wide" id="back">عودة إلى الدخول</button>
+        </div>
+      </div>
+
+      <p class="synthetic demo">هذا عرض بثلاثة حسابات تجريبية، وأي كلمة سر تصلح. الصفحة توجّهك حسب صاحب الحساب:
+        <span><button type="button" data-u="noura@example.com">noura@example.com</button> إلى بوابة المتدربة</span>
+        <span><button type="button" data-u="khalid@example.com">khalid@example.com</button> إلى بوابة مسؤول التدريب</span>
+        <span><button type="button" data-u="manal@example.com">manal@example.com</button> إلى بوابة الدكتورة</span>
+        <span><button type="button" data-u="off@example.com">off@example.com</button> حساب موقوف</span>
+        <span><button type="button" data-u="locked@example.com">locked@example.com</button> محاولات كثيرة</span></p>
+    </div>
+
+    <div class="other">
+      <p>ليس لك حساب؟ حساب المتدرب يُفتح مع أول تسجيل في دفعة، وحساب الجهة يُفتح بعد أن تعتمد الدكتورة طلبها.</p>
+      <div class="row">
+        <a class="btn quiet sm" href="01-home.html">تسجيل في دفعة</a>
+        <a class="lbtn on-baize" href="18-for-orgs.html#account" data-cta="WF-CTA-010">طلب حساب لجهة</a>
+      </div>
+    </div>
+  </main>
+</div>
+<footer class="sitefoot"><div class="wrap spread"><span><bdi>Think Tank Strategists</bdi> · الكويت · الأحد إلى الخميس 9 – 5</span><a href="index.html">خريطة الشاشات</a></div></footer>
+
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id),who=$('who'),pw=$('pw'),go=$('go'),f=$('f');
+const DEST={'noura@example.com':'05-my-cohorts.html','khalid@example.com':'07-org-seats.html','manal@example.com':'09-admin-inbox.html'};
+const notices=['n-none','n-off','n-lock'];
+const isMail=v=>/^\S+@\S+\.\S+$/.test(v),digits=v=>v.replace(/[\s+-]/g,'');
+const val=()=>who.value.trim().toLowerCase();
+function err(inp,t){const m=$(inp.id+'-m');m.textContent=t;m.hidden=!t;inp.closest('.field').classList.toggle('bad',!!t);inp.setAttribute('aria-invalid',String(!!t));return !t}
+function notice(id){notices.forEach(n=>$(n).hidden=n!==id);go.hidden=id==='n-off'||id==='n-lock'}
+function checkWho(need){const v=val();
+  if(!v)return err(who,need||'اكتب بريدك الإلكتروني أو رقم جوالك.');
+  if(v.includes('@'))return err(who,isMail(v)?'':'البريد غير مكتمل. مثال: name@example.com');
+  return err(who,/^\d{8}$/.test(digits(v).replace(/^965/,''))?'':'اكتب بريداً كاملاً، أو رقم جوال من 8 أرقام.')}
+
+f.addEventListener('submit',e=>{e.preventDefault();notice('');
+  const a=checkWho(),b=err(pw,pw.value?'':'اكتب كلمة السر.');
+  if(!a){who.focus();return} if(!b){pw.focus();return}
+  const v=val();
+  if(DEST[v]){location.href=DEST[v];return}
+  if(v==='off@example.com'){notice('n-off');return}
+  if(v==='locked@example.com'){notice('n-lock');return}
+  $('typed').textContent=who.value.trim();notice('n-none');});
+
+who.addEventListener('input',()=>{notice('');if(who.closest('.field').classList.contains('bad'))checkWho()});
+pw.addEventListener('input',()=>{if(pw.value)err(pw,'')});
+
+$('forgot').addEventListener('click',()=>{const v=val();err(pw,'');
+  if(!v||!v.includes('@')){err(who,'اكتب بريدك هنا أولاً، ونرسل إليه رابط تغيير كلمة السر.');who.focus();return}
+  if(!checkWho()){who.focus();return}
+  notice('');$('sentto').textContent=who.value.trim();f.hidden=true;$('sent').hidden=false;
+  const s=$('sent-s');s.classList.remove('press');void s.offsetWidth;s.classList.add('press');$('sent-h').focus();});
+$('back').addEventListener('click',()=>{$('sent').hidden=true;f.hidden=false;pw.value='';pw.focus()});
+
+document.querySelectorAll('.demo button').forEach(b=>b.addEventListener('click',()=>{
+  $('sent').hidden=true;f.hidden=false;who.value=b.dataset.u;pw.value='demo-1234';f.requestSubmit();
+  if(!DEST[b.dataset.u])f.scrollIntoView({block:'center'});}));
+</script>
+</body>
+</html>

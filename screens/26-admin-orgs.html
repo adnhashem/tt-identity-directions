@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>الجهات — إدارة Think Tank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<style>
+[tabindex="-1"]:focus{outline:0}
+.work header.top{align-items:center}
+/* pending account: one ruled slip, as in the inbox */
+.slip{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s-16) var(--s-24);align-items:start;padding:var(--s-8) 0 var(--s-32);border-bottom:1.5px dashed var(--card-edge)}
+.slip h3{font-size:var(--fs-18)}
+.slip>.stamp{justify-self:start}
+.slip p{margin:var(--s-4) 0 0;color:var(--ink-2);font-size:var(--fs-14);max-width:60ch}
+.slip .link-to{grid-column:2;display:grid;grid-template-columns:minmax(0,300px) minmax(0,300px);gap:var(--s-16);align-items:start}
+.slip .go{grid-column:2}
+.none-yet{margin:0;padding-bottom:var(--s-32);border-bottom:1.5px dashed var(--card-edge);color:var(--ink-2);font-size:var(--fs-14)}
+#said{margin-bottom:var(--s-16);align-items:center}
+#said .stamp{flex:none}
+/* filter bar and ledger */
+.bar{display:flex;gap:var(--s-8) var(--s-24);align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:var(--s-8)}
+.bar p{margin:0;font-size:var(--fs-14);color:var(--ink-2)}
+.bar p b{color:var(--ink);font-variant-numeric:tabular-nums}
+.bar .field{grid-template-columns:auto auto;align-items:center;gap:var(--s-8)}
+.bar .field select{min-height:44px;width:auto}
+.led td{padding-block:var(--s-12)}
+.led small{display:block;font-size:var(--fs-13);color:var(--ink-2);line-height:1.6}
+.led .name b{font-weight:700}
+.led td.num{font-size:var(--fs-16);font-weight:700}
+.led td:last-child{text-align:end}
+.led .m{display:none}
+.led tr.open>td{border-bottom-color:transparent}
+.led tr.det>td{padding:0 6px var(--s-24)}
+.det .in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:var(--s-24) var(--s-48)}
+.det h3{font-size:var(--fs-13);font-weight:500;color:var(--ink-2);padding-bottom:var(--s-4);border-bottom:1px solid var(--ink)}
+.det ul{list-style:none;margin:0;padding:0}
+.det li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s-4) var(--s-16);align-items:center;min-height:52px;padding-block:var(--s-8);border-bottom:1px solid var(--card-edge)}
+.det li.co{grid-template-columns:minmax(0,1fr) auto auto auto}
+.det li b{font-weight:700}
+.det li bdi.num{font-weight:700}
+.det .nothing{margin:0;padding-block:var(--s-12);font-size:var(--fs-14);color:var(--ink-2)}
+.det .nothing a{color:var(--ribbon)}
+.tail{margin-top:var(--s-24)}
+@media (max-width:900px){
+  .slip{grid-template-columns:minmax(0,1fr)}.slip .link-to,.slip .go{grid-column:1}.slip .link-to{grid-template-columns:minmax(0,1fr)}
+  .led .x{display:none}.led .m{display:block}
+  .det .in{grid-template-columns:minmax(0,1fr)}
+  .det li.co{grid-template-columns:minmax(0,1fr) auto}
+  .det li.co .rowlink{justify-self:end}
+  .bar .field{width:100%;grid-template-columns:auto 1fr}.bar .field select{width:100%}
+}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="الإدارة">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>الإدارة</span></div>
+    <a href="09-admin-inbox.html">ما ينتظرك <span class="n">3</span></a>
+    <a href="24-admin-cohorts.html">الدفعات</a>
+    <a href="25-admin-programs.html">البرامج</a>
+    <a href="26-admin-orgs.html" aria-current="page">الجهات <span class="n">1</span></a>
+    <a href="27-admin-proposals.html">طلبات العروض <span class="n">2</span></a>
+    <a href="28-admin-payments.html">المدفوعات <span class="n">1</span></a>
+    <a href="29-admin-certificates.html">الشهادات</a>
+    <a href="30-admin-trainees.html">المتدربون</a>
+    <a href="31-admin-report.html">التقرير الشامل</a>
+    <div class="foot">د. منال الحساوي<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+      <header class="top">
+        <div><h1>الجهات</h1><div class="crumb" id="crumb"></div></div>
+        <a class="btn sec sm" href="31-admin-report.html">تقرير الجهات كلها</a>
+      </header>
+
+      <section aria-labelledby="h-pend">
+        <h2 id="h-pend" tabindex="-1">حسابات تنتظر اعتمادك</h2>
+        <div id="pend"></div>
+      </section>
+
+      <section aria-labelledby="h-orgs">
+        <h2 id="h-orgs">الجهات العميلة</h2>
+        <div class="bar">
+          <p id="count" role="status"></p>
+          <div class="field"><label for="filter">اعرضي</label>
+            <select id="filter"><option value="all">كل الجهات</option><option value="active">لها دفعة قادمة أو جارية</option><option value="idle">بلا دفعة قادمة</option></select></div>
+        </div>
+        <div class="scroll-x" id="wrap">
+          <table class="t led">
+            <thead><tr><th>الجهة</th><th class="x">مسؤولو التدريب</th><th>المقاعد هذا العام</th><th class="x">المتدربون</th><th class="x">آخر نشاط</th><th><span class="vh">التفاصيل</span></th></tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <div class="empty" id="empty" hidden>
+          <h3 id="emh"></h3><p id="emp"></p>
+          <p><button class="lbtn" type="button" id="clear">اعرضي كل الجهات</button></p>
+        </div>
+        <p class="synthetic tail">الجهات والأسماء والأرقام تجريبية، ولا تمثّل أي جهة حقيقية. <a href="index.html">خريطة الشاشات</a></p>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pl=(n,one,two,few,many)=>n===1?one:n===2?two:n>=3&&n<=10?`${n} ${few}`:`${n} ${many}`;
+const DET='10-admin-cohort.html';
+// cohort state is a key; the word is display only
+const CS={scheduled:['wait','مجدولة'],in_progress:['ok','جارية'],completed:['ok','مكتملة']};
+const LIVE=['scheduled','in_progress'];
+const O=[
+ {id:'bank',name:'بنك المثال',contacts:[{n:'منى السالم',e:'m.alsalem@example.com'}],seats:19,tr:17,last:'4 ديسمبر 2026',what:'حضور الجلسة الثانية',
+  co:[{d:'29 نوفمبر',p:'بناء القيادات والقدرات المؤسسية',closed:1,s:'in_progress',tk:15,cap:15,href:DET+'?state=in_progress'},{d:'14 ديسمبر',p:'استشراف المستقبل وبناء السيناريوهات',s:'scheduled',tk:4,cap:20,href:DET}]},
+ {id:'ministry',name:'وزارة التخطيط',contacts:[{n:'أمل الرشيد',e:'a.alrasheed@example.com'}],seats:23,tr:23,last:'1 ديسمبر 2026',what:'قبول عرض',
+  co:[{d:'2 نوفمبر',p:'ورش الاستراتيجية للقيادات التنفيذية',closed:1,s:'completed',tk:22,cap:25,href:DET+'?state=completed'},{d:'14 ديسمبر',p:'استشراف المستقبل وبناء السيناريوهات',s:'scheduled',tk:1,cap:20,href:DET}]},
+ {id:'holding',name:'شركة النموذج القابضة',contacts:[{n:'فيصل الدوسري',e:'f.aldosari@example.com'}],seats:20,tr:20,last:'30 نوفمبر 2026',what:'تسمية الموظفين',
+  co:[{d:'21 ديسمبر',p:'استشراف المستقبل وبناء السيناريوهات',closed:1,s:'scheduled',tk:20,cap:20,href:DET}]},
+ {id:'charity',name:'مؤسسة المثال الخيرية',contacts:[{n:'هدى المنصور',e:'h.almansour@example.com'}],seats:6,tr:6,last:'14 أكتوبر 2026',what:'إغلاق دفعة',
+  co:[{d:'12 أكتوبر',p:'استشراف المستقبل وبناء السيناريوهات',s:'completed',tk:6,cap:20,href:DET+'?state=completed'}]},
+ {id:'authority',name:'هيئة النموذج',contacts:[{n:'ناصر العلي',e:'n.alali@example.com'}],seats:0,tr:0,last:'3 ديسمبر 2026',what:'طلب عرض',co:[],ask:1}];
+const K={n:'خالد الفهد',e:'k.alfahad@example.com',claims:'بنك المثال'};
+let pending=true,linked=null,open=null,filter='all',fresh=false,err=null,pick='',newName='';
+
+function crumb(){$('crumb').textContent=`${pl(O.length,'جهة واحدة','جهتان','جهات','جهة')} · ${pending?'حساب واحد ينتظر اعتمادك':'لا حسابات تنتظر اعتمادك'}`}
+
+function pend(){
+  if(!pending){
+    $('pend').innerHTML=(linked?`<div class="notice" id="said" role="status"><span class="stamp ok press"><span class="vh">حالة الحساب: </span>فعّال</span><div><b>اعتُمد حساب ${K.n} وصار تحت «${esc(linked.name)}» في الجدول.</b> يرى الآن موظفي هذه الجهة وحدها.</div></div>`:'')
+      +`<p class="none-yet">لا حسابات تنتظر اعتمادك. حين يطلب مسؤول تدريب حساباً يظهر هنا.</p>`;return}
+  const isNew=pick==='new';
+  $('pend').innerHTML=`<div class="slip">
+    <span class="stamp you"><span class="vh">حالة الحساب: </span>ينتظرك</span>
+    <div><h3>${K.n}</h3>
+      <p>يقول إنه مسؤول التدريب في ${K.claims}. طلب الحساب في 4 ديسمبر 2026 · <bdi>${K.e}</bdi></p>
+      <p>إلى أن تعتمدي حسابه وتربطيه بجهته لا يرى بيانات أي موظف.</p></div>
+    <div class="link-to">
+      <div class="field${err==='pick'?' bad':''}"><label for="org">الجهة التي يُربط بها</label>
+        <select id="org" aria-describedby="orgm"><option value="">اختاري الجهة</option>${O.map(o=>`<option value="${o.id}"${pick===o.id?' selected':''}>${esc(o.name)}</option>`).join('')}<option value="new"${isNew?' selected':''}>جهة جديدة</option></select>
+        ${err==='pick'?`<span class="msg" id="orgm">اختاري الجهة قبل الاعتماد. الحساب يرى موظفي الجهة التي تربطينه بها، فلا يُعتمد بلا جهة.</span>`:''}</div>
+      ${isNew?`<div class="field${err==='name'?' bad':''}"><label for="newname">اسم الجهة الجديدة</label><input id="newname" value="${esc(newName)}" aria-describedby="namem">${err==='name'?`<span class="msg" id="namem">${newName.trim()?'هذه الجهة موجودة في القائمة. اختاريها بدل إنشائها من جديد.':'اكتبي اسم الجهة الجديدة ثم اعتمدي.'}</span>`:''}</div>`:''}
+    </div>
+    <div class="go"><button class="btn" type="button" data-cta="WF-CTA-011" id="approve">اعتماد الحساب</button></div>
+  </div>`;
+}
+
+const live=o=>o.co.some(c=>LIVE.includes(c.s));
+function rows(){
+  const list=O.filter(o=>filter==='all'||(filter==='active')===live(o));
+  $('rows').innerHTML=list.map(o=>{
+    const on=open===o.id,names=o.contacts.map(c=>c.n).join('، ');
+    const det=on?`<tr class="det" id="d-${o.id}"><td colspan="6"><div class="in">
+      <div><h3>مسؤولو التدريب</h3><ul>${o.contacts.map(c=>`<li><div><b>${c.n}</b><small><bdi>${c.e}</bdi></small></div><span class="stamp ok${fresh&&c.isNew?' press':''}"><span class="vh">حالة الحساب: </span>فعّال</span></li>`).join('')}</ul></div>
+      <div><h3>دفعاتها هذا العام، ومقاعدها من سعة كل دفعة</h3>${o.co.length?`<ul>${o.co.map(c=>{const [cls,w]=CS[c.s];
+        return `<li class="co"><div><b>${c.d}</b> · ${c.p}<small>${c.closed?'مغلقة لها':'عامة'}</small></div><bdi class="num">${c.tk} / ${c.cap}</bdi><span class="stamp ${cls}">${w}</span><a class="rowlink" href="${c.href}" aria-label="افتحي دفعة ${c.d}: ${c.p}">افتحي</a></li>`}).join('')}</ul>`
+        :`<p class="nothing">${o.ask?`لا دفعات بعد. لها طلب عرض جديد في <a href="27-admin-proposals.html">طلبات العروض</a>.`:'لا دفعات بعد. تظهر هنا أول دفعة يُحجز لها فيها مقعد.'}</p>`}</div>
+    </div></td></tr>`:'';
+    return `<tr${on?' class="open"':''}>
+      <td class="name"><b>${esc(o.name)}</b><small class="m">${names} · آخر نشاط ${o.last}</small></td>
+      <td class="x">${names}</td>
+      <td class="num">${o.seats}</td><td class="x num">${o.tr}</td>
+      <td class="x">${o.last}<small>${o.what}</small></td>
+      <td><button class="rowlink" type="button" data-open="${o.id}" aria-expanded="${on}"${on?` aria-controls="d-${o.id}"`:''} aria-label="${on?'إخفاء تفاصيل':'تفاصيل'} ${esc(o.name)}">${on?'إخفاء':'التفاصيل'}</button></td></tr>${det}`}).join('');
+  const none=!list.length;$('wrap').hidden=none;$('empty').hidden=!none;
+  if(none){$('emh').textContent=filter==='active'?'لا جهة لها دفعة قادمة أو جارية':'كل الجهات لها دفعة قادمة';$('emp').textContent='غيّري التصفية لتري بقية الجهات.'}
+  const seats=O.reduce((a,o)=>a+o.seats,0);
+  $('count').innerHTML=list.length===O.length?`<b>${O.length}</b> جهات · <b>${seats}</b> مقعداً في 2026`:`تظهر <b>${list.length}</b> من <b>${O.length}</b>`;
+  fresh=false;
+}
+const render=()=>{crumb();pend();rows()};
+
+document.addEventListener('change',e=>{
+  if(e.target.id==='org'){pick=e.target.value;err=null;pend();(pick==='new'?$('newname'):$('org')).focus()}
+  else if(e.target.id==='filter'){filter=e.target.value;rows()}
+});
+document.addEventListener('input',e=>{if(e.target.id==='newname')newName=e.target.value});
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;
+  if(t.id==='approve'){
+    if(!pick){err='pick';pend();$('org').focus();return}
+    let o;
+    if(pick==='new'){
+      const nm=newName.trim();
+      if(!nm||O.some(x=>x.name===nm)){err='name';pend();$('newname').focus();return}
+      o={id:'n'+O.length,name:nm,contacts:[],seats:0,tr:0,co:[]};O.push(o);
+    }else o=O.find(x=>x.id===pick);
+    o.contacts.push({n:K.n,e:K.e,isNew:1});o.last='6 ديسمبر 2026';o.what='اعتماد حساب';
+    pending=false;linked=o;open=o.id;fresh=true;filter='all';$('filter').value='all';err=null;render();
+    $('h-pend').focus();ttToast(`اعتُمد الحساب ورُبط بـ«${o.name}»`);
+  }
+  else if(t.dataset.open){const id=t.dataset.open;open=open===id?null:id;rows();document.querySelector(`[data-open="${id}"]`).focus()}
+  else if(t.id==='clear'){filter='all';$('filter').value='all';rows();$('filter').focus()}
+});
+render();
+</script>
+</body>
+</html>

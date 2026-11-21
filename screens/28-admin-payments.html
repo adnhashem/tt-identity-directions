@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>المدفوعات والاسترجاع — إدارة Think Tank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<style>
+.filter{display:flex;gap:var(--s-12) var(--s-16);align-items:end;flex-wrap:wrap;padding-bottom:var(--s-24);margin-bottom:var(--s-16);border-bottom:1.5px dashed var(--card-edge)}
+.filter .field{flex:1 1 180px;max-width:260px}
+.filter .btn{min-height:48px}
+.count{margin:0 0 var(--s-4);font-size:var(--fs-14);color:var(--ink-2)}
+.count b{color:var(--ink);font-variant-numeric:tabular-nums}
+.pay{min-width:960px}
+.pay td{height:56px}
+.pay td:first-child{white-space:nowrap;color:var(--ink-2);font-variant-numeric:tabular-nums}
+.pay td:nth-child(2){font-weight:700}
+.pay td small{display:block;font-size:var(--fs-12);font-weight:400;color:var(--ink-2);line-height:1.6}
+.pay th.amt,.pay td.amt{text-align:end;padding-inline-end:var(--s-24)}
+.pay td.amt{font-weight:700;font-variant-numeric:tabular-nums}
+.pay tr.you td{background:rgba(138,35,50,.05)}
+.pay tr.has-sub td{border-bottom:0}
+.pay tr.sub td{height:auto;padding:0 6px var(--s-16);white-space:normal;color:inherit}
+.pay .in{position:sticky;inset-inline-start:0;max-width:min(68ch,calc(100vw - var(--s-64)));font-size:var(--fs-14)}
+.pay .in p{margin:0 0 var(--s-8);color:var(--ink-2)}
+.pay .in p b{color:var(--ink)}
+.pay .in .field{margin-bottom:var(--s-12)}
+.pay .in .field textarea{min-height:72px}
+.pay .in.said p{margin:0;font-size:var(--fs-13)}
+.totals{display:flex;gap:var(--s-8) var(--s-32);flex-wrap:wrap;margin:var(--s-16) 0 var(--s-4);padding-top:var(--s-12);border-top:2px solid var(--ink);font-size:var(--fs-14);color:var(--ink-2)}
+.totals b{color:var(--ink);font-size:var(--fs-16);font-variant-numeric:tabular-nums;margin-inline-start:var(--s-4)}
+.fine{font-size:var(--fs-13);color:var(--ink-2);max-width:72ch;margin:0}
+.fine+.fine{margin-top:var(--s-8)}
+.foot-notes{margin-top:var(--s-32)}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="الإدارة">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>الإدارة</span></div>
+    <a href="09-admin-inbox.html">ما ينتظرك <span class="n">3</span></a>
+    <a href="24-admin-cohorts.html">الدفعات</a>
+    <a href="25-admin-programs.html">البرامج</a>
+    <a href="26-admin-orgs.html">الجهات <span class="n">1</span></a>
+    <a href="27-admin-proposals.html">طلبات العروض <span class="n">2</span></a>
+    <a href="28-admin-payments.html" aria-current="page">المدفوعات <span class="n">1</span></a>
+    <a href="29-admin-certificates.html">الشهادات</a>
+    <a href="30-admin-trainees.html">المتدربون</a>
+    <a href="31-admin-report.html">التقرير الشامل</a>
+    <div class="foot">د. منال الحساوي<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+      <header class="top">
+        <div><h1>المدفوعات والاسترجاع</h1><div class="crumb" id="crumb"></div></div>
+      </header>
+
+      <form class="filter" id="filter" aria-label="تصفية المدفوعات">
+        <div class="field"><label for="f-period">الفترة</label>
+          <select id="f-period"><option value="">كل الفترات</option><option value="12">ديسمبر 2026</option><option value="11">نوفمبر 2026</option></select></div>
+        <div class="field"><label for="f-state">الحالة</label>
+          <select id="f-state"><option value="">كل الحالات</option><option value="paid">مدفوعة</option><option value="started">بدأت</option><option value="failed">فاشلة</option><option value="expired">منقضية</option><option value="refund">بانتظار الاسترجاع</option><option value="refunded">مُستردة</option><option value="declined">رُفض استرجاعها</option></select></div>
+        <div class="field"><label for="f-cohort">الدفعة</label>
+          <select id="f-cohort"><option value="">كل الدفعات</option><option value="dec">استشراف المستقبل · 14 ديسمبر</option><option value="jan">ورش الاستراتيجية · 8 يناير</option><option value="feb">بناء القيادات · 2 فبراير</option></select></div>
+        <button class="btn sm" type="submit" data-cta="WF-CTA-051">عرض المدفوعات</button>
+      </form>
+
+      <section aria-label="قائمة المدفوعات">
+        <p class="count" id="count" role="status"></p>
+        <div class="scroll-x" id="tablewrap">
+          <table class="t pay">
+            <thead><tr><th>التاريخ</th><th>الدافع</th><th>عن ماذا</th><th class="amt">المبلغ (د.ك)</th><th>الطريقة</th><th>الحالة</th><th>رقم الإيصال</th></tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <div class="empty" id="empty" hidden>
+          <h2>لا مدفوعات بهذه الشروط</h2>
+          <p>غيّري الفترة أو الحالة أو الدفعة، أو <button class="lbtn" type="button" id="reset">أظهري كل المدفوعات</button></p>
+        </div>
+        <p class="totals" id="totals"></p>
+        <p class="fine" id="totalnote">العمليات التي بدأت ولم تكتمل، والفاشلة، والمنقضية لا تدخل في أي مجموع.</p>
+      </section>
+
+      <div class="foot-notes">
+        <p class="fine">بيانات البطاقات لا تُحفظ عندنا أبداً؛ المتدرب يدفع على صفحة KNET ونستلم نتيجة العملية ورقم الإيصال فقط. مزوّد خدمة الدفع لم يُختر بعد، والمتاح الآن KNET وحده.</p>
+        <p class="synthetic" style="margin-top:var(--s-16)">الأسماء والتواريخ والمبالغ وأرقام الإيصالات تجريبية. <a href="index.html">خريطة الشاشات</a></p>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const money=n=>n.toLocaleString('en-US',{minimumFractionDigits:3});
+const kd=n=>`${n.toLocaleString('en-US')} د.ك`;
+const ST={paid:['ok','مدفوعة'],started:['wait','بدأت'],failed:['err','فاشلة'],expired:['off','منقضية'],refund:['you','بانتظار الاسترجاع'],refunded:['off','مُستردة'],declined:['off','رُفض استرجاعها']};
+// m: month · c: cohort · f: feminine · note: one line under the row
+const P=[
+ {id:'p12',d:'6 ديسمبر 2026',m:12,who:'طلال الحربي',what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد',amt:180,k:'started',c:'dec'},
+ {id:'p11',d:'5 ديسمبر 2026',m:12,who:'هيا القحطاني',f:1,what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد',amt:180,k:'failed',c:'dec'},
+ {id:'p10',d:'4 ديسمبر 2026',m:12,who:'عبدالله العازمي',what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد · التسجيل ملغى',amt:180,k:'refund',c:'dec',rc:'R-2026-0331',
+  note:'<b>نجاح دفع وصل لتسجيل ملغى.</b> انقضت مهلة الدفع فأُلغي تسجيله، ثم وصل تأكيد البنك بعدها. المبلغ عندنا بلا مقعد يقابله.'},
+ {id:'p9',d:'3 ديسمبر 2026',m:12,who:'بنك المثال',org:1,what:'ورش الاستراتيجية · 8 يناير',s:'4 مقاعد × 240',amt:960,k:'paid',c:'jan',rc:'R-2026-0327'},
+ {id:'p8',d:'2 ديسمبر 2026',m:12,who:'وزارة التخطيط',org:1,what:'بناء القيادات · 2 فبراير',s:'سعر متفق عليه · 16 مقعداً',amt:4800,k:'paid',c:'feb',rc:'R-2026-0322'},
+ {id:'p7',d:'30 نوفمبر 2026',m:11,who:'Hannah Clarke',en:1,f:1,what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد',amt:180,k:'paid',c:'dec',rc:'R-2026-0320'},
+ {id:'p6',d:'29 نوفمبر 2026',m:11,who:'نورة الصباح',f:1,what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد',amt:180,k:'paid',c:'dec',rc:'R-2026-0318'},
+ {id:'p5',d:'28 نوفمبر 2026',m:11,who:'سارة العنزي',f:1,what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد · التسجيل ملغى',amt:180,k:'refund',c:'dec',rc:'R-2026-0315',
+  note:'ألغت تسجيلها قبل 8 أيام من بداية الدفعة، ضمن مهلة الاسترجاع، وطلبت استرجاع الرسم.'},
+ {id:'p4',d:'27 نوفمبر 2026',m:11,who:'فهد الشمري',what:'استشراف المستقبل · 14 ديسمبر',s:'مقعد واحد',amt:180,k:'paid',c:'dec',rc:'R-2026-0311'},
+ {id:'p3',d:'26 نوفمبر 2026',m:11,who:'يوسف الرشيدي',what:'ورش الاستراتيجية · 8 يناير',s:'مقعد واحد',amt:240,k:'expired',c:'jan'},
+ {id:'p2',d:'20 نوفمبر 2026',m:11,who:'مريم الكندري',f:1,what:'بناء القيادات · 2 فبراير',s:'مقعد واحد · التسجيل ملغى',amt:320,k:'refunded',c:'feb',rc:'R-2026-0298',
+  note:'اعتمدتِ الاسترجاع في 22 نوفمبر، وعاد المبلغ عن طريق البنك.'},
+ {id:'p1',d:'12 نوفمبر 2026',m:11,who:'بدر العتيبي',what:'ورش الاستراتيجية · 8 يناير',s:'مقعد واحد · التسجيل ملغى',amt:240,k:'declined',c:'jan',rc:'R-2026-0287',
+  note:'سبب الرفض: طلب الاسترجاع بعد انتهاء مهلته.'}];
+let F={period:'',state:'',cohort:''},ask=null,fresh='';   // ask: {id,kind}
+
+const plural=n=>n===0?'لا عمليات':n===1?'عملية واحدة':n===2?'عمليتان':n<=10?`${n} عمليات`:`${n} عملية`;
+const waitN=()=>P.filter(p=>p.k==='refund').length;
+const waitW=n=>n===0?'لا شيء ينتظر قرارك':n===1?'واحدة تنتظر قرارك':n===2?'اثنتان تنتظران قرارك':`${n} تنتظر قرارك`;
+const shown=()=>P.filter(p=>(!F.period||p.m===+F.period)&&(!F.state||p.k===F.state)&&(!F.cohort||p.c===F.cohort));
+const who=p=>p.en?`<bdi lang="en">${p.who}</bdi>`:p.who;
+
+function sub(p){
+  if(ask&&ask.id===p.id&&ask.kind==='approve')return `<div class="in"><p><b>اعتماد الاسترجاع لا يمكن التراجع عنه.</b> يعود مبلغ ${kd(p.amt)} إلى ${p.who} عن طريق البنك، وقد يستغرق وصوله بضعة أيام عمل، و${p.f?'تُبلَّغ':'يُبلَّغ'} بذلك.</p>
+    <div class="row"><button class="btn sm" data-yes="${p.id}">تأكيد الاعتماد</button><button class="btn quiet sm" data-no="${p.id}">تراجع</button></div></div>`;
+  if(ask&&ask.id===p.id&&ask.kind==='decline')return `<div class="in"><div class="field" id="wf"><label for="why">سبب الرفض (يُرسل إلى ${p.who})</label><textarea id="why" aria-describedby="wm" placeholder="مثال: طلب الاسترجاع بعد انتهاء مهلته"></textarea><span class="msg" id="wm" hidden>اكتبي السبب أولاً؛ الرفض بلا سبب لا يُحفظ.</span></div>
+    <div class="row"><button class="btn sm" data-yes="${p.id}">تأكيد الرفض</button><button class="btn quiet sm" data-no="${p.id}">تراجع</button></div></div>`;
+  if(p.k==='refund')return `<div class="in"><p>${p.note}</p>
+    <div class="row"><button class="btn sec sm" data-cta="WF-CTA-043" data-ask="approve" data-id="${p.id}" aria-label="اعتماد الاسترجاع: ${p.who}">اعتماد الاسترجاع</button><button class="btn quiet sm" data-cta="WF-CTA-044" data-ask="decline" data-id="${p.id}" aria-label="رفض الاسترجاع: ${p.who}">رفض الاسترجاع</button></div></div>`;
+  return p.note?`<div class="in said"><p>${p.note}</p></div>`:'';
+}
+function render(){
+  const L=shown(),w=waitN();
+  $('crumb').textContent=`${plural(P.length)} منذ 1 نوفمبر 2026 · ${waitW(w)}`;
+  const any=F.period||F.state||F.cohort;
+  $('count').innerHTML=L.length?`<b>${plural(L.length)}</b>${any?` من ${P.length} بهذه الشروط`:''} · الأحدث أولاً`:'';
+  $('rows').innerHTML=L.map(p=>{
+    const [cls,word]=ST[p.k],s=sub(p);
+    return `<tr class="${s?'has-sub':''}${p.k==='refund'?' you':''}" id="${p.id}"><td>${p.d}</td><td>${who(p)}${p.org?'<small>جهة</small>':''}</td><td>${p.what}<small>${p.s}</small></td><td class="amt">${money(p.amt)}</td><td>KNET</td><td><span class="stamp ${cls}${fresh===p.id?' press':''}" tabindex="-1">${word}</span></td><td>${p.rc?`<bdi class="num">${p.rc}</bdi>`:'<span class="muted">لم يصدر</span>'}</td></tr>`
+      +(s?`<tr class="sub${p.k==='refund'?' you':''}"><td colspan="7">${s}</td></tr>`:'');
+  }).join('');
+  fresh='';
+  const sum=ks=>L.filter(p=>ks.includes(p.k)).reduce((a,p)=>a+p.amt,0);
+  $('tablewrap').hidden=$('totals').hidden=$('totalnote').hidden=!L.length;$('empty').hidden=!!L.length;
+  $('totals').innerHTML=`<span>المحصَّل<b>${money(sum(['paid','declined']))}</b> د.ك</span><span>المُسترد<b>${money(sum(['refunded']))}</b> د.ك</span><span>بانتظار قرارك<b>${money(sum(['refund']))}</b> د.ك</span>`;
+}
+function apply(){F={period:$('f-period').value,state:$('f-state').value,cohort:$('f-cohort').value};ask=null;render()}
+$('filter').addEventListener('submit',e=>{e.preventDefault();apply()});
+$('reset').addEventListener('click',()=>{$('filter').reset();apply();$('f-period').focus()});
+
+function back(){const id=ask.id,kind=ask.kind;ask=null;render();const b=document.querySelector(`[data-id="${id}"][data-ask="${kind}"]`);if(b)b.focus()}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;const d=t.dataset;
+  if(d.ask){ask={id:d.id,kind:d.ask};render();(d.ask==='decline'?$('why'):document.querySelector(`[data-yes="${d.id}"]`)).focus()}
+  else if(d.no)back();
+  else if(d.yes){
+    const p=P.find(x=>x.id===d.yes);
+    if(ask.kind==='decline'){
+      const w=$('why'),v=w.value.trim();
+      if(!v){$('wm').hidden=false;$('wf').classList.add('bad');w.focus();return}
+      p.k='declined';p.note=`سبب الرفض: ${esc(v)}`;ttToast(`رُفض الاسترجاع وأُرسل السبب إلى ${p.who}`);
+    }else{p.k='refunded';p.note='اعتمدتِ الاسترجاع اليوم. يعود المبلغ عن طريق البنك خلال أيام عمل.';ttToast(`اعتُمد الاسترجاع وأُبلغ${p.f?'ت':''} ${p.who}`)}
+    ask=null;fresh=p.id;
+    // keep the row in view even when the list is filtered by the old state
+    if(F.state){F.state='';$('f-state').value=''}
+    render();const st=document.querySelector(`#${p.id} .stamp`);if(st)st.focus();
+  }
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&ask)back()});
+render();
+</script>
+</body>
+</html>

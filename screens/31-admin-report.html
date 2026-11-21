@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>التقرير الشامل — إدارة Think Tank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<style>
+.filter{display:flex;gap:var(--s-12) var(--s-16);align-items:end;flex-wrap:wrap;padding-bottom:var(--s-24);margin-bottom:var(--s-24);border-bottom:1.5px dashed var(--card-edge)}
+.filter .field{flex:1 1 200px;max-width:340px}
+.filter .btn{min-height:48px}
+.scope{margin:0 0 var(--s-8);font-size:var(--fs-13);color:var(--ink-2)}
+.lede{margin:0 0 var(--s-32);font-size:var(--fs-18);font-weight:500;line-height:1.9;max-width:62ch}
+.lede b{font-weight:800;font-variant-numeric:tabular-nums}
+.rep{min-width:820px}
+.rep td{height:52px}
+.rep td:first-child{font-weight:700;min-width:240px}
+.rep td small{display:block;font-size:var(--fs-12);font-weight:400;color:var(--ink-2);line-height:1.6}
+.rep th.n,.rep td.n{text-align:end;padding-inline-end:var(--s-24);font-variant-numeric:tabular-nums}
+.rep th .assume{margin-inline-start:var(--s-4)}
+.rep tfoot td{border-top:2px solid var(--ink);border-bottom:0;font-weight:800;height:56px}
+.att{display:inline-flex;gap:var(--s-12);align-items:center;font-variant-numeric:tabular-nums}
+.att bdi{min-width:4ch;text-align:end}
+.bar{position:relative;display:block;width:88px;height:8px;border-radius:var(--s-4);background:var(--card-lo);box-shadow:inset 0 1px 2px rgba(0,0,0,.18)}
+.bar i{position:absolute;inset-block:0;inset-inline-start:0;width:calc(var(--v)*1%);border-radius:var(--s-4);background:var(--ink)}
+.bar::after{content:"";position:absolute;inset-block:-4px;inset-inline-start:80%;border-inline-start:2px solid var(--brass-dark)}
+.fine{font-size:var(--fs-13);color:var(--ink-2);max-width:74ch;margin:var(--s-12) 0 0}
+.key{display:inline-flex;gap:var(--s-8);align-items:center}
+.key u{display:inline-block;height:14px;border-inline-start:2px solid var(--brass-dark)}
+.foot-notes{margin-top:var(--s-48);padding-top:var(--s-16);border-top:1.5px dashed var(--card-edge)}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="الإدارة">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>الإدارة</span></div>
+    <a href="09-admin-inbox.html">ما ينتظرك <span class="n">3</span></a>
+    <a href="24-admin-cohorts.html">الدفعات</a>
+    <a href="25-admin-programs.html">البرامج</a>
+    <a href="26-admin-orgs.html">الجهات <span class="n">1</span></a>
+    <a href="27-admin-proposals.html">طلبات العروض <span class="n">2</span></a>
+    <a href="28-admin-payments.html">المدفوعات <span class="n">1</span></a>
+    <a href="29-admin-certificates.html">الشهادات</a>
+    <a href="30-admin-trainees.html">المتدربون</a>
+    <a href="31-admin-report.html" aria-current="page">التقرير الشامل</a>
+    <div class="foot">د. منال الحساوي<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+      <header class="top">
+        <div><h1>التقرير الشامل</h1><div class="crumb">كل الجهات والأفراد في تقرير واحد</div></div>
+        <div class="row" id="acts"></div>
+      </header>
+
+      <form class="filter" id="filter" aria-label="نطاق التقرير">
+        <div class="field"><label for="f-year">الفترة</label>
+          <select id="f-year"><option value="2026">هذه السنة · 2026</option><option value="2025">السنة الماضية · 2025</option></select></div>
+        <div class="field"><label for="f-prog">البرنامج</label>
+          <select id="f-prog"><option value="">كل البرامج</option><option value="F">استشراف المستقبل وبناء السيناريوهات</option><option value="S">ورش الاستراتيجية للقيادات التنفيذية</option><option value="L">بناء القيادات والقدرات المؤسسية</option></select></div>
+        <button class="btn sm" type="submit" data-cta="WF-CTA-050">عرض التقرير الشامل</button>
+      </form>
+
+      <div id="report" aria-live="polite">
+        <p class="scope" id="scope"></p>
+        <p class="lede" id="lede"></p>
+
+        <section aria-labelledby="h-org">
+          <h2 id="h-org">حسب الجهة</h2>
+          <div class="scroll-x">
+            <table class="t rep">
+              <thead><tr><th>الجهة</th><th class="n">الدفعات</th><th class="n">المقاعد</th><th class="n">المتدربون</th><th>متوسط الحضور</th><th class="n">الشهادات الصادرة</th><th class="n">المدفوع (د.ك)</th></tr></thead>
+              <tbody id="orgs"></tbody>
+              <tfoot id="orgs-t"></tfoot>
+            </table>
+          </div>
+          <p class="fine" id="org-note"></p>
+        </section>
+
+        <section aria-labelledby="h-prog">
+          <h2 id="h-prog">حسب البرنامج</h2>
+          <div class="scroll-x">
+            <table class="t rep">
+              <thead><tr><th>البرنامج</th><th class="n">الدفعات المعقودة</th><th class="n">المسجّلون</th><th class="n">حضروا <bdi>80%</bdi> فأكثر <span class="assume">افتراض</span></th><th class="n">الشهادات الصادرة</th><th class="n">تقييم الاستبيان (من 5)</th></tr></thead>
+              <tbody id="progs"></tbody>
+              <tfoot id="progs-t"></tfoot>
+            </table>
+          </div>
+          <p class="fine" id="prog-note"></p>
+        </section>
+      </div>
+
+      <div class="empty" id="empty" hidden>
+        <h3 id="empty-h"></h3>
+        <p>لا أرقام تُعرض لهذا النطاق. غيّري الفترة، أو <button class="lbtn" type="button" id="all">اعرضي كل البرامج</button></p>
+      </div>
+
+      <div class="foot-notes">
+        <p class="fine" style="margin-top:0">هذا التقرير لك وحدك. مسؤول التدريب في أي جهة يرى موظفي جهته فقط، ولا يرى جهة أخرى ولا الأفراد.</p>
+        <p class="synthetic" style="margin-top:var(--s-16)">الجهات والأرقام والمبالغ تجريبية. <a href="index.html">خريطة الشاشات</a></p>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const PN={F:'استشراف المستقبل وبناء السيناريوهات',S:'ورش الاستراتيجية للقيادات التنفيذية',L:'بناء القيادات والقدرات المؤسسية'};
+const ORGS=['بنك المثال','وزارة التخطيط','شركة النموذج القابضة','مؤسسة المثال الخيرية','هيئة النموذج','أفراد'];
+// one line per organisation per programme: [org, programme, cohorts joined, seats, trainees, average attendance %, attended ≥80%, certificates, paid KD]
+const D={
+ 2026:{asof:'الأرقام حتى 21 ديسمبر 2026',held:{F:2,S:2,L:1},survey:{F:4.6,S:4.4,L:4.7},
+  note:{L:'في «بناء القيادات» استوفى الحضور 17 وصدرت 16 شهادة: واحدة أُلغيت بعد إصدارها (<bdi>TTS-2026-0099</bdi>).'},
+  rows:[
+   ['بنك المثال','F',1,4,4,100,4,4,720],['وزارة التخطيط','F',2,9,9,94,8,8,1620],['شركة النموذج القابضة','F',1,5,5,88,4,4,900],['أفراد','F',2,18,18,89,14,14,3240],
+   ['بنك المثال','S',1,6,6,92,5,5,1440],['شركة النموذج القابضة','S',2,10,9,85,7,7,2400],['هيئة النموذج','S',1,8,8,96,8,8,1920],['أفراد','S',2,12,12,81,8,8,2880],
+   ['بنك المثال','L',1,5,4,90,4,4,1600],['مؤسسة المثال الخيرية','L',1,6,6,93,6,6,1920],['هيئة النموذج','L',1,4,4,75,2,2,1280],['أفراد','L',1,5,5,84,5,4,1600]]},
+ 2025:{asof:'سنة مكتملة',held:{F:1,S:2},survey:{F:4.3,S:4.5},note:{},
+  rows:[
+   ['وزارة التخطيط','F',1,6,6,91,5,5,1080],['أفراد','F',1,9,9,86,7,7,1620],
+   ['بنك المثال','S',1,5,5,94,5,5,1200],['هيئة النموذج','S',1,7,6,88,5,5,1680],['أفراد','S',2,10,10,83,7,7,2400]]}};
+const money=n=>n.toLocaleString('en-US',{minimumFractionDigits:3});
+const pl=(n,one,two,few,many)=>n===1?one:n===2?two:n<=10?`${n} ${few}`:`${n} ${many}`;
+const cohortsW=n=>pl(n,'دفعة واحدة','دفعتان','دفعات','دفعة');
+const traineesW=n=>pl(n,'متدرب واحد','متدربان','متدربين','متدرباً');
+const orgsW=n=>pl(n,'جهة واحدة','جهتين','جهات','جهة');
+const certsW=n=>pl(n,'شهادة واحدة','شهادتان','شهادات','شهادة');
+const sum=(L,i)=>L.reduce((a,r)=>a+r[i],0);
+const avg=L=>{const t=sum(L,4);return t?Math.round(L.reduce((a,r)=>a+r[5]*r[4],0)/t):0};
+const att=v=>`<span class="att"><span class="bar" style="--v:${v}" aria-hidden="true"><i></i></span><bdi>${v}%</bdi></span>`;
+let F={year:'2026',prog:''};
+
+function render(){
+  const Y=D[F.year],L=Y.rows.filter(r=>!F.prog||r[1]===F.prog),progs=Object.keys(Y.held).filter(p=>!F.prog||p===F.prog);
+  const none=!L.length;
+  $('report').hidden=none;$('empty').hidden=!none;
+  $('acts').innerHTML=none?'':'<button class="btn sec sm" type="button" id="dl">تنزيل التقرير</button>';
+  if(none){$('empty-h').textContent=`لم تُعقد دفعة من «${PN[F.prog]}» في ${F.year}`;return}
+
+  const held=progs.reduce((a,p)=>a+Y.held[p],0),tr=sum(L,4),ind=sum(L.filter(r=>r[0]==='أفراد'),4);
+  const active=ORGS.filter(o=>L.some(r=>r[0]===o)),orgN=active.filter(o=>o!=='أفراد').length;
+  $('scope').innerHTML=`1 يناير – 31 ديسمبر ${F.year} · ${F.prog?PN[F.prog]:'كل البرامج'} · ${Y.asof}`;
+  $('lede').innerHTML=`في ${F.year}: <b>${cohortsW(held)}</b>، <b>${traineesW(tr)}</b> (${tr-ind} من ${orgsW(orgN)} و${ind} سجّلوا بأنفسهم)، <b>${certsW(sum(L,7))}</b> صادرة، و<b>${sum(L,8).toLocaleString('en-US')} د.ك</b> مدفوعة.`;
+
+  $('orgs').innerHTML=active.map(o=>{const R=L.filter(r=>r[0]===o);
+    return `<tr><td>${o}${o==='أفراد'?'<small>سجّلوا ودفعوا بأنفسهم</small>':''}</td><td class="n">${sum(R,2)}</td><td class="n">${sum(R,3)}</td><td class="n">${sum(R,4)}</td><td>${att(avg(R))}</td><td class="n">${sum(R,7)}</td><td class="n">${money(sum(R,8))}</td></tr>`}).join('');
+  $('orgs-t').innerHTML=`<tr><td>المجموع</td><td class="n">${held}</td><td class="n">${sum(L,3)}</td><td class="n">${tr}</td><td>${att(avg(L))}</td><td class="n">${sum(L,7)}</td><td class="n">${money(sum(L,8))}</td></tr>`;
+  const idle=ORGS.filter(o=>!active.includes(o));
+  $('org-note').innerHTML=`<span class="key"><u></u> العلامة على الشريط عند <bdi>80%</bdi>، حد استحقاق الشهادة</span> <span class="assume">افتراض</span>. عمود الدفعات لا يُجمع عمودياً لأن الدفعة الواحدة تضم أكثر من جهة؛ مجموعه هو عدد الدفعات المعقودة. متوسط الحضور في المجموع موزون بعدد المتدربين.${idle.length?` بلا مشاركة في هذا النطاق: ${idle.join('، ')}.`:''}`;
+
+  $('progs').innerHTML=progs.map(p=>{const R=L.filter(r=>r[1]===p);
+    return `<tr><td>${PN[p]}</td><td class="n">${Y.held[p]}</td><td class="n">${sum(R,4)}</td><td class="n">${sum(R,6)}</td><td class="n">${sum(R,7)}</td><td class="n"><bdi>${Y.survey[p].toFixed(1)}</bdi></td></tr>`}).join('');
+  const sv=progs.reduce((a,p)=>a+Y.survey[p]*sum(L.filter(r=>r[1]===p),4),0)/tr;
+  $('progs-t').innerHTML=progs.length>1?`<tr><td>المجموع</td><td class="n">${held}</td><td class="n">${tr}</td><td class="n">${sum(L,6)}</td><td class="n">${sum(L,7)}</td><td class="n"><bdi>${sv.toFixed(1)}</bdi></td></tr>`:'';
+  const notes=progs.map(p=>Y.note[p]).filter(Boolean);
+  $('prog-note').innerHTML=`المسجّلون هنا هم المتدربون أنفسهم في جدول الجهات (${tr}).${progs.length>1?' تقييم الاستبيان في المجموع موزون بعدد المسجّلين.':''} ${notes.join(' ')}`;
+}
+$('filter').addEventListener('submit',e=>{e.preventDefault();F={year:$('f-year').value,prog:$('f-prog').value};render()});
+$('all').addEventListener('click',()=>{$('f-prog').value='';F={year:$('f-year').value,prog:''};render();$('f-prog').focus()});
+$('acts').addEventListener('click',e=>{if(e.target.id==='dl')ttToast(`نُزّل تقرير ${F.year} على جهازك`)});
+render();
+</script>
+</body>
+</html>

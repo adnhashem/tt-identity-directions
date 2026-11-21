@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>الشهادات — إدارة Think Tank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<style>
+.find{display:flex;gap:var(--s-16);align-items:end;justify-content:space-between;flex-wrap:wrap;margin-bottom:var(--s-16)}
+.find .field{flex:1 1 280px;max-width:420px}
+.find .tabs{margin:0;border-bottom:0;box-shadow:inset 0 -2px 0 var(--ink)}
+.count{margin:0 0 var(--s-4);font-size:var(--fs-14);color:var(--ink-2)}
+.count b{color:var(--ink);font-variant-numeric:tabular-nums}
+.certs{min-width:980px}
+.certs th{position:relative}
+.certs td{height:56px}
+.certs td:first-child{font-weight:700;font-variant-numeric:tabular-nums}
+.certs td:nth-child(4){white-space:nowrap;font-variant-numeric:tabular-nums}
+.certs td small{display:block;font-size:var(--fs-12);font-weight:400;color:var(--ink-2);line-height:1.6}
+.certs .gone{color:var(--ink-2);font-weight:500}
+.certs .acts{align-items:center;gap:var(--s-12);flex-wrap:nowrap}
+.certs tr.open td{border-bottom:0}
+.certs tr.sub td{height:auto;padding:0 6px var(--s-16);font-weight:400}
+.certs .in{position:sticky;inset-inline-start:0;max-width:min(64ch,calc(100vw - var(--s-64)));font-size:var(--fs-14)}
+.certs .in p{margin:0;color:var(--ink-2)}
+.certs .in p b{color:var(--ink)}
+.certs .in .field{margin-bottom:var(--s-12)}
+.certs .in .field textarea{min-height:72px}
+.fine{font-size:var(--fs-13);color:var(--ink-2);max-width:72ch;margin:0}
+.fine+.fine{margin-top:var(--s-8)}
+.foot-notes{margin-top:var(--s-32);padding-top:var(--s-16);border-top:1.5px dashed var(--card-edge)}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="الإدارة">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>الإدارة</span></div>
+    <a href="09-admin-inbox.html">ما ينتظرك <span class="n">3</span></a>
+    <a href="24-admin-cohorts.html">الدفعات</a>
+    <a href="25-admin-programs.html">البرامج</a>
+    <a href="26-admin-orgs.html">الجهات <span class="n">1</span></a>
+    <a href="27-admin-proposals.html">طلبات العروض <span class="n">2</span></a>
+    <a href="28-admin-payments.html">المدفوعات <span class="n">1</span></a>
+    <a href="29-admin-certificates.html" aria-current="page">الشهادات</a>
+    <a href="30-admin-trainees.html">المتدربون</a>
+    <a href="31-admin-report.html">التقرير الشامل</a>
+    <div class="foot">د. منال الحساوي<br><a href="index.html">خريطة الشاشات</a><br><a href="17-login.html">خروج</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+      <header class="top">
+        <div><h1>الشهادات</h1><div class="crumb" id="crumb"></div></div>
+      </header>
+
+      <div class="find">
+        <div class="field"><label for="q">ابحثي برقم الشهادة أو اسم المتدرب</label><input id="q" type="search" autocomplete="off" placeholder="مثال: 0142 أو نورة"></div>
+        <div class="tabs" role="tablist" aria-label="حالة الشهادة" id="tabs"></div>
+      </div>
+
+      <section aria-label="قائمة الشهادات" id="panel" role="tabpanel">
+        <p class="count" id="count" role="status"></p>
+        <div class="scroll-x" id="tablewrap">
+          <table class="t certs">
+            <thead><tr><th>الرقم</th><th>المتدرب</th><th>البرنامج</th><th>تاريخ الإصدار</th><th>الحالة</th><th><span class="vh">إجراء</span></th></tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <div class="empty" id="empty" hidden>
+          <h2 id="empty-h"></h2>
+          <p id="empty-p"></p>
+        </div>
+      </section>
+
+      <div class="foot-notes">
+        <p class="fine">إلغاء الشهادة نهائي: لا تعود صادرة بعده، وصفحة التحقق تُظهرها ملغاة في الحال. أما إصدار شهادة مصحَّحة بدل الملغاة فسؤال لم يُحسم بعد، ولذلك لا يوجد له زر هنا.</p>
+        <p class="fine">الشهادات تصدر من داخل الدفعة بعد إغلاقها، لا من هذه القائمة: <a class="link" href="11-admin-attendance.html?state=completed">شهادات دفعة 14 ديسمبر</a>.</p>
+        <p class="synthetic" style="margin-top:var(--s-16)">الأسماء والتواريخ وأرقام الشهادات تجريبية. <a href="index.html">خريطة الشاشات</a></p>
+      </div>
+    </div>
+  </main>
+</div>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const FS='استشراف المستقبل وبناء السيناريوهات',SS='ورش الاستراتيجية للقيادات التنفيذية',LS='بناء القيادات والقدرات المؤسسية';
+const DEC='دفعة 14 ديسمبر 2026',D17='17 ديسمبر 2026';
+// k: issued | revoked · gone: trainee data anonymised
+const C=[
+ {no:'TTS-2026-0152',n:'ريم السبيعي',f:1,p:FS,co:DEC,d:D17,k:'issued'},
+ {no:'TTS-2026-0151',n:'شيخة الدوسري',f:1,p:FS,co:DEC,d:D17,k:'issued'},
+ {no:'TTS-2026-0150',n:'بدر العتيبي',p:FS,co:DEC,d:D17,k:'issued'},
+ {no:'TTS-2026-0149',n:'لطيفة المري',f:1,p:FS,co:DEC,d:D17,k:'issued'},
+ {no:'TTS-2026-0148',n:'أحمد الهاجري',p:FS,co:DEC,d:D17,k:'issued'},
+ {no:'TTS-2026-0147',n:'مريم الكندري',f:1,p:FS,co:DEC,d:D17,k:'issued'},
+ {no:'TTS-2026-0146',n:'يوسف الرشيدي',p:FS,co:DEC,d:D17,k:'issued'},
+ {no:'TTS-2026-0145',n:'فهد الشمري',p:FS,co:DEC,d:D17,k:'issued'},
+ {no:'TTS-2026-0144',n:'جاسم البلوشي',p:FS,co:DEC,d:D17,k:'issued'},
+ {no:'TTS-2026-0143',n:'مشاري العجمي',p:FS,co:DEC,d:D17,k:'issued'},
+ {no:'TTS-2026-0142',n:'نورة الصباح',f:1,p:FS,co:DEC,d:D17,k:'issued'},
+ {no:'TTS-2026-0141',n:'دلال الخالد',f:1,p:FS,co:DEC,d:D17,k:'issued'},
+ {no:'TTS-2026-0140',n:'عبدالعزيز المطيري',p:FS,co:DEC,d:D17,k:'issued'},
+ {no:'TTS-2026-0099',n:'خالد المنصور',p:LS,co:'دفعة 2 نوفمبر 2026',d:'9 نوفمبر 2026',k:'revoked',why:'صدرت والاسم مكتوب خطأ في الشهادة.',when:'في 11 نوفمبر 2026'},
+ {no:'TTS-2026-0087',gone:1,p:SS,co:'دفعة 12 أكتوبر 2026',d:'14 أكتوبر 2026',k:'issued'}];
+const ST={issued:['ok','صادرة'],revoked:['off','ملغاة']};
+const TABS=[['','الكل'],['issued','صادرة'],['revoked','ملغاة']];
+let tab='',q='',asking='',open=new Set(),fresh='';
+
+const plural=n=>n===0?'لا شهادات':n===1?'شهادة واحدة':n===2?'شهادتان':n<=10?`${n} شهادات`:`${n} شهادة`;
+const cnt=k=>C.filter(c=>!k||c.k===k).length;
+const norm=s=>s.toLowerCase().replace(/[أإآ]/g,'ا').replace(/ة/g,'ه').replace(/ى/g,'ي').replace(/\s+/g,' ').trim();
+const who=c=>c.gone?'متدرب محذوف':c.n;
+const shown=()=>{const t=norm(q);return C.filter(c=>(!tab||c.k===tab)&&(!t||norm(c.no).includes(t)||norm(who(c)).includes(t)))};
+
+function tabs(){
+  $('tabs').innerHTML=TABS.map(([k,w])=>`<button role="tab" type="button" data-tab="${k}" aria-controls="panel" aria-selected="${k===tab}" tabindex="${k===tab?0:-1}">${w} <span class="num">${cnt(k)}</span></button>`).join('');
+}
+function render(){
+  const L=shown();
+  $('crumb').textContent=`${plural(C.length)} · ${cnt('issued')} صادرة · ${cnt('revoked')} ملغاة`;
+  tabs();
+  $('count').innerHTML=L.length?`<b>${plural(L.length)}</b>${q.trim()?` تطابق «${esc(q.trim())}»`:''} · الأحدث أولاً`:'';
+  $('tablewrap').hidden=!L.length;$('empty').hidden=!!L.length;
+  if(!L.length){
+    const none=!q.trim();
+    $('empty-h').textContent=none?(tab==='revoked'?'لا شهادات ملغاة':'لا شهادات هنا بعد'):'لا شهادة بهذا الرقم أو الاسم';
+    $('empty-p').innerHTML=none?'ما يصدر من الدفعات يظهر في هذه القائمة.':`لم نجد «${esc(q.trim())}»${tab?` بين الشهادات ${tab==='issued'?'الصادرة':'الملغاة'}`:''}. تأكدي من الرقم كاملاً مثل <bdi>TTS-2026-0142</bdi>، أو <button class="lbtn" type="button" id="clear">امسحي البحث</button>`;
+  }
+  $('rows').innerHTML=L.map(c=>{
+    const [cls,word]=ST[c.k],ask=asking===c.no,exp=open.has(c.no);
+    const name=c.gone?`<span class="gone">متدرب محذوف</span><small>جُهّلت بياناته، والرقم ما زال صالحاً للتحقق</small>`:c.n;
+    let act='';
+    if(c.k==='issued'&&!ask)act=`<a class="rowlink" href="12-verify.html" aria-label="افتحي صفحة التحقق: ${c.no}">افتحي صفحة التحقق</a><button class="btn quiet sm" data-cta="WF-CTA-047" data-ask="${c.no}" aria-label="إلغاء الشهادة: ${c.no}">إلغاء الشهادة</button>`;
+    if(c.k==='revoked')act=`<button class="lbtn" type="button" data-exp="${c.no}" aria-expanded="${exp}" aria-controls="why-${c.no}">${exp?'إخفاء السبب':'سبب الإلغاء'}</button>`;
+    let sub='';
+    if(ask)sub=`<div class="in"><div class="field" id="wf"><label for="why">سبب إلغاء الشهادة <bdi>${c.no}</bdi> (يُحفظ في سجلها)</label><textarea id="why" aria-describedby="wm wh" placeholder="مثال: صدرت والاسم مكتوب خطأ"></textarea><span class="hint" id="wh">الإلغاء نهائي ولا يمكن التراجع عنه.</span><span class="msg" id="wm" hidden>اكتبي السبب أولاً؛ الإلغاء بلا سبب لا يُحفظ.</span></div>
+      <div class="row"><button class="btn sm" data-yes="${c.no}">تأكيد إلغاء الشهادة</button><button class="btn quiet sm" data-no="${c.no}">تراجع</button></div></div>`;
+    else if(c.k==='revoked'&&exp)sub=`<div class="in" id="why-${c.no}"><p><b>أُلغيت ${c.when}.</b> السبب: ${c.why}</p></div>`;
+    return `<tr id="r-${c.no}" class="${sub?'open':''}"><td><bdi>${c.no}</bdi></td><td>${name}</td><td>${c.p}</td><td>${c.d}<small>${c.co}</small></td><td><span class="stamp ${cls}${fresh===c.no?' press':''}" tabindex="-1">${word}</span></td><td><div class="acts">${act}</div></td></tr>`
+      +(sub?`<tr class="sub"><td colspan="6">${sub}</td></tr>`:'');
+  }).join('');
+  fresh='';
+}
+function pick(k,focus){tab=k;asking='';render();if(focus)document.querySelector(`[data-tab="${k}"]`).focus()}
+
+$('q').addEventListener('input',e=>{q=e.target.value;asking='';render()});
+$('tabs').addEventListener('keydown',e=>{
+  const i=TABS.findIndex(t=>t[0]===tab),n=TABS.length,to={ArrowLeft:(i+1)%n,ArrowRight:(i+n-1)%n,Home:0,End:n-1}[e.key];
+  if(to===undefined)return;e.preventDefault();pick(TABS[to][0],true)});
+function back(){const no=asking;asking='';render();const b=document.querySelector(`[data-ask="${no}"]`);if(b)b.focus()}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;const d=t.dataset;
+  if('tab' in d)pick(d.tab,true);
+  else if(t.id==='clear'){q='';$('q').value='';render();$('q').focus()}
+  else if(d.exp){open.has(d.exp)?open.delete(d.exp):open.add(d.exp);render();document.querySelector(`[data-exp="${d.exp}"]`).focus()}
+  else if(d.ask){asking=d.ask;render();$('why').focus()}
+  else if(d.no)back();
+  else if(d.yes){
+    const c=C.find(x=>x.no===d.yes),w=$('why'),v=w.value.trim();
+    if(!v){$('wm').hidden=false;$('wf').classList.add('bad');w.focus();return}
+    c.k='revoked';c.why=esc(v);c.when='اليوم';asking='';fresh=c.no;open.add(c.no);
+    // the row stays visible: a list filtered to «صادرة» would hide what she just did
+    if(tab==='issued')tab='';
+    render();ttToast(`أُلغيت الشهادة ${c.no}`);
+    const st=document.querySelector(`[id="r-${c.no}"] .stamp`);if(st)st.focus();
+  }
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&asking)back()});
+render();
+</script>
+</body>
+</html>

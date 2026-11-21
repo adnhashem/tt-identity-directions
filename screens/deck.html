@@ -119,6 +119,43 @@ body{overflow:hidden}
   .bar .seats{display:none}
 }
 @media (prefers-reduced-motion:reduce){.slide,.slide.on{transition:none}.slide.on .lay{animation:none}}
+
+/* three parts */
+.parts{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2.4vw,32px);margin-top:var(--s-32)}
+.parts .sheet{padding:clamp(18px,3vh,32px)}
+.parts .sheet:nth-child(1){transform:rotate(-1.4deg)} .parts .sheet:nth-child(3){transform:rotate(1.3deg)} .parts .sheet:nth-child(2){transform:translateY(12px)}
+.parts h3{font-size:clamp(1.15rem,2vw,1.7rem)}
+.parts .who{font-size:clamp(.8rem,1.1vw,.95rem);color:var(--ribbon);font-weight:700;margin-bottom:var(--s-8)}
+.parts ul{margin:var(--s-12) 0 0;padding-inline-start:18px;font-size:clamp(.8rem,1.15vw,1rem);color:var(--ink-2)}
+.parts .cnt{display:block;margin-top:var(--s-16);font-weight:800;font-size:clamp(1.4rem,2.4vw,2rem);font-variant-numeric:tabular-nums}
+.parts .cnt small{font-size:.5em;font-weight:500;color:var(--ink-2)}
+/* part opener: journey + contents */
+.part{grid-template-columns:1.15fr .85fr;gap:clamp(24px,4vw,64px);align-items:start}
+.tag{display:inline-block;font-size:clamp(.8rem,1.1vw,.95rem);font-weight:700;color:var(--ink);background:var(--brass);padding:2px 14px;border-radius:4px;margin-bottom:var(--s-12);box-shadow:inset 0 1px 0 #fff6,0 4px 8px -2px #0008}
+.steps-v{list-style:none;margin:var(--s-24) 0 0;padding:0;counter-reset:st}
+.steps-v li{position:relative;padding:0 var(--s-32) clamp(8px,1.8vh,16px) 0;font-size:clamp(.9rem,1.3vw,1.08rem);border-inline-start:2px solid rgba(246,239,225,.3);margin-inline-start:7px;padding-inline-start:var(--s-24);padding-inline-end:0}
+.steps-v li:last-child{border-color:transparent}
+.steps-v li::before{content:"";position:absolute;inset-inline-start:-8px;top:.45em;width:14px;height:14px;border-radius:50%;background:var(--brass);box-shadow:0 0 0 4px var(--baize)}
+.steps-v b{font-weight:700} .steps-v span{display:block;color:var(--cream-2);font-weight:300;font-size:.9em}
+.has{padding:clamp(18px,3vh,32px)}
+.has h3{font-size:clamp(1rem,1.5vw,1.25rem);margin-bottom:var(--s-8)}
+.has ul{list-style:none;margin:0;padding:0;font-size:clamp(.82rem,1.15vw,.98rem)}
+.has li{padding:clamp(5px,1vh,9px) 0;border-bottom:1.5px dashed var(--card-edge)}
+.has li:last-child{border:0}
+.has li b{font-weight:700}
+/* screens contact sheet */
+.shots{display:grid;grid-template-columns:repeat(var(--cols,5),1fr);gap:clamp(10px,1.6vw,22px);margin-top:var(--s-24)}
+.shot{display:block;background:#fff;padding:6px 6px 0;border-radius:2px;text-decoration:none;color:var(--ink);box-shadow:var(--sh-low);transition:transform .4s var(--ease),box-shadow .4s var(--ease)}
+.shot:nth-child(odd){transform:rotate(-.8deg)} .shot:nth-child(even){transform:rotate(.7deg)}
+.shot:hover,.shot:focus-visible{transform:translateY(-8px) scale(1.03);box-shadow:var(--sh-sheet);z-index:3}
+.shot img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;background:var(--card)}
+.shot b{display:block;font-size:clamp(.72rem,1vw,.92rem);font-weight:700;padding:6px 4px 0;line-height:1.4}
+.shot span{display:block;font-size:clamp(.69rem,.85vw,.78rem);color:var(--ink-2);padding:0 4px 8px;line-height:1.5}
+.slide h2.sm{font-size:clamp(1.4rem,2.8vw,2.3rem)}
+.split{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(20px,3.5vw,56px);align-items:start}
+.gates{display:flex;gap:var(--s-16);justify-content:center;flex-wrap:wrap;margin-top:var(--s-32)}
+.gates .btn{min-height:60px;padding-inline:var(--s-32);font-size:var(--fs-18)}
+@media (max-width:900px){.parts,.part,.split{grid-template-columns:1fr}.parts .sheet{transform:none!important}.shots{grid-template-columns:1fr 1fr}.shot{transform:none!important}}
 </style>
 </head>
 <body class="table">
@@ -169,15 +206,13 @@ body{overflow:hidden}
     </div>
   </section>
 
-  <section class="slide" aria-label="النظام المقترح">
-    <h2>المقترح: خمسة أجزاء في <em>نظام واحد</em></h2>
-    <p class="lede">الموقع يبقى الواجهة، وتُضاف له أربعة أبواب، لكل مستخدم بابه.</p>
-    <div class="hand">
-      <div class="stub lay" style="--i:0"><b>الموقع العام</b><span>عربي وإنجليزي، بمواعيد ورسوم ومقاعد</span><u>TTS</u></div>
-      <div class="stub lay" style="--i:1"><b>بوابة المتدرب</b><span>صفّه الإلكتروني، جلساته، شهادته</span><u>TTS</u></div>
-      <div class="stub lay" style="--i:2"><b>بوابة الجهة</b><span>تحجز مقاعد وتتابع موظفيها</span><u>TTS</u></div>
-      <div class="stub lay" style="--i:3"><b>إدارة الدكتورة</b><span>محتوى، دفعات، حضور، شهادات</span><u>TTS</u></div>
-      <div class="stub lay" style="--i:4"><b>التحقق من الشهادة</b><span>لأي طرف معه رقمها</span><u>TTS</u></div>
+  <section class="slide" aria-label="ثلاثة أقسام">
+    <h2>المقترح: نظام واحد من <em>ثلاثة أقسام</em></h2>
+    <p class="lede">لكل مستخدم بابه، وكلها تقرأ من البيانات نفسها.</p>
+    <div class="parts">
+      <div class="sheet lay" style="--i:0"><div class="who">للزائر وللعموم</div><h3>الموقع الرئيسي</h3><ul><li>البرامج والدفعات بمواعيدها ورسومها</li><li>التسجيل والدفع بـKNET</li><li>باب الجهات، والمقالات</li><li>التحقق من الشهادة</li></ul><span class="cnt">9 <small>شاشات</small></span></div>
+      <div class="sheet lay" style="--i:1"><div class="who">للمتدرب ولمسؤول التدريب في الجهة</div><h3>بوابة العميل</h3><ul><li>دفعاته وجلساته وصفّه الإلكتروني</li><li>شهاداته وحسابه ومدفوعاته</li><li>للجهة: مقاعد، موظفون، عروض، تقرير</li></ul><span class="cnt">10 <small>شاشات</small></span></div>
+      <div class="sheet lay" style="--i:2"><div class="who">للدكتورة وحدها</div><h3>بوابة الدكتورة</h3><ul><li>ما ينتظر قرارها كل يوم</li><li>البرامج ومحتواها، والدفعات والحضور</li><li>الجهات والعروض والمدفوعات والشهادات</li></ul><span class="cnt">12 <small>شاشة</small></span></div>
     </div>
   </section>
 
@@ -200,63 +235,153 @@ body{overflow:hidden}
     </div>
   </section>
 
-  <section class="slide" aria-label="رحلة المتدرب">
-    <h2>المتدرب: من الاهتمام إلى الشهادة <em>بلا مكالمة</em></h2>
-    <ol class="walk">
-      <li class="sheet lay" style="--i:0"><i>1</i><b>يختار الدفعة</b><span>يرى التاريخ والرسم وكم مقعداً بقي</span></li>
-      <li class="sheet lay" style="--i:1"><i>2</i><b>يسجّل ويؤكد جواله</b><span>ينشأ حسابه برمز تحقق</span></li>
-      <li class="sheet lay" style="--i:2"><i>3</i><b>يدفع بـKNET</b><span>يتأكد مقعده ويصله الإيصال</span></li>
-      <li class="sheet lay" style="--i:3"><i>4</i><b>يحضر ويستلم شهادته</b><span>ينزّلها من بوابته بعد إغلاق الدفعة</span></li>
-    </ol>
-  </section>
-
-  <section class="slide two" aria-label="الصف الإلكتروني">
+  <section class="slide part two" aria-label="القسم الأول: الموقع الرئيسي">
     <div>
-      <h2>ولكل برنامج <em>صفّه الإلكتروني</em></h2>
-      <p class="lede">البرنامج فصول، وكل فصل فيه ما يدرسه المتدرب قبل الجلسة الحضورية وبعدها. المتدرب يتابع من بوابته، والدكتورة تبني المحتوى من بوابتها.</p>
-      <ul class="does">
-        <li>المتدرب يرى فصوله وأين وصل في كل واحد</li>
-        <li>يشاهد الفيديو ويكمل من حيث توقف</li>
-        <li>يسلّم الواجب ويؤدي الاختبار ويعبّئ الاستبيان</li>
-        <li>الدكتورة ترتّب الفصول، وتصحّح، وتقرأ نتائج الاستبيان</li>
+      <span class="tag">القسم الأول</span>
+      <h2>الموقع الرئيسي: <em>رحلة الزائر</em></h2>
+      <ol class="steps-v">
+        <li class="lay" style="--i:0"><b>يرى الدفعات القادمة</b><span>بتاريخها ورسمها وكم مقعداً بقي</span></li>
+        <li class="lay" style="--i:1"><b>يقرأ البرنامج</b><span>لمن هو، وماذا يخرج به، وجدول جلساته</span></li>
+        <li class="lay" style="--i:2"><b>يسجّل ويؤكد جواله</b><span>ينشأ حسابه برمز تحقق قبل الدفع</span></li>
+        <li class="lay" style="--i:3"><b>يدفع بـKNET</b><span>يتأكد مقعده ويصله الإيصال</span></li>
+        <li class="lay" style="--i:4"><b>يدخل بوابته</b><span>ومن هنا يبدأ القسم الثاني</span></li>
+      </ol>
+    </div>
+    <div class="sheet has lay" style="--i:2">
+      <h3>ما في هذا القسم</h3>
+      <ul>
+        <li><b>البرامج والدفعات</b> بالعربية والإنجليزية</li>
+        <li><b>التسجيل والدفع</b> دون مكالمة ولا بريد</li>
+        <li><b>للجهات</b>: طلب عرض لبرنامج مغلق، أو طلب حساب</li>
+        <li><b>تفعيل الدعوة</b> لموظف أسندت له جهته مقعداً</li>
+        <li><b>المقالات والأبحاث</b></li>
+        <li><b>التحقق من شهادة</b> لأي طرف معه رقمها</li>
       </ul>
     </div>
-    <div class="sheet inbox lay" style="--i:0">
-      <div><span class="stamp ok">فيديو</span><span>محاضرة مسجّلة لكل فصل</span></div>
-      <div><span class="stamp ok">معلومات</span><span>ملخص الفصل مكتوباً</span></div>
-      <div><span class="stamp ok">مواد</span><span>ملفات يدرسها المتدرب</span></div>
-      <div><span class="stamp ok">واجب</span><span>يسلّمه المتدرب وتصحّحه الدكتورة</span></div>
-      <div><span class="stamp ok">اختبار</span><span>أسئلة ونتيجة فورية</span></div>
-      <div><span class="stamp ok">استبيان</span><span>رأي المتدرب في الفصل</span></div>
+  </section>
+
+  <section class="slide" aria-label="شاشات الموقع الرئيسي">
+    <span class="tag" style="justify-self:start">القسم الأول · 9 شاشات</span>
+    <h2 class="sm">شاشات الموقع الرئيسي</h2>
+    <div class="shots" style="--cols:5">
+      <a class="shot lay" style="--i:0" href="01-home.html"><img src="assets/thumbs/01.jpg" alt="" loading="lazy"><b>الرئيسية</b><span>البطاقة والدفعات القادمة</span></a>
+      <a class="shot lay" style="--i:1" href="02-program.html"><img src="assets/thumbs/02.jpg" alt="" loading="lazy"><b>صفحة البرنامج</b><span>المحتوى وجدول الجلسات</span></a>
+      <a class="shot lay" style="--i:2" href="03-register.html"><img src="assets/thumbs/03.jpg" alt="" loading="lazy"><b>التسجيل</b><span>الحساب ورمز التحقق</span></a>
+      <a class="shot lay" style="--i:3" href="04-pay.html"><img src="assets/thumbs/04.jpg" alt="" loading="lazy"><b>الدفع</b><span>KNET والإيصال</span></a>
+      <a class="shot lay" style="--i:4" href="17-login.html"><img src="assets/thumbs/17.jpg" alt="" loading="lazy"><b>الدخول</b><span>يوجّه كل مستخدم لبوابته</span></a>
+      <a class="shot lay" style="--i:5" href="18-for-orgs.html"><img src="assets/thumbs/18.jpg" alt="" loading="lazy"><b>للجهات</b><span>طلب عرض أو طلب حساب</span></a>
+      <a class="shot lay" style="--i:6" href="21-activate.html"><img src="assets/thumbs/21.jpg" alt="" loading="lazy"><b>تفعيل الدعوة</b><span>موظف دعته جهته</span></a>
+      <a class="shot lay" style="--i:7" href="19-articles.html"><img src="assets/thumbs/19.jpg" alt="" loading="lazy"><b>المقالات</b><span>مقال مفتوح وقائمة</span></a>
+      <a class="shot lay" style="--i:8" href="12-verify.html"><img src="assets/thumbs/12.jpg" alt="" loading="lazy"><b>التحقق من شهادة</b><span>صالحة، ملغاة، غير موجودة</span></a>
     </div>
   </section>
 
-  <section class="slide" aria-label="الجهات">
-    <h2>الجهة: تحجز لموظفيها وتتابعهم <em>بنفسها</em></h2>
-    <ol class="walk">
-      <li class="sheet lay" style="--i:0"><i>1</i><b>تحجز مقاعد</b><span>في أي دفعة عامة، بعدد موظفيها</span></li>
-      <li class="sheet lay" style="--i:1"><i>2</i><b>تدفع رسمها</b><span>دفعة واحدة عن كل المقاعد</span></li>
-      <li class="sheet lay" style="--i:2"><i>3</i><b>تسند كل مقعد لموظف</b><span>تصله دعوة يفعّل بها حسابه</span></li>
-      <li class="sheet lay" style="--i:3"><i>4</i><b>تستخرج تقريرها</b><span>الحضور والغياب والشهادات، بلا نتائج اختبارات</span></li>
-    </ol>
+  <section class="slide part two" aria-label="القسم الثاني: بوابة العميل">
+    <div>
+      <span class="tag">القسم الثاني</span>
+      <h2>بوابة العميل: <em>رحلة المتدرب</em></h2>
+      <ol class="steps-v">
+        <li class="lay" style="--i:0"><b>يرى دفعاته وجلساته</b><span>أين ومتى، وما حضره منها</span></li>
+        <li class="lay" style="--i:1"><b>يدرس في صفّه الإلكتروني</b><span>فصول فيها فيديو ومعلومات ومواد</span></li>
+        <li class="lay" style="--i:2"><b>يسلّم الواجب ويؤدي الاختبار</b><span>ونتيجته فورية، وله محاولة ثانية</span></li>
+        <li class="lay" style="--i:3"><b>يعبّئ الاستبيان</b><span>مرة واحدة لكل فصل</span></li>
+        <li class="lay" style="--i:4"><b>يستلم شهادته</b><span>بعد أن تغلق الدكتورة الدفعة</span></li>
+      </ol>
+    </div>
+    <div class="sheet has lay" style="--i:2">
+      <h3>ما يراه العميل</h3>
+      <ul>
+        <li><b>دفعاتي</b>: التسجيلات والجلسات والإلغاء</li>
+        <li><b>صفّي</b>: الفصول والتقدّم والمواد</li>
+        <li><b>شهاداتي</b>: الصادرة، وما لم يصدر ولماذا</li>
+        <li><b>حسابي</b>: بياناته، الأمان، التنبيهات، مدفوعاته، خصوصيته</li>
+        <li><b>ولا يرى</b> بيانات أي متدرب آخر</li>
+      </ul>
+    </div>
   </section>
 
-  <section class="slide two flip" aria-label="يوم الدكتورة">
-    <div class="sheet inbox lay" style="--i:0">
-      <div><span class="stamp you">استرجاع</span><span>متدربة تطلب استرجاع رسم دفعة 14 ديسمبر</span></div>
-      <div><span class="stamp you">حساب جهة</span><span>مسؤول تدريب يطلب حساباً لجهته</span></div>
-      <div><span class="stamp you">دفعة</span><span>دفعة حان موعدها وتنتظر أن تبدأ</span></div>
+  <section class="slide" aria-label="شاشات المتدرب">
+    <span class="tag" style="justify-self:start">القسم الثاني · المتدرب · 6 شاشات</span>
+    <h2 class="sm">شاشات المتدرب</h2>
+    <div class="shots" style="--cols:3;max-width:min(860px,100%)">
+      <a class="shot lay" style="--i:0" href="05-my-cohorts.html"><img src="assets/thumbs/05.jpg" alt="" loading="lazy"><b>دفعاتي وجلساتي</b><span>التسجيلات والجلسات</span></a>
+      <a class="shot lay" style="--i:1" href="13-course.html"><img src="assets/thumbs/13.jpg" alt="" loading="lazy"><b>صفّي</b><span>فصول البرنامج والتقدّم</span></a>
+      <a class="shot lay" style="--i:2" href="14-chapter.html"><img src="assets/thumbs/14.jpg" alt="" loading="lazy"><b>الفصل</b><span>فيديو، مواد، واجب، استبيان</span></a>
+      <a class="shot lay" style="--i:3" href="15-exam.html"><img src="assets/thumbs/15.jpg" alt="" loading="lazy"><b>الاختبار</b><span>الأسئلة والنتيجة</span></a>
+      <a class="shot lay" style="--i:4" href="06-my-certificate.html"><img src="assets/thumbs/06.jpg" alt="" loading="lazy"><b>شهاداتي</b><span>الصادرة وغير الصادرة</span></a>
+      <a class="shot lay" style="--i:5" href="20-account.html"><img src="assets/thumbs/20.jpg" alt="" loading="lazy"><b>حسابي</b><span>خمسة أقسام في صفحة</span></a>
+    </div>
+  </section>
+
+  <section class="slide split" aria-label="الجهة العميلة">
+    <div>
+      <span class="tag">القسم الثاني · الجهة</span>
+      <h2 class="sm">والعميل قد يكون <em>جهة</em></h2>
+      <ol class="steps-v">
+        <li class="lay" style="--i:0"><b>تطلب عرضاً لبرنامج مغلق، أو تحجز مقاعد</b><span>في أي دفعة عامة</span></li>
+        <li class="lay" style="--i:1"><b>تدفع مرة واحدة</b><span>رسم المقاعد، أو السعر المتفق عليه</span></li>
+        <li class="lay" style="--i:2"><b>تسند كل مقعد لموظف</b><span>تصله دعوة يفعّل بها حسابه</span></li>
+        <li class="lay" style="--i:3"><b>تتابع وتستخرج تقريرها</b><span>حضور وغياب وشهادات، بلا نتائج اختبارات</span></li>
+      </ol>
     </div>
     <div>
-      <h2>والدكتورة تفتح على شاشة واحدة: <em>ما ينتظرها</em></h2>
-      <p class="lede">هي المستخدمة الوحيدة من جهة الشركة، فالنظام يعرض ما يحتاج قرارها فقط.</p>
-      <ul class="does">
-        <li>تبني محتوى البرنامج فصلاً فصلاً</li>
-        <li>تبدأ الدفعة وتغلقها بنفسها</li>
-        <li>تؤشّر الحضور في كل جلسة</li>
-        <li>تصدر الشهادات لمن استحقها</li>
-        <li>تعتمد الاسترجاع أو ترفضه بسبب مكتوب</li>
+    <div class="shots" style="--cols:2">
+      <a class="shot lay" style="--i:0" href="07-org-seats.html"><img src="assets/thumbs/07.jpg" alt="" loading="lazy"><b>المقاعد</b><span>حجز، دفع، إسناد</span></a>
+      <a class="shot lay" style="--i:1" href="08-org-report.html"><img src="assets/thumbs/08.jpg" alt="" loading="lazy"><b>مشاركة الموظفين</b><span>الحضور والشهادات والتقرير</span></a>
+      <a class="shot lay" style="--i:2" href="22-org-proposals.html"><img src="assets/thumbs/22.jpg" alt="" loading="lazy"><b>طلبات العروض</b><span>العرض، القبول، الدفع</span></a>
+      <a class="shot lay" style="--i:3" href="23-org-account.html"><img src="assets/thumbs/23.jpg" alt="" loading="lazy"><b>حساب الجهة</b><span>بياناتها ومسؤولوها</span></a>
+    </div>
+    </div>
+  </section>
+
+  <section class="slide part two" aria-label="القسم الثالث: بوابة الدكتورة">
+    <div>
+      <span class="tag">القسم الثالث</span>
+      <h2>بوابة الدكتورة: <em>يومها في النظام</em></h2>
+      <ol class="steps-v">
+        <li class="lay" style="--i:0"><b>تفتح على ما ينتظرها</b><span>استرجاع، حساب جهة، دفعة لم تبدأ</span></li>
+        <li class="lay" style="--i:1"><b>تبني البرنامج ومحتواه</b><span>فصولاً فيها فيديو ومواد واختبار</span></li>
+        <li class="lay" style="--i:2"><b>تنشئ الدفعة وتبدؤها</b><span>بتاريخها وسعتها ورسمها</span></li>
+        <li class="lay" style="--i:3"><b>تؤشّر الحضور في كل جلسة</b><span>والنسبة تُحسب وحدها</span></li>
+        <li class="lay" style="--i:4"><b>تغلق الدفعة وتصدر الشهادات</b><span>لمن استحقها، برقم يُتحقق منه</span></li>
+      </ol>
+    </div>
+    <div class="sheet has lay" style="--i:2">
+      <h3>ما تراه الدكتورة، وحدها</h3>
+      <ul>
+        <li><b>التشغيل</b>: الدفعات، الحضور، الشهادات</li>
+        <li><b>المحتوى</b>: البرامج، الفصول، تصحيح الواجبات، المقالات</li>
+        <li><b>العملاء</b>: المتدربون، الجهات، طلبات العروض</li>
+        <li><b>المال</b>: المدفوعات والاسترجاع</li>
+        <li><b>الصورة الكاملة</b>: تقرير عبر كل الجهات</li>
+        <li><b>وكل تغيير حساس</b> يُكتب في سجل</li>
       </ul>
+    </div>
+  </section>
+
+  <section class="slide" aria-label="شاشات التشغيل اليومي">
+    <span class="tag" style="justify-self:start">القسم الثالث · التشغيل · 5 شاشات</span>
+    <h2 class="sm">التشغيل اليومي</h2>
+    <div class="shots" style="--cols:5">
+      <a class="shot lay" style="--i:0" href="09-admin-inbox.html"><img src="assets/thumbs/09.jpg" alt="" loading="lazy"><b>ما ينتظرك</b><span>ما يحتاج قرارها اليوم</span></a>
+      <a class="shot lay" style="--i:1" href="24-admin-cohorts.html"><img src="assets/thumbs/24.jpg" alt="" loading="lazy"><b>الدفعات</b><span>كل الدفعات، وإنشاء دفعة</span></a>
+      <a class="shot lay" style="--i:2" href="10-admin-cohort.html"><img src="assets/thumbs/10.jpg" alt="" loading="lazy"><b>الدفعة</b><span>التسجيلات، البدء والإغلاق</span></a>
+      <a class="shot lay" style="--i:3" href="11-admin-attendance.html"><img src="assets/thumbs/11.jpg" alt="" loading="lazy"><b>الحضور والشهادات</b><span>كشف الجلسة ثم الإصدار</span></a>
+      <a class="shot lay" style="--i:4" href="29-admin-certificates.html"><img src="assets/thumbs/29.jpg" alt="" loading="lazy"><b>الشهادات</b><span>بحث وإلغاء بسبب مكتوب</span></a>
+    </div>
+  </section>
+
+  <section class="slide" aria-label="شاشات المحتوى والعملاء والمال">
+    <span class="tag" style="justify-self:start">القسم الثالث · المحتوى والعملاء والمال · 7 شاشات</span>
+    <h2 class="sm">المحتوى، والعملاء، والمال</h2>
+    <div class="shots" style="--cols:4;max-width:min(1080px,100%)">
+      <a class="shot lay" style="--i:0" href="25-admin-programs.html"><img src="assets/thumbs/25.jpg" alt="" loading="lazy"><b>البرامج والمقالات</b><span>نشر برنامج أو مقال</span></a>
+      <a class="shot lay" style="--i:1" href="16-admin-course.html"><img src="assets/thumbs/16.jpg" alt="" loading="lazy"><b>بناء المحتوى</b><span>الفصول وعناصرها</span></a>
+      <a class="shot lay" style="--i:2" href="30-admin-trainees.html"><img src="assets/thumbs/30.jpg" alt="" loading="lazy"><b>المتدربون</b><span>السجل، التعطيل، حذف البيانات</span></a>
+      <a class="shot lay" style="--i:3" href="26-admin-orgs.html"><img src="assets/thumbs/26.jpg" alt="" loading="lazy"><b>الجهات</b><span>اعتماد الحسابات</span></a>
+      <a class="shot lay" style="--i:4" href="27-admin-proposals.html"><img src="assets/thumbs/27.jpg" alt="" loading="lazy"><b>طلبات العروض</b><span>مراجعة، تسعير، دفعة مغلقة</span></a>
+      <a class="shot lay" style="--i:5" href="28-admin-payments.html"><img src="assets/thumbs/28.jpg" alt="" loading="lazy"><b>المدفوعات</b><span>الاسترجاع والإيصالات</span></a>
+      <a class="shot lay" style="--i:6" href="31-admin-report.html"><img src="assets/thumbs/31.jpg" alt="" loading="lazy"><b>التقرير الشامل</b><span>عبر الجهات والبرامج</span></a>
     </div>
   </section>
 
@@ -274,9 +399,13 @@ body{overflow:hidden}
 
   <section class="slide end" aria-label="الشاشات">
     <h2>والآن <em>الشاشات نفسها</em></h2>
-    <p class="lede" style="margin-inline:auto">ست عشرة شاشة مترابطة: الموقع، التسجيل والدفع، الصف الإلكتروني، بوابة الجهة، وإدارة الدكتورة. الأسماء والمبالغ فيها تجريبية.</p>
-    <p style="margin-top:var(--s-32)"><a class="btn" href="01-home.html" id="enter">ادخل إلى الشاشات</a></p>
-    <p style="margin-top:var(--s-16)"><a class="on-baize" href="index.html">أو افتح خريطة الشاشات الست عشرة</a></p>
+    <p class="lede" style="margin-inline:auto">إحدى وثلاثون شاشة مترابطة في ثلاثة أقسام. الأسماء والمبالغ فيها تجريبية.</p>
+    <div class="gates">
+      <a class="btn" href="01-home.html" id="enter">الموقع الرئيسي</a>
+      <a class="btn sec" href="05-my-cohorts.html">بوابة العميل</a>
+      <a class="btn sec" href="09-admin-inbox.html">بوابة الدكتورة</a>
+    </div>
+    <p style="margin-top:var(--s-24)"><a class="on-baize" href="index.html">أو افتح خريطة الشاشات كلها</a></p>
   </section>
 </main>
 

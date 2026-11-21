@@ -123,7 +123,8 @@ table.t{width:100%;border-collapse:collapse;font-size:var(--fs-14)}
 .t td.num{font-variant-numeric:tabular-nums;font-weight:500}
 .t tr.you td{background:linear-gradient(90deg,transparent,rgba(138,35,50,.07))}
 .t .acts{display:flex;gap:var(--s-8);justify-content:flex-end;flex-wrap:wrap}
-.scroll-x{overflow-x:auto}
+.scroll-x{overflow-x:auto;position:relative}
+.field input[dir=ltr]{text-align:left}
 
 /* tick box (attendance) */
 .tick{width:28px;height:28px;border:1.5px solid var(--ink-2);border-radius:4px;background:#fff;cursor:pointer;position:relative;padding:0;flex:none}
@@ -153,7 +154,7 @@ table.t{width:100%;border-collapse:collapse;font-size:var(--fs-14)}
 .notice.err{background:#fbe9df;border-color:var(--err)}
 .notice b{font-weight:700}
 .empty{text-align:center;padding:var(--s-48) var(--s-24);color:var(--ink-2)}
-.empty h3,.empty h4{color:var(--ink);font-size:var(--fs-18);margin-bottom:var(--s-8)}
+.empty h2,.empty h3,.empty h4{color:var(--ink);font-size:var(--fs-18);margin-bottom:var(--s-8)}
 .skel{height:14px;border-radius:4px;background:linear-gradient(90deg,#e8dcc4,#f4ecdc,#e8dcc4);background-size:200% 100%;animation:skel 1.4s linear infinite}
 @keyframes skel{to{background-position:-200% 0}}
 
@@ -173,8 +174,30 @@ table.t{width:100%;border-collapse:collapse;font-size:var(--fs-14)}
 .work header.top h1{font-size:var(--fs-28)}
 .work section+section{margin-top:var(--s-48)}
 .work h2{font-size:var(--fs-22);margin-bottom:var(--s-12)}
+.work .empty h2{font-size:var(--fs-18);margin-bottom:var(--s-8)}
 .crumb{font-size:var(--fs-13);color:var(--ink-2);margin-bottom:var(--s-4)}
 .crumb a{color:inherit}
+
+/* ---- helpers promoted from page styles ---- */
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.rowlink,.lbtn{font:inherit;font-size:var(--fs-13);font-weight:500;color:var(--ribbon);background:none;border:0;padding:0 var(--s-4);min-height:44px;cursor:pointer;text-decoration:underline;text-underline-offset:5px;white-space:nowrap;display:inline-flex;align-items:center}
+.rowlink:hover,.lbtn:hover{color:var(--ribbon-dark)}
+.assume{display:inline-block;font-size:var(--fs-12);font-weight:500;color:var(--ink-2);border:1px dashed var(--ink-2);border-radius:4px;padding:0 6px;line-height:1.6;white-space:nowrap}
+.field textarea{min-height:96px;resize:vertical}
+.field textarea:focus-visible{outline:2px solid var(--ribbon);outline-offset:1px;border-color:var(--ribbon)}
+.field.bad textarea,.field.bad select{border-color:var(--err)}
+.btn.sm{min-height:44px}
+/* tabs on paper */
+.tabs{display:flex;gap:0;border-bottom:2px solid var(--ink);margin-bottom:var(--s-24);overflow-x:auto}
+.tabs [role=tab]{font:inherit;font-size:var(--fs-14);font-weight:500;color:var(--ink-2);background:none;border:0;padding:10px var(--s-16);min-height:44px;cursor:pointer;white-space:nowrap}
+.tabs [role=tab][aria-selected=true]{color:var(--paper);background:var(--ink);font-weight:700}
+/* definition rows on paper: label / value / action */
+.dl{display:grid;gap:0;margin:0}
+.dl>div{display:grid;grid-template-columns:minmax(120px,200px) 1fr auto;gap:var(--s-16);align-items:center;padding:var(--s-12) 0;border-bottom:1.5px dashed var(--card-edge)}
+.dl>div:last-child{border:0}
+.dl dt{font-size:var(--fs-13);color:var(--ink-2)} .dl dd{margin:0;font-weight:500}
+/* site footer (public) */
+.sitefoot{background:var(--baize-deep);border-top:1px solid #ffffff14;padding-block:var(--s-32);font-size:var(--fs-13);color:var(--cream-2);margin-top:var(--s-64)}
 
 /* toast */
 .toast{position:fixed;z-index:20;bottom:24px;left:50%;translate:-50% 0;background:var(--ink);color:var(--cream);padding:12px 22px;border-radius:10px;font-size:var(--fs-14);box-shadow:0 16px 30px -10px #000;animation:toast .4s var(--ease) both}
@@ -189,6 +212,7 @@ table.t{width:100%;border-collapse:collapse;font-size:var(--fs-14)}
 @keyframes lay{from{opacity:0;transform:translateY(-26px) rotate(-3deg) scale(1.04)}}
 
 @media (max-width:900px){
+  .dl>div{grid-template-columns:1fr auto}.dl dt{grid-column:1/-1}
   .wrap{padding-inline:var(--s-16)}
   .nav ul{gap:var(--s-16)} .nav ul li:not(.keep){display:none}
   .grid-2,.kv.one{grid-template-columns:1fr}
