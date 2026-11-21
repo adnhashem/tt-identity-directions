@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>التحقق من شهادة — Think Tank Strategists</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<style>
+[hidden]{display:none!important}
+.stamp.big{-webkit-mask:var(--rough) center/200px 120px,linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.62));mask:var(--rough) center/200px 120px,linear-gradient(rgba(0,0,0,.62),rgba(0,0,0,.62))}
+.verify{display:grid;grid-template-columns:.8fr 1.2fr;gap:var(--s-64);align-items:start;padding-block:var(--s-32) var(--s-96)}
+.verify>*{min-width:0}
+.ask h1{font-size:clamp(2rem,4vw,3rem);text-shadow:0 2px 0 rgba(0,0,0,.25)}
+.ask .lede{font-weight:300;font-size:var(--fs-18);color:var(--cream-2);max-width:32ch;margin:var(--s-16) 0 var(--s-32)}
+.ask .sheet{padding:var(--s-24)}
+.ask input{text-align:left;font-size:var(--fs-18);font-weight:500;font-variant-numeric:tabular-nums;letter-spacing:.04em}
+.ask .privacy{font-size:var(--fs-14);color:var(--cream-2);max-width:40ch;margin:var(--s-32) 0 var(--s-16)}
+.demo{line-height:2.2}
+.demo button{background:none;border:0;padding:0 var(--s-4);font:inherit;color:var(--brass);cursor:pointer;text-decoration:underline;text-underline-offset:5px;min-height:44px;direction:ltr}
+.result{padding-top:var(--s-16)}
+.result:focus{outline:0}
+.slot{min-height:420px;display:grid;place-items:center;text-align:center;padding:var(--s-48);border:1.5px dashed rgba(246,239,225,.3);border-radius:6px;color:var(--cream-2);font-size:var(--fs-14)}
+.slot{outline:1px solid rgba(246,239,225,.18);outline-offset:calc(var(--s-8)*-1);position:relative}
+.slot::before{content:"";position:absolute;top:var(--s-32);inset-inline-end:var(--s-32);width:var(--s-64);height:var(--s-64);border-radius:50%;border:1.5px dashed rgba(246,239,225,.3)}
+.slot p{max-width:30ch;margin:0}
+.cert img{height:var(--s-64);display:block}
+.cert .top{display:flex;justify-content:space-between;align-items:center;gap:var(--s-16);margin-bottom:var(--s-32)}
+.cert p{margin:0}
+.cert .who{margin-block:var(--s-4)}
+.cert h2{font-size:var(--fs-28);margin-bottom:var(--s-12)}
+.cert .bottom{display:flex;justify-content:space-between;align-items:end;gap:var(--s-24);flex-wrap:wrap;margin-top:var(--s-32);padding-top:var(--s-16);border-top:1.5px dashed var(--card-edge)}
+.cert .kv{gap:var(--s-12) var(--s-32);grid-template-columns:auto auto}
+.cert .stamp.big{flex:none;margin:var(--s-8) var(--s-16)}
+.cert .fine{font-size:var(--fs-13);color:var(--ink-2);margin-top:var(--s-16);max-width:52ch}
+.after{font-size:var(--fs-14);color:var(--cream-2);margin:var(--s-24) 0 0;max-width:52ch}
+.none .empty p{max-width:40ch;margin-inline:auto}
+footer{background:var(--baize-deep);border-top:1px solid #ffffff14;padding-block:var(--s-32);font-size:var(--fs-13);color:var(--cream-2)}
+@media (max-width:900px){
+  .verify{grid-template-columns:1fr;gap:var(--s-32);padding-block-start:var(--s-16)}
+  .slot{min-height:200px;padding:var(--s-24)}
+  .cert{padding:var(--s-32) var(--s-24)}
+  .cert .kv{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body class="table">
+<div class="wrap">
+  <nav class="nav" aria-label="الرئيسية">
+    <a href="01-home.html"><img src="assets/logo-white.png" alt="Think Tank Strategists"></a>
+    <ul>
+      <li><a href="01-home.html">البرامج</a></li>
+      <li><a href="01-home.html#orgs">للجهات</a></li>
+      <li><a href="12-verify.html" aria-current="page">تحقق من شهادة</a></li>
+      <li class="keep"><a href="05-my-cohorts.html">دخول</a></li>
+      <li class="keep"><a class="pill" href="#" lang="en">English</a></li>
+    </ul>
+  </nav>
+
+  <main class="verify">
+    <div class="ask">
+      <h1>هل هذه الشهادة صادرة عنّا؟</h1>
+      <p class="lede">إذا قدّم لك موظف أو مرشح شهادة من <bdi>Think Tank Strategists</bdi>، اكتب رقمها هنا لتعرف إن كانت صحيحة وما زالت صالحة.</p>
+
+      <form class="sheet tilt-r lay stack" id="f" novalidate>
+        <div class="field" id="nf">
+          <label for="n">رقم الشهادة</label>
+          <input id="n" dir="ltr" value="TTS-2026-0142" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-describedby="n-h n-m">
+          <span class="hint" id="n-h">مطبوع أسفل الشهادة، ويبدأ بالحروف <bdi>TTS</bdi>.</span>
+          <span class="msg" id="n-m" role="alert" hidden>اكتب رقم الشهادة أولاً.</span>
+        </div>
+        <button class="btn wide" data-cta="WF-CTA-049">التحقق من شهادة</button>
+      </form>
+
+      <p class="privacy">إذا طلب صاحب الشهادة حذف بياناته من عندنا، تبقى شهادته قابلة للتحقق برقمها، لكن بلا اسمه.</p>
+      <p class="synthetic demo">أرقام تجريبية للعرض: <button type="button" data-n="TTS-2026-0142">TTS-2026-0142</button> صالحة، <button type="button" data-n="TTS-2026-0099">TTS-2026-0099</button> ملغاة، وأي رقم آخر غير موجود.</p>
+    </div>
+
+    <div class="result" id="result" tabindex="-1" aria-live="polite">
+      <div class="slot" id="r-wait"><p>تظهر نتيجة التحقق هنا. لا نعرض إلا ما يحتاجه المتحقق: الاسم، البرنامج، تاريخ الإتمام، وحالة الشهادة.</p></div>
+
+      <div id="r-ok" hidden>
+        <article class="cert lay">
+          <div class="top"><img src="assets/logo-dark.png" alt="Think Tank Strategists"><div class="seal" aria-hidden="true">Think Tank<br>Strategists</div></div>
+          <p>تشهد <bdi>Think Tank Strategists</bdi> بأن</p>
+          <p class="who">نورة الصباح</p>
+          <p>أتمّت برنامج «استشراف المستقبل وبناء السيناريوهات»، في 3 جلسات حضورية.</p>
+          <div class="bottom">
+            <div class="kv">
+              <div><small>تاريخ الإتمام</small><strong>16 ديسمبر 2026</strong></div>
+              <div><small>رقم الشهادة</small><strong><bdi>TTS-2026-0142</bdi></strong></div>
+            </div>
+            <span class="stamp big ok press">صالحة</span>
+          </div>
+        </article>
+        <p class="after">الرقم مطابق لسجلّنا، والشهادة سارية. قارن الاسم والبرنامج بما في النسخة التي بين يديك.</p>
+      </div>
+
+      <div id="r-off" hidden>
+        <article class="cert lay">
+          <div class="top"><img src="assets/logo-dark.png" alt="Think Tank Strategists"></div>
+          <h2>هذه الشهادة أُلغيت</h2>
+          <p>الشهادة رقم <bdi>TTS-2026-0099</bdi> صدرت عنّا ثم أُلغيت، ولم تعد صالحة. لا يُعتمد عليها حتى لو كانت نسختها المطبوعة سليمة.</p>
+          <div class="bottom">
+            <div class="kv">
+              <div><small>تاريخ الإلغاء</small><strong>2 نوفمبر 2026</strong></div>
+              <div><small>رقم الشهادة</small><strong><bdi>TTS-2026-0099</bdi></strong></div>
+            </div>
+            <span class="stamp big off press">ملغاة</span>
+          </div>
+          <p class="fine">لا نعرض اسم صاحبها ولا سبب الإلغاء؛ يكفي المتحقق أن يعرف حالتها.</p>
+        </article>
+      </div>
+
+      <div class="sheet lay none" id="r-none" hidden>
+        <div class="empty">
+          <h3>لا توجد شهادة بالرقم <bdi id="typed"></bdi></h3>
+          <p>راجع الرقم مع صاحب الشهادة؛ قد يكون فيه حرف أو رقم ناقص. الرقم الصحيح بهذا الشكل: <bdi>TTS-2026-0000</bdi>.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<footer><div class="wrap spread"><span><bdi>Think Tank Strategists</bdi> · الكويت · الأحد إلى الخميس 9 – 5</span><a href="index.html">خريطة الشاشات</a></div></footer>
+
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id),n=$('n'),views=['r-wait','r-ok','r-off','r-none'];
+const show=v=>views.forEach(id=>$(id).hidden=id!==v);
+const bad=b=>{$('n-m').hidden=!b;$('nf').classList.toggle('bad',b);n.setAttribute('aria-invalid',String(b))};
+function verify(){
+  const v=n.value.trim().toUpperCase();
+  if(!v){bad(true);show('r-wait');n.focus();return}
+  bad(false);n.value=v;
+  if(v==='TTS-2026-0142')show('r-ok');
+  else if(v==='TTS-2026-0099')show('r-off');
+  else{$('typed').textContent=v;show('r-none')}
+  if(matchMedia('(max-width:900px)').matches)$('result').scrollIntoView({block:'start',behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});
+  $('result').focus({preventScroll:true});}
+$('f').addEventListener('submit',e=>{e.preventDefault();verify()});
+n.addEventListener('input',()=>{if(n.value.trim())bad(false)});
+document.querySelectorAll('.demo button').forEach(b=>b.addEventListener('click',()=>{n.value=b.dataset.n;verify()}));
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>ما ينتظرك — إدارة Think Tank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<style>
+.slip{display:grid;grid-template-columns:auto 1fr auto;gap:var(--s-16) var(--s-24);align-items:start;padding:var(--s-24) 0;border-bottom:1.5px dashed var(--card-edge)}
+.slip:first-of-type{padding-top:var(--s-8)}
+.work .slip h2{font-size:var(--fs-18);margin:0}
+.slip p{margin:2px 0 0;color:var(--ink-2);font-size:var(--fs-14);max-width:56ch}
+.slip .amt{font-weight:700;font-variant-numeric:tabular-nums;color:var(--ink)}
+.slip .more{grid-column:2/-1}
+.slip.done{opacity:.55}
+.slip.done .acts,.slip.done .more{display:none}
+.week{display:grid;gap:0}
+.week a{display:grid;grid-template-columns:110px 1fr auto auto;gap:var(--s-16);align-items:center;padding:var(--s-12) 0;border-bottom:1px solid var(--card-edge);text-decoration:none}
+.week b{font-weight:700;font-variant-numeric:tabular-nums}
+.week span{font-size:var(--fs-13);color:var(--ink-2)}
+@media (max-width:900px){.slip{grid-template-columns:1fr}.slip .more{grid-column:1}.week a{grid-template-columns:1fr auto}.week a .seats,.week a span{display:none}}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="الإدارة">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>الإدارة</span></div>
+    <a href="09-admin-inbox.html" aria-current="page">ما ينتظرك <span class="n" id="count">3</span></a>
+    <a href="10-admin-cohort.html">الدفعات</a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">البرامج</a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">الجهات</a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">طلبات العروض <span class="n">1</span></a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">المدفوعات</a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">الشهادات</a>
+    <div class="foot">د. منال الحساوي<br><a href="index.html">خريطة الشاشات</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+      <header class="top">
+        <div><h1>ما ينتظرك اليوم</h1><div class="crumb">الأحد 6 ديسمبر 2026 · <span id="left">3 أمور</span> تحتاج قرارك</div></div>
+        <a class="btn sec sm" href="10-admin-cohort.html">كل الدفعات</a>
+      </header>
+
+      <section id="list" aria-label="قائمة الانتظار">
+        <article class="slip" id="s1">
+          <span class="stamp you">استرجاع</span>
+          <div>
+            <h2>سارة العنزي تطلب استرجاع رسم دفعة 14 ديسمبر</h2>
+            <p>ألغت تسجيلها قبل 8 أيام من بداية الدفعة، ضمن مهلة الاسترجاع. المبلغ <span class="amt">180.000 د.ك</span> مدفوع بـKNET.</p>
+          </div>
+          <div class="acts row">
+            <button class="btn sm" data-cta="WF-CTA-043" data-done="s1" data-toast="اعتُمد الاسترجاع وأُبلغت سارة العنزي">اعتماد الاسترجاع</button>
+            <button class="btn sec sm" data-cta="WF-CTA-044" data-show="#why">رفض الاسترجاع</button>
+          </div>
+          <div class="more stack" id="why" hidden>
+            <div class="field"><label for="reason">سبب الرفض (يُرسل للمتدربة)</label><input id="reason" placeholder="مثال: الإلغاء بعد انتهاء مهلة الاسترجاع"><span class="msg" id="rmsg" hidden>اكتب السبب أولاً؛ الرفض بلا سبب لا يُحفظ.</span></div>
+            <div class="row"><button class="btn sm" id="decline">تأكيد الرفض</button><button class="btn quiet sm" data-hide="#why">تراجع</button></div>
+          </div>
+        </article>
+
+        <article class="slip" id="s2">
+          <span class="stamp you">حساب جهة</span>
+          <div>
+            <h2>خالد الفهد يطلب حساب مسؤول تدريب لبنك المثال</h2>
+            <p>لن يرى بيانات أي موظف قبل اعتمادك وربطه بجهته. البريد <bdi>k.alfahad@example.com</bdi></p>
+          </div>
+          <div class="acts row">
+            <button class="btn sm" data-cta="WF-CTA-011" data-done="s2" data-toast="اعتُمد الحساب ورُبط ببنك المثال">اعتماد الحساب</button>
+          </div>
+        </article>
+
+        <article class="slip" id="s3">
+          <span class="stamp you">دفعة</span>
+          <div>
+            <h2>دفعة «ورش الاستراتيجية» فات موعد بدايتها ولم تبدأ</h2>
+            <p>موعدها كان 3 ديسمبر. الحضور لا يُسجَّل والتسجيل لا يُقفل حتى تبدئيها.</p>
+          </div>
+          <div class="acts row">
+            <a class="btn sm" href="10-admin-cohort.html" data-cta="WF-CTA-037">بدء الدفعة</a>
+          </div>
+        </article>
+
+        <div class="empty" id="empty" hidden>
+          <h3>لا شيء ينتظرك</h3>
+          <p>كل الطلبات مُعالجة. الدفعة القادمة تبدأ 14 ديسمبر.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2>الدفعات القادمة</h2>
+        <div class="week">
+          <a href="10-admin-cohort.html"><b>14 ديسمبر</b><div>استشراف المستقبل وبناء السيناريوهات<br><span>مجدولة · 3 جلسات</span></div><div class="seats" data-cap="20" data-taken="16"></div><span class="num">16 / 20</span></a>
+          <a href="10-admin-cohort.html"><b>8 يناير</b><div>ورش الاستراتيجية للقيادات التنفيذية<br><span>مجدولة · يومان · قائمة انتظار 3</span></div><div class="seats" data-cap="20" data-taken="20"></div><span class="num">20 / 20</span></a>
+          <a href="10-admin-cohort.html"><b>2 فبراير</b><div>بناء القيادات والقدرات المؤسسية<br><span>مجدولة · 5 جلسات</span></div><div class="seats" data-cap="24" data-taken="13"></div><span class="num">13 / 24</span></a>
+        </div>
+        <p class="synthetic" style="margin-top:var(--s-16)">الأسماء والتواريخ والمبالغ تجريبية.</p>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="tt.js"></script>
+<script>
+let n=3;const upd=()=>{document.getElementById('count').textContent=n;document.getElementById('count').hidden=n===0;document.getElementById('left').textContent=n===0?'لا أمور':n===1?'أمر واحد':n===2?'أمران':'3 أمور';document.getElementById('empty').hidden=n!==0};
+const done=id=>{const s=document.getElementById(id);if(s.classList.contains('done'))return;s.classList.add('done');const st=s.querySelector('.stamp');st.className='stamp ok press';st.textContent='تم';n--;upd()};
+document.querySelectorAll('[data-done]').forEach(b=>b.addEventListener('click',()=>done(b.dataset.done)));
+document.getElementById('decline').addEventListener('click',()=>{const r=document.getElementById('reason'),bad=!r.value.trim();document.getElementById('rmsg').hidden=!bad;r.closest('.field').classList.toggle('bad',bad);if(bad){r.focus();return}done('s1');ttToast('رُفض الاسترجاع وأُرسل السبب لسارة العنزي')});
+</script>
+</body>
+</html>

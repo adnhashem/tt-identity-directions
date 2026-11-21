@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>دفعة 14 ديسمبر — إدارة Think Tank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<style>
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+[hidden]{display:none!important}
+.work{min-width:0}
+.title{display:flex;gap:var(--s-24);align-items:center;flex-wrap:wrap}
+.title .stamp{font-size:var(--fs-16);padding:var(--s-4) var(--s-16);border-width:3px;border-radius:var(--s-8);transform:rotate(-4deg)}
+.title h1{max-width:22ch}
+.ask{padding:var(--s-24) 0;margin-bottom:var(--s-32);border-bottom:1.5px dashed var(--card-edge)}
+.ask h2:focus{outline:0}
+.ask ul{margin:0 0 var(--s-24);padding-inline-start:var(--s-24);max-width:60ch}
+.ask li{padding-block:var(--s-4)}
+.ask li::marker{color:var(--ribbon)}
+.ask .field{max-width:320px;margin-bottom:var(--s-24)}
+.field.bad input{outline:0}
+#note{margin-bottom:var(--s-32)}
+.cap{display:flex;gap:var(--s-16) var(--s-24);align-items:center;flex-wrap:wrap}
+.cap .seats s{width:var(--s-16);height:var(--s-24)}
+.cap p{margin:0;font-size:var(--fs-14);color:var(--ink-2)}
+.cap p b{color:var(--ink);font-size:var(--fs-18);font-variant-numeric:tabular-nums}
+.reg{min-width:720px}
+.reg th{position:relative}
+.reg td:first-child{font-weight:700}
+.reg td:nth-child(2){color:var(--ink-2)}
+.reg .acts{align-items:center;min-height:44px}
+.reg .acts .btn{min-height:44px}
+.reg .acts .link{display:inline-flex;align-items:center;min-height:44px}
+.reg .acts span{font-size:var(--fs-13);color:var(--ink-2)}
+.door{margin:var(--s-16) 0 0;font-size:var(--fs-14);color:var(--ink-2);max-width:64ch}
+@media (max-width:900px){.shell{grid-template-columns:minmax(0,1fr)}.cap .seats s{width:11px;height:var(--s-16)}.title{gap:var(--s-16)}.work header.top{align-items:start}}
+.rowlink{font:inherit;font-size:var(--fs-13);font-weight:500;color:var(--ribbon);background:none;border:0;padding:0 var(--s-4);min-height:44px;cursor:pointer;text-decoration:underline;text-underline-offset:5px;white-space:nowrap}
+.rowlink:hover{color:var(--ribbon-dark)}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="الإدارة">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>الإدارة</span></div>
+    <a href="09-admin-inbox.html">ما ينتظرك <span class="n">3</span></a>
+    <a href="10-admin-cohort.html" aria-current="page">الدفعات</a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">البرامج</a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">الجهات</a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">طلبات العروض <span class="n">1</span></a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">المدفوعات</a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">الشهادات</a>
+    <div class="foot">د. منال الحساوي<br><a href="index.html">خريطة الشاشات</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+      <header class="top">
+        <div class="title">
+          <div><h1>استشراف المستقبل وبناء السيناريوهات</h1><div class="crumb" id="crumb"></div></div>
+          <span class="stamp wait" id="st"><span class="vh">حالة الدفعة: </span><span id="stw">مجدولة</span></span>
+        </div>
+        <div class="row" id="acts"></div>
+      </header>
+
+      <div class="ask" id="ask" hidden></div>
+      <div class="notice" id="note" role="status" hidden></div>
+
+      <section aria-label="المقاعد">
+        <div class="cap">
+          <div class="seats" id="seats" data-cap="20" data-taken="16"></div>
+          <p id="capline"></p>
+        </div>
+      </section>
+
+      <section>
+        <h2>التسجيلات</h2>
+        <div class="scroll-x">
+          <table class="t reg">
+            <thead><tr><th>المتدرب</th><th>الجهة</th><th>الحالة</th><th>المبلغ</th><th><span class="vh">إجراء</span></th></tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <p class="door">من لم يسجّل لا يُضاف إلى الكشف عند الباب. يسجّل أولاً من صفحة البرنامج، ثم يظهر اسمه هنا.</p>
+        <p class="synthetic" style="margin-top:var(--s-16)">الأسماء والتواريخ والمبالغ تجريبية.</p>
+      </section>
+    </div>
+  </main>
+</div>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const MON=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
+const CAP=20,TODAY=new Date(2026,11,6),FEE='180.000 د.ك';
+// k: paid | org | pending | failed | cancelled | refund
+const R=[
+ {n:'عبدالعزيز المطيري',o:'بنك المثال',k:'org'},{n:'دلال الخالد',o:'بنك المثال',k:'org',f:1},
+ {n:'نورة الصباح',o:'وزارة التخطيط',k:'paid',f:1},{n:'مشاري العجمي',o:'بنك المثال',k:'org'},
+ {n:'جاسم البلوشي',o:'بنك المثال',k:'org'},{n:'سارة العنزي',o:'فردي',k:'refund',f:1},
+ {n:'فهد الشمري',o:'فردي',k:'paid'},{n:'Hannah Clarke',o:'فردي',k:'paid',f:1,en:1},
+ {n:'يوسف الرشيدي',o:'فردي',k:'paid'},{n:'مريم الكندري',o:'فردي',k:'paid',f:1},
+ {n:'طلال الحربي',o:'فردي',k:'pending'},{n:'أحمد الهاجري',o:'فردي',k:'paid'},
+ {n:'لطيفة المري',o:'فردي',k:'paid',f:1},{n:'هيا القحطاني',o:'فردي',k:'failed',f:1},
+ {n:'بدر العتيبي',o:'فردي',k:'paid'},{n:'شيخة الدوسري',o:'فردي',k:'paid',f:1},
+ {n:'عبدالله العازمي',o:'فردي',k:'cancelled'},{n:'ناصر الظفيري',o:'فردي',k:'paid'},
+ {n:'ريم السبيعي',o:'فردي',k:'paid',f:1}];
+const ST={paid:['ok','مؤكد'],org:['ok','مؤكد'],pending:['wait','بانتظار الدفع'],failed:['err','فشل الدفع'],cancelled:['off','ملغى'],refund:['you','طلب استرجاع']};
+const COHORT={scheduled:['wait','مجدولة'],in_progress:['ok','جارية'],completed:['ok','مكتملة'],cancelled:['off','ملغاة']};
+const q=new URLSearchParams(location.search).get('state');
+let state=q==='in_progress'||q==='completed'?q:'scheduled',start=new Date(2026,11,14),asking=-1,fresh=-1;
+
+const taken=()=>R.filter(r=>r.k==='paid'||r.k==='org'||r.k==='pending').length;
+const paid=()=>R.filter(r=>r.k==='paid').length;
+const day=d=>`${d.getDate()} ${MON[d.getMonth()]}`;
+function range(){const e=new Date(start);e.setDate(e.getDate()+2);
+  return start.getMonth()===e.getMonth()?`${start.getDate()} – ${day(e)} ${e.getFullYear()}`:`${day(start)} – ${day(e)} ${e.getFullYear()}`}
+const name=r=>r.en?`<bdi lang="en">${r.n}</bdi>`:r.n;
+
+function actions(){
+  const b=(cls,cta,label,extra='')=>`<button class="btn ${cls}" data-cta="${cta}" ${extra}>${label}</button>`;
+  $('acts').innerHTML=state==='scheduled'?b('','WF-CTA-037','بدء الدفعة','data-open="start"')+b('sec','WF-CTA-046','تغيير الموعد','data-open="move"')+b('quiet','WF-CTA-045','إلغاء الدفعة','data-open="cancel"')
+   :state==='in_progress'?`<a class="btn" href="11-admin-attendance.html" data-cta="WF-CTA-034">تسجيل الحضور</a>`+b('sec','WF-CTA-038','إغلاق الدفعة','data-open="close"')+b('quiet','WF-CTA-052','تصدير الكشف','data-export')
+   :state==='completed'?`<a class="btn" href="11-admin-attendance.html?state=completed" data-cta="WF-CTA-039">إصدار الشهادات</a>`+b('quiet','WF-CTA-052','تصدير الكشف','data-export'):'';
+}
+function head(press){
+  const [cls,word]=COHORT[state],st=$('st');
+  st.className='stamp '+cls;$('stw').textContent=word;
+  if(press){void st.offsetWidth;st.classList.add('press')}
+  const t=taken();
+  $('crumb').textContent=`${range()} · 3 جلسات · 9:00 – 13:00 · قاعة الشركة · ${t} من ${CAP} مقعداً`;
+  $('seats').innerHTML=Array.from({length:CAP},(_,i)=>`<s class="${i<t?'':'free'}"></s>`).join('');
+  $('capline').innerHTML=state==='cancelled'?'<b>0 من 20</b> · أُلغيت الدفعة ولم يبقَ مقعد محجوز'
+   :`<b>${t} من ${CAP}</b> مقعداً محجوزاً · بقي ${CAP-t} · قائمة الانتظار فارغة`;
+}
+function rows(){
+  $('rows').innerHTML=R.map((r,i)=>{
+    const [cls,word]=ST[r.k],active=r.k==='paid'||r.k==='org';let act='';
+    if(r.k==='refund')act=`<a class="link" href="09-admin-inbox.html">راجعي الطلب</a>`;
+    else if(active&&state==='scheduled')act=asking===i
+      ?`<span>يُلغى تسجيل${r.f?'ها':'ه'} و${r.f?'تُبلَّغ':'يُبلَّغ'}، ويعود المقعد متاحاً.</span><button class="btn sec sm" data-yes="${i}">تأكيد الإلغاء</button><button class="btn quiet sm" data-no="${i}">تراجع</button>`
+      :`<button class="rowlink" data-cta="WF-CTA-042" data-ask="${i}" aria-label="إلغاء تسجيل متدرب: ${r.n}">إلغاء تسجيل متدرب</button>`;
+    const amt=r.k==='org'||r.k==='cancelled'?'—':FEE;
+    return `<tr${r.k==='refund'?' class="you"':''}><td>${name(r)}</td><td>${r.o}</td><td><span class="stamp ${cls}${fresh===i||fresh===-2&&r.fresh?' press':''}">${word}</span></td><td class="num">${amt}</td><td><div class="acts">${act}</div></td></tr>`}).join('');
+  fresh=-1;
+}
+function render(press){actions();head(press);rows()}
+
+const PANEL={
+ start:['بدء الدفعة لا يمكن التراجع عنه',['لن يستطيع المتدربون إلغاء تسجيلهم بعد الآن.','يُفتح تسجيل الحضور للجلسات الثلاث.','لن يمكن إلغاء الدفعة ولا تغيير موعدها.'],'تأكيد البدء'],
+ close:['إغلاق الدفعة لا يمكن التراجع عنه',['ينتهي إدخال الحضور لكل الجلسات.','يصير إصدار الشهادات ممكناً لمن استوفى نسبة الحضور.'],'تأكيد الإغلاق'],
+ cancel:['إلغاء الدفعة يلغي كل تسجيلاتها',null,'تأكيد إلغاء الدفعة']};
+let opener='';
+function openPanel(kind){
+  opener=kind;const a=$('ask');let body;
+  if(kind==='move')body=`<h2 tabindex="-1">موعد جديد للدفعة</h2>
+    <div class="field" id="mf"><label for="nd">تاريخ الجلسة الأولى</label><input type="date" id="nd" min="2026-12-07" aria-describedby="ndh ndm"><span class="hint" id="ndh">الجلسات الثلاث تبقى في أيام متتالية، من 9:00 إلى 13:00.</span><span class="msg" id="ndm" hidden></span></div>
+    <div class="row"><button class="btn" data-go="move">حفظ الموعد</button><button class="btn quiet" data-back>تراجع</button></div>`;
+  else{const [h,li,ok]=PANEL[kind];
+    const items=li||[`تُلغى التسجيلات كلها (${taken()}).`,`الرسوم المدفوعة (${paid()}) تصير طلبات استرجاع تنتظر اعتمادك.`,'يُبلَّغ جميع المسجّلين بالإلغاء.'];
+    body=`<h2 tabindex="-1">${h}</h2><ul>${items.map(x=>`<li>${x}</li>`).join('')}</ul>
+    <div class="row"><button class="btn" data-go="${kind}">${ok}</button><button class="btn quiet" data-back>تراجع</button></div>`}
+  a.innerHTML=body;a.hidden=false;$('acts').innerHTML='';$('note').hidden=true;asking=-1;rows();
+  (kind==='move'?$('nd'):a.querySelector('h2')).focus();
+}
+function closePanel(){$('ask').hidden=true;$('ask').innerHTML=''}
+function say(html){const n=$('note');n.innerHTML=html;n.hidden=false}
+
+function go(kind){
+  if(kind==='move'){
+    const v=$('nd').value,m=$('ndm'),bad=t=>{m.textContent=t;m.hidden=false;$('mf').classList.add('bad');$('nd').focus()};
+    if(!v)return bad('اختاري تاريخ الجلسة الأولى ثم احفظي.');
+    const [y,mo,d]=v.split('-').map(Number),nd=new Date(y,mo-1,d);
+    if(nd<=TODAY)return bad('هذا التاريخ مضى. اختاري يوماً بعد 6 ديسمبر 2026.');
+    if(+nd===+start)return bad('هذا هو الموعد الحالي. اختاري تاريخاً آخر أو تراجعي.');
+    start=nd;closePanel();render(false);
+    say(`<div><b>صار موعد الدفعة ${range()}.</b> أُبلغ جميع المسجّلين (${taken()}) بالموعد الجديد، والتسجيلات والمدفوعات باقية كما هي.</div>`);
+    ttToast('حُفظ الموعد الجديد وأُبلغ المسجّلون');
+  }else if(kind==='start'){state='in_progress';closePanel();render(true);ttToast('بدأت الدفعة وفُتح تسجيل الحضور')}
+  else if(kind==='close'){state='completed';closePanel();render(true);ttToast('أُغلقت الدفعة. يمكنك الآن إصدار الشهادات')}
+  else if(kind==='cancel'){
+    const all=taken(),p=paid();
+    R.forEach(r=>{if(r.k==='paid'){r.k='refund';r.fresh=1}else if(r.k==='org'||r.k==='pending'||r.k==='failed'){r.k='cancelled';r.fresh=1}});
+    state='cancelled';fresh=-2;closePanel();render(true);R.forEach(r=>delete r.fresh);
+    say(`<div><b>أُلغيت الدفعة وأُبلغ جميع المسجّلين (${all}).</b> الرسوم المدفوعة (${p}) صارت طلبات استرجاع تنتظر اعتمادك في <a class="link" href="09-admin-inbox.html">ما ينتظرك</a>.</div>`);
+    ttToast('أُلغيت الدفعة');
+  }
+  const f=$('acts').querySelector('.btn');if(f)f.focus();else{$('st').tabIndex=-1;$('st').focus()}
+}
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;const d=t.dataset;
+  if(d.open)openPanel(d.open);
+  else if('back' in d){closePanel();actions();const b=$('acts').querySelector(`[data-open="${opener}"]`);if(b)b.focus()}
+  else if(d.go)go(d.go);
+  else if('export' in d)ttToast('نُزّل كشف الدفعة على جهازك');
+  else if(d.ask){asking=+d.ask;rows();document.querySelector(`[data-yes="${asking}"]`).focus()}
+  else if(d.no){const i=+d.no;asking=-1;rows();document.querySelector(`[data-ask="${i}"]`).focus()}
+  else if(d.yes){const i=+d.yes,r=R[i];r.k='cancelled';asking=-1;fresh=i;head(false);rows();ttToast(`أُلغي تسجيل ${r.n}`)}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('ask').hidden){closePanel();actions();const b=$('acts').querySelector(`[data-open="${opener}"]`);if(b)b.focus()}});
+render(false);
+</script>
+</body>
+</html>

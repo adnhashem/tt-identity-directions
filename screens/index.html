@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>خريطة الشاشات — Think Tank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<style>
+.head{display:grid;grid-template-columns:auto 1fr;gap:var(--s-32);align-items:center;padding-block:var(--s-48) var(--s-32)}
+.head img{height:84px}
+.head p{color:var(--cream-2);max-width:60ch;margin:var(--s-8) 0 0;font-weight:300}
+.route{padding:var(--s-32) var(--s-48);margin-bottom:var(--s-96)}
+.route h2{font-size:var(--fs-22);margin:var(--s-32) 0 var(--s-4)}
+.route h2:first-child{margin-top:0}
+.route .who{font-size:var(--fs-14);color:var(--ink-2);margin-bottom:var(--s-8)}
+.route ol{list-style:none;margin:0;padding:0}
+.route li a{display:grid;grid-template-columns:44px 1fr auto;gap:var(--s-16);align-items:baseline;padding:var(--s-12) 0;border-bottom:1.5px dashed var(--card-edge);text-decoration:none;transition:padding .35s var(--ease)}
+.route li a:hover{padding-inline-start:var(--s-12)}
+.route li b{font-weight:700;font-size:var(--fs-18)}
+.route li span{display:block;font-size:var(--fs-13);color:var(--ink-2)}
+.route li i{font-style:normal;font-weight:800;font-size:var(--fs-22);color:var(--ribbon);font-variant-numeric:tabular-nums}
+.route li u{text-decoration:none;font-size:var(--fs-13);color:var(--ribbon);font-weight:700;white-space:nowrap}
+@media (max-width:900px){.head{grid-template-columns:1fr}.route{padding:var(--s-24) var(--s-16)}.route li a{grid-template-columns:32px 1fr}.route li u{display:none}}
+</style>
+</head>
+<body class="table">
+<div class="wrap">
+  <header class="head">
+    <img src="assets/logo-white.png" alt="Think Tank Strategists">
+    <div>
+      <h1>اثنتا عشرة شاشة، قصة واحدة</h1>
+      <p>من زائر يفتح الموقع إلى شهادة يتحقق منها طرف ثالث. الترقيم هو ترتيب القصة؛ افتح أي شاشة وتنقّل منها بأزرارها.</p>
+    </div>
+  </header>
+
+  <main class="sheet route">
+    <h2>الموقع العام</h2><p class="who">الزائر قبل أن يصير متدرباً</p>
+    <ol>
+      <li><a href="01-home.html"><i>1</i><div><b>الرئيسية</b><span>البطاقة، الدفعات القادمة، البرامج، وباب الجهات</span></div><u>افتح</u></a></li>
+      <li><a href="02-program.html"><i>2</i><div><b>صفحة البرنامج</b><span>المحتوى، جدول الجلسات، ودفعات البرنامج</span></div><u>افتح</u></a></li>
+      <li><a href="03-register.html"><i>3</i><div><b>التسجيل وتأكيد الرمز</b><span>ينشأ الحساب ويُتحقق منه قبل الدفع</span></div><u>افتح</u></a></li>
+      <li><a href="04-pay.html"><i>4</i><div><b>الدفع والتأكيد</b><span>KNET، الإيصال، وحالة فشل الدفع</span></div><u>افتح</u></a></li>
+    </ol>
+    <h2>بوابة المتدرب</h2><p class="who">نورة الصباح بعد أن تأكد تسجيلها</p>
+    <ol>
+      <li><a href="05-my-cohorts.html"><i>5</i><div><b>دفعاتي وجلساتي</b><span>الجلسات، المواد، الاستبيان، وإلغاء التسجيل</span></div><u>افتح</u></a></li>
+      <li><a href="06-my-certificate.html"><i>6</i><div><b>شهاداتي</b><span>الشهادة الصادرة، وما لم يصدر بعد ولماذا</span></div><u>افتح</u></a></li>
+    </ol>
+    <h2>بوابة الجهة</h2><p class="who">خالد الفهد، مسؤول التدريب في بنك المثال</p>
+    <ol>
+      <li><a href="07-org-seats.html"><i>7</i><div><b>حجز المقاعد وإسنادها</b><span>حجز، دفع، ثم دعوة الموظفين</span></div><u>افتح</u></a></li>
+      <li><a href="08-org-report.html"><i>8</i><div><b>مشاركة الموظفين</b><span>الحضور والشهادات، والتقرير بعد اكتمال الدفعة</span></div><u>افتح</u></a></li>
+    </ol>
+    <h2>إدارة الدكتورة</h2><p class="who">المستخدمة الوحيدة من جهة الشركة</p>
+    <ol>
+      <li><a href="09-admin-inbox.html"><i>9</i><div><b>ما ينتظرك</b><span>استرجاع، حساب جهة، ودفعة لم تبدأ</span></div><u>افتح</u></a></li>
+      <li><a href="10-admin-cohort.html"><i>10</i><div><b>الدفعة</b><span>التسجيلات، بدء الدفعة وإغلاقها، تغيير الموعد</span></div><u>افتح</u></a></li>
+      <li><a href="11-admin-attendance.html"><i>11</i><div><b>الحضور والشهادات</b><span>كشف الجلسة، ثم إصدار الشهادات بعد الإغلاق</span></div><u>افتح</u></a></li>
+    </ol>
+    <h2>للعموم</h2><p class="who">جهة توظيف معها رقم شهادة</p>
+    <ol>
+      <li><a href="12-verify.html"><i>12</i><div><b>التحقق من شهادة</b><span>صالحة، ملغاة، أو غير موجودة</span></div><u>افتح</u></a></li>
+    </ol>
+    <p style="margin-top:var(--s-24)"><a class="link" href="deck.html">العرض التقديمي: الموقع اليوم والنظام الجديد</a></p>
+    <p class="synthetic" style="margin-top:var(--s-8)">نموذج للعرض: الأسماء والتواريخ والمبالغ تجريبية، والأزرار تغيّر الحالة على الصفحة فقط.</p>
+  </main>
+</div>
+</body>
+</html>

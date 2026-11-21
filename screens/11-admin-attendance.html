@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>الحضور والشهادات — إدارة Think Tank</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<style>
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+[hidden]{display:none!important}
+.work{min-width:0}
+.title{display:flex;gap:var(--s-24);align-items:center;flex-wrap:wrap}
+.title .stamp{font-size:var(--fs-16);padding:var(--s-4) var(--s-16);border-width:3px;border-radius:var(--s-8);transform:rotate(-4deg)}
+.tally{margin:0;font-size:var(--fs-14);color:var(--ink-2);white-space:nowrap}
+.tally b{font-size:var(--fs-28);font-weight:800;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1}
+.tabs{display:flex;gap:var(--s-4);border-bottom:2px solid var(--ink)}
+.tabs button{flex:0 1 220px;min-width:0;min-height:56px;padding:var(--s-8) var(--s-16);font:inherit;font-size:var(--fs-14);line-height:1.5;text-align:start;color:var(--ink-2);background:none;border:1.5px solid var(--card-edge);border-bottom:0;border-radius:var(--s-8) var(--s-8) 0 0;cursor:pointer}
+.tabs button b,.tabs button small{display:block}
+.tabs button small{font-size:var(--fs-12)}
+.tabs button[aria-selected=true]{color:var(--paper);background:var(--ink);border-color:var(--ink)}
+.tabs button:focus-visible{outline:2px solid var(--ribbon);outline-offset:2px}
+.sheet-t th:nth-child(3),.sheet-t td:nth-child(3){text-align:center;width:88px}
+.sheet-t th:last-child,.sheet-t td:last-child{width:150px}
+.sheet-t td:first-child,.elig td:first-child{font-weight:700}
+.sheet-t td:nth-child(2),.elig td:nth-child(2){color:var(--ink-2)}
+.sheet-t td{height:52px}
+.tick{vertical-align:middle}
+.tick::after{content:"";position:absolute;inset:calc(var(--s-8)*-1)}
+.tick:focus-visible{outline:2px solid var(--ribbon);outline-offset:3px}
+.pct b{font-variant-numeric:tabular-nums}
+.pct span{display:inline-block;font-size:var(--fs-12);color:var(--ink-2);margin-inline-start:var(--s-8)}
+.skel{margin-block:var(--s-4)}
+.below{display:flex;gap:var(--s-16);align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:var(--s-16);font-size:var(--fs-14);color:var(--ink-2)}
+.below p{margin:0}
+.rule{display:flex;gap:var(--s-12);align-items:center;flex-wrap:wrap;margin-bottom:var(--s-16);font-size:var(--fs-14)}
+.rule b{font-variant-numeric:tabular-nums}
+.assume{font-size:var(--fs-12);font-weight:500;color:var(--ink-2);border:1.5px dashed var(--ink-2);border-radius:var(--s-4);padding:0 var(--s-8)}
+.elig{min-width:820px}
+.elig small{display:block;font-size:var(--fs-12);color:var(--ink-2);font-weight:400}
+.elig .cf{display:flex;gap:var(--s-12);align-items:center;flex-wrap:wrap;min-height:44px}
+.elig .cf .btn{min-height:44px;margin-inline-start:auto}
+.elig .cf bdi{font-variant-numeric:tabular-nums;font-weight:500}
+.elig tr.why td{background:rgba(138,35,50,.05);padding:var(--s-16)}
+.elig tr.why .field{max-width:520px;margin-bottom:var(--s-12)}
+#note{margin-bottom:var(--s-24)}
+@media (max-width:900px){.shell{grid-template-columns:minmax(0,1fr)}
+  .title{gap:var(--s-16)}.work header.top{align-items:start}
+  .tabs button{flex:1;padding-inline:var(--s-8);font-size:var(--fs-13)}
+  .sheet-t th:nth-child(2),.sheet-t td:nth-child(2),.pct span{display:none}
+  .sheet-t th:nth-child(3),.sheet-t td:nth-child(3){width:64px}
+  .sheet-t th:last-child,.sheet-t td:last-child{width:72px}
+}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="الإدارة">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>الإدارة</span></div>
+    <a href="09-admin-inbox.html">ما ينتظرك <span class="n">3</span></a>
+    <a href="10-admin-cohort.html" aria-current="page">الدفعات</a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">البرامج</a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">الجهات</a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">طلبات العروض <span class="n">1</span></a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">المدفوعات</a>
+    <a href="#" data-toast="خارج الشاشات الاثنتي عشرة">الشهادات</a>
+    <div class="foot">د. منال الحساوي<br><a href="index.html">خريطة الشاشات</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+      <header class="top">
+        <div class="title">
+          <div><h1 id="h1"></h1><div class="crumb"><a id="back" href="10-admin-cohort.html">استشراف المستقبل وبناء السيناريوهات</a> · 14 – 16 ديسمبر 2026 · قاعة الشركة</div></div>
+          <span class="stamp ok"><span class="vh">حالة الدفعة: </span><span id="stw"></span></span>
+        </div>
+        <div class="row" id="acts"></div>
+      </header>
+      <div id="body"></div>
+      <p class="synthetic" style="margin-top:var(--s-24)">الأسماء والتواريخ وأرقام الشهادات تجريبية.</p>
+    </div>
+  </main>
+</div>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const done=new URLSearchParams(location.search).get('state')==='completed';
+// a: final attendance of the three sessions
+const T=[
+ {n:'عبدالعزيز المطيري',o:'بنك المثال',a:[1,1,1]},{n:'دلال الخالد',o:'بنك المثال',f:1,a:[1,1,1]},
+ {n:'نورة الصباح',o:'وزارة التخطيط',f:1,a:[1,1,1]},{n:'مشاري العجمي',o:'بنك المثال',a:[1,1,1]},
+ {n:'جاسم البلوشي',o:'بنك المثال',a:[1,1,1]},{n:'فهد الشمري',o:'فردي',a:[1,1,1]},
+ {n:'Hannah Clarke',o:'فردي',f:1,en:1,a:[1,1,0]},{n:'يوسف الرشيدي',o:'فردي',a:[1,1,1]},
+ {n:'مريم الكندري',o:'فردي',f:1,a:[1,1,1]},{n:'أحمد الهاجري',o:'فردي',a:[1,1,1]},
+ {n:'لطيفة المري',o:'فردي',f:1,a:[1,1,1]},{n:'بدر العتيبي',o:'فردي',a:[1,1,1]},
+ {n:'طلال الحربي',o:'فردي',a:[1,0,1]},{n:'شيخة الدوسري',o:'فردي',f:1,a:[1,1,1]},
+ {n:'ناصر الظفيري',o:'فردي',a:[0,1,0]},{n:'ريم السبيعي',o:'فردي',f:1,a:[1,1,1]}];
+const name=r=>r.en?`<bdi lang="en">${r.n}</bdi>`:r.n;
+const TICK='<svg viewBox="0 0 36 36" aria-hidden="true"><path d="M8 19l7 7 13-16"/></svg>';
+$('back').href='10-admin-cohort.html?state='+(done?'completed':'in_progress');
+$('stw').textContent=done?'مكتملة':'جارية';
+$('h1').textContent=done?'الشهادات':'كشف الحضور';
+
+/* ---------- in_progress: the sheet ---------- */
+function sheet(){
+  const S=[{d:'14 ديسمبر',tag:'مسجّلة',held:1},{d:'15 ديسمبر',tag:'اليوم',held:1},{d:'16 ديسمبر',tag:'لم تُعقد بعد',held:0}];
+  const HELD=2;let cur=1,dirty=false,timer=0;
+  // today's session is ticked down to row 12; the rest are still to be marked
+  T.forEach((r,i)=>r.now=[r.a[0],i<12?1:0,0]);
+  $('body').innerHTML=`
+   <div class="tabs" role="tablist" aria-label="الجلسات">${S.map((s,i)=>`<button role="tab" id="tab${i}" aria-controls="panel" aria-selected="${i===cur}" tabindex="${i===cur?0:-1}"><b>الجلسة ${i+1} · ${s.d}</b><small>${s.tag}</small></button>`).join('')}</div>
+   <div role="tabpanel" id="panel" aria-labelledby="tab${cur}" tabindex="0">
+     <table class="t sheet-t"><thead id="thead"></thead><tbody id="rows"></tbody></table>
+   </div>
+   <div class="below"><p id="line"></p><p>الاسم الناقص من الكشف يسجّل أولاً ثم يظهر هنا.</p></div>`;
+  const pct=r=>{const k=r.now[0]+r.now[1];return `<b><bdi>${Math.round(k/HELD*100)}%</bdi></b><span>${k} من ${HELD}</span>`};
+  function acts(){
+    const held=S[cur].held;
+    $('acts').innerHTML=(held?`<p class="tally" aria-live="polite">حضر <b id="cnt">${T.filter(r=>r.now[cur]).length}</b> من ${T.length}</p><button class="btn" data-cta="WF-CTA-034" id="save">تسجيل الحضور</button>`:`<p class="tally">الجلسة 3 لم تُعقد بعد</p>`)
+     +`<button class="btn quiet" data-cta="WF-CTA-052" id="exp">تصدير الكشف</button>`;
+  }
+  function line(){$('line').textContent=!S[cur].held?'لم تُعقد هذه الجلسة بعد. يُفتح كشفها صباح 16 ديسمبر.':dirty?'تغييرات لم تُحفظ بعد.':cur===0?'حضور هذه الجلسة محفوظ. يمكنك تصحيحه ما دامت الدفعة جارية.':'علّمي من حضر ثم احفظي.'}
+  function fill(){
+    const held=S[cur].held;
+    $('thead').innerHTML=`<tr><th>المتدرب</th><th>الجهة</th>${held?'<th>حضر</th>':''}<th>نسبة الحضور</th></tr>`;
+    $('rows').innerHTML=T.map((r,i)=>`<tr><td>${name(r)}</td><td>${r.o}</td>${held?`<td><button class="tick" data-i="${i}" aria-pressed="${!!r.now[cur]}" aria-label="حضور ${r.n}">${TICK}</button></td>`:''}<td class="pct num" id="p${i}">${pct(r)}</td></tr>`).join('');
+    $('panel').removeAttribute('aria-busy');acts();line();
+  }
+  function pick(i,focus){
+    if(i===cur)return;cur=i;dirty=false;clearTimeout(timer);
+    S.forEach((_,k)=>{const b=$('tab'+k);b.setAttribute('aria-selected',k===i);b.tabIndex=k===i?0:-1});
+    $('panel').setAttribute('aria-labelledby','tab'+i);if(focus)$('tab'+i).focus();
+    if(rm){fill();return}
+    $('panel').setAttribute('aria-busy','true');$('acts').innerHTML='';$('line').textContent='';
+    $('rows').innerHTML=[72,58,80,64,70,54].map(w=>`<tr><td colspan="4"><div class="skel" style="width:${w}%"></div></td></tr>`).join('');
+    timer=setTimeout(fill,400);
+  }
+  $('body').querySelector('.tabs').addEventListener('click',e=>{const b=e.target.closest('[role=tab]');if(b)pick(+b.id.slice(3))});
+  $('body').querySelector('.tabs').addEventListener('keydown',e=>{
+    const n=S.length,to={ArrowLeft:(cur+1)%n,ArrowRight:(cur+n-1)%n,Home:0,End:n-1}[e.key];
+    if(to===undefined)return;e.preventDefault();pick(to,true)});
+  // ticks are drawn after tt.js has run, so toggle here and announce with the same event
+  $('rows').addEventListener('click',e=>{const t=e.target.closest('.tick');if(!t)return;
+    t.setAttribute('aria-pressed',t.getAttribute('aria-pressed')!=='true');
+    t.dispatchEvent(new CustomEvent('tt:tick',{bubbles:true}))});
+  $('rows').addEventListener('tt:tick',e=>{const i=+e.target.dataset.i,r=T[i];
+    r.now[cur]=e.target.getAttribute('aria-pressed')==='true'?1:0;
+    $('p'+i).innerHTML=pct(r);$('cnt').textContent=T.filter(x=>x.now[cur]).length;dirty=true;line()});
+  $('acts').addEventListener('click',e=>{
+    if(e.target.id==='save'){dirty=false;line();ttToast(`حُفظ حضور الجلسة ${cur+1}`)}
+    if(e.target.id==='exp')ttToast('نُزّل كشف الحضور على جهازك')});
+  fill();
+}
+
+/* ---------- completed: eligibility and certificates ---------- */
+function certs(){
+  const MIN=80,words=['','جلسة واحدة','جلستين'];let issued=false,asking=-1,fresh=null,no=140;
+  T.forEach(r=>{r.k=r.a[0]+r.a[1]+r.a[2];r.p=Math.round(r.k/3*100);r.ok=r.p>=MIN;r.c='none'});   // c: none | issued | revoked
+  const okN=T.filter(r=>r.ok).length;
+  $('body').innerHTML=`
+   <div class="notice" id="note" role="status" hidden></div>
+   <div class="rule"><span>يستحق الشهادة من حضر <b><bdi>${MIN}%</bdi></b> من الجلسات على الأقل</span><span class="assume">افتراض</span><span class="muted">· ${okN} من ${T.length} استوفوا الحد</span></div>
+   <div class="scroll-x"><table class="t elig"><thead><tr><th>المتدرب</th><th>الجهة</th><th>الجلسات</th><th>النسبة</th><th>النتيجة</th><th>الشهادة</th></tr></thead><tbody id="rows"></tbody></table></div>`;
+  function acts(){$('acts').innerHTML=(issued?'':`<button class="btn" data-cta="WF-CTA-039" id="issue">إصدار الشهادات</button>`)+`<button class="btn quiet" data-cta="WF-CTA-052" id="exp">تصدير الكشف</button>`}
+  function rows(){
+    $('rows').innerHTML=T.map((r,i)=>{
+      const res=r.ok?(r.f?'مستحقة':'مستحق'):`${r.f?'غير مستحقة':'غير مستحق'}<small>${r.f?'حضرت':'حضر'} ${words[r.k]} من 3، والحد <bdi>${MIN}%</bdi></small>`;
+      const pr=fresh==='all'||fresh===i?' press':'';
+      let c=r.ok?'<span class="muted">لم تصدر بعد</span>':'—';
+      if(r.c==='issued')c=`<span class="stamp ok${pr}">صادرة</span><bdi>${r.no}</bdi>${asking===i?'':`<button class="btn quiet sm" data-cta="WF-CTA-047" data-ask="${i}" aria-label="إلغاء الشهادة: ${r.n}">إلغاء الشهادة</button>`}`;
+      if(r.c==='revoked')c=`<span class="stamp off${pr}">ملغاة</span><bdi>${r.no}</bdi><small>السبب: ${r.why}</small>`;
+      const tr=`<tr><td>${name(r)}</td><td>${r.o}</td><td class="num">${r.k} من 3</td><td class="num"><bdi>${r.p}%</bdi></td><td>${res}</td><td><div class="cf">${c}</div></td></tr>`;
+      return asking!==i?tr:tr+`<tr class="why"><td colspan="6">
+        <div class="field" id="wf"><label for="why">سبب إلغاء شهادة ${r.n} (يُحفظ في سجل الشهادة)</label><input id="why" aria-describedby="wm" placeholder="مثال: صدرت باسم مكتوب خطأ"><span class="msg" id="wm" hidden>اكتبي السبب أولاً؛ الإلغاء بلا سبب لا يُحفظ.</span></div>
+        <div class="row"><button class="btn sm" data-yes="${i}">تأكيد إلغاء الشهادة</button><button class="btn quiet sm" data-no="${i}">تراجع</button></div></td></tr>`}).join('');
+    fresh=null;
+  }
+  const esc=s=>s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  document.addEventListener('click',e=>{
+    const t=e.target.closest('button');if(!t)return;const d=t.dataset;
+    if(t.id==='exp')ttToast('نُزّل كشف الحضور على جهازك');
+    else if(t.id==='issue'){
+      let n=0;T.forEach(r=>{if(r.ok&&r.c==='none'){r.c='issued';r.no='TTS-2026-0'+(no++);n++}});
+      issued=true;fresh='all';acts();rows();
+      const note=$('note');note.innerHTML=`<div><b>صدرت ${n} شهادة وأُرسلت لأصحابها.</b> سجل الحضور مقفل الآن ولا يمكن تعديله.</div>`;note.hidden=false;
+      ttToast(`صدرت ${n} شهادة`);$('exp').focus();
+    }
+    else if(d.ask){asking=+d.ask;rows();$('why').focus()}
+    else if(d.no){const i=+d.no;asking=-1;rows();document.querySelector(`[data-ask="${i}"]`).focus()}
+    else if(d.yes){const i=+d.yes,w=$('why'),v=w.value.trim();
+      if(!v){$('wm').hidden=false;$('wf').classList.add('bad');w.focus();return}
+      T[i].c='revoked';T[i].why=esc(v);asking=-1;fresh=i;rows();ttToast(`أُلغيت شهادة ${T[i].n}`)}
+  });
+  acts();rows();
+}
+done?certs():sheet();
+</script>
+</body>
+</html>
