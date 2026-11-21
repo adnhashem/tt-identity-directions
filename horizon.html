@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Think Tank — الاتجاه «الأفق»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600&family=Zain:wght@400;700;800;900&display=swap" rel="stylesheet">
+<style>
+@property --t{syntax:'<number>';inherits:true;initial-value:0}
+:root{--t:0;
+  --night:#05060d; --indigo:#131a44; --cobalt:#2444a8; --rose:#e2707f; --apricot:#f6b48a; --day:#f4f7fb; --ink:#12162b; --cream:#f8f1e7; --ox:#8a2332;
+  --ease:cubic-bezier(.16,1,.3,1)}
+*{box-sizing:border-box}
+html{overflow-x:clip}
+html{scrollbar-color:var(--cobalt) var(--night)}
+::selection{background:var(--rose);color:var(--ink)}
+:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+body{margin:0;font-family:'Noto Sans Arabic',sans-serif;line-height:1.8;color:var(--cream);background:var(--night);overflow-x:hidden}
+/* the cyclorama */
+.sky{position:fixed;inset:0;z-index:0;overflow:hidden}
+.sky>i{position:absolute;inset:0}
+.s-night{background:linear-gradient(180deg,#020308,var(--night) 55%,#0a0d1f)}
+.s-cobalt{background:linear-gradient(180deg,#060a1e 0%,#0e1a52 38%,var(--cobalt) 60%,#3b63d6 62%);opacity:clamp(0,calc(var(--t)*4),1)}
+.s-rose{background:linear-gradient(180deg,#101c58 0%,#3a3f9c 30%,#b3608f 50%,var(--rose) 57%,var(--apricot) 62%);opacity:clamp(0,calc((var(--t) - .22)*4),1)}
+.s-day{background:linear-gradient(180deg,#8fb6e8 0%,#cfe0f3 40%,var(--day) 62%);opacity:clamp(0,calc((var(--t) - .55)*2.6),1)}
+.sun{position:absolute;left:22%;top:62%;width:150px;height:150px;margin:-75px;border-radius:50%;
+  background:radial-gradient(circle,#fff 0 34%,#ffe9c9 46%,rgba(255,200,150,.5) 60%,transparent 72%);
+  transform:translateY(calc(90px - var(--t)*52vh));filter:blur(.4px)}
+.sea{position:absolute;inset:62% 0 0 0;background:linear-gradient(180deg,rgba(6,9,24,.55),rgba(4,6,14,.92));backdrop-filter:blur(2px)}
+.sea::before{content:"";position:absolute;left:22%;top:0;bottom:0;width:120px;margin-left:-60px;opacity:clamp(0,calc((var(--t) - .2)*3),.9);
+  background:repeating-linear-gradient(180deg,rgba(255,225,190,.75) 0 2px,transparent 2px 9px);filter:blur(1.2px);
+  -webkit-mask:linear-gradient(180deg,#000,transparent 85%);mask:linear-gradient(180deg,#000,transparent 85%);animation:shimmer 3.2s linear infinite}
+@keyframes shimmer{to{background-position:0 18px}}
+.skyline{position:absolute;inset-inline:0;top:62%;height:150px;margin-top:-149px;width:100%;fill:color-mix(in oklab,#04050b,#5d7396 calc(var(--t)*55%))}
+
+main,nav,aside{position:relative;z-index:1}
+.wrap{max-width:1200px;margin-inline:auto;padding-inline:32px}
+nav{display:flex;align-items:center;justify-content:space-between;padding-block:22px}
+nav img{height:58px;filter:invert(clamp(0,calc((var(--t) - .6)*4),1))}
+nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0}
+nav a{color:color-mix(in oklab,var(--cream),var(--ink) clamp(0%,calc((var(--t) - .6)*400%),100%));text-decoration:none;font-size:15px}
+nav a:hover{text-decoration:underline;text-underline-offset:6px}
+.hero{min-height:calc(62svh - 102px);display:grid;align-content:start;padding-top:2vh;padding-bottom:36px;--mix:clamp(0%,calc((var(--t) - .6)*400%),100%);color:color-mix(in oklab,var(--cream),var(--ink) var(--mix))}
+h1{font-family:'Zain',sans-serif;font-weight:900;font-size:clamp(2.8rem,6.4vw,5.8rem);line-height:1.15;margin:0 0 10px;max-width:16ch;text-wrap:balance}
+.hero p{font-size:1.12rem;max-width:40ch;margin:0;font-weight:400}
+
+/* strata: the cohorts as horizon bands */
+.strata{padding-bottom:110px}
+.band{position:relative;display:grid;grid-template-columns:150px 1fr auto;gap:28px;align-items:center;padding:26px 32px;margin-top:-10px;border-radius:14px 14px 0 0;
+  box-shadow:0 -18px 30px -14px rgba(0,0,0,.55),0 1px 0 rgba(255,255,255,.25) inset;transform:translateY(calc(var(--d)*var(--t)*-1px));transition:margin .4s var(--ease)}
+.band:hover{margin-top:-22px}
+.band.b1{background:linear-gradient(180deg,#f3a08f,var(--rose));color:var(--ink);--d:0}
+.band.b2{background:linear-gradient(180deg,#3558c8,var(--cobalt));--d:14}
+.band.b3{background:linear-gradient(180deg,#1d2763,var(--indigo));--d:28;border-radius:14px}
+.band .when{font-family:'Zain';font-weight:900;font-size:3.2rem;line-height:1;font-variant-numeric:tabular-nums}
+.band .when small{display:block;font-size:1.15rem;font-weight:700;line-height:1.4}
+.band h2{font-family:'Zain';font-weight:800;font-size:1.7rem;line-height:1.4;margin:0}
+.band .f{font-size:14px;display:flex;gap:18px;flex-wrap:wrap;opacity:.92}
+.btn{justify-self:end;min-height:50px;padding-inline:26px;border-radius:999px;border:0;font:inherit;font-weight:600;cursor:pointer;background:var(--day);color:var(--ink);
+  box-shadow:0 10px 18px -8px rgba(0,0,0,.6),0 0 0 0 rgba(255,255,255,.6);transition:transform .2s var(--ease),box-shadow .5s var(--ease)}
+.btn:hover{transform:translateY(-2px);box-shadow:0 14px 22px -8px rgba(0,0,0,.6),0 0 0 6px rgba(255,255,255,.18)}
+.btn.q{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+.synthetic{font-size:12px;margin:14px 4px 0}
+
+/* day: the working surfaces */
+.day{color:var(--ink);padding-block:110px 130px;background:linear-gradient(180deg,transparent,var(--day) 110px)}
+.day .wrap{display:grid;grid-template-columns:1.2fr .8fr;gap:60px;align-items:start}
+h3{font-family:'Zain';font-weight:900;font-size:clamp(2rem,3.6vw,2.9rem);line-height:1.4;margin:0 0 8px}
+.say{font-weight:400;max-width:44ch;margin:0 0 28px}
+.card{background:#fff;border-radius:16px;padding:26px;--sx:calc((1 - var(--t))*90px + 10px);--sy:calc((1 - var(--t))*26px + 14px);
+  box-shadow:var(--sx) var(--sy) calc(40px - var(--t)*14px) -12px rgba(18,22,43,calc(.2 + var(--t)*.14)),0 2px 4px rgba(18,22,43,.08)}
+.card h4{font-family:'Zain';font-weight:800;font-size:1.4rem;margin:0 0 2px}
+.card .meta{font-size:13.5px;color:#4a5170;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{text-align:start;font-weight:500;font-size:12.5px;color:#4a5170;padding:8px 6px;border-bottom:2px solid var(--ink)}
+td{padding:11px 6px;border-bottom:1px solid #e3e8f1}
+td.n{font-variant-numeric:tabular-nums}
+.ph{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;padding:3px 12px;border-radius:999px}
+.ph::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor}
+.ph.day{background:#e8f0fb;color:#1c3f97;padding-block:3px}
+.ph.dawn{background:#fde6e2;color:#8a2332}
+.ph.night{background:#12162b;color:#f8f1e7}
+.ph.dusk{background:#eef0f5;color:#4a5170}.ph.dusk::before{background:none;box-shadow:inset 0 0 0 2px currentColor}
+.cert{background:linear-gradient(180deg,var(--indigo) 0%,#2a2f7c 58%,#b3608f 80%,var(--apricot) 100%);color:var(--cream);border-radius:16px;padding:30px 28px 26px;position:relative;overflow:hidden;
+  --sx:calc((1 - var(--t))*90px + 10px);--sy:calc((1 - var(--t))*26px + 14px);box-shadow:var(--sx) var(--sy) 34px -12px rgba(18,22,43,.4)}
+.cert::after{content:"";position:absolute;left:18%;bottom:-46px;width:92px;height:92px;border-radius:50%;background:radial-gradient(circle,#fff 0 40%,#ffe9c9 60%,transparent 72%)}
+.cert small{font-weight:600}
+.cert h4{font-family:'Zain';font-weight:900;font-size:2.3rem;margin:4px 0 6px}
+.cert p{font-size:14px;margin:0 0 48px;max-width:30ch}
+.cert code{font-family:inherit;font-size:12.5px;letter-spacing:.06em;color:var(--ink);font-weight:600;direction:ltr;unicode-bidi:isolate;position:relative;z-index:1}
+.cert img{position:absolute;top:22px;inset-inline-end:22px;height:50px}
+
+/* cue scrubber */
+.cue{position:fixed;z-index:5;left:28px;top:96px;display:flex;align-items:center;gap:12px;padding:10px 16px;border-radius:999px;background:rgba(5,6,13,.78);color:var(--cream);font-size:13px;box-shadow:0 10px 24px -8px #000}
+.cue output{min-width:5.5em;font-weight:600}
+.cue input{accent-color:var(--rose);width:150px;direction:ltr}
+
+.note{background:var(--night);padding-block:56px}
+.note .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:48px}
+.note h5{font-family:'Zain';font-weight:800;font-size:1.5rem;margin:0 0 10px;font-weight:600}
+.note p,.note li{font-weight:300;font-size:15px;color:#d5d9ea}
+.note ul{margin:0;padding-inline-start:20px}
+.chips{display:flex;margin-top:16px;border-radius:12px;overflow:hidden;width:max-content;box-shadow:0 10px 20px -6px #000}
+.chips span{width:58px;height:58px}
+.back{display:inline-block;margin-top:24px;color:var(--apricot);font-weight:500}
+@media (max-width:900px){nav ul{display:none}.band{grid-template-columns:1fr;gap:8px}.day .wrap,.note .wrap{grid-template-columns:1fr}.cue input{width:90px}.cue{top:auto;bottom:16px;left:16px}h1{max-width:none}}
+@media (prefers-reduced-motion:reduce){.sea::before{animation:none}.band{transform:none;transition:none}}
+</style>
+</head>
+<body>
+<div class="sky" aria-hidden="true">
+  <i class="s-night"></i><i class="s-cobalt"></i><i class="s-rose"></i><i class="s-day"></i>
+  <div class="sun"></div>
+  <svg class="skyline" viewBox="0 0 1200 150" preserveAspectRatio="xMidYMax slice">
+    <path d="M0 150V128h60v-14h34v14h70v-30h26v30h54v-10h40v10h96V98h18v30h50v-18h44v18h60v22z"/>
+    <path d="M688 150 L699 30 L701 4 L703 30 L714 150Z"/><ellipse cx="701" cy="62" rx="20" ry="15"/><ellipse cx="701" cy="100" rx="13" ry="9"/>
+    <path d="M748 150 L756 58 L758 40 L760 58 L768 150Z"/><ellipse cx="758" cy="84" rx="17" ry="13"/>
+    <path d="M802 150 L808 70 L809 46 L810 70 L816 150Z"/>
+    <path d="M850 150v-20h48v-12h30v12h80v-34h22v34h60v-8h36v8h74v22z"/>
+  </svg>
+  <div class="sea"></div>
+</div>
+
+<nav class="wrap" aria-label="الرئيسية">
+  <img src="assets/logo-white.png" alt="Think Tank Strategists">
+  <ul><li><a href="#">البرامج</a></li><li><a href="#">الدفعات القادمة</a></li><li><a href="#">للجهات</a></li><li><a href="#">تحقق من شهادة</a></li><li><a href="#">English</a></li></ul>
+</nav>
+
+<main>
+  <header class="hero wrap">
+    <h1>من يرى الأفق أولاً يقود</h1>
+    <p>برامج الدكتورة منال الحساوي في الاستراتيجية والاستشراف وبناء القيادات. الدفعة الأقرب أدناه؛ انزل ليطلع النهار.</p>
+  </header>
+
+  <section class="strata wrap" aria-label="الدفعات القادمة">
+    <article class="band b1">
+      <div class="when">14<small>ديسمبر</small></div>
+      <div><h2>استشراف المستقبل وبناء السيناريوهات</h2><div class="f"><span>ورشة عامة · بالعربية</span><span>3 جلسات</span><span>180 د.ك</span><span>بقي 4 مقاعد من 20</span></div></div>
+      <button class="btn" data-book>احجز مقعدك</button>
+    </article>
+    <article class="band b2">
+      <div class="when">8<small>يناير</small></div>
+      <div><h2>ورش الاستراتيجية للقيادات التنفيذية</h2><div class="f"><span>ورشة عامة · English</span><span>يومان</span><span>240 د.ك</span><span>اكتملت المقاعد</span></div></div>
+      <button class="btn q">انضم لقائمة الانتظار</button>
+    </article>
+    <article class="band b3">
+      <div class="when">2<small>فبراير</small></div>
+      <div><h2>بناء القيادات والقدرات المؤسسية</h2><div class="f"><span>مسار · بالعربية</span><span>5 جلسات</span><span>320 د.ك</span><span>بقي 11 مقعداً من 24</span></div></div>
+      <button class="btn" data-book>احجز مقعدك</button>
+    </article>
+    <p class="synthetic">التواريخ والرسوم والأسماء تجريبية.</p>
+  </section>
+
+  <section class="day">
+    <div class="wrap">
+      <div>
+        <h3>في النهار تشتغل الدكتورة</h3>
+        <p class="say">البوابات كلها في ضوء النهار: أبيض واضح للقراءة الطويلة. وكل حالة لها وقتها من اليوم.</p>
+        <div class="card">
+          <h4>دفعة 14 ديسمبر · التسجيلات</h4>
+          <div class="meta">مجدولة · 16 من 20 مقعداً</div>
+          <table>
+            <thead><tr><th>المتدرب</th><th>الجهة</th><th>الحالة</th><th>المبلغ</th></tr></thead>
+            <tbody>
+              <tr><td>سارة العنزي</td><td>فردي</td><td><span class="ph dawn">طلب استرجاع · ينتظرك</span></td><td class="n">180.000</td></tr>
+              <tr><td>عبدالعزيز المطيري</td><td>بنك الخليج</td><td><span class="ph day">مؤكد</span></td><td class="n">—</td></tr>
+              <tr><td><bdi>Hannah Clarke</bdi></td><td>فردي</td><td><span class="ph night">بانتظار الدفع</span></td><td class="n">180.000</td></tr>
+              <tr><td>نورة الصباح</td><td>وزارة التخطيط</td><td><span class="ph day">مؤكد</span></td><td class="n">—</td></tr>
+              <tr><td>يوسف الرشيدي</td><td>فردي</td><td><span class="ph dusk">ملغى</span></td><td class="n">180.000</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3>وشهادة بلون الفجر</h3>
+        <p class="say">تُتحقق برقمها من الموقع.</p>
+        <div class="cert">
+          <img src="assets/logo-white.png" alt="">
+          <small>شهادة إتمام</small>
+          <h4>نورة الصباح</h4>
+          <p>أتمّت برنامج «استشراف المستقبل وبناء السيناريوهات» بحضور كامل.</p>
+          <code>TTS-2026-0142</code>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="cue">
+  <label for="cue">الوقت</label>
+  <input id="cue" type="range" min="0" max="100" value="0" aria-describedby="phase">
+  <output id="phase">ليل</output>
+</div>
+
+<aside class="note">
+  <div class="wrap">
+    <div>
+      <h5>الاتجاه «الأفق»: الضوء هو الهوية</h5>
+      <p>الاستشراف نظر إلى الأفق. الصفحة تبدأ ليلاً، ثم يظهر خط أزرق، ثم وردي الفجر، ثم نهار أبيض؛ والنزول في الصفحة هو طلوع الشمس على أبراج الكويت. الألوان الأربعة هي أوقات اليوم الأربعة، ولكل وقت معناه في النظام.</p>
+      <ul><li><b>الحركة:</b> السماء تتغير مع التمرير أو بمؤشر «الوقت»، الشمس تطلع، انعكاسها يتلألأ، وظلال البطاقات تقصر كلما ارتفعت.</li><li><b>العمق:</b> طبقات أفق فوق بعض، ضوء وظل حقيقيان، لا خطوط مسطّحة.</li><li><b>في البوابات:</b> نهار أبيض للعمل؛ «ينتظرك» بلون الفجر، «مؤكد» بلون النهار، «بانتظار الدفع» ليل.</li><li><b>الخطر:</b> أبعد الاتجاهات عن ألوان موقعها الحالي (النبيذي يبقى لوناً ثانوياً)، وتمرير الصفحة العامة أثقل على الأجهزة الضعيفة.</li></ul>
+      <a class="back" href="index.html">كل الاتجاهات ←</a>
+    </div>
+    <div>
+      <h5>الألوان والخط</h5>
+      <div class="chips"><span style="background:#05060d"></span><span style="background:#131a44"></span><span style="background:#2444a8"></span><span style="background:#e2707f"></span><span style="background:#f6b48a"></span><span style="background:#f4f7fb"></span></div>
+      <p style="margin-top:16px">الخط: <b style="font-family:'Zain';font-weight:800">زين</b> للعناوين، و<b>Noto Sans Arabic</b> للنص.</p>
+    </div>
+  </div>
+</aside>
+
+<script>
+const root=document.documentElement,cue=document.getElementById('cue'),phase=document.getElementById('phase');
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let intro=rm?1:0,manual=null;
+const name=t=>t<.15?'ليل':t<.4?'أول ضوء':t<.7?'فجر':'نهار';
+function apply(){const sp=Math.min(1,scrollY/(innerHeight*.95));const t=manual??Math.min(1,intro*.42+sp*.58);
+  root.style.setProperty('--t',t.toFixed(3));if(manual===null)cue.value=Math.round(t*100);phase.textContent=name(t)}
+if(!rm){const t0=performance.now();(function rise(now){const p=Math.min(1,(now-t0)/2800);intro=1-Math.pow(1-p,3);apply();if(p<1)requestAnimationFrame(rise)})(t0)}
+addEventListener('scroll',()=>{manual=null;apply()},{passive:true});
+cue.addEventListener('input',()=>{manual=cue.value/100;apply()});
+apply();
+document.querySelectorAll('[data-book]').forEach(b=>b.addEventListener('click',()=>{b.textContent='تم الحجز · أكمل الدفع'}));
+</script>
+</body>
+</html>

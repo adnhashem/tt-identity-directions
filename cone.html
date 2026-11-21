@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Think Tank — الاتجاه «المخروط»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Readex+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --board:#b9c4ca; --board-2:#a3b0b8; --mat:#8e9da6;
+  --vellum:#fbfaf4; --graphite:#20262b; --graphite-2:#525c64;
+  --plot:#8a2332; --blue:#1c4a6e; --tape:#e6d59c; --wood:#c98b3c;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{overflow-x:clip}
+html{scrollbar-color:var(--graphite-2) var(--board-2)}
+::selection{background:var(--blue);color:#fff}
+:focus-visible{outline:2px solid var(--plot);outline-offset:3px}
+body{margin:0;font-family:'Readex Pro',sans-serif;color:var(--graphite);line-height:1.8;overflow-x:hidden;
+  background:
+   linear-gradient(rgba(255,255,255,.16) 1px,transparent 1px) 0 0/100% 40px,
+   linear-gradient(90deg,rgba(255,255,255,.16) 1px,transparent 1px) 0 0/40px 100%,
+   radial-gradient(1100px 600px at 70% -10%,#d3dbe0,transparent 70%),
+   var(--board)}
+.wrap{max-width:1240px;margin-inline:auto;padding-inline:32px}
+nav{display:flex;align-items:center;justify-content:space-between;padding-block:22px}
+nav img{height:58px}
+nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0}
+nav a{color:var(--graphite);text-decoration:none;font-size:15px;background:linear-gradient(var(--plot),var(--plot)) 100% 100%/0 2px no-repeat;transition:background-size .35s var(--ease);padding-bottom:3px}
+nav a:hover{background-size:100% 2px}
+.head{display:grid;grid-template-columns:1.25fr .75fr;gap:40px;align-items:end;padding-block:28px 0}
+h1{font-weight:700;font-size:clamp(2.3rem,5vw,4.4rem);line-height:1.3;margin:0;text-wrap:balance}
+h1 span{font-family:'Aref Ruqaa',serif;font-weight:700;color:var(--plot);font-size:1.12em}
+.head p{font-weight:400;font-size:1.08rem;color:#2f383f;margin:0 0 12px;max-width:36ch}
+
+/* the sheet */
+.sheet{position:relative;background:rgba(251,250,244,.9);border-radius:3px;
+  box-shadow:0 1px 0 #fff inset,0 34px 50px -26px rgba(22,34,42,.55),0 8px 14px -6px rgba(22,34,42,.3)}
+.sheet::before,.sheet::after,.tape{content:"";position:absolute;width:92px;height:30px;background:linear-gradient(180deg,rgba(255,255,255,.35),transparent),var(--tape);opacity:.9;box-shadow:0 3px 5px rgba(0,0,0,.18)}
+.sheet::before{top:-12px;inset-inline-start:38px;transform:rotate(-4deg)}
+.sheet::after{top:-12px;inset-inline-end:38px;transform:rotate(3deg)}
+.plan{margin-block:36px 0;transform:rotate(-.5deg);padding:18px 18px 8px}
+.plan svg{display:block;width:100%;height:auto;overflow:visible}
+.lbl{font-family:'Aref Ruqaa',serif;font-size:26px;fill:var(--graphite-2)}
+.yr{font-family:'Readex Pro';font-size:15px;font-weight:600;fill:var(--graphite);font-variant-numeric:tabular-nums}
+.axis{stroke:var(--graphite);stroke-width:1.6}
+.ray{stroke:var(--graphite);stroke-width:1.2;fill:none;stroke-dasharray:1400;stroke-dashoffset:1400;animation:draw 2.2s var(--ease) forwards}
+.arc{stroke:var(--graphite-2);stroke-width:1;fill:none;stroke-dasharray:5 7}
+@keyframes draw{to{stroke-dashoffset:0}}
+.reveal{animation:unroll 2.4s var(--ease) both}
+@keyframes unroll{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
+#pref{stroke:var(--plot);stroke-width:3.4;fill:none;stroke-linecap:round}
+.dot{fill:var(--blue)}
+.mark{cursor:pointer}
+.mark circle{fill:var(--vellum);stroke:var(--plot);stroke-width:2.5;transition:r .25s var(--ease),fill .25s}
+.mark:hover circle,.mark[aria-pressed=true] circle{fill:var(--plot);r:11px}
+.mark text{font-family:'Readex Pro';font-size:14px;font-weight:600;fill:var(--graphite)}
+/* pencil */
+#pencil{position:absolute;width:210px;height:16px;border-radius:2px 8px 8px 2px;pointer-events:none;transform-origin:0 50%;
+  background:linear-gradient(180deg,#e0a556,var(--wood) 45%,#96611f);box-shadow:8px 14px 12px -4px rgba(22,34,42,.45)}
+#pencil::before{content:"";position:absolute;left:-26px;top:0;border-block:8px solid transparent;border-right:26px solid #ecd2a8}
+#pencil::after{content:"";position:absolute;left:-26px;top:5px;border-block:3px solid transparent;border-right:9px solid var(--graphite)}
+
+/* tracing overlay with the action */
+.trace{position:absolute;inset-inline-start:34px;bottom:-170px;width:min(400px,86%);padding:24px 26px 22px;background:rgba(255,255,255,.6);backdrop-filter:blur(7px) saturate(1.1);-webkit-backdrop-filter:blur(7px);
+  border:1px solid rgba(255,255,255,.8);border-radius:3px;transform:rotate(1.4deg);box-shadow:0 26px 36px -18px rgba(22,34,42,.5),0 4px 8px rgba(22,34,42,.15)}
+.trace .tape{top:-13px;left:50%;margin-left:-46px;transform:rotate(-2deg)}
+.trace small{color:var(--plot);font-weight:600}
+.trace h2{font-size:1.3rem;line-height:1.5;margin:2px 0 12px;font-weight:600}
+.facts{display:flex;gap:18px;flex-wrap:wrap;font-size:14px;color:var(--graphite-2);margin-bottom:14px}
+.facts b{color:var(--graphite);font-variant-numeric:tabular-nums}
+.go{display:inline-flex;align-items:center;gap:10px;min-height:50px;padding-inline:26px;border:0;border-radius:4px;font:inherit;font-weight:600;color:#fff;cursor:pointer;
+  background:linear-gradient(180deg,#a02b3d,var(--plot));box-shadow:0 1px 0 #fff3 inset,0 10px 16px -8px rgba(138,35,50,.8),0 3px 0 #5a1420;transition:transform .15s,box-shadow .15s}
+.go:hover{transform:translateY(-2px)}
+.go:active{transform:translateY(2px);box-shadow:0 1px 0 #fff3 inset,0 1px 0 #5a1420}
+.synthetic{font-size:12px;color:var(--graphite-2);margin:8px 0 0}
+
+/* second row */
+.row2{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;padding-block:250px 110px;align-items:start}
+h3{font-weight:600;font-size:clamp(1.6rem,3vw,2.2rem);line-height:1.45;margin:0 0 8px}
+.say{color:#2f383f;font-weight:400;margin:0 0 30px;max-width:46ch}
+.report{padding:28px 26px;transform:rotate(.7deg)}
+.report table{width:100%;border-collapse:collapse;font-size:14.5px}
+.report th{text-align:start;font-weight:500;font-size:12.5px;color:var(--graphite-2);padding:8px 6px;border-bottom:1.6px solid var(--graphite)}
+.report td{padding:11px 6px;border-bottom:1px dashed #b9c0c4}
+.bar{display:block;height:10px;width:120px;background:repeating-linear-gradient(90deg,#d5dade 0 1px,transparent 1px 12px);position:relative}
+.bar i{position:absolute;inset-block:2px;inset-inline-start:0;width:calc(var(--v)*1%);background:var(--blue);transform-origin:right;animation:grow 1.4s var(--ease) both;animation-timeline:view();animation-range:entry 0% cover 35%}
+@keyframes grow{from{transform:scaleX(0)}}
+.bar.low i{background:var(--plot)}
+td.n{font-variant-numeric:tabular-nums;font-weight:600}
+.block{padding:0;transform:rotate(-1.1deg)}
+.block .cell{padding:14px 18px;border-bottom:1.4px solid var(--graphite)}
+.block .cell:last-child{border:0}
+.block .two{display:grid;grid-template-columns:1fr 1fr}
+.block .two>div+div{border-inline-start:1.4px solid var(--graphite)}
+.block small{display:block;font-size:11.5px;color:var(--graphite-2)}
+.block strong{font-size:1.05rem;font-weight:600}
+.block .name{font-family:'Aref Ruqaa',serif;font-size:2.1rem;line-height:1.5;color:var(--plot)}
+.block{outline:1.4px solid var(--graphite);outline-offset:-10px;padding:10px}
+.block img{height:54px}
+.chop{display:inline-grid;place-items:center;width:78px;height:78px;border-radius:50%;border:2.5px solid var(--plot);color:var(--plot);font-size:11px;font-weight:700;line-height:1.3;text-align:center;transform:rotate(-14deg);float:inline-end;margin:6px;opacity:.85}
+
+.note{background:var(--graphite);color:#dfe5e8;padding-block:56px}
+.note .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:48px}
+.note h5{font-size:1.25rem;margin:0 0 10px;font-weight:600;color:#fff}
+.note p,.note li{font-weight:300;font-size:15px}
+.note ul{margin:0;padding-inline-start:20px}
+.chips{display:flex;gap:10px;margin-top:16px}
+.chips span{width:54px;height:54px;border-radius:3px;box-shadow:0 8px 12px -4px #000a}
+.back{display:inline-block;margin-top:24px;color:#f0b9c2;font-weight:500}
+@media (max-width:900px){.head,.row2,.note .wrap{grid-template-columns:1fr}nav ul{display:none}.trace{position:relative;inset:auto;bottom:auto;margin:-30px auto 0}.row2{padding-top:70px}.plan{padding:10px 6px}#pencil{display:none}.lbl{font-size:34px}.yr,.mark text{font-size:22px}}
+@media (prefers-reduced-motion:reduce){.ray{animation:none;stroke-dashoffset:0}.reveal{animation:none}.bar i{animation:none}#pencil{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav aria-label="الرئيسية">
+    <img src="assets/logo-dark.png" alt="Think Tank Strategists">
+    <ul><li><a href="#">البرامج</a></li><li><a href="#">الدفعات القادمة</a></li><li><a href="#">للجهات</a></li><li><a href="#">تحقق من شهادة</a></li><li><a href="#">English</a></li></ul>
+  </nav>
+
+  <header class="head">
+    <h1>المستقبل أكثر من احتمال واحد. درّب قياداتك على <span>رسمها</span> كلها.</h1>
+    <p>برامج الدكتورة منال الحساوي في الاستراتيجية والاستشراف. حرّك المؤشر على اللوحة لترسم المسار المفضّل، واختر دفعتك من محور الزمن.</p>
+  </header>
+
+  <section class="sheet plan" id="plan">
+    <svg viewBox="0 0 1200 520" role="img" aria-label="مخروط المستقبلات: من اليوم إلى 2035">
+      <defs>
+        <linearGradient id="far" x1="1" x2="0"><stop offset="0" stop-color="#fff"/><stop offset=".45" stop-color="#fff"/><stop offset="1" stop-color="#000"/></linearGradient>
+        <linearGradient id="near" x1="1" x2="0"><stop offset="0" stop-color="#000"/><stop offset=".4" stop-color="#000"/><stop offset="1" stop-color="#fff"/></linearGradient>
+        <mask id="mNear"><rect width="1200" height="520" fill="url(#far)"/></mask>
+        <mask id="mFar"><rect width="1200" height="520" fill="url(#near)"/></mask>
+        <filter id="soft" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="9"/></filter>
+        <g id="wedges">
+          <path d="M1120 260 L60 14 L60 506 Z" fill="#1c4a6e" opacity=".10"/>
+          <path d="M1120 260 L60 92 L60 428 Z" fill="#1c4a6e" opacity=".14"/>
+          <path d="M1120 260 L60 176 L60 344 Z" fill="#1c4a6e" opacity=".22"/>
+        </g>
+      </defs>
+      <g class="reveal">
+        <use href="#wedges" mask="url(#mNear)"/>
+        <use href="#wedges" mask="url(#mFar)" filter="url(#soft)"/>
+        <path class="arc" d="M820 190 Q800 260 820 330"/><path class="arc" d="M520 120 Q490 260 520 400"/><path class="arc" d="M220 50 Q180 260 220 470"/>
+        <path class="ray" d="M1120 260 L60 14"/><path class="ray" d="M1120 260 L60 506"/>
+        <path class="ray" d="M1120 260 L60 92" style="animation-delay:.15s"/><path class="ray" d="M1120 260 L60 428" style="animation-delay:.15s"/>
+        <path class="ray" d="M1120 260 L60 176" style="animation-delay:.3s"/><path class="ray" d="M1120 260 L60 344" style="animation-delay:.3s"/>
+        <text class="lbl" x="300" y="78">ممكن</text><text class="lbl" x="330" y="158">محتمل</text><text class="lbl" x="360" y="236">مرجّح</text>
+        <text class="yr" x="820" y="366" text-anchor="middle">2027</text><text class="yr" x="520" y="436" text-anchor="middle">2030</text><text class="yr" x="220" y="500" text-anchor="middle">2035</text>
+        <g id="dots"></g>
+        <path id="pref" d="M1120 260 C 800 260 400 300 70 300"/>
+        <text class="lbl" id="prefLbl" x="320" y="290" style="fill:var(--plot);font-weight:700">المفضّل</text>
+      </g>
+      <line class="axis" x1="1120" y1="236" x2="1120" y2="284"/>
+      <text class="yr" x="1120" y="222" text-anchor="middle">اليوم</text>
+      <g class="mark" tabindex="0" role="button" aria-pressed="true" data-k="0" transform="translate(1076 260)"><circle r="8"/><text y="-22" text-anchor="middle">14 ديسمبر</text></g>
+      <g class="mark" tabindex="0" role="button" aria-pressed="false" data-k="1" transform="translate(1004 260)"><circle r="8"/><text y="38" text-anchor="middle">8 يناير</text></g>
+      <g class="mark" tabindex="0" role="button" aria-pressed="false" data-k="2" transform="translate(930 260)"><circle r="8"/><text y="-22" text-anchor="middle">2 فبراير</text></g>
+    </svg>
+    <div id="pencil" aria-hidden="true"></div>
+
+    <div class="trace" aria-live="polite">
+      <span class="tape" aria-hidden="true"></span>
+      <small id="kind">ورشة عامة · بالعربية · 14 ديسمبر</small>
+      <h2 id="title">استشراف المستقبل وبناء السيناريوهات</h2>
+      <div class="facts"><span><b id="dur">3 جلسات</b></span><span><b id="fee">180 د.ك</b></span><span id="seat">بقي <b>4</b> مقاعد من 20</span></div>
+      <button class="go" id="go">احجز مقعدك</button>
+      <p class="synthetic">التواريخ والرسوم والأسماء تجريبية.</p>
+    </div>
+  </section>
+
+  <section class="row2">
+    <div>
+      <h3>الجهة تشوف موظفيها على ورقة واحدة</h3>
+      <p class="say">بوابة مسؤول التدريب: من حضر، ومن غاب، ومن استلم شهادته. بلا نتائج اختبارات.</p>
+      <div class="sheet report">
+        <table>
+          <thead><tr><th>الموظف</th><th>البرنامج</th><th>الحضور</th><th></th><th>الشهادة</th></tr></thead>
+          <tbody>
+            <tr><td>عبدالعزيز المطيري</td><td>استشراف المستقبل</td><td><span class="bar" style="--v:100"><i></i></span></td><td class="n">100%</td><td>صادرة</td></tr>
+            <tr><td>دلال الخالد</td><td>استشراف المستقبل</td><td><span class="bar" style="--v:67"><i></i></span></td><td class="n">67%</td><td>بعد الإنهاء</td></tr>
+            <tr><td>مشاري العجمي</td><td>ورش الاستراتيجية</td><td><span class="bar low" style="--v:33"><i></i></span></td><td class="n">33%</td><td>غير مستحق</td></tr>
+            <tr><td>ريم البدر</td><td>ورش الاستراتيجية</td><td><span class="bar" style="--v:100"><i></i></span></td><td class="n">100%</td><td>صادرة</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3>والشهادة خانة عنوان موقّعة</h3>
+      <p class="say">مثل خانة العنوان في زاوية أي مخطط: من، ماذا، متى، وبأي رقم.</p>
+      <div class="sheet block">
+        <div class="cell"><span class="chop">معتمدة<br>2026</span><small>شهادة إتمام</small><div class="name">نورة الصباح</div></div>
+        <div class="cell"><small>البرنامج</small><strong>استشراف المستقبل وبناء السيناريوهات</strong></div>
+        <div class="two"><div class="cell"><small>التاريخ</small><strong>16 ديسمبر 2026</strong></div><div class="cell"><small>الرقم</small><strong dir="ltr">TTS-2026-0142</strong></div></div>
+        <div class="cell"><img src="assets/logo-dark.png" alt=""></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<aside class="note">
+  <div class="wrap">
+    <div>
+      <h5>الاتجاه «المخروط»: لغة الاستشراف نفسها هي الهوية</h5>
+      <p>مخروط المستقبلات هو الرسم الذي يبدأ به أي درس في الاستشراف: اليوم نقطة، وبعدها يتّسع ما هو ممكن ومحتمل ومرجّح. الهوية كلها لوحة رسم: ورق شفاف ملصوق بشريط، خطوط رصاص، ومسار نبيذي مرسوم باليد.</p>
+      <ul><li><b>الحركة:</b> المخروط ينفرد من «اليوم» إلى 2035، نقاط السيناريوهات تسير على خطوطه، والقلم يتبع مؤشرك ويرسم «المفضّل».</li><li><b>العمق:</b> أوراق فوق بعض بظلالها، ورق شفاف يُرى ما تحته، والبعيد من المستقبل ضبابي فعلاً.</li><li><b>في البوابات:</b> التقارير أوراق مرسومة، والشهادة خانة عنوان مثل المخططات.</li><li><b>الخطر:</b> أهدأ الاتجاهات وأقربها لعالم الاستشارات؛ قوته في الرسم، فإن ضعف الرسم صار ورقاً رمادياً.</li></ul>
+      <a class="back" href="index.html">كل الاتجاهات ←</a>
+    </div>
+    <div>
+      <h5>الألوان والخط</h5>
+      <div class="chips"><span style="background:#b9c4ca"></span><span style="background:#fbfaf4"></span><span style="background:#20262b;outline:1px solid #fff3"></span><span style="background:#8a2332"></span><span style="background:#1c4a6e"></span></div>
+      <p style="margin-top:16px">الخط: <b>Readex Pro</b> للنص، و<b style="font-family:'Aref Ruqaa'">عارف رقعة</b> لما يُكتب باليد على اللوحة.</p>
+    </div>
+  </div>
+</aside>
+
+<script>
+const C=[
+ {kind:'ورشة عامة · بالعربية · 14 ديسمبر',title:'استشراف المستقبل وبناء السيناريوهات',dur:'3 جلسات',fee:'180 د.ك',seat:'بقي <b>4</b> مقاعد من 20',cta:'احجز مقعدك'},
+ {kind:'ورشة عامة · English · 8 يناير',title:'ورش الاستراتيجية للقيادات التنفيذية',dur:'يومان',fee:'240 د.ك',seat:'اكتملت المقاعد',cta:'انضم لقائمة الانتظار'},
+ {kind:'مسار · بالعربية · 2 فبراير',title:'بناء القيادات والقدرات المؤسسية',dur:'5 جلسات',fee:'320 د.ك',seat:'بقي <b>11</b> مقعداً من 24',cta:'احجز مقعدك'}];
+const $=id=>document.getElementById(id);
+const marks=[...document.querySelectorAll('.mark')];
+function pick(k){marks.forEach(m=>m.setAttribute('aria-pressed',+m.dataset.k===k));const c=C[k];$('kind').textContent=c.kind;$('title').textContent=c.title;$('dur').textContent=c.dur;$('fee').textContent=c.fee;$('seat').innerHTML=c.seat;$('go').textContent=c.cta}
+marks.forEach(m=>{m.addEventListener('click',()=>pick(+m.dataset.k));m.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();pick(+m.dataset.k)}})});
+$('go').addEventListener('click',e=>{e.currentTarget.textContent='تم الحجز · أكمل الدفع'});
+
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const svg=document.querySelector('.plan svg'),pref=$('pref'),lbl=$('prefLbl'),pencil=$('pencil'),plan=$('plan');
+let ty=300,y=300,px=70;
+function frame(){y+=(ty-y)*.09;pref.setAttribute('d',`M1120 260 C 800 260 ${px+330} ${y} ${px} ${y}`);lbl.setAttribute('y',y-12);lbl.setAttribute('x',px+250);
+  const r=svg.getBoundingClientRect(),pr=plan.getBoundingClientRect(),sx=r.width/1200;
+  pencil.style.left=(r.left-pr.left+px*sx)+'px';pencil.style.top=(r.top-pr.top+y*sx-8)+'px';pencil.style.transform=`rotate(${-32+(y-260)/20}deg)`;
+  requestAnimationFrame(frame)}
+if(!rm){plan.addEventListener('pointermove',e=>{const r=svg.getBoundingClientRect();const vy=(e.clientY-r.top)/r.height*520;const lim=x=>14+(506-14)*0; ty=Math.max(40,Math.min(480,vy))});frame()}
+// scenario dots drifting along rays
+const dots=$('dots');
+if(!rm){for(let i=0;i<14;i++){const c=document.createElementNS('http://www.w3.org/2000/svg','circle');const endY=30+Math.random()*460,d=5+Math.random()*6;c.setAttribute('r',2+Math.random()*2.5);c.setAttribute('class','dot');c.setAttribute('opacity',.25+Math.random()*.5);
+  const a=document.createElementNS('http://www.w3.org/2000/svg','animateMotion');a.setAttribute('dur',d+'s');a.setAttribute('begin',(-Math.random()*d)+'s');a.setAttribute('repeatCount','indefinite');a.setAttribute('path',`M1120 260 L60 ${endY}`);c.appendChild(a);dots.appendChild(c)}}
+</script>
+</body>
+</html>

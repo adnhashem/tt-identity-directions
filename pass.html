@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Think Tank — الاتجاه «البطاقة»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --baize:#12382d; --baize-deep:#0b241d; --baize-hi:#1c5142;
+  --card:#f3ead9; --card-edge:#d9cbb0; --ink:#1d1a16; --ink-2:#5a5145;
+  --ribbon:#8a2332; --ribbon-dark:#5e1622; --brass:#c9a253; --brass-dark:#8a6a2a;
+  --cream:#f6efe1; --cream-2:#cfd8cf;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{overflow-x:clip}
+html{scrollbar-color:var(--brass-dark) var(--baize-deep)}
+::selection{background:var(--ribbon);color:var(--cream)}
+body{margin:0;font-family:'Alexandria',sans-serif;color:var(--cream);background:var(--baize-deep);line-height:1.8;overflow-x:hidden}
+:focus-visible{outline:2px solid var(--brass);outline-offset:3px}
+/* the table: felt under a lamp */
+.table{position:relative;background:
+  radial-gradient(1200px 700px at 30% 0%, var(--baize-hi), transparent 65%),
+  radial-gradient(900px 600px at 85% 110%, rgba(0,0,0,.45), transparent 60%),
+  var(--baize)}
+.table::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.2' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.wrap{position:relative;max-width:1200px;margin-inline:auto;padding-inline:32px}
+nav{display:flex;align-items:center;justify-content:space-between;padding-block:24px}
+nav img{height:56px}
+nav ul{display:flex;gap:32px;list-style:none;margin:0;padding:0}
+nav a{color:var(--cream-2);text-decoration:none;font-size:15px;transition:color .2s}
+nav a:hover{color:var(--cream)}
+nav .lang{border:1px solid rgba(246,239,225,.3);padding:4px 14px;border-radius:999px;font-size:13px}
+
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:start;min-height:calc(100svh - 104px);padding-block:24px 96px}
+h1{font-weight:800;font-size:clamp(2.4rem,5.2vw,4.6rem);line-height:1.25;margin:48px 0 20px;text-wrap:balance;text-shadow:0 2px 0 rgba(0,0,0,.25)}
+h1 em{font-style:normal;color:var(--brass)}
+.lede{font-weight:300;font-size:1.15rem;max-width:34ch;color:var(--cream-2);margin:0 0 40px}
+/* fanned stubs */
+.stubs{position:relative;height:210px;margin-block-start:8px}
+.stub{position:absolute;inset-inline-start:calc(var(--i)*172px);top:calc(var(--i)*8px);width:196px;height:112px;border:0;padding:14px 22px;text-align:start;cursor:pointer;
+  font:inherit;color:var(--ink);background:linear-gradient(180deg,#fbf4e6,var(--card));
+  transform:rotate(calc(var(--r)*1deg));transform-origin:50% 120%;
+  box-shadow:0 1px 0 #fff inset,0 10px 18px -8px rgba(0,0,0,.55),0 2px 3px rgba(0,0,0,.3);
+  transition:transform .45s var(--ease),box-shadow .45s var(--ease);
+  -webkit-mask:radial-gradient(circle 7px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat;
+          mask:radial-gradient(circle 7px at 0 50%,transparent 98%,#000) left/51% 100% no-repeat,radial-gradient(circle 7px at 100% 50%,transparent 98%,#000) right/51% 100% no-repeat}
+.stub:hover,.stub:focus-visible{transform:rotate(0) translateY(-18px);z-index:5}
+.stub[aria-pressed=true]{transform:rotate(0) translateY(-30px);z-index:6}
+.stub b{display:block;font-weight:700;font-size:26px;line-height:1.2;font-variant-numeric:tabular-nums}
+.stub span{display:block;font-size:12.5px;color:var(--ink-2);line-height:1.5}
+.stub i{position:absolute;inset-block:12px;inset-inline-end:44px;border-inline-start:1.5px dashed var(--card-edge)}
+.stub u{position:absolute;inset-inline-end:10px;top:50%;transform:translateY(-50%) rotate(-90deg);font-size:10px;letter-spacing:.2em;color:var(--ribbon);text-decoration:none;font-weight:700}
+.hint{font-size:13px;color:var(--cream-2);margin-top:8px}
+
+/* the pass */
+.stage{perspective:1400px;display:grid;justify-items:center}
+.lanyard{width:46px;height:150px;background:linear-gradient(90deg,var(--ribbon-dark),var(--ribbon) 30%,#a53145 50%,var(--ribbon) 70%,var(--ribbon-dark));
+  box-shadow:0 12px 24px rgba(0,0,0,.35);position:relative}
+.lanyard::after{content:"THINK TANK · THINK TANK · THINK TANK";position:absolute;inset:0;writing-mode:vertical-rl;font-size:8px;letter-spacing:.3em;color:rgba(246,239,225,.9);display:grid;place-items:center;white-space:nowrap;overflow:hidden;direction:ltr}
+.swing{transform-origin:50% -150px;animation:swing 2.6s var(--ease) both;display:grid;justify-items:center}
+@keyframes swing{0%{transform:rotate(-22deg) translateY(-40px);opacity:0}12%{opacity:1}30%{transform:rotate(11deg)}50%{transform:rotate(-6deg)}68%{transform:rotate(3deg)}84%{transform:rotate(-1.2deg)}100%{transform:rotate(0)}}
+.clip{width:64px;height:34px;margin-top:-4px;border-radius:6px 6px 14px 14px;background:linear-gradient(180deg,#e9cf8c,var(--brass) 45%,var(--brass-dark));box-shadow:inset 0 1px 0 #fff6,0 6px 10px rgba(0,0,0,.4);position:relative;z-index:2}
+.clip::after{content:"";position:absolute;left:50%;bottom:-12px;width:20px;height:20px;margin-left:-10px;border-radius:50%;border:4px solid var(--brass);box-shadow:inset 0 1px 2px #0006,0 2px 3px #0006}
+.tilt{transform-style:preserve-3d;transition:transform .5s var(--ease);margin-top:-2px}
+.pass{position:relative;width:min(380px,82vw);min-height:520px;border-radius:18px;padding:34px 30px 28px;color:var(--ink);
+  background:linear-gradient(165deg,#fffaf0,var(--card) 55%,#e9dcc3);
+  box-shadow:0 1px 0 #fff inset,0 -1px 0 var(--card-edge) inset,0 40px 60px -24px rgba(0,0,0,.65),0 12px 20px -8px rgba(0,0,0,.45);
+  transform-style:preserve-3d;transition:transform .7s var(--ease)}
+.pass.flip{transform:rotateY(180deg)}
+.pass::before{content:"";position:absolute;top:14px;left:50%;width:56px;height:12px;margin-left:-28px;border-radius:8px;background:var(--baize-deep);box-shadow:inset 0 2px 3px #000a}
+.sheen{position:absolute;inset:0;border-radius:18px;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.55) 48%,transparent 60%);background-size:260% 100%;background-position:var(--sx,120%) 0;mix-blend-mode:soft-light;transition:background-position .5s var(--ease)}
+.pass img{height:74px;margin-top:14px}
+.pass .kind{margin-top:22px;font-size:13px;color:var(--ribbon);font-weight:700}
+.pass h2{font-size:1.5rem;font-weight:700;line-height:1.45;margin:4px 0 18px;min-height:2.9em}
+.rows{display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;border-block:1.5px dashed var(--card-edge);padding-block:16px;margin-bottom:18px}
+.rows small{display:block;font-size:11.5px;color:var(--ink-2)}
+.rows strong{font-size:1.25rem;font-weight:700;font-variant-numeric:tabular-nums}
+.seats{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:6px}
+.seats s{width:11px;height:16px;border-radius:3px 3px 1px 1px;background:var(--ink);box-shadow:inset 0 -3px 0 #0005;text-decoration:none}
+.seats s.free{background:transparent;border:1.5px solid var(--ribbon)}
+.seatnote{font-size:13px;color:var(--ink-2);margin-bottom:18px}
+.book{width:100%;min-height:54px;border:0;border-radius:10px;font:inherit;font-weight:700;font-size:1.05rem;color:var(--cream);cursor:pointer;
+  background:linear-gradient(180deg,#a53145,var(--ribbon) 55%,var(--ribbon-dark));box-shadow:inset 0 1px 0 #fff4,0 6px 0 #3f0e17,0 14px 18px -6px rgba(0,0,0,.5);transition:transform .12s,box-shadow .12s}
+.book:hover{transform:translateY(-1px)}
+.book:active{transform:translateY(5px);box-shadow:inset 0 1px 0 #fff4,0 1px 0 #3f0e17,0 4px 8px -4px rgba(0,0,0,.5)}
+.stamp{position:absolute;inset-inline-end:22px;top:150px;padding:6px 16px;border:3px solid var(--ribbon);border-radius:8px;color:var(--ribbon);font-weight:800;font-size:1.3rem;transform:rotate(-12deg) scale(2.4);opacity:0;pointer-events:none;mix-blend-mode:multiply;
+  -webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='120'><filter id='r'><feTurbulence baseFrequency='.9' numOctaves='2'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.6 -.55'/></filter><rect width='100%' height='100%' filter='url(%23r)'/></svg>") center/200px 120px}
+.stamp.on{animation:press .42s cubic-bezier(.3,1.4,.5,1) forwards}
+@keyframes press{0%{opacity:0;transform:rotate(-12deg) scale(2.4)}60%{opacity:1;transform:rotate(-12deg) scale(.94)}100%{opacity:.92;transform:rotate(-12deg) scale(1)}}
+.synthetic{font-size:12px;color:var(--cream-2);margin-top:18px;text-align:center}
+
+/* desk objects */
+.desk{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;padding-block:40px 120px;align-items:start}
+h3{font-weight:700;font-size:clamp(1.6rem,3vw,2.3rem);line-height:1.4;margin:0 0 10px}
+.desk p.say{color:var(--cream-2);font-weight:300;max-width:44ch;margin:0 0 28px}
+.sheet{background:linear-gradient(180deg,#fffdf7,#f4ecdc);color:var(--ink);border-radius:4px;padding:54px 28px 24px;transform:rotate(-1.2deg);position:relative;
+  box-shadow:0 30px 50px -20px rgba(0,0,0,.6),0 6px 10px rgba(0,0,0,.3)}
+.sheet::before{content:"";position:absolute;top:-16px;left:50%;width:130px;height:44px;margin-left:-65px;border-radius:8px;background:linear-gradient(180deg,#e9cf8c,var(--brass) 40%,var(--brass-dark));box-shadow:inset 0 1px 0 #fff7,0 8px 12px rgba(0,0,0,.45)}
+.sheet h4{margin:0 0 4px;font-size:1.1rem}
+.sheet .meta{font-size:13px;color:var(--ink-2);margin-bottom:14px}
+.sheet table{width:100%;border-collapse:collapse;font-size:14.5px}
+.sheet th{font-size:12px;font-weight:500;color:var(--ink-2);text-align:start;padding:8px 6px;border-bottom:2px solid var(--ink)}
+.sheet td{padding:10px 6px;border-bottom:1px solid var(--card-edge)}
+.tick{width:26px;height:26px;border:1.5px solid var(--ink-2);border-radius:4px;background:#fff;cursor:pointer;position:relative;padding:0}
+.tick svg{position:absolute;inset:-4px;width:34px;height:34px;stroke:var(--ribbon);stroke-width:3.2;fill:none;stroke-linecap:round;stroke-dasharray:40;stroke-dashoffset:40;transition:stroke-dashoffset .35s var(--ease)}
+.tick[aria-pressed=true] svg{stroke-dashoffset:0}
+.pct{font-variant-numeric:tabular-nums;font-weight:700}
+.cert{background:linear-gradient(150deg,#fffaf0,#efe2c6);color:var(--ink);padding:34px 30px;border-radius:6px;transform:rotate(2deg);position:relative;overflow:hidden;
+  box-shadow:0 0 0 1px var(--card-edge) inset,0 0 0 9px #fbf4e6 inset,0 0 0 10px var(--brass) inset,0 30px 50px -20px rgba(0,0,0,.6)}
+.cert small{color:#6a4e12;font-weight:700}
+.cert h4{font-size:1.7rem;margin:6px 0 8px;font-weight:800}
+.cert p{font-size:14px;color:var(--ink-2);margin:0 0 18px}
+.seal{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:700;color:#3d2c08;text-align:center;line-height:1.3;
+  background:radial-gradient(circle at 35% 30%,#f6e3a8,var(--brass) 55%,var(--brass-dark));box-shadow:inset 0 2px 3px #fff8,inset 0 -3px 5px #0005,0 6px 10px rgba(0,0,0,.35);float:inline-end}
+.cert code{font-family:inherit;font-size:12px;letter-spacing:.08em;color:var(--ink-2);direction:ltr;unicode-bidi:isolate}
+
+/* direction note */
+.note{background:var(--baize-deep);border-top:1px solid #ffffff14;padding-block:56px}
+.note .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:48px}
+.note h5{font-size:1.25rem;margin:0 0 10px;font-weight:700}
+.note p,.note li{color:var(--cream-2);font-weight:300;font-size:15px}
+.note ul{margin:0;padding-inline-start:20px}
+.chips{display:flex;gap:10px;margin-top:16px}
+.chips span{width:54px;height:54px;border-radius:50%;box-shadow:inset 0 2px 3px #fff3,0 6px 10px #0006}
+.back{display:inline-block;margin-top:24px;color:var(--brass);font-weight:500}
+@media (max-width:900px){.hero>*,.desk>*{min-width:0}.hero,.desk,.note .wrap{grid-template-columns:1fr}nav ul{display:none}.stubs{height:auto;display:flex;gap:14px;overflow-x:auto;padding:36px 4px 20px;margin-inline:-8px}.stub{position:relative;inset:auto;top:auto;flex:none;transform:none}h1{margin-top:16px}}
+@media (prefers-reduced-motion:reduce){.swing{animation:none}.tilt,.pass,.stub{transition:none}.stamp.on{animation:none;opacity:.92;transform:rotate(-12deg)}}
+</style>
+</head>
+<body>
+<div class="table">
+  <div class="wrap">
+    <nav aria-label="الرئيسية">
+      <img src="assets/logo-white.png" alt="Think Tank Strategists">
+      <ul><li><a href="#">البرامج</a></li><li><a href="#">الدفعات القادمة</a></li><li><a href="#">للجهات</a></li><li><a href="#">تحقق من شهادة</a></li><li><a class="lang" href="#">English</a></li></ul>
+    </nav>
+
+    <section class="hero">
+      <div>
+        <h1>مقعدك على طاولة <em>الاستراتيجية</em> محجوز باسمك</h1>
+        <p class="lede">برامج الدكتورة منال الحساوي في الاستراتيجية والاستشراف وبناء القيادات. اختر الدفعة، واحجز مقعدك، وادفع بـKNET.</p>
+        <div class="stubs" role="group" aria-label="الدفعات القادمة">
+          <button class="stub" style="--i:0;--r:-5" aria-pressed="true" data-k="0"><b>14 ديسمبر</b><span>استشراف المستقبل</span><span>بقي 4 مقاعد</span><i></i><u>TTS</u></button>
+          <button class="stub" style="--i:1;--r:-1" aria-pressed="false" data-k="1"><b>8 يناير</b><span>ورش الاستراتيجية</span><span>اكتملت · انتظار</span><i></i><u>TTS</u></button>
+          <button class="stub" style="--i:2;--r:4" aria-pressed="false" data-k="2"><b>2 فبراير</b><span>بناء القيادات</span><span>بقي 11 مقعداً</span><i></i><u>TTS</u></button>
+        </div>
+        <p class="hint">اختر تذكرة لتظهر على البطاقة.</p>
+      </div>
+
+      <div class="stage">
+        <div class="lanyard" aria-hidden="true"></div>
+        <div class="swing">
+          <div class="clip" aria-hidden="true"></div>
+          <div class="tilt" id="tilt">
+            <article class="pass" id="pass" aria-live="polite">
+              <div class="sheen" aria-hidden="true"></div>
+              <img src="assets/logo-dark.png" alt="">
+              <div class="kind" id="kind">ورشة عامة · بالعربية</div>
+              <h2 id="title">استشراف المستقبل وبناء السيناريوهات</h2>
+              <div class="rows">
+                <div><small>التاريخ</small><strong id="date">14 ديسمبر</strong></div>
+                <div><small>المدة</small><strong id="dur">3 جلسات</strong></div>
+                <div><small>المكان</small><strong id="place" style="font-size:1rem">قاعة الشركة</strong></div>
+                <div><small>الرسم</small><strong id="fee">180 د.ك</strong></div>
+              </div>
+              <div class="seats" id="seats" aria-hidden="true"></div>
+              <div class="seatnote" id="seatnote">بقي 4 مقاعد من 20</div>
+              <button class="book" id="book">احجز مقعدك</button>
+              <div class="stamp" id="stamp" aria-hidden="true">محجوز</div>
+            </article>
+          </div>
+        </div>
+        <p class="synthetic">التواريخ والرسوم والأسماء في هذه الصفحة تجريبية.</p>
+      </div>
+    </section>
+
+    <section class="desk">
+      <div>
+        <h3>كشف الحضور على لوح الدكتورة</h3>
+        <p class="say">في بوابة الإدارة كل دفعة ورقة على لوح: تؤشّر على من حضر، والنسبة تُحسب، والشهادة تصدر لمن استحقها. جرّب التأشير.</p>
+        <div class="sheet">
+          <h4>استشراف المستقبل · الجلسة 2 من 3</h4>
+          <div class="meta">15 ديسمبر · 16 مسجّلاً</div>
+          <table>
+            <thead><tr><th>المتدرب</th><th>الجهة</th><th>حضر</th><th>النسبة</th></tr></thead>
+            <tbody id="att">
+              <tr><td>نورة الصباح</td><td>وزارة التخطيط</td><td><button class="tick" aria-pressed="true" aria-label="حضور نورة الصباح"><svg viewBox="0 0 34 34"><path d="M7 18l7 7 14-17"/></svg></button></td><td class="pct" data-b="1">100%</td></tr>
+              <tr><td>عبدالعزيز المطيري</td><td>بنك الخليج</td><td><button class="tick" aria-pressed="true" aria-label="حضور عبدالعزيز المطيري"><svg viewBox="0 0 34 34"><path d="M7 18l7 7 14-17"/></svg></button></td><td class="pct" data-b="1">100%</td></tr>
+              <tr><td>سارة العنزي</td><td>فردي</td><td><button class="tick" aria-pressed="false" aria-label="حضور سارة العنزي"><svg viewBox="0 0 34 34"><path d="M7 18l7 7 14-17"/></svg></button></td><td class="pct" data-b="1">50%</td></tr>
+              <tr><td>فهد الشمري</td><td>فردي</td><td><button class="tick" aria-pressed="false" aria-label="حضور فهد الشمري"><svg viewBox="0 0 34 34"><path d="M7 18l7 7 14-17"/></svg></button></td><td class="pct" data-b="0">0%</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <h3>وشهادة تُتحقق برقمها</h3>
+        <p class="say">تصدر بعد إنهاء الدفعة، وأي جهة تتحقق منها من الموقع.</p>
+        <div class="cert">
+          <div class="seal">THINK TANK<br>2026</div>
+          <small>شهادة إتمام</small>
+          <h4>نورة الصباح</h4>
+          <p>أتمّت برنامج «استشراف المستقبل وبناء السيناريوهات» بحضور كامل.</p>
+          <code>TTS-2026-0142</code>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<aside class="note">
+  <div class="wrap">
+    <div>
+      <h5>الاتجاه «البطاقة»: كل شي في النظام غرض على طاولة الاجتماعات</h5>
+      <p>التدريب الحضوري يبدأ ببطاقة تتعلّق في الرقبة ومقعد باسمك. الهوية كلها من هذا العالم: جوخ أخضر لطاولة مجلس الإدارة، بطاقة كرتون كريمية، شريط نبيذي من لون شعارها، ونحاس للمشابك والأختام.</p>
+      <ul><li><b>الحركة:</b> البطاقة تتأرجح على شريطها عند الدخول، تميل مع المؤشر، تنقلب عند تغيير الدفعة، والختم يُكبس عند الحجز.</li><li><b>العمق:</b> ظلال حقيقية، ملمس جوخ، لمعة ورق، زر مضغوط له سماكة.</li><li><b>في البوابات:</b> كشف الحضور ورقة على لوح، والمدفوعات إيصالات، والشهادة بختم نحاسي.</li><li><b>الخطر:</b> لو زاد التشبيه بالأغراض صار لعبة؛ في شاشات العمل اليومية نخففه ونبقي الورق والختم فقط.</li></ul>
+      <a class="back" href="index.html">كل الاتجاهات ←</a>
+    </div>
+    <div>
+      <h5>الألوان والخط</h5>
+      <div class="chips"><span style="background:#12382d"></span><span style="background:#f3ead9"></span><span style="background:#8a2332"></span><span style="background:#c9a253"></span><span style="background:#1d1a16"></span></div>
+      <p style="margin-top:16px">الخط: <b>Alexandria</b> للعربي والإنجليزي، بأوزان من الخفيف إلى الأسود.</p>
+    </div>
+  </div>
+</aside>
+
+<script>
+const C=[
+ {kind:'ورشة عامة · بالعربية',title:'استشراف المستقبل وبناء السيناريوهات',date:'14 ديسمبر',dur:'3 جلسات',place:'قاعة الشركة',fee:'180 د.ك',cap:20,taken:16,cta:'احجز مقعدك'},
+ {kind:'ورشة عامة · English',title:'ورش الاستراتيجية للقيادات التنفيذية',date:'8 يناير',dur:'يومان',place:'قاعة الشركة',fee:'240 د.ك',cap:20,taken:20,cta:'انضم لقائمة الانتظار'},
+ {kind:'مسار · بالعربية',title:'بناء القيادات والقدرات المؤسسية',date:'2 فبراير',dur:'5 جلسات',place:'قاعة الشركة',fee:'320 د.ك',cap:24,taken:13,cta:'احجز مقعدك'}];
+const $=id=>document.getElementById(id), pass=$('pass'), stamp=$('stamp');
+let booked={};
+function fill(k){const c=C[k];$('kind').textContent=c.kind;$('title').textContent=c.title;$('date').textContent=c.date;$('dur').textContent=c.dur;$('place').textContent=c.place;$('fee').textContent=c.fee;
+  const t=c.taken+(booked[k]?1:0);$('seats').innerHTML=Array.from({length:c.cap},(_,i)=>`<s class="${i<t?'':'free'}"></s>`).join('');
+  $('seatnote').textContent=t>=c.cap?'اكتملت المقاعد · قائمة الانتظار مفتوحة':`بقي ${c.cap-t} مقاعد من ${c.cap}`;
+  $('book').textContent=booked[k]?'تم الحجز · أكمل الدفع':c.cta;stamp.classList.toggle('on',!!booked[k]);stamp.textContent=c.taken>=c.cap?'انتظار':'محجوز';}
+let cur=0;fill(0);
+document.querySelectorAll('.stub').forEach(b=>b.addEventListener('click',()=>{const k=+b.dataset.k;if(k===cur)return;
+  document.querySelectorAll('.stub').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;if(rm){cur=k;fill(k);return}
+  pass.classList.add('flip');setTimeout(()=>{cur=k;fill(k);pass.style.transition='none';pass.style.transform='rotateY(-180deg)';pass.classList.remove('flip');requestAnimationFrame(()=>requestAnimationFrame(()=>{pass.style.transition='';pass.style.transform=''}))},340)}));
+$('book').addEventListener('click',()=>{if(booked[cur])return;booked[cur]=1;fill(cur)});
+const tilt=$('tilt');
+document.querySelector('.stage').addEventListener('pointermove',e=>{if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;const r=tilt.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+  tilt.style.transform=`rotateY(${x*14}deg) rotateX(${-y*10}deg)`;pass.style.setProperty('--sx',(100-(x+.5)*120)+'%')});
+document.querySelector('.stage').addEventListener('pointerleave',()=>{tilt.style.transform=''});
+const base=[2,2,1,0];
+document.querySelectorAll('#att tr').forEach((tr,i)=>{const t=tr.querySelector('.tick'),p=tr.querySelector('.pct');const upd=()=>{const on=t.getAttribute('aria-pressed')==='true';const prior=i<2?1:(i===2?1:0);p.textContent=Math.round((prior+(on?1:0))/2*100)+'%'};
+  t.addEventListener('click',()=>{t.setAttribute('aria-pressed',t.getAttribute('aria-pressed')!=='true');upd()});upd()});
+</script>
+</body>
+</html>

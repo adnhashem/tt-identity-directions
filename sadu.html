@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Think Tank — الاتجاه «السدو»</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@300;400;700;800&family=Kufam:wght@500;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#8f1d28; --red-deep:#6a121b; --black:#17120f; --wool:#f1e9d8; --wool-2:#dccfb6; --orange:#d9772b; --green:#2f6a4a; --ink:#17120f;
+  --weave:repeating-linear-gradient(0deg,rgba(0,0,0,.2) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 2px,transparent 2px 4px);
+  --tri-w:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28'><path d='M0 28L14 0l14 28z' fill='%23f1e9d8'/></svg>");
+  --tri-o:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='28' height='28'><path d='M0 0l14 28L28 0z' fill='%23d9772b'/></svg>");
+  --dia:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='44' height='44'><path d='M22 2l20 20-20 20L2 22z' fill='%238f1d28'/><path d='M22 13l9 9-9 9-9-9z' fill='%2317120f'/><circle cx='22' cy='22' r='2.4' fill='%23f1e9d8'/></svg>");
+  --zig:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='20'><path d='M0 18L16 2l16 16' fill='none' stroke='%232f6a4a' stroke-width='5'/></svg>");
+  --comb:repeating-linear-gradient(90deg,var(--wool) 0 5px,var(--black) 5px 10px);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{overflow-x:clip}
+html{scrollbar-color:var(--black) var(--red-deep)}
+::selection{background:var(--wool);color:var(--red-deep)}
+:focus-visible{outline:3px solid var(--wool);outline-offset:3px}
+body{margin:0;font-family:'Almarai',sans-serif;line-height:1.85;color:var(--wool);overflow-x:hidden;
+  background:var(--weave),linear-gradient(100deg,rgba(0,0,0,.28),transparent 22%,rgba(255,255,255,.07) 48%,transparent 70%,rgba(0,0,0,.32)),var(--red)}
+.wrap{max-width:1200px;margin-inline:auto;padding-inline:32px}
+nav{display:flex;align-items:center;justify-content:space-between;padding-block:22px}
+nav img{height:58px}
+nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0}
+nav a{color:var(--wool);text-decoration:none;font-size:15px;font-weight:700}
+nav a:hover{text-decoration:underline;text-decoration-thickness:3px;text-underline-offset:7px}
+
+/* the woven band */
+.loom{position:relative;margin-block:8px 0;box-shadow:0 22px 30px -14px rgba(0,0,0,.6),0 -2px 0 rgba(255,255,255,.12) inset}
+.loom .r{display:block;background-color:var(--black);animation:pass .8s steps(34) both}
+.loom .r:nth-child(odd){--from:inset(0 0 0 100%)} .loom .r:nth-child(even){--from:inset(0 100% 0 0)}
+@keyframes pass{from{clip-path:var(--from)}to{clip-path:inset(0)}}
+.r1{height:10px;background-image:var(--comb)!important;animation-delay:0s!important}
+.r2{height:30px;background:var(--tri-w) 0 100%/28px 28px repeat-x var(--black);animation-delay:.35s!important}
+.r3{height:8px;background:var(--orange)!important;animation-delay:.7s!important}
+.r4{height:52px;background:var(--dia) 0 50%/44px 44px repeat-x var(--wool)!important;animation-delay:1.05s!important}
+.r5{height:8px;background:var(--green)!important;animation-delay:1.4s!important}
+.r6{height:30px;background:var(--tri-o) 0 0/28px 28px repeat-x var(--black);animation-delay:1.75s!important}
+.r7{height:10px;background-image:var(--comb)!important;animation-delay:2.1s!important}
+.loom::after{content:"";position:absolute;inset:0;background:var(--weave);pointer-events:none;mix-blend-mode:multiply}
+.shuttle{position:absolute;z-index:2;top:0;left:0;width:86px;height:18px;border-radius:50%/60%;background:linear-gradient(180deg,#e2b074,#a86a2c 55%,#6d4116);box-shadow:0 8px 10px -2px rgba(0,0,0,.55);offset-path:path("M1200 5 L0 5 L0 25 L1200 25 L1200 44 L0 44 L0 74 L1200 74 L1200 104 L0 104 L0 123 L1200 123 L1200 143 L-140 143");offset-rotate:0deg;animation:shuttle 2.9s linear both}
+@keyframes shuttle{from{offset-distance:0%}to{offset-distance:100%}}
+
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:end;padding-block:56px 44px}
+h1{font-family:'Kufam',sans-serif;font-weight:900;font-size:clamp(2.6rem,6vw,5.4rem);line-height:1.22;margin:0;text-wrap:balance;text-shadow:0 3px 0 var(--red-deep),0 14px 24px rgba(0,0,0,.35)}
+.hero p{font-size:1.12rem;margin:0 0 10px;max-width:38ch}
+
+/* cohort strips */
+.strips{display:grid;gap:22px;padding-bottom:36px}
+.strip{position:relative;display:grid;grid-template-columns:96px 150px 1fr auto;align-items:center;gap:26px;padding:0;padding-inline-end:30px;min-height:112px;
+  box-shadow:0 18px 24px -14px rgba(0,0,0,.65);transition:transform .45s var(--ease),box-shadow .45s var(--ease)}
+.strip::before{content:"";position:absolute;inset:0;pointer-events:none;background:var(--weave),linear-gradient(90deg,rgba(0,0,0,.22),transparent 12%,rgba(255,255,255,.1) 40%,transparent 62%,rgba(0,0,0,.2));mix-blend-mode:multiply}
+.strip:hover{transform:translateY(-6px) rotate(-.25deg);box-shadow:0 30px 30px -16px rgba(0,0,0,.7)}
+.strip .motif{align-self:stretch;background-size:44px 44px;transition:background-position 1.2s linear}
+.strip:hover .motif{background-position:0 -88px}
+.strip.s1{background:var(--wool);color:var(--ink)} .s1 .motif{background:var(--dia) 50% 0/44px 44px repeat-y var(--black)}
+.strip.s2{background:var(--black)} .s2 .motif{background:var(--tri-w) 50% 0/28px 28px repeat var(--red-deep)}
+.strip.s3{background:var(--orange);color:var(--ink)} .s3 .motif{background:var(--zig) 50% 0/32px 20px repeat var(--wool)}
+.strip .when{font-family:'Kufam';font-weight:900;font-size:2.5rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.strip .when small{display:block;font-size:1rem;font-weight:700}
+.strip h2{font-family:'Kufam';font-weight:800;font-size:1.4rem;line-height:1.5;margin:0}
+.strip .f{font-size:14px;display:flex;gap:18px;flex-wrap:wrap}
+.fringe{position:absolute;inset-block:0;inset-inline-end:-26px;width:26px;background:repeating-linear-gradient(0deg,currentColor 0 3px,transparent 3px 8px);filter:drop-shadow(0 6px 4px rgba(0,0,0,.5));opacity:.95;
+  -webkit-mask:linear-gradient(90deg,#000 55%,transparent);mask:linear-gradient(90deg,#000 55%,transparent)}
+[dir=rtl] .fringe{-webkit-mask:linear-gradient(270deg,#000 55%,transparent);mask:linear-gradient(270deg,#000 55%,transparent)}
+.s1 .fringe{color:var(--wool)} .s2 .fringe{color:var(--black)} .s3 .fringe{color:var(--orange)}
+.knot{min-height:52px;padding-inline:26px;border:0;font:inherit;font-weight:800;cursor:pointer;color:var(--wool);background:var(--weave),var(--red);
+  box-shadow:inset 0 0 0 3px var(--red),inset 0 0 0 5px var(--wool),0 8px 12px -6px rgba(0,0,0,.6);transition:transform .15s,box-shadow .15s}
+.knot:hover{transform:translateY(-2px)} .knot:active{transform:translateY(2px);box-shadow:inset 0 0 0 3px var(--red),inset 0 0 0 5px var(--wool)}
+.s2 .knot{background:var(--weave),var(--wool);color:var(--ink);box-shadow:inset 0 0 0 3px var(--wool),inset 0 0 0 5px var(--black),0 8px 12px -6px rgba(0,0,0,.6)}
+.synthetic{font-size:12.5px;margin:0 0 60px}
+
+/* stitched panels */
+.row2{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;padding-block:30px 120px;align-items:start}
+h3{font-family:'Kufam';font-weight:800;font-size:clamp(1.7rem,3.2vw,2.4rem);line-height:1.4;margin:0 0 8px}
+.say{margin:0 0 28px;max-width:44ch}
+.patch{position:relative;background:var(--weave),var(--wool);color:var(--ink);padding:30px 28px 24px;box-shadow:0 26px 30px -18px rgba(0,0,0,.7);outline:2.5px dashed var(--black);outline-offset:-10px}
+.patch h4{font-family:'Kufam';font-size:1.15rem;margin:0}
+.patch .meta{font-size:13.5px;color:#4d4337;margin-bottom:12px}
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+th{text-align:start;font-size:12.5px;font-weight:700;padding:8px 6px;border-bottom:3px solid var(--black)}
+td{padding:11px 6px;border-bottom:1px solid var(--wool-2)}
+td.n{font-variant-numeric:tabular-nums;font-weight:700}
+.tag{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:800}
+.tag::before{content:"";width:16px;height:16px;background:var(--c);clip-path:var(--shape,none)}
+.tag.ok{--c:var(--green)} .tag.act{--c:var(--red);--shape:polygon(50% 0,100% 50%,50% 100%,0 50%);color:var(--red)} .tag.wait{--c:var(--orange);--shape:polygon(50% 0,100% 100%,0 100%)} .tag.off{--c:#8b7e6c;--shape:polygon(0 40%,100% 40%,100% 60%,0 60%)}
+.cert{background:var(--weave),var(--black);padding:14px;box-shadow:0 26px 30px -18px rgba(0,0,0,.7)}
+.cert .edge{height:28px;background:var(--tri-w) 0 100%/28px 28px repeat-x}
+.cert .edge.b{background:var(--tri-o) 0 0/28px 28px repeat-x}
+.cert .in{padding:22px 16px}
+.cert small{color:var(--orange);font-weight:800}
+.cert h4{font-family:'Kufam';font-weight:900;font-size:2rem;margin:4px 0 6px}
+.cert p{font-size:14px;margin:0 0 14px}
+.cert code{font-family:inherit;font-size:12.5px;letter-spacing:.06em;direction:ltr;unicode-bidi:isolate}
+.cert img{height:46px;float:inline-end}
+
+.note{background:var(--black);padding-block:56px}
+.note .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:48px}
+.note h5{font-family:'Kufam';font-size:1.3rem;margin:0 0 10px}
+.note p,.note li{font-weight:300;font-size:15px}
+.note ul{margin:0;padding-inline-start:20px}
+.chips{display:flex;margin-top:16px}
+.chips span{width:58px;height:58px;background-image:var(--weave)}
+.back{display:inline-block;margin-top:24px;color:var(--orange);font-weight:700}
+@media (max-width:900px){nav ul{display:none}.hero,.row2,.note .wrap{grid-template-columns:1fr}.strip{grid-template-columns:56px 1fr;padding-block:16px;gap:8px 16px}.strip .motif{grid-row:1/5}.strip>*:not(.motif):not(.fringe){grid-column:2}.fringe{display:none}.knot{justify-self:start}}
+@media (prefers-reduced-motion:reduce){.loom .r{animation:none}.shuttle{display:none}.strip,.strip .motif{transition:none}}
+</style>
+</head>
+<body>
+<nav class="wrap" aria-label="الرئيسية">
+  <img src="assets/logo-white.png" alt="Think Tank Strategists">
+  <ul><li><a href="#">البرامج</a></li><li><a href="#">الدفعات القادمة</a></li><li><a href="#">للجهات</a></li><li><a href="#">تحقق من شهادة</a></li><li><a href="#">English</a></li></ul>
+</nav>
+
+<div class="loom" aria-hidden="true">
+  <span class="shuttle"></span>
+  <span class="r r1"></span><span class="r r2"></span><span class="r r3"></span><span class="r r4"></span><span class="r r5"></span><span class="r r6"></span><span class="r r7"></span>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <h1>الاستراتيجية تُنسج خيطاً خيطاً</h1>
+    <p>برامج الدكتورة منال الحساوي في الاستراتيجية والاستشراف وبناء القيادات، تُقدَّم في دفعات حضورية بالعربية أو الإنجليزية. اختر دفعتك واحجز مقعدك.</p>
+  </header>
+
+  <section class="strips" aria-label="الدفعات القادمة">
+    <article class="strip s1"><div class="motif"></div>
+      <div class="when">14<small>ديسمبر</small></div>
+      <div><h2>استشراف المستقبل وبناء السيناريوهات</h2><div class="f"><span>ورشة عامة · بالعربية</span><span>3 جلسات</span><span>180 د.ك</span><span>بقي 4 مقاعد من 20</span></div></div>
+      <button class="knot" data-book>احجز مقعدك</button><span class="fringe"></span>
+    </article>
+    <article class="strip s2"><div class="motif"></div>
+      <div class="when">8<small>يناير</small></div>
+      <div><h2>ورش الاستراتيجية للقيادات التنفيذية</h2><div class="f"><span>ورشة عامة · English</span><span>يومان</span><span>240 د.ك</span><span>اكتملت المقاعد</span></div></div>
+      <button class="knot">انضم لقائمة الانتظار</button><span class="fringe"></span>
+    </article>
+    <article class="strip s3"><div class="motif"></div>
+      <div class="when">2<small>فبراير</small></div>
+      <div><h2>بناء القيادات والقدرات المؤسسية</h2><div class="f"><span>مسار · بالعربية</span><span>5 جلسات</span><span>320 د.ك</span><span>بقي 11 مقعداً من 24</span></div></div>
+      <button class="knot" data-book>احجز مقعدك</button><span class="fringe"></span>
+    </article>
+  </section>
+  <p class="synthetic">التواريخ والرسوم والأسماء تجريبية.</p>
+
+  <section class="row2">
+    <div>
+      <h3>قطعة صوف مخيّطة لكل دفعة</h3>
+      <p class="say">في بوابة الإدارة كل قائمة رقعة بيضاء مخيّطة على النسيج، وكل حالة لها نقشة: المعيّن الأحمر ينتظر الدكتورة.</p>
+      <div class="patch">
+        <h4>دفعة 14 ديسمبر · التسجيلات</h4>
+        <div class="meta">مجدولة · 16 من 20 مقعداً</div>
+        <table>
+          <thead><tr><th>المتدرب</th><th>الجهة</th><th>الحالة</th><th>المبلغ</th></tr></thead>
+          <tbody>
+            <tr><td>سارة العنزي</td><td>فردي</td><td><span class="tag act">طلب استرجاع · ينتظرك</span></td><td class="n">180.000</td></tr>
+            <tr><td>عبدالعزيز المطيري</td><td>بنك الخليج</td><td><span class="tag ok">مؤكد</span></td><td class="n">—</td></tr>
+            <tr><td><bdi>Hannah Clarke</bdi></td><td>فردي</td><td><span class="tag wait">بانتظار الدفع</span></td><td class="n">180.000</td></tr>
+            <tr><td>نورة الصباح</td><td>وزارة التخطيط</td><td><span class="tag ok">مؤكد</span></td><td class="n">—</td></tr>
+            <tr><td>يوسف الرشيدي</td><td>فردي</td><td><span class="tag off">ملغى</span></td><td class="n">180.000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h3>وشهادة بحاشية منسوجة</h3>
+      <p class="say">تُتحقق برقمها من الموقع.</p>
+      <div class="cert">
+        <div class="edge"></div>
+        <div class="in">
+          <img src="assets/logo-white.png" alt="">
+          <small>شهادة إتمام</small>
+          <h4>نورة الصباح</h4>
+          <p>أتمّت برنامج «استشراف المستقبل وبناء السيناريوهات» بحضور كامل.</p>
+          <code>TTS-2026-0142</code>
+        </div>
+        <div class="edge b"></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<aside class="note">
+  <div class="wrap">
+    <div>
+      <h5>الاتجاه «السدو»: نسيج كويتي بلون شعارها</h5>
+      <p>السدو حياكة أهل الكويت، ولونه الأحمر قريب جداً من نبيذي شعار الدكتورة. الهوية قطعة نسيج واحدة: أرضية حمراء منسوجة، وأشرطة سوداء وبيضاء وبرتقالية، ونقوش المثلث والمعيّن والمتعرّج. شركة كويتية تدرّب قيادات الكويت بلغة بصرية من بيتها.</p>
+      <ul><li><b>الحركة:</b> الشريط العلوي يُنسج صفاً صفاً والمكّوك يروح ويرجع، والنقشة تجري في الشريط عند المرور عليه.</li><li><b>العمق:</b> ملمس خيوط، طيّات قماش، أهداب بظلها، ورقع مخيّطة بغرز.</li><li><b>في البوابات:</b> رقع صوف بيضاء للقوائم، ونقشة لكل حالة بدل اللون وحده.</li><li><b>الخطر:</b> أجرأ الاتجاهات. قد تقرؤه الدكتورة تراثياً أكثر من كونه استشارياً؛ يحتاج موافقتها الصريحة.</li></ul>
+      <a class="back" href="index.html">كل الاتجاهات ←</a>
+    </div>
+    <div>
+      <h5>الألوان والخط</h5>
+      <div class="chips"><span style="background-color:#8f1d28"></span><span style="background-color:#17120f;outline:1px solid #fff3"></span><span style="background-color:#f1e9d8"></span><span style="background-color:#d9772b"></span><span style="background-color:#2f6a4a"></span></div>
+      <p style="margin-top:16px">الخط: <b style="font-family:'Kufam'">كوفام</b> للعناوين، و<b>المراعي</b> للنص.</p>
+    </div>
+  </div>
+</aside>
+<script>
+document.querySelectorAll('[data-book]').forEach(b=>b.addEventListener('click',()=>{b.textContent='تم الحجز · أكمل الدفع'}));
+// scale the shuttle path to the band width
+const sh=document.querySelector('.shuttle'),w=document.querySelector('.loom').offsetWidth;
+sh.style.offsetPath=`path("M${w} 5 L0 5 L0 25 L${w} 25 L${w} 44 L0 44 L0 74 L${w} 74 L${w} 104 L0 104 L0 123 L${w} 123 L${w} 143 L-140 143")`;
+</script>
+</body>
+</html>
