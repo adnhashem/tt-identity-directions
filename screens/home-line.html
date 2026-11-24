@@ -77,7 +77,7 @@ td{padding:12px 6px;border-top:1px solid var(--line);vertical-align:middle}
 <div class="wrap">
   <nav class="top" aria-label="Main">
     <a href="01-home.html"><img src="assets/logo-white.png" alt="Think Tank Strategists"></a>
-    <ul><li><a href="01-home.html" aria-current="page">Programs</a></li><li><a href="19-articles.html">Articles</a></li><li><a href="18-for-orgs.html">For organizations</a></li><li><a href="12-verify.html">Verify a certificate</a></li><li class="keep"><a href="17-login.html">Sign in</a></li><li class="keep"><a class="btn" href="03-register.html">Register</a></li></ul>
+    <ul><li><a href="01-home.html" aria-current="page">Programs</a></li><li class="keep"><a href="17-login.html">Sign in</a></li><li class="keep"><a class="btn" href="03-register.html">Register</a></li></ul>
   </nav>
 
   <section class="hero">
@@ -97,7 +97,7 @@ td{padding:12px 6px;border-top:1px solid var(--line);vertical-align:middle}
       <article class="panel" aria-live="polite">
         <div class="k" id="kind"></div>
         <h2 id="title"></h2>
-        <div class="kv"><div><small>Dates</small><b id="dates"></b></div><div><small>Fee</small><b id="fee"></b></div></div>
+        <div class="kv"><div><small>Dates</small><b id="dates"></b></div><div><small>Sessions</small><b id="sess"></b></div></div>
         <div class="seatline"><i id="bar" style="--w:80%"></i></div>
         <div class="left" id="left"></div>
         <a class="btn" href="03-register.html" id="cta">Register</a>
@@ -108,20 +108,20 @@ td{padding:12px 6px;border-top:1px solid var(--line);vertical-align:middle}
   <section class="work">
     <div>
       <h2>The same line runs through the portals.</h2>
-      <p>Attendance is a line with a point per session. Dr. Manal reads a cohort at a glance, and so does each organization for its own people.</p>
+      <p>Progress is a line with a point per chapter. Dr. Manal reads a cohort at a glance, and each trainee sees where they are in the classroom.</p>
     </div>
     <div class="sheet">
       <header><h3>Foresight &amp; Futures Thinking · 14 December</h3><span>Session 2 of 3 today</span></header>
       <table>
-        <thead><tr><th>Trainee</th><th>Attendance</th><th>Status</th></tr></thead>
+        <thead><tr><th>Trainee</th><th>Chapters</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td>Noura Al-Sabah</td><td><span class="trk" style="--v:50%"><i></i><b style="left:0"></b><b style="left:50%"></b><b class="x" style="left:100%"></b></span></td><td><span class="tag ok">Confirmed</span></td></tr>
-          <tr><td>Abdulaziz Al-Mutairi</td><td><span class="trk" style="--v:50%"><i></i><b style="left:0"></b><b style="left:50%"></b><b class="x" style="left:100%"></b></span></td><td><span class="tag ok">Confirmed</span></td></tr>
-          <tr><td>Sarah Al-Enezi</td><td><span class="trk" style="--v:0%"><i></i><b class="x" style="left:0"></b><b class="x" style="left:50%"></b><b class="x" style="left:100%"></b></span></td><td><span class="tag you">Refund requested</span></td></tr>
-          <tr><td>Hannah Clarke</td><td><span class="trk" style="--v:0%"><i></i><b style="left:0"></b><b class="x" style="left:50%"></b><b class="x" style="left:100%"></b></span></td><td><span class="tag wait">Awaiting payment</span></td></tr>
+          <tr><td>Noura Al-Sabah</td><td><span class="trk" style="--v:33.333%"><i></i><b style="left:0"></b><b style="left:33.333%"></b><b class="x" style="left:66.667%"></b><b class="x" style="left:100%"></b></span></td><td><span class="tag ok">In progress</span></td></tr>
+          <tr><td>Abdulaziz Al-Mutairi</td><td><span class="trk" style="--v:66.667%"><i></i><b style="left:0"></b><b style="left:33.333%"></b><b style="left:66.667%"></b><b class="x" style="left:100%"></b></span></td><td><span class="tag ok">In progress</span></td></tr>
+          <tr><td>Sarah Al-Enezi</td><td><span class="trk" style="--v:0%"><i></i><b class="x" style="left:0"></b><b class="x" style="left:33.333%"></b><b class="x" style="left:66.667%"></b><b class="x" style="left:100%"></b></span></td><td><span class="tag you">Not started</span></td></tr>
+          <tr><td>Hannah Clarke</td><td><span class="trk" style="--v:0%"><i></i><b style="left:0"></b><b class="x" style="left:33.333%"></b><b class="x" style="left:66.667%"></b><b class="x" style="left:100%"></b></span></td><td><span class="tag wait">Assignment due</span></td></tr>
         </tbody>
       </table>
-      <p class="syn">Names, dates and amounts are sample data.</p>
+      <p class="syn">Names and dates are sample data.</p>
     </div>
   </section>
 </div>
@@ -129,12 +129,12 @@ td{padding:12px 6px;border-top:1px solid var(--line);vertical-align:middle}
 <footer style="border-top:1px solid var(--line);padding-block:26px;font-size:13px;color:var(--mut)"><div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap"><span>Think Tank Strategists · Kuwait · Sunday to Thursday, 9:00–17:00</span><span><a href="17-login.html">Sign in to your portal</a> · <a href="index.html">Screen map</a> · <a href="deck.html">Presentation</a></span></div></footer>
 <script>try{sessionStorage.setItem("tt-design","line")}catch(e){}</script>
 <script>
-const C=[{kind:'Public workshop · Arabic',title:'Foresight & Futures Thinking',dates:'14–16 Dec 2026',fee:'KWD 180.000',cap:20,taken:16},
-         {kind:'Public workshop · English',title:'Executive Strategy Workshops',dates:'8–9 Jan 2027',fee:'KWD 240.000',cap:20,taken:20},
-         {kind:'Track · Arabic',title:'Leadership & Capability Building',dates:'From 2 Feb 2027',fee:'KWD 320.000',cap:24,taken:13}];
+const C=[{kind:'Public workshop · Arabic',title:'Foresight & Futures Thinking',dates:'14–16 Dec 2026',sess:'3 sessions',cap:20,taken:16},
+         {kind:'Public workshop · English',title:'Executive Strategy Workshops',dates:'8–9 Jan 2027',sess:'2 sessions',cap:20,taken:20},
+         {kind:'Track · Arabic',title:'Leadership & Capability Building',dates:'From 2 Feb 2027',sess:'5 sessions',cap:24,taken:13}];
 const $=id=>document.getElementById(id),rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 const main=$('main'),alt=$('alt'),area=$('area'),stage=$('stage'),nodes=[...document.querySelectorAll('.node')];
-function pick(k){nodes.forEach(n=>n.setAttribute('aria-pressed',+n.dataset.k===k));const c=C[k];$('kind').textContent=c.kind;$('title').textContent=c.title;$('dates').textContent=c.dates;$('fee').textContent=c.fee;
+function pick(k){nodes.forEach(n=>n.setAttribute('aria-pressed',+n.dataset.k===k));const c=C[k];$('kind').textContent=c.kind;$('title').textContent=c.title;$('dates').textContent=c.dates;$('sess').textContent=c.sess;
   $('bar').style.setProperty('--w',(c.taken/c.cap*100)+'%');const full=c.taken>=c.cap;$('left').textContent=full?'All 20 seats taken. The waitlist is open.':`${c.cap-c.taken} of ${c.cap} seats left`;$('cta').textContent=full?'Join the waitlist':'Register';}
 nodes.forEach(n=>n.addEventListener('click',()=>pick(+n.dataset.k)));pick(0);
 const len=main.getTotalLength();

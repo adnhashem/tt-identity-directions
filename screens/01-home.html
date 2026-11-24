@@ -7,7 +7,7 @@
 <title>Think Tank Strategists — Strategy and foresight programs</title>
 <script>
 /* The home page has one version per design; send the visitor to the one in use. */
-(function(){var ok={line:1,depth:1,mark:1},q=new URLSearchParams(location.search).get('d'),t;
+(function(){var ok={line:1,mark:1,markline:1},q=new URLSearchParams(location.search).get('d'),t;
  try{if(ok[q])sessionStorage.setItem('tt-design',q);t=sessionStorage.getItem('tt-design')}catch(e){t=q}
  location.replace('home-'+(ok[t]?t:'line')+'.html'+location.hash)})();
 </script>

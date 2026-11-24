@@ -4,14 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>Programs and articles — Think Tank administration</title>
+<title>Programs — Think Tank administration</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
 <script src="theme.js"></script>
 <style>
 [tabindex="-1"]:focus{outline:0}
-.tabs [role=tab] i{font-style:normal;font-size:var(--fs-12);font-variant-numeric:tabular-nums;margin-inline-start:var(--s-4);opacity:.75}
 .bar{display:flex;gap:var(--s-8) var(--s-24);align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:var(--s-8)}
 .bar p{margin:0;font-size:var(--fs-14);color:var(--ink-2)}
 .bar p b{color:var(--ink);font-variant-numeric:tabular-nums}
@@ -46,30 +45,17 @@
 <div class="shell">
   <nav class="side" aria-label="Administration">
     <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>Administration</span></div>
-    <a href="09-admin-inbox.html">Waiting for you <span class="n">3</span></a>
-    <a href="24-admin-cohorts.html">Cohorts</a>
     <a href="25-admin-programs.html" aria-current="page">Programs</a>
-    <a href="26-admin-orgs.html">Organizations <span class="n">1</span></a>
-    <a href="27-admin-proposals.html">Proposal requests <span class="n">2</span></a>
-    <a href="28-admin-payments.html">Payments <span class="n">1</span></a>
-    <a href="29-admin-certificates.html">Certificates</a>
-    <a href="30-admin-trainees.html">Trainees</a>
-    <a href="31-admin-report.html">Full report</a>
     <div class="foot">Dr. Manal Al-Hasawi<br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
   </nav>
 
   <main class="work">
     <div class="sheet">
       <header class="top">
-        <div><h1>Programs and articles</h1><div class="crumb" id="crumb"></div></div>
+        <div><h1>Programs</h1><div class="crumb" id="crumb"></div></div>
       </header>
 
-      <div class="tabs" role="tablist" aria-label="Page sections" id="tabs">
-        <button role="tab" type="button" id="t-prog" aria-controls="p-prog" aria-selected="true">Programs<i id="n-prog"></i></button>
-        <button role="tab" type="button" id="t-art" aria-controls="p-art" aria-selected="false" tabindex="-1">Articles<i id="n-art"></i></button>
-      </div>
-
-      <section id="p-prog" role="tabpanel" aria-labelledby="t-prog">
+      <section id="p-prog">
         <h2 class="vh">Programs</h2>
         <div class="bar">
           <p id="c-prog" role="status"></p>
@@ -89,62 +75,30 @@
         <p class="lead tail">A draft program does not appear on the site and cannot have a cohort. A published program appears in English and Arabic.</p>
       </section>
 
-      <section id="p-art" role="tabpanel" aria-labelledby="t-art" hidden>
-        <h2 class="vh">Articles</h2>
-        <div class="bar">
-          <p id="c-art" role="status"></p>
-          <div class="field"><label for="f-art">Status</label>
-            <select id="f-art"><option value="all">All</option><option value="published">Published</option><option value="draft">Draft</option></select></div>
-        </div>
-        <div class="scroll-x" id="w-art">
-          <table class="t led">
-            <thead><tr><th>Article</th><th class="x">Date</th><th>Status</th><th><span class="vh">Actions</span></th></tr></thead>
-            <tbody id="r-art"></tbody>
-          </table>
-        </div>
-        <div class="empty" id="e-art" hidden>
-          <h3 id="eh-art"></h3><p id="ep-art"></p>
-          <p><button class="lbtn" type="button" data-clear="art">Show all articles</button></p>
-        </div>
-      </section>
-
-      <p class="synthetic tail">Names and dates are sample data. Systems Thinking for Leaders has no Arabic description and the draft article has no Arabic text, on purpose, to show how publishing is refused. <a href="index.html">Screen map</a></p>
+      <p class="synthetic tail">Names and dates are sample data. Systems Thinking for Leaders has no Arabic description, on purpose, to show how publishing is refused. <a href="index.html">Screen map</a></p>
     </div>
   </main>
 </div>
-<!-- Sample Arabic content for the Arabic-language fields. The script reads these values; nothing here is displayed directly. -->
-<template id="ar-samples">
-  <input data-for="a4" lang="ar" dir="rtl" aria-label="Title (Arabic)" value="ما الذي تتعلمه القيادات من الاستشراف؟">
-</template>
 <script src="tt.js"></script>
 <script>
 const $=id=>document.getElementById(id);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const pl=(n,one,many)=>n===0?'No '+many:`${n} ${n===1?one:many}`;
-const AR=Object.fromEntries([...$('ar-samples').content.querySelectorAll('input')].map(i=>[i.dataset.for,i.value]));
 
 // keys drive the logic; the words are display only
-const FMT={workshop:'Workshop',track:'Track',inhouse:'In-house'};
-const LANG={ar:'Arabic',en:'English',either:'Arabic or English'};
+const FMT={workshop:'Workshop',track:'Track'};
+const LANG={ar:'Arabic',en:'English'};
 const ST={published:['ok','Published'],draft:['wait','Draft']};
 // descAr: whether the Arabic description is written (the English one always is in this demo)
 const P=[
  {id:'foresight',en:'Foresight & Futures Thinking',fmt:'workshop',lang:'ar',st:'published',n:3,descAr:'x'},
  {id:'strategy',en:'Executive Strategy Workshops',fmt:'workshop',lang:'en',st:'published',n:2,descAr:'x'},
  {id:'leaders',en:'Leadership & Capability Building',fmt:'track',lang:'ar',st:'published',n:3,descAr:'x'},
- {id:'tailored',en:'Custom In-House Programs',fmt:'inhouse',lang:'either',st:'published',n:0,descAr:'x'},
  {id:'systems',en:'Systems Thinking for Leaders',fmt:'track',lang:'ar',st:'draft',n:0,descAr:''}];
-const A=[
- {id:'a4',en:'What leaders learn from foresight',ar:AR.a4||'',date:'Last edited 4 December 2026',st:'draft',
-  bodyEn:'Foresight does not promise a leader knowledge of what will happen. It teaches them to ask, before a decision: what if the things we treat as fixed were to change?\nThis article describes three habits we see in leaders who practice foresight regularly.',bodyAr:''},
- {id:'a3',en:'Why five-year plans stall before year two',date:'22 November 2026',st:'published'},
- {id:'a2',en:'Three weak signals in the Gulf labor market',date:'3 November 2026',st:'published'},
- {id:'a1',en:'A scenario is not a forecast',date:'12 October 2026',st:'published'}];
-let fP='all',fA='all',ask=false,done=false,editing=null,fresh='',artErr=null,progErr=false;
+let fP='all',ask=false,done=false,fresh='',progErr=false;
 
 function head(){
-  $('crumb').textContent=`${pl(P.length,'program','programs')} · ${pl(A.length,'article','articles')}`;
-  $('n-prog').textContent=P.length;$('n-art').textContent=A.length;
+  $('crumb').textContent=pl(P.length,'program','programs');
 }
 const stamp=(st,id)=>{const [c,w]=ST[st];return `<span class="stamp ${c}${fresh===id?' press':''}"><span class="vh">Status: </span>${w}</span>`};
 const tally=(pub,dr)=>`<b>${pub}</b> published, ${dr===0?'no drafts':dr===1?'<b>1</b> draft':`<b>${dr}</b> drafts`}`;
@@ -160,60 +114,25 @@ function progs(){
         <textarea id="descar" lang="ar" dir="rtl" placeholder="Two lines shown on the Arabic program page">${esc(p.descAr)}</textarea>
         <span class="hint">Two lines shown on the Arabic program page. The English description is already written.</span></div>
       <div class="row"><button class="btn quiet sm" type="button" data-noask>Back, keep as draft</button></div></div></td></tr>`;
-    else if(band&&done)det=`<tr class="det"><td colspan="6"><div class="in"><div class="notice" role="status" tabindex="-1" id="pubnote"><div><b>${nm} is published.</b> It now appears on the site in English and Arabic, and you can <a class="link" href="24-admin-cohorts.html">create a cohort</a> for it.</div></div></div></td></tr>`;
+    else if(band&&done)det=`<tr class="det"><td colspan="6"><div class="in"><div class="notice" role="status" tabindex="-1" id="pubnote"><div><b>${nm} is published.</b> It now appears on the site in English and Arabic.</div></div></div></td></tr>`;
     return `<tr${det?' class="open"':''}>
       <td class="name"><b>${nm}</b><small class="m">${FMT[p.fmt]} · ${LANG[p.lang]} · ${pl(p.n,'cohort','cohorts')}</small></td>
       <td class="x">${FMT[p.fmt]}</td><td class="x">${LANG[p.lang]}</td>
       <td>${stamp(p.st,p.id)}</td>
       <td class="x num">${p.n}</td>
-      <td><div class="acts"><a class="rowlink" href="16-admin-course.html" data-cta="WF-CTA-001" aria-label="Build content: ${nm}">Build content</a>${dr?`<button class="btn sm" type="button" data-cta="WF-CTA-002" data-pub="${p.id}" aria-label="Publish: ${nm}">Publish</button>`:''}</div></td></tr>${det}`}).join('');
+      <td><div class="acts">${dr?`<button class="btn sm" type="button" data-cta="WF-CTA-002" data-pub="${p.id}" aria-label="Publish: ${nm}">Publish</button>`:''}</div></td></tr>${det}`}).join('');
   const none=!list.length,pub=P.filter(p=>p.st==='published').length,dr=P.length-pub;
   $('w-prog').hidden=none;$('e-prog').hidden=!none;
   if(none){$('eh-prog').textContent=fP==='draft'?'No draft programs':'No published programs';$('ep-prog').textContent=fP==='draft'?'All your programs are published and visible on the site.':'No program has been published yet.'}
   $('c-prog').innerHTML=list.length===P.length?tally(pub,dr):`Showing <b>${list.length}</b> of <b>${P.length}</b>`;
 }
 
-const LBL={en:'Title (English)',ar:'Title (Arabic)',bodyEn:'Text (English)',bodyAr:'Text (Arabic)'};
-function arts(){
-  const list=A.filter(a=>fA==='all'||a.st===fA);
-  $('r-art').innerHTML=list.map(a=>{
-    const dr=a.st==='draft',open=editing===a.id,nm=a.en.trim()?esc(a.en):'Untitled article';
-    // Arabic-language fields are right-to-left; everything else follows the page
-    const f=(k,tag,arabic)=>{const bad=artErr&&artErr.includes(k),lang=arabic?' lang="ar" dir="rtl"':'';
-      return `<div class="field${bad?' bad':''}"><label for="e-${k}">${LBL[k]}</label>${tag==='input'?`<input id="e-${k}" data-k="${k}"${lang} value="${esc(a[k])}">`:`<textarea id="e-${k}" data-k="${k}"${lang}>${esc(a[k])}</textarea>`}${bad?`<span class="msg">${LBL[k]} is empty. An article is published in English and Arabic together.</span>`:''}</div>`};
-    const det=open?`<tr class="det"><td colspan="4"><div class="in">
-      ${artErr?`<div class="notice err" role="alert"><div><b>The article was not published.</b> Missing: ${artErr.map(k=>LBL[k]).join(', ')}. An article is published in English and Arabic together, so complete it and publish again.</div></div>`:''}
-      <div class="grid-2">${f('en','input')}${f('ar','input',1)}</div>
-      <div class="grid-2">${f('bodyEn','textarea')}${f('bodyAr','textarea',1)}</div>
-      <div class="row"><button class="btn" type="button" data-cta="WF-CTA-004" data-pubart="${a.id}">Publish article</button><button class="btn sec" type="button" data-save>Save draft</button><button class="btn quiet" type="button" data-close>Close</button></div></div></td></tr>`:'';
-    const act=dr?(open?'':`<button class="rowlink" type="button" data-edit="${a.id}" aria-label="Edit draft: ${nm}">Edit draft</button>`)
-      :`<a class="rowlink" href="19-articles.html" aria-label="Open article: ${nm}">Open article</a>`;
-    return `<tr${open?' class="open"':''} id="row-${a.id}">
-      <td class="name"><b${a.en.trim()?'':' class="none"'}>${nm}</b><small class="m">${a.date}</small></td>
-      <td class="x when">${a.date}</td><td>${stamp(a.st,a.id)}</td>
-      <td><div class="acts">${act}</div></td></tr>${det}`}).join('');
-  const none=!list.length,pub=A.filter(a=>a.st==='published').length,dr=A.length-pub;
-  $('w-art').hidden=none;$('e-art').hidden=!none;
-  if(none){$('eh-art').textContent=fA==='draft'?'No drafts':'No published articles';$('ep-art').textContent=fA==='draft'?'Everything you have written is published on the site.':'No article has been published yet.'}
-  $('c-art').innerHTML=list.length===A.length?tally(pub,dr):`Showing <b>${list.length}</b> of <b>${A.length}</b>`;
-}
-const render=()=>{head();progs();arts();fresh=''};
-
-// ---- tabs ----
-function tab(k,focus){
-  [['prog','t-prog','p-prog'],['art','t-art','p-art']].forEach(([key,t,p])=>{const on=key===k;$(t).setAttribute('aria-selected',on);$(t).tabIndex=on?0:-1;$(p).hidden=!on});
-  if(focus)$(k==='prog'?'t-prog':'t-art').focus();
-}
-$('t-prog').addEventListener('click',()=>tab('prog'));$('t-art').addEventListener('click',()=>tab('art'));
-// two tabs only, so either arrow key moves to the other one
-$('tabs').addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();tab($('t-prog').getAttribute('aria-selected')==='true'?'art':'prog',true)}});
+const render=()=>{head();progs();fresh=''};
 $('f-prog').addEventListener('change',e=>{fP=e.target.value;progs()});
-$('f-art').addEventListener('change',e=>{fA=e.target.value;arts()});
 
 // ---- actions ----
 document.addEventListener('input',e=>{
   if(e.target.id==='descar')P.find(p=>p.id==='systems').descAr=e.target.value;
-  const k=e.target.dataset.k;if(k&&editing)A.find(a=>a.id===editing)[k]=e.target.value;
 });
 document.addEventListener('click',e=>{
   const t=e.target.closest('button');if(!t)return;const d=t.dataset;
@@ -224,19 +143,8 @@ document.addEventListener('click',e=>{
     $('pubnote').focus();ttToast('Program published. It is now visible on the site.');
   }
   else if('noask' in d){ask=false;progErr=false;progs();document.querySelector('[data-pub]').focus()}
-  else if(d.edit){editing=d.edit;artErr=null;arts();$('e-en').focus()}
-  else if('close' in d){const id=editing;editing=null;artErr=null;arts();document.querySelector(`[data-edit="${id}"]`).focus()}
-  else if('save' in d){ttToast('Draft saved. Only you can see it.')}
-  else if(d.pubart){
-    const a=A.find(x=>x.id===d.pubart),miss=['en','ar','bodyEn','bodyAr'].filter(k=>!a[k].trim());
-    if(miss.length){artErr=miss;arts();$('e-'+miss[0]).focus();return}
-    a.st='published';a.date='6 December 2026';editing=null;artErr=null;fresh=a.id;fA='all';$('f-art').value='all';render();
-    $('row-'+a.id).querySelector('a').focus();ttToast('Article published in English and Arabic.');
-  }
   else if(d.clear==='prog'){fP='all';$('f-prog').value='all';progs();$('f-prog').focus()}
-  else if(d.clear==='art'){fA='all';$('f-art').value='all';arts();$('f-art').focus()}
 });
-if(location.hash==='#articles')tab('art');
 render();
 </script>
 </body>

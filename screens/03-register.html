@@ -47,30 +47,25 @@
     <a href="01-home.html"><img src="assets/logo-white.png" alt="Think Tank Strategists"></a>
     <ul>
       <li><a href="01-home.html" aria-current="page">Programs</a></li>
-      <li><a href="19-articles.html">Articles</a></li>
-      <li><a href="18-for-orgs.html">For organizations</a></li>
-      <li><a href="12-verify.html">Verify a certificate</a></li>
       <li class="keep"><a href="17-login.html">Sign in</a></li>
       <li class="keep"><a class="btn sm" href="03-register.html">Register</a></li>
     </ul>
   </nav>
 
-  <ol class="steps" aria-label="Booking steps">
+  <ol class="steps" aria-label="Registration steps">
     <li aria-current="step">Your details</li>
     <li>Confirm code</li>
-    <li>Payment</li>
   </ol>
 
   <main class="book">
     <div class="sheet lay form">
       <form class="stack" id="f1" novalidate>
-        <h1>Enter your details to reserve your seat</h1>
-        <p class="sub">We use these details to open your account, where you follow your sessions, attendance and certificate.</p>
+        <h1>Enter your details to register</h1>
+        <p class="sub">We use these details to open your account, where you follow your sessions and the chapters of your course.</p>
 
         <div class="field">
           <label for="name">Full name</label>
-          <input id="name" autocomplete="name" aria-describedby="name-h name-m">
-          <span class="hint" id="name-h">As you want it to appear on your certificate.</span>
+          <input id="name" autocomplete="name" aria-describedby="name-m">
           <span class="msg" id="name-m" hidden></span>
         </div>
 
@@ -88,7 +83,7 @@
 
         <div class="notice" id="taken" role="alert" hidden>
           <div>
-            <b>This email already has an account.</b> Each person has one account, so attendance and certificates stay in one place. Log in and register for the cohort from your account.
+            <b>This email already has an account.</b> Each person has one account, so all your courses stay in one place. Log in and register for the cohort from your account.
             <br><a class="btn sec sm" id="tologin" href="17-login.html">Log in to your account</a>
           </div>
         </div>
@@ -134,17 +129,17 @@
           <div><small>Dates</small><strong>14–16 December</strong></div>
           <div><small>Sessions</small><strong>3 sessions</strong></div>
           <div><small>Time</small><strong>9:00–13:00</strong></div>
-          <div><small>Fee</small><strong>KWD 180.000</strong></div>
+          <div><small>Venue</small><strong>Company training hall</strong></div>
         </div>
         <div class="seats" data-cap="20" data-taken="16" data-mine="1"></div>
         <p class="cap">4 of 20 seats left. The highlighted seat is yours.</p>
-        <p class="held">The seat is reserved in your name when you register, and stays yours until the payment deadline passes.</p>
+        <p class="held">The seat is reserved in your name as soon as you confirm the code, and the course appears in My courses.</p>
       </article>
       <p class="synthetic">This is sample data and no real messages are sent. The confirmation code in this demo is 1234.</p>
     </aside>
   </main>
 </div>
-<footer class="sitefoot"><div class="wrap spread"><span>Think Tank Strategists · Kuwait · Sunday to Thursday, 9:00–17:00</span><a href="index.html">Screen map</a></div></footer>
+<footer class="sitefoot"><div class="wrap spread"><span>Think Tank Strategists · Kuwait · Sunday to Thursday, 9:00–17:00</span><span class="row"><a href="17-login.html">Sign in</a><a href="index.html">Screen map</a><a href="deck.html">Presentation</a></span></div></footer>
 
 <script src="tt.js"></script>
 <script>
@@ -154,7 +149,7 @@ const digits=()=>phone.value.replace(/\D/g,'');
 const rules={
   name:v=>v.trim()?'':'Enter your full name.',
   phone:()=>!digits()?'Enter your mobile number. We send the confirmation code to it.':digits().length===8?'':'Kuwait mobile numbers have 8 digits. Check the number.',
-  email:v=>!v.trim()?'Enter your email. We send your receipt and certificate to it.':/^\S+@\S+\.\S+$/.test(v.trim())?'':'The email is incomplete. Example: name@example.com',
+  email:v=>!v.trim()?'Enter your email. We send your course updates to it.':/^\S+@\S+\.\S+$/.test(v.trim())?'':'The email is incomplete. Example: name@example.com',
   pass1:v=>!v?'Choose a password for your account.':v.length>=8?'':'The password is too short. Use 8 characters or more.'};
 function check(id){const i=$('#'+id),m=$('#'+id+'-m'),e=rules[id](i.value);
   m.textContent=e;m.hidden=!e;i.closest('.field').classList.toggle('bad',!!e);i.setAttribute('aria-invalid',String(!!e));return !e}
@@ -180,7 +175,7 @@ boxes[0].addEventListener('paste',e=>{const t=(e.clipboardData.getData('text')||
 f2.addEventListener('submit',e=>{e.preventDefault();
   const code=boxes.map(b=>b.value).join('');
   if(code.length<4){otpErr('Enter the four digits from the text message.');(boxes.find(b=>!b.value)||boxes[0]).focus();return}
-  if(code==='1234'){otpErr('');location.href='04-pay.html';return}
+  if(code==='1234'){otpErr('');location.href='05-my-cohorts.html';return}
   otpErr('That code is not correct. Try again or request a new code.');clearBoxes();});
 $('#resend').addEventListener('click',()=>{otpErr('');clearBoxes();ttToast('We sent a new code to your mobile');});
 </script>

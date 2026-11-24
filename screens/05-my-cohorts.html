@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex,nofollow">
-<title>My cohorts and sessions — Trainee portal</title>
+<title>My courses — Trainee portal</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="tt.css">
@@ -36,10 +36,6 @@
 .others{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-48)}
 .others article+article{border-inline-start:1px solid var(--card-edge);padding-inline-start:var(--s-48)}
 .others h3{font-size:var(--fs-18)}
-.others .notice{margin-top:var(--s-16)}
-.others .notice p{margin-bottom:var(--s-12)}
-.after{margin-top:var(--s-16);font-size:var(--fs-14)}
-.after p{margin:var(--s-8) 0 0;color:var(--ink-2)}
 @media (max-width:900px){.cur,.others{grid-template-columns:1fr;gap:var(--s-32)}.others article+article{border-inline-start:0;padding-inline-start:0;border-top:1px solid var(--card-edge);padding-top:var(--s-32)}.sess li{grid-template-columns:3.5rem 1fr auto;gap:var(--s-12);padding-inline:var(--s-8)}}
 </style>
 </head>
@@ -47,23 +43,21 @@
 <div class="shell">
   <nav class="side" aria-label="My portal">
     <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>My portal</span></div>
-    <a href="05-my-cohorts.html" aria-current="page">My cohorts</a>
+    <a href="05-my-cohorts.html" aria-current="page">My courses</a>
     <a href="13-course.html">My classroom</a>
-    <a href="06-my-certificate.html">My certificates</a>
-    <a href="20-account.html">My account</a>
     <div class="foot">Noura Al-Sabah<br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
   </nav>
   <main class="work">
     <div class="sheet">
       <header class="top">
-        <div><h1>My cohorts and sessions</h1><div class="crumb">Tuesday, 15 December 2026 · Your second session is today at 9:00 in the Think Tank training room</div></div>
+        <div><h1>My courses</h1><div class="crumb">Tuesday, 15 December 2026 · Your second session is today at 9:00 in the Think Tank training room</div></div>
         <div class="row"><a class="link" href="#sessions" data-cta="WF-CTA-028">View my sessions</a><a class="btn sec sm" href="01-home.html" data-cta="WF-CTA-007">Register in another cohort</a></div>
       </header>
 
       <section class="cur" aria-labelledby="t1">
         <div>
           <div class="head"><h2 id="t1">Foresight &amp; Futures Thinking</h2><span class="stamp ok">Confirmed</span></div>
-          <p class="meta">Public workshop in Arabic · 3 sessions · 1 attended, 2 to go</p>
+          <p class="meta">Public workshop in Arabic · 3 sessions · 1 done, 2 to go</p>
           <div class="row acts">
             <a class="btn" href="13-course.html" data-cta="WF-CTA-029">Open materials</a>
           </div>
@@ -71,42 +65,30 @@
             <p>After the last session on 16 December, one thing is left for you: the survey. Your answers reach Dr. Manal without your name.</p>
             <a class="btn sec sm" href="14-chapter.html" data-cta="WF-CTA-035">Fill in survey</a>
           </div>
-          <p class="meta" style="margin-top:var(--s-24)">This registration can no longer be cancelled because the cohort has started.</p>
         </div>
         <ol class="sess" id="sessions" tabindex="-1" aria-label="Cohort sessions">
-          <li><b>14 <span>December</span></b><div><strong>Session 1</strong><span>Monday · 9:00–13:00 · Think Tank training room</span></div><span class="stamp ok">Attended</span></li>
+          <li><b>14 <span>December</span></b><div><strong>Session 1</strong><span>Monday · 9:00–13:00 · Think Tank training room</span></div><span class="stamp ok">Completed</span></li>
           <li class="now" aria-current="true"><b>15 <span>December</span></b><div><strong>Session 2</strong><span>Tuesday · 9:00–13:00 · Think Tank training room</span></div><em>Today</em></li>
           <li><b>16 <span>December</span></b><div><strong>Session 3</strong><span>Wednesday · 9:00–13:00 · Think Tank training room</span></div><span class="later">Tomorrow</span></li>
         </ol>
       </section>
 
       <section aria-labelledby="t2">
-        <h2 id="t2">Other registrations</h2>
+        <h2 id="t2">Other courses</h2>
         <div class="others">
           <article id="r2">
-            <div class="head"><h3>Leadership &amp; Capability Building</h3><span class="stamp ok" id="st2">Confirmed</span></div>
-            <p class="meta" id="m2">Starts 2 February · 5 sessions · You paid KWD&nbsp;320.000</p>
-            <div class="row acts" id="cxrow"><button class="btn quiet sm" id="cxbtn" data-cta="WF-CTA-041" aria-expanded="false" aria-controls="cx">Cancel registration</button></div>
-            <div class="notice" id="cx" hidden>
-              <div>
-                <p><b>Cancel your registration in this cohort?</b> You are still within the refund period. A refund request for the KWD 320.000 fee goes to Dr. Manal for approval, and your seat is released to another trainee.</p>
-                <div class="row"><button class="btn sm" id="cxyes">Confirm cancellation</button><button class="btn quiet sm" id="cxno">Keep my seat</button></div>
-              </div>
-            </div>
-            <div class="after" id="cxdone" hidden>
-              <span class="stamp wait">Refund pending</span>
-              <p>Your refund request for KWD 320.000 is with Dr. Manal. You will get an email when she approves it. Your seat has been released.</p>
-            </div>
+            <div class="head"><h3>Leadership &amp; Capability Building</h3><span class="stamp ok">Confirmed</span></div>
+            <p class="meta">Starts 2 February · 5 sessions · In Arabic</p>
+            <p class="meta">Its chapters open in your classroom when the cohort starts.</p>
           </article>
 
           <article id="r3">
-            <div class="head"><h3>Executive Strategy Workshops</h3><span class="stamp wait">Awaiting payment</span></div>
-            <p class="meta">Starts 8 January · 2 days · In English · Fee KWD&nbsp;240.000</p>
-            <p class="meta">Your seat is held until the payment deadline. After that it is released.</p>
-            <div class="row acts"><a class="btn sec sm" href="04-pay.html" data-cta="WF-CTA-009">Complete payment</a></div>
+            <div class="head"><h3>Executive Strategy Workshops</h3><span class="stamp ok">Confirmed</span></div>
+            <p class="meta">Starts 8 January · 2 days · In English</p>
+            <p class="meta">Its chapters open in your classroom when the cohort starts.</p>
           </article>
         </div>
-        <p class="synthetic">Names, dates and amounts are sample data. <a href="index.html">Screen map</a></p>
+        <p class="synthetic">Names and dates are sample data. <a href="index.html">Screen map</a></p>
       </section>
     </div>
   </main>
@@ -115,15 +97,6 @@
 <script>
 const $=id=>document.getElementById(id);
 document.querySelector('[data-cta="WF-CTA-028"]').addEventListener('click',()=>$('sessions').focus({preventScroll:true}));
-const openCx=o=>{$('cx').hidden=!o;$('cxrow').hidden=o;$('cxbtn').setAttribute('aria-expanded',o);(o?$('cxyes'):$('cxbtn')).focus()};
-$('cxbtn').addEventListener('click',()=>openCx(true));
-$('cxno').addEventListener('click',()=>openCx(false));
-$('cxyes').addEventListener('click',()=>{
-  $('cx').remove();$('cxrow').remove();
-  const s=$('st2');s.className='stamp off press';s.textContent='Cancelled';
-  $('m2').textContent='Was due to start 2 February · 5 sessions';
-  $('cxdone').hidden=false;ttToast('Registration cancelled. Your refund request has been sent for approval');
-});
 </script>
 </body>
 </html>

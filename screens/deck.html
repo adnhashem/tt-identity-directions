@@ -17,10 +17,7 @@ body{overflow:hidden}
 .slide.on .lay{animation:rise .8s var(--ease) both;animation-delay:calc(var(--i,0)*100ms + 120ms)}
 .slide:not(.on) .lay{animation:none}
 /* each design moves between slides its own way */
-html[data-design=depth] .slide{transform:translateZ(-260px);filter:blur(6px);transition:opacity .5s var(--ease),transform .9s var(--ease),filter .9s var(--ease),visibility 0s .9s}
-html[data-design=depth] .slide.on{transform:none;filter:none;transition:opacity .6s var(--ease),transform .9s var(--ease),filter .9s var(--ease)}
-html[data-design=depth] .slide.gone{transform:translateZ(320px);filter:blur(8px)}
-html[data-design=mark] .slide{transform:scale(.985)} html[data-design=mark] .slide.on{transform:none;transition:opacity .5s var(--ease),transform .7s var(--ease)}
+html[data-design=mark] .slide,html[data-design=markline] .slide{transform:scale(.985)} html[data-design=mark] .slide.on,html[data-design=markline] .slide.on{transform:none;transition:opacity .5s var(--ease),transform .7s var(--ease)}
 
 .slide h1{font-size:clamp(2rem,5.2vw,4.4rem);max-width:17ch}
 .slide h2{font-size:clamp(1.7rem,3.6vw,3rem);max-width:24ch;margin-bottom:var(--s-12)}
@@ -85,7 +82,7 @@ html[data-design=mark] .slide{transform:scale(.985)} html[data-design=mark] .sli
 .has li{padding:clamp(5px,1vh,9px) 0;border-bottom:1px solid var(--card-edge)} .has li:last-child{border:0}
 .has li b{font-weight:600}
 
-.shots{display:grid;grid-template-columns:repeat(var(--cols,5),1fr);gap:clamp(10px,1.6vw,22px);margin-top:var(--s-24)}
+.shots{display:grid;grid-template-columns:repeat(var(--cols,5),minmax(0,1fr));gap:clamp(10px,1.6vw,22px);margin-top:var(--s-24)}
 .shot{display:block;background:var(--card-hi);padding:6px 6px 0;border-radius:8px;border:1px solid var(--card-edge);text-decoration:none;color:var(--ink);box-shadow:var(--sh-low);transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s}
 .shot:hover,.shot:focus-visible{transform:translateY(-8px) scale(1.03);box-shadow:var(--sh-sheet);border-color:var(--line-strong);z-index:3}
 .shot img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:4px;background:var(--card);filter:none!important}
@@ -143,7 +140,7 @@ html[data-design=mark] .slide{transform:scale(.985)} html[data-design=mark] .sli
 
   <section class="slide" aria-label="Where the visitor stops">
     <h2>But an interested visitor stops at <em>the contact form</em></h2>
-    <p class="lede">Someone who wants a seat in a workshop passes four stations today, and the last one is outside the site.</p>
+    <p class="lede">Someone who wants to join a course passes four stations today, and the last one is outside the site.</p>
     <ol class="trail">
       <li class="lay" style="--i:0"><b>Reads about the program</b><span>on the Training page</span></li>
       <li class="lay" style="--i:1"><b>Clicks "Request a Program"</b><span>and lands on Contact</span></li>
@@ -151,17 +148,17 @@ html[data-design=mark] .slide{transform:scale(.985)} html[data-design=mark] .sli
       <li class="lay" style="--i:3"><b>Waits for a reply</b><span>two business days, then phone and email</span></li>
     </ol>
     <div class="missing" aria-label="Not on the site today">
-      <span class="stamp off lay" style="--i:4">Cohort dates</span><span class="stamp off lay" style="--i:5">Fees</span><span class="stamp off lay" style="--i:6">Registration and payment</span><span class="stamp off lay" style="--i:7">Arabic content</span><span class="stamp off lay" style="--i:8">An account for trainees or organizations</span><span class="stamp off lay" style="--i:9">Certificate verification</span>
+      <span class="stamp off lay" style="--i:4">Course registration</span><span class="stamp off lay" style="--i:5">A student account</span><span class="stamp off lay" style="--i:6">Course content online</span><span class="stamp off lay" style="--i:7">Exams and surveys</span><span class="stamp off lay" style="--i:8">A place for the trainer to manage courses</span>
     </div>
   </section>
 
   <section class="slide" aria-label="Three parts">
     <h2>The proposal: one system in <em>three parts</em></h2>
-    <p class="lede">Each user has their own door, and all three read the same data.</p>
+    <p class="lede">The site, a portal for students, and a portal for the trainer, all reading the same courses.</p>
     <div class="parts">
-      <div class="sheet lay" style="--i:0"><div class="who">For visitors and the public</div><h3>The public site</h3><ul><li>Programs and cohorts with dates and fees</li><li>Registration and KNET payment</li><li>A door for organizations, and articles</li><li>Certificate verification</li></ul><span class="cnt">9 <small>screens</small></span></div>
-      <div class="sheet lay" style="--i:1"><div class="who">For trainees and training contacts</div><h3>The client portal</h3><ul><li>Cohorts, sessions and the online classroom</li><li>Certificates, account and payments</li><li>For organizations: seats, employees, proposals, report</li></ul><span class="cnt">10 <small>screens</small></span></div>
-      <div class="sheet lay" style="--i:2"><div class="who">For Dr. Manal only</div><h3>Dr. Manal's portal</h3><ul><li>What needs her decision each day</li><li>Programs and content, cohorts and attendance</li><li>Organizations, proposals, payments, certificates</li></ul><span class="cnt">12 <small>screens</small></span></div>
+      <div class="sheet lay" style="--i:0"><div class="who">For visitors</div><h3>The site</h3><ul><li>Programs and their upcoming courses</li><li>Registration for a course</li><li>Sign in</li></ul><span class="cnt">4 <small>screens</small></span></div>
+      <div class="sheet lay" style="--i:1"><div class="who">For students</div><h3>The student portal</h3><ul><li>My courses</li><li>Each course in chapters</li><li>Video, information, materials, assignment, exam, survey</li></ul><span class="cnt">4 <small>screens</small></span></div>
+      <div class="sheet lay" style="--i:2"><div class="who">For Dr. Manal</div><h3>The trainer portal</h3><ul><li>Her programs and courses</li><li>Publishing them on the site</li></ul><span class="cnt">1 <small>screen</small></span></div>
     </div>
   </section>
 
@@ -171,157 +168,84 @@ html[data-design=mark] .slide{transform:scale(.985)} html[data-design=mark] .sli
       <table>
         <thead><tr><th></th><th>The site today</th><th>The new system</th></tr></thead>
         <tbody>
-          <tr><td>Language</td><td>English; the Arabic switch has no content</td><td>English and Arabic, both complete</td></tr>
-          <tr><td>Dates and fees</td><td>Not published</td><td>Every cohort shows its date, fee and seats left</td></tr>
-          <tr><td>Registration</td><td>A contact form and a two-day reply</td><td>Register and get an account in minutes</td></tr>
-          <tr><td>Payment</td><td>Not on the site</td><td>KNET on the site, with an instant receipt</td></tr>
-          <tr><td>Organizations</td><td>Request a program through the form</td><td>Reserve seats, invite employees, get a participation report</td></tr>
-          <tr><td>Content</td><td>Not on the site</td><td>An online classroom per program: chapters with video, materials, assignment, exam</td></tr>
-          <tr><td>Attendance</td><td>Not on the site</td><td>A sheet per session that Dr. Manal ticks</td></tr>
-          <tr><td>Certificate</td><td>Not on the site</td><td>Issued by the system; anyone can verify it by number</td></tr>
+          <tr><td>Courses</td><td>Program descriptions only</td><td>Each program shows its upcoming courses and sessions</td></tr>
+          <tr><td>Registration</td><td>A contact form and a two-day reply</td><td>The student registers for a course and gets an account</td></tr>
+          <tr><td>Student account</td><td>None</td><td>The student signs in and sees their courses</td></tr>
+          <tr><td>Course content</td><td>Not on the site</td><td>Each course in chapters: video, information and materials</td></tr>
+          <tr><td>Assignments and exams</td><td>Not on the site</td><td>An assignment and an exam per chapter, with the result shown</td></tr>
+          <tr><td>Surveys</td><td>Not on the site</td><td>A short survey per chapter</td></tr>
+          <tr><td>The trainer</td><td>No portal</td><td>A trainer portal for her programs and courses</td></tr>
         </tbody>
       </table>
     </div>
   </section>
 
-  <section class="slide part two" aria-label="Part one: the public site">
+  <section class="slide part two" aria-label="Part one: the site">
     <div>
       <span class="tagl">Part one</span>
-      <h2>The public site: <em>the visitor's journey</em></h2>
+      <h2>The site: <em>the visitor's journey</em></h2>
       <ol class="steps-v">
-        <li class="lay" style="--i:0"><b>Sees the upcoming cohorts</b><span>with date, fee and seats left</span></li>
+        <li class="lay" style="--i:0"><b>Sees the upcoming courses</b><span>with their dates and sessions</span></li>
         <li class="lay" style="--i:1"><b>Reads the program</b><span>who it is for, what they leave with, the session schedule</span></li>
-        <li class="lay" style="--i:2"><b>Registers and confirms a mobile number</b><span>the account is created with a code before payment</span></li>
-        <li class="lay" style="--i:3"><b>Pays by KNET</b><span>the seat is confirmed and the receipt arrives</span></li>
-        <li class="lay" style="--i:4"><b>Enters their portal</b><span>where part two begins</span></li>
+        <li class="lay" style="--i:2"><b>Registers for a course</b><span>an account is created and confirmed with a code</span></li>
+        <li class="lay" style="--i:3"><b>Enters the student portal</b><span>where part two begins</span></li>
       </ol>
     </div>
-    <div class="sheet has lay" style="--i:2">
-      <h3>What this part holds</h3>
-      <ul>
-        <li><b>Programs and cohorts</b> in English and Arabic</li>
-        <li><b>Registration and payment</b> with no call and no email</li>
-        <li><b>For organizations</b>: request a proposal, or request an account</li>
-        <li><b>Invitation activation</b> for an employee given a seat</li>
-        <li><b>Articles and research</b></li>
-        <li><b>Certificate verification</b> for anyone holding a number</li>
-      </ul>
-    </div>
+    <div class="shots" style="--cols:2;margin-top:0" data-shots='[["01","Home","Upcoming courses","01-home.html"],["02","Program page","Content and schedule","02-program.html"],["03","Register","Account and code","03-register.html"],["17","Sign in","Student or trainer","17-login.html"]]'></div>
   </section>
 
-  <section class="slide" aria-label="Public site screens">
-    <span class="tagl">Part one · 9 screens</span>
-    <h2 class="sm">Screens of the public site</h2>
-    <div class="shots" style="--cols:5" data-shots='[["01","Home","Upcoming cohorts","01-home.html"],["02","Program page","Content and schedule","02-program.html"],["03","Register","Account and code","03-register.html"],["04","Payment","KNET and receipt","04-pay.html"],["17","Sign in","Routes each user to a portal","17-login.html"],["18","For organizations","Proposal or account request","18-for-orgs.html"],["21","Activate invitation","An invited employee","21-activate.html"],["19","Articles","An article and a list","19-articles.html"],["12","Verify a certificate","Valid, revoked, not found","12-verify.html"]]'></div>
-  </section>
-
-  <section class="slide part two" aria-label="Part two: the client portal">
+  <section class="slide part two" aria-label="Part two: the student portal">
     <div>
       <span class="tagl">Part two</span>
-      <h2>The client portal: <em>the trainee's journey</em></h2>
+      <h2>The student portal: <em>the student's journey</em></h2>
       <ol class="steps-v">
-        <li class="lay" style="--i:0"><b>Sees their cohorts and sessions</b><span>where and when, and what they attended</span></li>
-        <li class="lay" style="--i:1"><b>Studies in the online classroom</b><span>chapters with video, information and materials</span></li>
-        <li class="lay" style="--i:2"><b>Submits the assignment and takes the exam</b><span>an instant result, and a second attempt</span></li>
-        <li class="lay" style="--i:3"><b>Fills in the survey</b><span>once per chapter</span></li>
-        <li class="lay" style="--i:4"><b>Receives the certificate</b><span>after Dr. Manal closes the cohort</span></li>
+        <li class="lay" style="--i:0"><b>Signs in and sees their courses</b><span>with the sessions of each</span></li>
+        <li class="lay" style="--i:1"><b>Opens a course</b><span>its chapters and how far they have got</span></li>
+        <li class="lay" style="--i:2"><b>Studies a chapter</b><span>video, information and materials</span></li>
+        <li class="lay" style="--i:3"><b>Submits the assignment and takes the exam</b><span>and sees the result</span></li>
+        <li class="lay" style="--i:4"><b>Fills in the survey</b><span>once per chapter</span></li>
       </ol>
     </div>
-    <div class="sheet has lay" style="--i:2">
-      <h3>What the client sees</h3>
-      <ul>
-        <li><b>My cohorts</b>: registrations, sessions, cancelling</li>
-        <li><b>My classroom</b>: chapters, progress, materials</li>
-        <li><b>My certificates</b>: issued, and what is not yet and why</li>
-        <li><b>My account</b>: details, security, notifications, payments, privacy</li>
-        <li><b>Never</b> another trainee's data</li>
-      </ul>
-    </div>
+    <div class="shots" style="--cols:2;margin-top:0" data-shots='[["05","My courses","Courses and sessions","05-my-cohorts.html"],["13","My classroom","Chapters and progress","13-course.html"],["14","Chapter","Video, materials, assignment, survey","14-chapter.html"],["15","Exam","Questions and result","15-exam.html"]]'></div>
   </section>
 
-  <section class="slide" aria-label="Trainee screens">
-    <span class="tagl">Part two · trainee · 6 screens</span>
-    <h2 class="sm">The trainee's screens</h2>
-    <div class="shots" style="--cols:3;max-width:min(860px,100%)" data-shots='[["05","My cohorts","Registrations and sessions","05-my-cohorts.html"],["13","My classroom","Chapters and progress","13-course.html"],["14","Chapter","Video, materials, assignment, survey","14-chapter.html"],["15","Exam","Questions and result","15-exam.html"],["06","My certificates","Issued and not issued","06-my-certificate.html"],["20","My account","Five sections on one page","20-account.html"]]'></div>
-  </section>
-
-  <section class="slide split" aria-label="The organization">
-    <div>
-      <span class="tagl">Part two · organization</span>
-      <h2 class="sm">And the client may be <em>an organization</em></h2>
-      <ol class="steps-v">
-        <li class="lay" style="--i:0"><b>Requests a proposal, or reserves seats</b><span>in any public cohort</span></li>
-        <li class="lay" style="--i:1"><b>Pays once</b><span>the seat fees, or the agreed price</span></li>
-        <li class="lay" style="--i:2"><b>Assigns each seat to an employee</b><span>who receives an invitation to activate an account</span></li>
-        <li class="lay" style="--i:3"><b>Follows up and exports a report</b><span>attendance, absence and certificates; never exam results</span></li>
-      </ol>
-    </div>
-    <div class="shots" style="--cols:2;margin-top:0" data-shots='[["07","Seats","Reserve, pay, assign","07-org-seats.html"],["08","Employee participation","Attendance, certificates, report","08-org-report.html"],["22","Proposal requests","Quote, acceptance, payment","22-org-proposals.html"],["23","Organization account","Details and contacts","23-org-account.html"]]'></div>
-  </section>
-
-  <section class="slide part two" aria-label="Part three: Dr. Manal's portal">
+  <section class="slide part two" aria-label="Part three: the trainer portal">
     <div>
       <span class="tagl">Part three</span>
-      <h2>Dr. Manal's portal: <em>her day in the system</em></h2>
+      <h2>The trainer portal: <em>where Dr. Manal defines her courses</em></h2>
       <ol class="steps-v">
-        <li class="lay" style="--i:0"><b>Opens on what is waiting for her</b><span>a refund, an organization account, a cohort not yet started</span></li>
-        <li class="lay" style="--i:1"><b>Builds the program and its content</b><span>chapters with video, materials and an exam</span></li>
-        <li class="lay" style="--i:2"><b>Creates the cohort and starts it</b><span>with its date, capacity and fee</span></li>
-        <li class="lay" style="--i:3"><b>Ticks attendance in each session</b><span>the percentage calculates itself</span></li>
-        <li class="lay" style="--i:4"><b>Closes the cohort and issues certificates</b><span>to those who earned them, each with a verifiable number</span></li>
+        <li class="lay" style="--i:0"><b>Sees all her programs</b><span>and the courses under each</span></li>
+        <li class="lay" style="--i:1"><b>Publishes a program</b><span>so it appears on the site and students can register</span></li>
       </ol>
     </div>
-    <div class="sheet has lay" style="--i:2">
-      <h3>What Dr. Manal sees, and only she</h3>
-      <ul>
-        <li><b>Operations</b>: cohorts, attendance, certificates</li>
-        <li><b>Content</b>: programs, chapters, grading, articles</li>
-        <li><b>Clients</b>: trainees, organizations, proposal requests</li>
-        <li><b>Money</b>: payments and refunds</li>
-        <li><b>The whole picture</b>: a report across all organizations</li>
-        <li><b>Every sensitive change</b> is written to a log</li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="slide" aria-label="Daily operations screens">
-    <span class="tagl">Part three · operations · 5 screens</span>
-    <h2 class="sm">Daily operations</h2>
-    <div class="shots" style="--cols:5" data-shots='[["09","Waiting for you","What needs a decision today","09-admin-inbox.html"],["24","Cohorts","All cohorts, create one","24-admin-cohorts.html"],["10","Cohort","Registrations, start and close","10-admin-cohort.html"],["11","Attendance and certificates","The sheet, then issuing","11-admin-attendance.html"],["29","Certificates","Search and revoke","29-admin-certificates.html"]]'></div>
-  </section>
-
-  <section class="slide" aria-label="Content, clients and money screens">
-    <span class="tagl">Part three · content, clients and money · 7 screens</span>
-    <h2 class="sm">Content, clients and money</h2>
-    <div class="shots" style="--cols:4;max-width:min(1080px,100%)" data-shots='[["25","Programs and articles","Publish a program or an article","25-admin-programs.html"],["16","Build content","Chapters and their items","16-admin-course.html"],["30","Trainees","Record, deactivate, remove data","30-admin-trainees.html"],["26","Organizations","Approve accounts","26-admin-orgs.html"],["27","Proposal requests","Review, quote, in-house cohort","27-admin-proposals.html"],["28","Payments","Refunds and receipts","28-admin-payments.html"],["31","Full report","Across organizations and programs","31-admin-report.html"]]'></div>
+    <div class="shots" style="--cols:1;margin-top:0;max-width:440px" data-shots='[["25","Programs","Her programs and publishing","25-admin-programs.html"]]'></div>
   </section>
 
   <section class="slide" aria-label="Decisions needed">
-    <h2>Five things need <em>Dr. Manal's decision</em></h2>
-    <p class="lede">The screens are built on written assumptions. These are the main ones, and each changes with a word from her.</p>
+    <h2>Things to agree with <em>Dr. Manal</em></h2>
+    <p class="lede">The screens are built on written assumptions. Each changes with a word from her.</p>
     <ul class="ask">
-      <li class="lay" style="--i:0"><span class="stamp you">Yours</span><div>Which body licenses the training activity, and does it require anything of the system?<span>Assumed: attendance sheets and certificates can be exported, nothing more</span></div></li>
-      <li class="lay" style="--i:1"><span class="stamp you">Yours</span><div>What attendance earns the certificate?<span>Assumed 80%; in a three-session program that means attending all three</span></div></li>
-      <li class="lay" style="--i:2"><span class="stamp you">Yours</span><div>Until when is a fee refunded after cancelling?<span>Assumed 7 days before the cohort starts</span></div></li>
-      <li class="lay" style="--i:3"><span class="stamp you">Yours</span><div>Which payment provider?<span>Deferred; the screens say KNET only</span></div></li>
-      <li class="lay" style="--i:4"><span class="stamp you">Yours</span><div>How many programs and trainees a year?<span>It sets the server size and the performance targets</span></div></li>
+      <li class="lay" style="--i:0"><span class="stamp you">Yours</span><div>Is the course content recorded video, in-person sessions, or both?<span>Assumed both: sessions in the room, and chapters online</span></div></li>
+      <li class="lay" style="--i:1"><span class="stamp you">Yours</span><div>How is a chapter exam marked?<span>Assumed 5 questions, a pass mark of 60% and two attempts</span></div></li>
+      <li class="lay" style="--i:2"><span class="stamp you">Yours</span><div>Which language comes first?<span>English in these screens; Arabic can follow</span></div></li>
+      <li class="lay" style="--i:3"><span class="stamp you">Yours</span><div>How many courses and students a year?<span>It sets the size of the system</span></div></li>
     </ul>
   </section>
 
   <section class="slide end" aria-label="The screens">
     <h2>And now <em>the screens themselves</em></h2>
-    <p class="lede" style="margin-inline:auto">Thirty-one linked screens in three parts. Names and amounts are sample data.</p>
+    <p class="lede" style="margin-inline:auto">Nine linked screens in three parts. Names and dates are sample data.</p>
     <div class="gates">
-      <a class="btn" href="01-home.html" id="enter">The public site</a>
-      <a class="btn sec" href="05-my-cohorts.html">The client portal</a>
-      <a class="btn sec" href="09-admin-inbox.html">Dr. Manal's portal</a>
+      <a class="btn" href="01-home.html" id="enter">The site</a>
+      <a class="btn sec" href="05-my-cohorts.html">The student portal</a>
+      <a class="btn sec" href="25-admin-programs.html">The trainer portal</a>
     </div>
     <p style="margin-top:var(--s-24)"><a class="link" href="index.html">Or open the map of all screens</a></p>
   </section>
 </main>
 
 <nav class="bar" aria-label="Slides">
-  <div class="grp"><button id="prev" aria-label="Previous slide">Back</button><span class="where" id="where">1 / 15</span><button id="next" aria-label="Next slide">Next</button></div>
+  <div class="grp"><button id="prev" aria-label="Previous slide">Back</button><span class="where" id="where">1 / 10</span><button id="next" aria-label="Next slide">Next</button></div>
   <div class="seats" id="prog" aria-hidden="true"></div>
   <div class="grp"><a class="sw" href="start.html">Change design</a><button id="full" aria-label="Full screen">Full screen</button></div>
 </nav>
@@ -334,8 +258,7 @@ document.querySelectorAll('[data-shots]').forEach(box=>{box.innerHTML=JSON.parse
 
 // the cover carries each design's own signature
 const sig=$('sig');
-if(D==='depth'){sig.innerHTML='<div class="stage3"><div class="cam3"><div class="pl3" style="transform:translate3d(90px,-50px,-520px);filter:blur(5px);opacity:.5">2030</div><div class="pl3" style="transform:translate3d(45px,-25px,-260px);filter:blur(2.5px);opacity:.75">2027</div><div class="pl3">Now</div></div></div>'}
-else if(D==='mark'){sig.innerHTML='<canvas width="900" height="760"></canvas>';const cv=sig.firstChild,g=cv.getContext('2d'),W=900,H=760,ink=getComputedStyle(document.documentElement).getPropertyValue('--ink').trim()||'#101418';
+if(D==='mark'||D==='markline'){sig.innerHTML='<canvas width="900" height="760"></canvas>';const cv=sig.firstChild,g=cv.getContext('2d'),W=900,H=760,ink=getComputedStyle(document.documentElement).getPropertyValue('--ink').trim()||'#101418';
   const seg=(a,b,n)=>Array.from({length:n},(_,i)=>({x:a[0]+(b[0]-a[0])*i/(n-1),y:a[1]+(b[1]-a[1])*i/(n-1)})),L=230,T=120,S=440,R=L+S,B=T+S;
   const M=[].concat(seg([L,T],[R,T],56),seg([R,T],[R,B],56),seg([R,B],[L,B],56),seg([L,B],[L,T],56),seg([L+52,T+68],[R-52,T+68],42),seg([L+52,T+68],[L+52,T+120],8),seg([R-52,T+68],[R-52,T+120],8),seg([L+174,T+68],[L+174,B-60],42),seg([R-174,T+68],[R-174,B-60],42),seg([L+204,T+170],[L+204,B-60],26),seg([R-204,T+230],[R-204,B-60],22));
   const P=M.map(t=>({x:Math.random()*W,y:Math.random()*H,vx:0,vy:0,tx:t.x,ty:t.y,r:2.6+Math.random()*2.6}));let mx=-999,my=-999;

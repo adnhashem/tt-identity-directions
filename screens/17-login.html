@@ -18,7 +18,6 @@
 .other{grid-area:other;margin-top:var(--s-48);padding-top:var(--s-24);border-top:1px solid var(--line-strong);max-width:46ch}
 .other p{font-size:var(--fs-14);color:var(--cream-2);margin-bottom:var(--s-16)}
 .other .row{gap:var(--s-24)}
-.lbtn.on-baize{font-size:var(--fs-14)}
 .door{grid-area:door;max-width:480px;width:100%;justify-self:center}
 .door .sheet{padding:var(--s-48)}
 .door h2{font-size:var(--fs-22)}
@@ -47,9 +46,6 @@
     <a href="01-home.html"><img src="assets/logo-white.png" alt="Think Tank Strategists"></a>
     <ul>
       <li><a href="01-home.html">Programs</a></li>
-      <li><a href="19-articles.html">Articles</a></li>
-      <li><a href="18-for-orgs.html">For organizations</a></li>
-      <li><a href="12-verify.html">Verify a certificate</a></li>
       <li class="keep"><a href="17-login.html" aria-current="page">Sign in</a></li>
       <li class="keep"><a class="btn sm" href="03-register.html">Register</a></li>
     </ul>
@@ -58,7 +54,7 @@
   <main class="login">
     <div class="say">
       <h1>Log in to your account</h1>
-      <p class="lede">Follow your sessions, attendance and certificates, or your employees' seats if you are your organization's training contact.</p>
+      <p class="lede">Follow your courses, chapters and sessions, or manage your programs if you are the trainer.</p>
     </div>
 
     <div class="door">
@@ -83,14 +79,6 @@
               <br><a class="lbtn" href="03-register.html">Register and open an account</a></div>
           </div>
 
-          <div class="notice" id="n-off" role="alert" hidden>
-            <div><b>This account has been deactivated</b><span class="stamp off">Deactivated</span><br>You cannot log in with it right now. Your data and certificates are safe. Contact us to find out why or to have it reactivated: info@example.com, Sunday to Thursday.</div>
-          </div>
-
-          <div class="notice err" id="n-lock" role="alert" hidden>
-            <div><b>Too many login attempts. Wait 15 minutes, then try again</b> <span class="assume">assumption</span><br>We paused login after 5 attempts with a wrong password to protect your account. If you forgot your password, reset it with "Forgot your password?" instead of waiting.</div>
-          </div>
-
           <button class="btn wide" id="go">Log in</button>
         </form>
 
@@ -105,34 +93,30 @@
         </div>
       </div>
 
-      <p class="synthetic demo">This demo has sample accounts, and any password works. The page sends you to the right place for each one:
+      <p class="synthetic demo">This demo has two sample accounts, and any password works. The page sends you to the right place for each one:
         <span><button type="button" data-u="noura@example.com">noura@example.com</button> trainee portal</span>
-        <span><button type="button" data-u="khalid@example.com">khalid@example.com</button> training contact portal</span>
-        <span><button type="button" data-u="manal@example.com">manal@example.com</button> administration portal</span>
-        <span><button type="button" data-u="off@example.com">off@example.com</button> deactivated account</span>
-        <span><button type="button" data-u="locked@example.com">locked@example.com</button> too many attempts</span></p>
+        <span><button type="button" data-u="manal@example.com">manal@example.com</button> trainer portal</span></p>
     </div>
 
     <div class="other">
-      <p>No account yet? A trainee account is opened when you first register for a cohort. An organization account is opened once Dr. Manal approves the request.</p>
+      <p>No account yet? A trainee account is opened when you first register for a cohort.</p>
       <div class="row">
-        <a class="btn quiet sm" href="01-home.html">Register for a cohort</a>
-        <a class="lbtn on-baize" href="18-for-orgs.html#account" data-cta="WF-CTA-010">Request an organisation account</a>
+        <a class="btn quiet sm" href="03-register.html">Register for a cohort</a>
       </div>
     </div>
   </main>
 </div>
-<footer class="sitefoot"><div class="wrap spread"><span>Think Tank Strategists · Kuwait · Sunday to Thursday, 9:00–17:00</span><a href="index.html">Screen map</a></div></footer>
+<footer class="sitefoot"><div class="wrap spread"><span>Think Tank Strategists · Kuwait · Sunday to Thursday, 9:00–17:00</span><span class="row"><a href="17-login.html">Sign in</a><a href="index.html">Screen map</a><a href="deck.html">Presentation</a></span></div></footer>
 
 <script src="tt.js"></script>
 <script>
 const $=id=>document.getElementById(id),who=$('who'),pw=$('pw'),go=$('go'),f=$('f');
-const DEST={'noura@example.com':'05-my-cohorts.html','khalid@example.com':'07-org-seats.html','manal@example.com':'09-admin-inbox.html'};
-const notices=['n-none','n-off','n-lock'];
+const DEST={'noura@example.com':'05-my-cohorts.html','manal@example.com':'25-admin-programs.html'};
+const notices=['n-none'];
 const isMail=v=>/^\S+@\S+\.\S+$/.test(v),digits=v=>v.replace(/[\s+-]/g,'');
 const val=()=>who.value.trim().toLowerCase();
 function err(inp,t){const m=$(inp.id+'-m');m.textContent=t;m.hidden=!t;inp.closest('.field').classList.toggle('bad',!!t);inp.setAttribute('aria-invalid',String(!!t));return !t}
-function notice(id){notices.forEach(n=>$(n).hidden=n!==id);go.hidden=id==='n-off'||id==='n-lock'}
+function notice(id){notices.forEach(n=>$(n).hidden=n!==id)}
 function checkWho(need){const v=val();
   if(!v)return err(who,need||'Enter your email or mobile number.');
   if(v.includes('@'))return err(who,isMail(v)?'':'The email is incomplete. Example: name@example.com');
@@ -143,8 +127,6 @@ f.addEventListener('submit',e=>{e.preventDefault();notice('');
   if(!a){who.focus();return} if(!b){pw.focus();return}
   const v=val();
   if(DEST[v]){location.href=DEST[v];return}
-  if(v==='off@example.com'){notice('n-off');return}
-  if(v==='locked@example.com'){notice('n-lock');return}
   $('typed').textContent=who.value.trim();notice('n-none');});
 
 who.addEventListener('input',()=>{notice('');if(who.closest('.field').classList.contains('bad'))checkWho()});
