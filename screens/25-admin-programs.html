@@ -43,10 +43,12 @@
 </head>
 <body class="desk">
 <div class="shell">
-  <nav class="side" aria-label="Administration">
-    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>Administration</span></div>
+  <nav class="side" aria-label="Trainer portal">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>Trainer portal</span></div>
     <a href="25-admin-programs.html" aria-current="page">Programs</a>
-    <div class="foot">Dr. Manal Al-Hasawi<br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
+    <a href="16-admin-course.html">Course content</a>
+    <a href="20-admin-profile.html" class="m-only">My profile</a>
+    <div class="foot"><a href="20-admin-profile.html" class="me">Dr. Manal Al-Hasawi</a><br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
   </nav>
 
   <main class="work">
@@ -72,7 +74,7 @@
           <h3 id="eh-prog"></h3><p id="ep-prog"></p>
           <p><button class="lbtn" type="button" data-clear="prog">Show all programs</button></p>
         </div>
-        <p class="lead tail">A draft program does not appear on the site and cannot have a cohort. A published program appears in English and Arabic.</p>
+        <p class="lead tail">A draft program does not appear on the site and cannot have a cohort. A published program appears in English and Arabic. Its chapters, exams and surveys are under Course content.</p>
       </section>
 
       <p class="synthetic tail">Names and dates are sample data. Systems Thinking for Leaders has no Arabic description, on purpose, to show how publishing is refused. <a href="index.html">Screen map</a></p>
@@ -120,7 +122,7 @@ function progs(){
       <td class="x">${FMT[p.fmt]}</td><td class="x">${LANG[p.lang]}</td>
       <td>${stamp(p.st,p.id)}</td>
       <td class="x num">${p.n}</td>
-      <td><div class="acts">${dr?`<button class="btn sm" type="button" data-cta="WF-CTA-002" data-pub="${p.id}" aria-label="Publish: ${nm}">Publish</button>`:''}</div></td></tr>${det}`}).join('');
+      <td><div class="acts">${dr?'':`<a class="rowlink" href="16-admin-course.html?course=${p.id}" aria-label="Course content: ${nm}">Course content</a>`}${dr?`<button class="btn sm" type="button" data-cta="WF-CTA-002" data-pub="${p.id}" aria-label="Publish: ${nm}">Publish</button>`:''}</div></td></tr>${det}`}).join('');
   const none=!list.length,pub=P.filter(p=>p.st==='published').length,dr=P.length-pub;
   $('w-prog').hidden=none;$('e-prog').hidden=!none;
   if(none){$('eh-prog').textContent=fP==='draft'?'No draft programs':'No published programs';$('ep-prog').textContent=fP==='draft'?'All your programs are published and visible on the site.':'No program has been published yet.'}

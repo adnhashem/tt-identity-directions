@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Course content — Think Tank trainer portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
+<style>
+.work{min-width:0}
+[tabindex="-1"]:focus{outline:0}
+.title{display:flex;gap:var(--s-16) var(--s-24);align-items:center;flex-wrap:wrap}
+.title .stamp{font-size:var(--fs-13);padding:var(--s-4) var(--s-16)}
+.title h1{max-width:24ch}
+.pickc{display:grid;grid-template-columns:auto minmax(0,320px);justify-content:start;align-items:center;gap:var(--s-12);margin-bottom:var(--s-24)}
+.pickc select{min-height:44px}
+.state{display:flex;gap:var(--s-8) var(--s-16);align-items:center;flex-wrap:wrap;margin-bottom:var(--s-16);font-size:var(--fs-14);color:var(--ink-2)}
+.state p{margin:0}
+#note{margin-bottom:var(--s-16)}
+.lead{max-width:64ch;font-size:var(--fs-14);color:var(--ink-2)}
+
+/* chapters: a ruled list; the order number is the only large numeral */
+.chs{list-style:none;margin:0;padding:0;border-top:1px solid var(--card-edge)}
+.ch{border-bottom:1px solid var(--card-edge)}
+.ch-row{display:grid;grid-template-columns:var(--s-48) minmax(0,1fr) auto;gap:var(--s-16);align-items:start;padding-block:var(--s-16)}
+.ord{font-family:var(--font-head);font-size:var(--fs-36);font-weight:600;line-height:1;color:var(--ribbon);text-align:center;padding-top:var(--s-4)}
+.ch h3{margin:0;font-size:var(--fs-18);font-weight:600;line-height:1.5;display:flex;gap:var(--s-8) var(--s-12);align-items:center;flex-wrap:wrap}
+.ch h3 .none{color:var(--ink-2);font-weight:500}
+.has{margin:var(--s-4) 0 0;font-size:var(--fs-14);color:var(--ink)}
+.miss{margin:0;font-size:var(--fs-13);color:var(--ink-2)}
+.links{display:flex;gap:0 var(--s-16);align-items:center;flex-wrap:wrap;margin-top:var(--s-4)}
+.links a.rowlink{text-decoration:underline}
+.mv{display:grid;grid-template-columns:repeat(2,104px);gap:var(--s-8)}
+.mv button{min-height:44px;font:inherit;font-size:var(--fs-13);font-weight:500;color:var(--ink);background:none;border:1px solid var(--line-strong);border-radius:var(--s-8);cursor:pointer;white-space:nowrap}
+.mv button:hover{border-color:var(--ink)}
+.mv .up{grid-column:1}.mv .down{grid-column:2}
+.mv button:focus-visible,.rowlink:focus-visible{outline:2px solid var(--ribbon);outline-offset:2px}
+.ch-p{padding:0 0 var(--s-24);padding-inline-start:var(--s-64)}
+.ch-p .grid-2{max-width:760px}
+.field.bad input{border-color:var(--err)}
+.chfoot{display:flex;gap:var(--s-8) var(--s-12);align-items:center;flex-wrap:wrap;margin-top:var(--s-12);font-size:var(--fs-13);color:var(--ink-2)}
+.chfoot p{margin:0}
+.more{margin-top:var(--s-24)}
+.tail{margin-top:var(--s-48)}
+
+@media (max-width:900px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .work header.top{align-items:start}
+  .pickc{grid-template-columns:minmax(0,1fr)}
+  .ch-row{grid-template-columns:var(--s-32) minmax(0,1fr);gap:0 var(--s-12)}
+  .ord{font-size:var(--fs-28)}
+  .mv{grid-column:2;padding-top:var(--s-12)}
+  .ch-p{padding-inline-start:0}
+}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="Trainer portal">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>Trainer portal</span></div>
+    <a href="25-admin-programs.html">Programs</a>
+    <a href="16-admin-course.html" aria-current="page">Course content</a>
+    <a href="20-admin-profile.html" class="m-only">My profile</a>
+    <div class="foot"><a href="20-admin-profile.html" class="me">Dr. Manal Al-Hasawi</a><br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+      <header class="top">
+        <div class="title">
+          <div><h1 id="h1"></h1><div class="crumb" id="crumb"></div></div>
+          <span class="stamp ok"><span class="vh">Course status: </span>Published</span>
+        </div>
+        <div class="row" id="acts"></div>
+      </header>
+
+      <div class="field pickc">
+        <label for="course">Course</label>
+        <select id="course">
+          <option value="foresight">Foresight &amp; Futures Thinking</option>
+          <option value="strategy">Executive Strategy Workshops</option>
+          <option value="leaders">Leadership &amp; Capability Building</option>
+        </select>
+      </div>
+
+      <div class="state" id="state" hidden>
+        <span class="stamp you"><span class="vh">Content status: </span>Unpublished changes</span>
+        <p>Students see the last version you published until you publish again. <span id="saved"></span></p>
+      </div>
+      <div class="notice" id="note" hidden></div>
+      <div class="vh" id="live" aria-live="polite"></div>
+
+      <section aria-labelledby="h-ch">
+        <h2 id="h-ch" tabindex="-1">Chapters</h2>
+        <p class="lead" id="chlead">Students see the chapters in this order once you publish. Each chapter can hold six kinds of item: video, information, materials, assignment, exam and survey.</p>
+        <ol class="chs" id="chs"></ol>
+        <div class="more" id="more"></div>
+        <div class="empty" id="none" hidden>
+          <h3>This course has no recorded content</h3>
+          <p>A course without recorded content is attended in the room only.<br>To give students videos, materials or assignments, start with the first chapter.</p>
+          <p><button class="btn" data-addch>Add chapter</button></p>
+        </div>
+      </section>
+
+      <p class="synthetic tail">Names, dates and figures are sample data. <span id="synch">Chapter 4 has no Arabic title, on purpose, to show how publishing is refused. </span><a href="index.html">Screen map</a></p>
+    </div>
+  </main>
+</div>
+<!-- Sample Arabic chapter titles for the "Title (Arabic)" fields. The script reads these values; nothing here is displayed directly. -->
+<template id="ar-samples">
+  <input data-for="f1" lang="ar" dir="rtl" aria-label="Title (Arabic)" value="لماذا نستشرف؟">
+  <input data-for="f2" lang="ar" dir="rtl" aria-label="Title (Arabic)" value="قراءة الإشارات">
+  <input data-for="f3" lang="ar" dir="rtl" aria-label="Title (Arabic)" value="بناء السيناريوهات">
+  <input data-for="s1" lang="ar" dir="rtl" aria-label="Title (Arabic)" value="الاستراتيجية في زمن عدم اليقين">
+  <input data-for="s2" lang="ar" dir="rtl" aria-label="Title (Arabic)" value="من الخطة إلى التنفيذ">
+</template>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pl=(n,one,many)=>`${n} ${n===1?one:many}`;
+const AR=Object.fromEntries([...$('ar-samples').content.querySelectorAll('input')].map(i=>[i.dataset.for,i.value]));
+
+// item kinds are keyed by a stable handle; the word is display only
+const KINDS=['video','info','files','hw','quiz','survey'];
+const KN={video:'Video',info:'Information',files:'Materials',hw:'Assignment',quiz:'Exam',survey:'Survey'};
+const set=s=>Object.fromEntries(s.split(' ').filter(Boolean).map(k=>[k,true]));
+
+let uid=100;
+// "page" is the chapter number the chapter and exam screens know it by; only the sample course has one
+const COURSES={
+ foresight:{title:'Foresight & Futures Thinking',about:'Arabic delivery, bilingual titles',dirty:true,saved:'Last saved yesterday at 16:40.',
+  ch:[
+   {id:1,page:1,en:'Why foresight?',ar:AR.f1,items:set('video info files hw quiz survey')},
+   {id:2,page:2,en:'Reading the signals',ar:AR.f2,items:set('video info files hw quiz survey')},
+   {id:3,page:3,en:'Building scenarios',ar:AR.f3,items:set('video files hw quiz survey')},
+   {id:4,page:4,en:'From scenario to decision',ar:'',items:set('video info')}]},
+ strategy:{title:'Executive Strategy Workshops',about:'English delivery, bilingual titles',dirty:false,saved:'',
+  ch:[
+   {id:11,en:'Strategy under uncertainty',ar:AR.s1,items:{}},
+   {id:12,en:'From plan to execution',ar:AR.s2,items:{}}]},
+ leaders:{title:'Leadership & Capability Building',about:'Arabic delivery, in person only',dirty:false,saved:'',ch:[]}};
+let key=new URLSearchParams(location.search).get('course');if(!COURSES[key])key='foresight';
+let P=COURSES[key],open=null,askCh=false;
+$('course').value=key;
+const pub=Object.assign(document.createElement('button'),{className:'btn sec',textContent:'Publish'});pub.dataset.cta='WF-CTA-002';
+const save=Object.assign(document.createElement('button'),{className:'btn',textContent:'Build content'});save.dataset.cta='WF-CTA-001';
+
+const say=t=>{$('live').textContent='';setTimeout(()=>$('live').textContent=t,50)};
+const focus=sel=>{const e=typeof sel==='string'?document.querySelector(sel):sel;if(e)e.focus()};
+function note(html,err){const n=$('note');if(!html){n.hidden=true;return}n.className='notice'+(err?' err':'');n.setAttribute('role',err?'alert':'status');n.innerHTML=html;n.hidden=false}
+
+function head(){
+  $('h1').textContent=P.title;
+  const n=P.ch.length;
+  $('crumb').innerHTML=`<a href="25-admin-programs.html">Programs</a> · ${P.about} · ${n?pl(n,'chapter','chapters'):'no recorded content'}`;
+  const a=$('acts');
+  if(n){if(!save.isConnected)a.prepend(save)}else save.remove();
+  if(n&&P.dirty){if(!pub.isConnected)a.append(pub)}else pub.remove();
+  $('state').hidden=!(n&&P.dirty);$('saved').textContent=P.saved;
+}
+function touch(){P.dirty=true;P.saved='Some changes are not saved yet.';note('');head()}
+
+const UNTITLED='Untitled chapter';
+const tb=c=>c.en.trim()?esc(c.en):UNTITLED;
+function miss(c){return !c.en.trim()&&!c.ar.trim()?'Both titles missing':!c.en.trim()?'English title missing':!c.ar.trim()?'Arabic title missing':''}
+function summary(c){
+  const have=KINDS.filter(k=>c.items[k]),lack=KINDS.filter(k=>!c.items[k]);
+  if(!have.length)return `<p class="has">No items yet</p>`;
+  return `<p class="has"><span class="vh">Has: </span>${have.map(k=>KN[k]).join(' · ')}</p>`+
+    (lack.length?`<p class="miss">Missing: ${lack.map(k=>KN[k]).join(' · ')}</p>`:`<p class="miss">All six kinds of item</p>`);
+}
+function links(c){
+  const name=c.en.trim()||UNTITLED;
+  const edit=c.page?`<a class="rowlink" href="18-admin-chapter.html?ch=${c.page}" aria-label="Edit chapter: ${esc(name)}">Edit chapter</a>`
+    :`<button class="rowlink" data-demo aria-label="Edit chapter: ${esc(name)}">Edit chapter</button>`;
+  const ex=c.page&&(c.items.quiz||c.items.survey)?`<a class="rowlink" href="19-admin-exam.html?ch=${c.page}" aria-label="Exam and survey: ${esc(name)}">Exam and survey</a>`:'';
+  return `<div class="links">${edit}${ex}<button class="rowlink" data-toggle="${c.id}" aria-expanded="${open===c.id}"${open===c.id?` aria-controls="p-${c.id}"`:''}>${open===c.id?'Close titles':'Edit titles'}</button></div>`;
+}
+function panel(c){
+  const empty=!KINDS.some(k=>c.items[k]);
+  const foot=!empty?`<p>A chapter with items cannot be removed. Remove its items on the chapter screen first.</p>`
+   :askCh?`<span>This removes the chapter from the course and renumbers the chapters after it.</span><button class="btn sec sm" data-rmch-yes>Confirm removal</button><button class="btn quiet sm" data-rmch-no>Back</button>`
+   :`<button class="rowlink" data-rmch>Remove chapter</button>`;
+  // content is bilingual: the Arabic title field is right-to-left
+  return `<div class="ch-p" id="p-${c.id}">
+    <div class="grid-2">
+      <div class="field" data-f="en"><label for="t-en">Title (English)</label><input id="t-en" data-t="en" value="${esc(c.en)}" autocomplete="off"><span class="msg" hidden></span></div>
+      <div class="field" data-f="ar"><label for="t-ar">Title (Arabic)</label><input id="t-ar" data-t="ar" dir="rtl" lang="ar" value="${esc(c.ar)}" autocomplete="off"><span class="msg" hidden></span></div>
+    </div>
+    <div class="chfoot">${foot}</div></div>`;
+}
+function headline(c,i){const m=miss(c);
+  return `<span class="${c.en.trim()?'':'none'}"><span class="vh">Chapter ${i+1}: </span><span data-tb>${tb(c)}</span></span><span data-miss>${m?`<span class="stamp you">${m}</span>`:''}</span>`}
+function list(){
+  const n=P.ch.length;
+  $('chs').innerHTML=P.ch.map((c,i)=>`<li class="ch" data-id="${c.id}">
+    <div class="ch-row">
+      <span class="ord num" aria-hidden="true">${i+1}</span>
+      <div><h3>${headline(c,i)}</h3>${summary(c)}${links(c)}</div>
+      <div class="mv">${i>0?`<button class="up" data-up="${c.id}" aria-label="Move up: ${tb(c)}">Move up</button>`:''}${i<n-1?`<button class="down" data-down="${c.id}" aria-label="Move down: ${tb(c)}">Move down</button>`:''}</div>
+    </div>${open===c.id?panel(c):''}</li>`).join('');
+  $('chs').hidden=!n;$('chlead').hidden=!n;$('none').hidden=!!n;
+  $('more').innerHTML=n?`<button class="btn sec" data-addch>Add chapter</button>`:'';
+}
+function render(){head();list();$('synch').hidden=key!=='foresight';document.title=`${P.title} — course content`}
+const cur=()=>P.ch.find(c=>c.id===open);
+const bad=(field,text)=>{const m=field.querySelector('.msg');m.textContent=text;m.hidden=false;field.classList.add('bad')};
+
+function publish(){
+  for(const [i,c] of P.ch.entries()){
+    const lang=!c.en.trim()?'en':!c.ar.trim()?'ar':'';if(!lang)continue;
+    open=c.id;askCh=false;list();
+    const word=lang==='ar'?'Arabic':'English',name=c.en.trim()?`, “${esc(c.en)}”,`:'';
+    note(`<div><b>The content was not published.</b> Chapter ${i+1}${name} has no ${word} title. Enter it in the open field below, then publish.</div>`,true);
+    const f=document.querySelector(`.ch-p [data-f="${lang}"]`);bad(f,`Enter the ${word} title. Publishing needs both titles.`);f.querySelector('input').focus();return;
+  }
+  const n=P.ch.length;P.dirty=false;P.saved='';head();
+  note(`<div><b>Content published.</b> Students now see ${pl(n,'chapter','chapters')} in this order.</div>`);
+  ttToast('Content published to students');save.focus();
+}
+
+$('course').addEventListener('change',e=>{key=e.target.value;P=COURSES[key];open=null;askCh=false;note('');render();say(`${P.title}: ${P.ch.length?pl(P.ch.length,'chapter','chapters'):'no recorded content'}`)});
+document.addEventListener('input',e=>{
+  const t=e.target;if(!t.dataset.t)return;const c=cur();c[t.dataset.t]=t.value;
+  const f=t.closest('.field');f.classList.remove('bad');f.querySelector('.msg').hidden=true;
+  const li=t.closest('.ch');li.querySelector('[data-tb]').textContent=c.en.trim()||UNTITLED;li.querySelector('[data-tb]').parentNode.className=c.en.trim()?'':'none';
+  const m=miss(c);li.querySelector('[data-miss]').innerHTML=m?`<span class="stamp you">${m}</span>`:'';touch();
+});
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;const d=t.dataset;
+  if(t===save){P.saved='Saved just now.';head();ttToast('Content saved')}
+  else if(t===pub)publish();
+  else if('demo' in d)ttToast('In this demo, chapter details open for Foresight & Futures Thinking only');
+  else if(d.toggle){const id=+d.toggle;open=open===id?null:id;askCh=false;list();focus(open?'#t-en':`[data-toggle="${id}"]`)}
+  else if(d.up||d.down){const id=+(d.up||d.down),i=P.ch.findIndex(c=>c.id===id),j=d.up?i-1:i+1,c=P.ch[i];
+    [P.ch[i],P.ch[j]]=[P.ch[j],P.ch[i]];touch();list();
+    focus(document.querySelector(`[data-${d.up?'up':'down'}="${id}"]`)||`[data-${d.up?'down':'up'}="${id}"]`);
+    say(`“${c.en.trim()||UNTITLED}” is now chapter ${j+1}`)}
+  else if('rmch' in d){askCh=true;list();focus('[data-rmch-yes]')}
+  else if('rmchNo' in d){askCh=false;list();focus('[data-rmch]')}
+  else if('rmchYes' in d){P.ch=P.ch.filter(c=>c.id!==open);open=null;askCh=false;touch();list();head();ttToast('Chapter removed');focus(document.querySelector('.more [data-addch]')||'#none [data-addch]')}
+  else if('addch' in d){const c={id:++uid,en:'',ar:'',items:{}};P.ch.push(c);open=c.id;askCh=false;touch();list();focus('#t-en');say(`Chapter ${P.ch.length} added`)}
+});
+document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;
+  if(askCh){askCh=false;list();focus('[data-rmch]')}
+  else if(open){const id=open;open=null;list();focus(`[data-toggle="${id}"]`)}});
+render();
+</script>
+</body>
+</html>

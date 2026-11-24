@@ -18,7 +18,7 @@
 .crumb{max-width:62ch;margin:var(--s-4) 0 0}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 
-/* progress: one segmented bar, six segments per chapter, filling left to right */
+/* progress: one segmented bar, one segment per item in each chapter, filling left to right */
 .prog{display:grid;grid-template-columns:auto minmax(0,1fr);gap:var(--s-48);align-items:center;margin-bottom:var(--s-48)}
 .tally{margin:0;font-size:var(--fs-14);color:var(--ink-2);white-space:nowrap}
 .tally b{font-family:var(--font-head);font-size:var(--fs-56);font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1;margin-inline-end:var(--s-8)}
@@ -89,12 +89,12 @@
 
       <div id="v-full">
         <div class="prog">
-          <p class="tally"><b id="done">8</b>of 24 items completed</p>
-          <div class="punch" id="punch" role="progressbar" aria-label="Your progress in the program" aria-valuemin="0" aria-valuemax="24" aria-valuenow="8" aria-valuetext="8 of 24 items">
+          <p class="tally"><b id="done">8</b>of 19 items completed</p>
+          <div class="punch" id="punch" role="progressbar" aria-label="Your progress in the program" aria-valuemin="0" aria-valuemax="19" aria-valuenow="8" aria-valuetext="8 of 19 items">
             <div><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><small>Why foresight?</small></div>
             <div id="p2"><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i><small>Reading the signals</small></div>
-            <div><i></i><i></i><i></i><i></i><i></i><i></i><small>Building scenarios</small></div>
-            <div><i></i><i></i><i></i><i></i><i></i><i></i><small>From scenario to decision</small></div>
+            <div><i></i><i></i><i></i><i></i><i></i><small>Building scenarios</small></div>
+            <div><i></i><i></i><small>From scenario to decision</small></div>
           </div>
         </div>
 
@@ -125,20 +125,20 @@
               <div class="go" id="g2"><a class="btn" href="14-chapter.html" data-cta="WF-CTA-030">Follow content</a></div>
             </li>
             <li>
-              <b>0 <span>of 6</span></b>
+              <b>0 <span>of 5</span></b>
               <div>
                 <h3>Building scenarios</h3>
-                <p class="has">24-minute video · Information · 2 files · Assignment · Exam · Survey</p>
+                <p class="has">24-minute video · 2 files · Assignment · Exam · Survey</p>
                 <p>Chapter 3 · Goes with the 16 December session</p>
               </div>
               <span class="stamp off">Not started</span>
               <div class="go"><button class="lbtn link" data-toast="In this demo only one chapter is open: Reading the signals">Open chapter</button></div>
             </li>
             <li>
-              <b>0 <span>of 6</span></b>
+              <b>0 <span>of 2</span></b>
               <div>
                 <h3>From scenario to decision</h3>
-                <p class="has">15-minute video · Information · 1 file · Assignment · Exam · Survey</p>
+                <p class="has">15-minute video · Information</p>
                 <p>Chapter 4 · After the last session</p>
               </div>
               <span class="stamp off">Not started</span>
@@ -150,7 +150,7 @@
         <section id="materials" tabindex="-1" aria-labelledby="t2">
           <div class="lead">
             <h2 id="t2">Program materials</h2>
-            <p>Six files to download. Videos are watched inside their chapter and cannot be downloaded.</p>
+            <p>Five files to download. Videos are watched inside their chapter and cannot be downloaded.</p>
           </div>
           <ul class="files">
             <li><button data-toast="Downloading “Summary: Why foresight?” (sample download)"><b class="ext">PDF</b><span><strong>Summary: Why foresight?</strong><span>Chapter 1</span></span><em>1.2 MB</em></button></li>
@@ -158,7 +158,6 @@
             <li><button data-toast="Downloading “Signal scanning template” (sample download)"><b class="ext">XLSX</b><span><strong>Signal scanning template</strong><span>Chapter 2</span></span><em>86 KB</em></button></li>
             <li><button data-toast="Downloading “Scenario building guide” (sample download)"><b class="ext">PDF</b><span><strong>Scenario building guide</strong><span>Chapter 3</span></span><em>3.1 MB</em></button></li>
             <li><button data-toast="Downloading “Scenario axes template” (sample download)"><b class="ext">PPTX</b><span><strong>Scenario axes template</strong><span>Chapter 3</span></span><em>640 KB</em></button></li>
-            <li><button data-toast="Downloading “Worksheet: From scenario to decision” (sample download)"><b class="ext">PDF</b><span><strong>Worksheet: From scenario to decision</strong><span>Chapter 4</span></span><em>0.9 MB</em></button></li>
           </ul>
         </section>
         <p class="demo"><button class="lbtn" id="toempty">Show a program with no recorded content</button></p>
@@ -186,7 +185,7 @@ const store=(()=>{try{return JSON.parse(sessionStorage.getItem('tt-class'))||{}}
 const n2=2+!!store.video+!!store.hw+!!(store.exam&&store.exam.passed)+!!store.survey, total=6+n2;
 $('n2').textContent=n2;$('done').textContent=total;
 [...$('p2').querySelectorAll('i')].forEach((c,i)=>c.classList.toggle('on',i<n2));
-$('punch').setAttribute('aria-valuenow',total);$('punch').setAttribute('aria-valuetext',total+' of 24 items');
+$('punch').setAttribute('aria-valuenow',total);$('punch').setAttribute('aria-valuetext',total+' of 19 items');
 if(n2===6){
   $('s2').className='stamp ok';$('s2').textContent='Completed';
   $('c2').classList.remove('now');$('c2').removeAttribute('aria-current');

@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>My profile — Think Tank trainer portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
+<style>
+[tabindex="-1"]:focus{outline:0}
+.lead{max-width:64ch;font-size:var(--fs-14);color:var(--ink-2);margin:0}
+.tail{margin-top:var(--s-24)}
+/* who: portrait, name, title */
+.who{display:flex;gap:var(--s-24);align-items:center;flex-wrap:wrap}
+.face{width:96px;height:96px;border-radius:50%;display:grid;place-items:center;flex:none;font-family:var(--font-head);font-weight:600;font-size:var(--fs-28);letter-spacing:.02em;color:var(--on-accent);background:var(--accent);box-shadow:0 0 0 4px var(--card),0 0 0 5px var(--card-edge)}
+.face.picked{color:var(--ink);background:var(--card-hi);box-shadow:0 0 0 4px var(--card),0 0 0 5px var(--line-strong);font-family:var(--font-body);font-size:var(--fs-13);font-weight:600;letter-spacing:0;line-height:1.3;text-align:center}
+.who .id{display:grid;gap:2px;min-width:0}
+.who h2{margin:0;font-size:var(--fs-22)}
+.who .id p{margin:0;font-size:var(--fs-14);color:var(--ink-2);overflow-wrap:anywhere}
+.who .id .t1{color:var(--ink);font-size:var(--fs-16)}
+.who .pic{display:grid;gap:var(--s-4);justify-items:start;margin-inline-start:auto}
+.who .pic .hint{font-size:var(--fs-12);color:var(--ink-2);max-width:28ch}
+.pickbtn{cursor:pointer}
+#photo:focus-visible+label{outline:2px solid var(--ribbon);outline-offset:3px}
+/* settings rows: heading on the start side, fields on the end side */
+.set{display:grid;grid-template-columns:minmax(180px,260px) minmax(0,1fr);gap:var(--s-16) var(--s-48);padding-top:var(--s-32);margin-top:var(--s-32);border-top:1px solid var(--card-edge)}
+.set>header h2{font-size:var(--fs-18);margin-bottom:var(--s-8)}
+.set>header p{margin:0 0 var(--s-8);font-size:var(--fs-14);color:var(--ink-2)}
+.set .body{display:grid;gap:var(--s-16);max-width:720px;min-width:0}
+.field .msg{font-weight:600}
+.field textarea{min-height:120px;line-height:1.7}
+.field input[dir=ltr]{text-align:start}
+.set .grid-2{align-items:start}
+.count{display:flex;justify-content:space-between;gap:var(--s-8);flex-wrap:wrap}
+/* chips */
+.chips{display:flex;flex-wrap:wrap;gap:var(--s-8);margin:0;padding:0;list-style:none}
+.chip{display:inline-flex;align-items:center;gap:var(--s-8);min-height:44px;padding:0 var(--s-8) 0 var(--s-16);border-radius:999px;font:inherit;font-size:var(--fs-14);color:var(--ink);background:color-mix(in oklab,var(--ink) 6%,transparent);border:1px solid var(--line-strong);cursor:pointer}
+.chip:hover{border-color:var(--ink)}
+.chip .x{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;color:var(--ink-2);font-size:var(--fs-18);line-height:1}
+.chip:hover .x{color:var(--ink);background:color-mix(in oklab,var(--ink) 10%,transparent)}
+.addrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:var(--s-8);align-items:end}
+.fs{border:0;margin:0;padding:0;min-width:0}
+.fs legend{font-size:var(--fs-13);font-weight:500;color:var(--cream-2);padding:0;margin-bottom:var(--s-8)}
+/* email confirmation */
+.confirm{display:grid;gap:var(--s-12)}
+.confirm .notice{margin:0}
+.coderow{display:grid;grid-template-columns:minmax(0,160px) auto;gap:var(--s-8);align-items:end}
+/* radios and switches */
+.opts{display:flex;flex-wrap:wrap;gap:var(--s-8)}
+.opt{display:inline-flex;align-items:center;gap:var(--s-8);min-height:44px;padding:0 var(--s-16);border:1px solid var(--line-strong);border-radius:999px;font-size:var(--fs-14);cursor:pointer}
+.opt:has(input:checked){border-color:var(--ribbon);box-shadow:inset 0 0 0 1px var(--ribbon)}
+.opt input{accent-color:var(--accent-hi);width:18px;height:18px;margin:0}
+.sw{display:flex;justify-content:space-between;align-items:center;gap:var(--s-16);min-height:56px;padding:var(--s-8) 0;border-bottom:1px solid var(--card-edge);cursor:pointer}
+.sw:last-child{border-bottom:0}
+.sw span{display:grid;font-size:var(--fs-14)}
+.sw small{font-size:var(--fs-13);color:var(--ink-2)}
+.sw input{appearance:none;-webkit-appearance:none;flex:none;width:48px;height:28px;margin:0;border-radius:999px;background:var(--field);border:1px solid var(--line-strong);position:relative;cursor:pointer;transition:background .2s,border-color .2s}
+.sw input::before{content:"";position:absolute;top:3px;inset-inline-start:3px;width:20px;height:20px;border-radius:50%;background:var(--cream-2);transition:inset-inline-start .2s var(--ease),background .2s}
+.sw input:checked{background:var(--accent);border-color:var(--accent-hi)}
+.sw input:checked::before{inset-inline-start:23px;background:var(--on-accent)}
+.sw input:focus-visible{outline:2px solid var(--ribbon);outline-offset:3px}
+.meta{display:grid;gap:2px;margin:0;font-size:var(--fs-14);color:var(--ink-2)}
+.meta p{margin:0}
+.meta b{color:var(--ink);font-weight:500}
+/* unsaved changes bar */
+.savebar{position:sticky;bottom:var(--s-16);z-index:5;margin-top:var(--s-32);display:grid;gap:var(--s-12);padding:var(--s-12) var(--s-16);border-radius:14px;background:var(--card-hi);border:1px solid var(--line-strong);box-shadow:var(--sh-sheet)}
+.savebar .line{display:flex;align-items:center;justify-content:space-between;gap:var(--s-12);flex-wrap:wrap}
+.savebar .what{display:flex;align-items:center;gap:var(--s-12);flex-wrap:wrap;font-size:var(--fs-14);color:var(--ink-2)}
+.savebar .notice{margin:0}
+.lbl{font-size:var(--fs-13);font-weight:500;color:var(--cream-2)}
+.note{display:block;font-size:var(--fs-12);color:var(--ink-2);margin:var(--s-8) 0 0}
+.cmsg{display:block;font-size:var(--fs-12);color:var(--err);font-weight:600;margin-top:var(--s-4)}
+.saved{font-size:var(--fs-13);color:var(--ink-2);margin:0}
+@media (max-width:900px){
+  .set{grid-template-columns:minmax(0,1fr);gap:var(--s-12)}
+  .who .pic{margin-inline-start:0}
+  .savebar .line .row{width:100%}
+  .savebar .line .row .btn{flex:1}
+}
+@media (prefers-reduced-motion:reduce){.sw input,.sw input::before{transition:none}}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="Trainer portal">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>Trainer portal</span></div>
+    <a href="25-admin-programs.html">Programs</a>
+    <a href="16-admin-course.html">Course content</a>
+    <a href="20-admin-profile.html" class="m-only" aria-current="page">My profile</a>
+    <div class="foot"><a href="20-admin-profile.html" class="me" aria-current="page">Dr. Manal Al-Hasawi</a><br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+      <header class="top">
+        <div><h1>My profile</h1><div class="crumb">Your details, how you appear on the site, and how you sign in</div></div>
+        <p class="saved" id="savedline" role="status">All changes saved</p>
+      </header>
+
+      <!-- 1. who -->
+      <section class="who" aria-labelledby="who-name">
+        <div class="face" id="face" aria-hidden="true">MA</div>
+        <div class="id">
+          <h2 id="who-name">Dr. Manal Al-Hasawi</h2>
+          <p class="t1" id="who-title">Founder, Think Tank Strategists</p>
+          <p id="who-mail">manal@example.com</p>
+          <p>Member since March 2026</p>
+        </div>
+        <div class="pic">
+          <input type="file" id="photo" accept="image/*" class="vh">
+          <label for="photo" class="btn quiet sm pickbtn" id="photolbl">Change photo</label>
+          <span class="hint" id="photohint">JPG or PNG, square works best. Shown on program pages.</span>
+        </div>
+      </section>
+
+      <!-- 2. public profile -->
+      <section class="set" aria-labelledby="h-pub">
+        <header>
+          <h2 id="h-pub">Public profile</h2>
+          <p>What appears on the site's program pages under "Your trainer".</p>
+          <a class="link" href="02-program.html">Preview on the site</a>
+        </header>
+        <div class="body">
+          <div class="grid-2">
+            <div class="field"><label for="f-nameEn">Display name (English)</label>
+              <input id="f-nameEn" data-k="nameEn" autocomplete="name" aria-describedby="m-nameEn">
+              <span class="msg" id="m-nameEn" hidden></span></div>
+            <div class="field"><label for="f-nameAr">Display name (Arabic)</label>
+              <input id="f-nameAr" data-k="nameAr" value="د. منال الحساوي" lang="ar" dir="rtl" aria-describedby="m-nameAr">
+              <span class="msg" id="m-nameAr" hidden></span></div>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label for="f-titleEn">Professional title (English)</label>
+              <input id="f-titleEn" data-k="titleEn" aria-describedby="m-titleEn">
+              <span class="msg" id="m-titleEn" hidden></span></div>
+            <div class="field"><label for="f-titleAr">Professional title (Arabic)</label>
+              <input id="f-titleAr" data-k="titleAr" value="مؤسسة ثينك تانك للاستراتيجيات" lang="ar" dir="rtl" aria-describedby="m-titleAr">
+              <span class="msg" id="m-titleAr" hidden></span></div>
+          </div>
+          <div class="field"><label for="f-bioEn">Short bio (English)</label>
+            <textarea id="f-bioEn" data-k="bioEn" aria-describedby="c-bioEn m-bioEn"></textarea>
+            <span class="count"><span class="hint">Two or three sentences, written about you.</span><span class="hint num" id="c-bioEn"></span></span>
+            <span class="msg" id="m-bioEn" hidden></span></div>
+          <div class="field"><label for="f-bioAr">Short bio (Arabic)</label>
+            <textarea id="f-bioAr" data-k="bioAr" lang="ar" dir="rtl" aria-describedby="c-bioAr m-bioAr">تعمل د. منال الحساوي مع الجهات الحكومية والشركات في الكويت في الاستراتيجية واستشراف المستقبل وبناء السيناريوهات، وتصمم برامج للقيادات التنفيذية.</textarea>
+            <span class="count"><span class="hint">Shown on the Arabic program pages. If empty, the English bio is shown.</span><span class="hint num" id="c-bioAr"></span></span>
+            <span class="msg" id="m-bioAr" hidden></span></div>
+          <div class="field" id="fx-chips">
+            <span class="lbl" id="l-chips">Areas of expertise</span>
+            <ul class="chips" id="chips" aria-labelledby="l-chips"></ul>
+            <div class="addrow">
+              <input id="f-chip" maxlength="60" aria-label="New area of expertise" placeholder="For example: Policy design" aria-describedby="h-chip m-chips">
+              <button class="btn sec sm" type="button" id="addchip">Add</button>
+            </div>
+            <span class="hint" id="h-chip">Up to 8 areas. Select an area to remove it.</span>
+            <span class="msg" id="m-chips" hidden></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. contact -->
+      <section class="set" aria-labelledby="h-con">
+        <header>
+          <h2 id="h-con">Contact details</h2>
+          <p>Used to sign in and to reach you. Not shown on the site.</p>
+        </header>
+        <div class="body">
+          <div class="field"><label for="f-email">Email</label>
+            <input id="f-email" data-k="email" type="email" dir="ltr" autocomplete="email" aria-describedby="h-email m-email">
+            <span class="hint" id="h-email">You sign in with this address.</span>
+            <span class="msg" id="m-email" hidden></span></div>
+          <div class="confirm" id="confirm" hidden>
+            <div class="notice" id="c-note" tabindex="-1"><div id="c-text"></div></div>
+            <div class="row" id="c-send"><button class="btn sec sm" type="button" id="sendcode">Send code</button></div>
+            <div id="c-enter" hidden>
+              <div class="coderow">
+                <div class="field"><label for="f-code">Confirmation code</label>
+                  <input id="f-code" inputmode="numeric" autocomplete="one-time-code" maxlength="4" dir="ltr" aria-describedby="h-code m-code"></div>
+                <button class="btn sec sm" type="button" id="checkcode">Confirm email</button>
+              </div>
+              <span class="note" id="h-code">4 digits. In this demo the code is 1234.</span>
+              <span class="cmsg" id="m-code" hidden></span>
+            </div>
+          </div>
+          <div class="grid-2">
+            <div class="field"><label for="f-mobile">Mobile</label>
+              <input id="f-mobile" data-k="mobile" type="tel" dir="ltr" autocomplete="tel" aria-describedby="m-mobile">
+              <span class="msg" id="m-mobile" hidden></span></div>
+            <div class="field"><label for="f-office">Office phone (optional)</label>
+              <input id="f-office" data-k="office" type="tel" dir="ltr" aria-describedby="m-office">
+              <span class="msg" id="m-office" hidden></span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. security -->
+      <section class="set" aria-labelledby="h-sec">
+        <header>
+          <h2 id="h-sec">Sign-in and security</h2>
+          <p>Change your password here. This is saved on its own.</p>
+        </header>
+        <div class="body">
+          <div class="meta">
+            <p>Last sign-in: <b>23 November 2026, 20:14</b>, Chrome on a Mac, Kuwait</p>
+            <p>Password last changed: <b id="pwdate">2 September 2026</b></p>
+          </div>
+          <form id="pw" class="stack" novalidate>
+            <input type="text" autocomplete="username" value="manal@example.com" hidden>
+            <div class="field"><label for="pw-cur">Current password</label>
+              <input id="pw-cur" type="password" autocomplete="current-password" aria-describedby="m-pw-cur">
+              <span class="msg" id="m-pw-cur" hidden></span></div>
+            <div class="grid-2">
+              <div class="field"><label for="pw-new">New password</label>
+                <input id="pw-new" type="password" autocomplete="new-password" aria-describedby="h-pw-new m-pw-new">
+                <span class="hint" id="h-pw-new">At least 8 characters.</span>
+                <span class="msg" id="m-pw-new" hidden></span></div>
+              <div class="field"><label for="pw-conf">Confirm new password</label>
+                <input id="pw-conf" type="password" autocomplete="new-password" aria-describedby="m-pw-conf">
+                <span class="msg" id="m-pw-conf" hidden></span></div>
+            </div>
+            <div class="row"><button class="btn sec sm" type="submit">Change password</button></div>
+          </form>
+        </div>
+      </section>
+
+      <!-- 5. preferences -->
+      <section class="set" aria-labelledby="h-pref">
+        <header>
+          <h2 id="h-pref">Preferences</h2>
+          <p>How the portal looks to you and which emails you get.</p>
+        </header>
+        <div class="body">
+          <fieldset class="fs">
+            <legend>Interface language</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="lang" value="en" data-k="lang"> English</label>
+              <label class="opt"><input type="radio" name="lang" value="ar" data-k="lang"> Arabic</label>
+            </div>
+            <p class="note" id="langhint">Course content keeps its own language. This changes menus and buttons only.</p>
+          </fieldset>
+          <fieldset class="fs">
+            <legend>Email me when</legend>
+            <label class="sw"><span>A trainee submits an assignment<small>One email per submission, with a link to review it.</small></span><input type="checkbox" role="switch" data-k="nAssign"></label>
+            <label class="sw"><span>A survey closes<small>With the response count and a link to the results.</small></span><input type="checkbox" role="switch" data-k="nSurvey"></label>
+            <label class="sw"><span>Exam results are ready<small>After the last attempt window ends.</small></span><input type="checkbox" role="switch" data-k="nExam"></label>
+          </fieldset>
+        </div>
+      </section>
+
+      <div class="savebar" id="savebar" role="region" aria-label="Unsaved changes" hidden>
+        <div class="notice err" id="saveerr" role="alert" hidden><div id="saveerrtext"></div></div>
+        <div class="line">
+          <div class="what"><span class="stamp wait">Unsaved changes</span><span id="dcount" class="num"></span></div>
+          <div class="row">
+            <button class="btn quiet sm" type="button" id="discard">Discard</button>
+            <button class="btn sm" type="button" id="save">Save changes</button>
+          </div>
+        </div>
+      </div>
+
+      <p class="synthetic tail">Names, dates and figures are sample data. <a href="index.html">Screen map</a></p>
+    </div>
+  </main>
+</div>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const copy=o=>JSON.parse(JSON.stringify(o));
+const BIO_MAX=400, CHIP_MAX=8;
+
+// the saved profile; the page edits a copy and compares
+let SAVED={
+  nameEn:'Dr. Manal Al-Hasawi',
+  nameAr:''/* read from the field below */,
+  titleEn:'Founder, Think Tank Strategists',
+  titleAr:''/* read from the field below */,
+  bioEn:'Dr. Manal Al-Hasawi works with public bodies and companies in Kuwait on strategy, strategic foresight and scenario planning. She designs and leads programs for executive teams who need to plan for more than one possible future. Her workshops are delivered in Arabic and English.',
+  bioAr:''/* read from the field below */,
+  email:'manal@example.com', mobile:'+965 5512 3478', office:'',
+  chips:['Strategic foresight','Scenario planning','Executive leadership','Institutional capability'],
+  photo:false, lang:'en', nAssign:true, nSurvey:true, nExam:false
+};
+// the Arabic values live in the fields' markup
+['nameAr','titleAr','bioAr'].forEach(k=>SAVED[k]=$('f-'+k).defaultValue);
+let cur=copy(SAVED);
+let mail={st:'same',sentTo:'',ok:''}; // st: same | pending | sent | confirmed
+let photoName='';
+const LABEL={nameEn:'display name',nameAr:'Arabic display name',titleEn:'title',titleAr:'Arabic title',bioEn:'bio',bioAr:'Arabic bio',email:'email',mobile:'mobile',office:'office phone',chips:'areas of expertise',photo:'photo',lang:'language',nAssign:'notification',nSurvey:'notification',nExam:'notification'};
+
+const kInputs=()=>[...document.querySelectorAll('[data-k]')];
+function fill(o){
+  kInputs().forEach(el=>{
+    const k=el.dataset.k;
+    if(el.type==='checkbox')el.checked=!!o[k];
+    else if(el.type==='radio')el.checked=el.value===o[k];
+    else el.value=o[k];
+  });
+  chips();face();counts();
+}
+function read(){
+  kInputs().forEach(el=>{
+    const k=el.dataset.k;
+    if(el.type==='checkbox')cur[k]=el.checked;
+    else if(el.type==='radio'){if(el.checked)cur[k]=el.value}
+    else cur[k]=el.value;
+  });
+}
+const changed=()=>Object.keys(SAVED).filter(k=>JSON.stringify(SAVED[k])!==JSON.stringify(cur[k]));
+
+function sync(){
+  const d=changed();
+  $('savebar').hidden=!d.length;
+  $('savedline').hidden=!!d.length;
+  $('dcount').textContent=d.length===1?'1 change':`${d.length} changes`;
+  if(!d.length)$('saveerr').hidden=true;
+  $('langhint').textContent=cur.lang==='ar'
+    ?'The Arabic interface is not part of this demo. Your choice is kept when you save.'
+    :'Course content keeps its own language. This changes menus and buttons only.';
+}
+
+function counts(){
+  [['bioEn',$('c-bioEn')],['bioAr',$('c-bioAr')]].forEach(([k,el])=>{
+    const n=(cur[k]||'').length;el.textContent=`${n} of ${BIO_MAX} characters`;
+  });
+}
+function face(){
+  const f=$('face');
+  if(cur.photo){f.classList.add('picked');f.innerHTML='Photo<br>selected';
+    $('photohint').textContent=SAVED.photo&&cur.photo===SAVED.photo?'Your new photo is on program pages.':`${photoName||'New photo'} is ready. Save changes to put it on program pages.`;
+    $('photolbl').textContent='Choose another photo';}
+  else{f.classList.remove('picked');f.textContent=initials(cur.nameEn);
+    $('photohint').textContent='JPG or PNG, square works best. Shown on program pages.';$('photolbl').textContent='Change photo';}
+}
+function initials(n){
+  const w=n.replace(/^Dr\.?\s+/i,'').split(/\s+/).filter(x=>x&&/^[A-Za-z]/.test(x));
+  return ((w[0]||'')[0]||'')+((w[w.length-1]||'')[0]||'')||'MA';
+}
+
+// chips
+function chips(){
+  $('chips').innerHTML=cur.chips.map((c,i)=>`<li><button class="chip" type="button" data-rm="${i}" aria-label="Remove ${esc(c)}">${esc(c)}<span class="x" aria-hidden="true">&times;</span></button></li>`).join('');
+}
+function addChip(){
+  const v=$('f-chip').value.trim().replace(/\s+/g,' ');
+  let m='';
+  if(!v)m='Type an area of expertise, then select Add.';
+  else if(cur.chips.some(c=>c.toLowerCase()===v.toLowerCase()))m=`"${v}" is already in your list.`;
+  else if(cur.chips.length>=CHIP_MAX)m=`You can list up to ${CHIP_MAX} areas. Remove one to add another.`;
+  else if(v.length>40)m='Keep each area under 40 characters, for example "Policy design".';
+  setMsg('chips',m,'fx-chips');
+  if(m){$('f-chip').focus();return}
+  cur.chips.push(v);$('f-chip').value='';chips();sync();$('f-chip').focus();
+}
+
+// messages
+function setMsg(k,m,wrapId){
+  const el=$('m-'+k);if(!el)return;
+  el.textContent=m;el.hidden=!m;
+  const w=wrapId?$(wrapId):($('f-'+k)||$(k)||el).closest('.field');
+  if(w)w.classList.toggle('bad',!!m);
+  const inp=$('f-'+k);if(inp)inp.setAttribute('aria-invalid',m?'true':'false');
+}
+
+// email confirmation
+const MAIL_RE=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+function mailState(){
+  const v=cur.email.trim();
+  if(v===SAVED.email){mail={st:'same',sentTo:'',ok:''};$('confirm').hidden=true;return}
+  if(mail.st==='confirmed'&&mail.ok===v){return}
+  if(mail.st==='sent'&&mail.sentTo===v){return}
+  mail={st:'pending',sentTo:'',ok:''};
+  if(!MAIL_RE.test(v)){$('confirm').hidden=true;return}
+  $('confirm').hidden=false;$('c-send').hidden=false;$('c-enter').hidden=true;
+  $('c-note').className='notice';
+  $('c-text').innerHTML=`<b>A confirmation code goes to ${esc(v)}.</b> You keep signing in with ${esc(SAVED.email)} until you confirm the new address.`;
+}
+$('sendcode').addEventListener('click',()=>{
+  mail={st:'sent',sentTo:cur.email.trim(),ok:''};
+  $('c-send').hidden=true;$('c-enter').hidden=false;$('f-code').value='';setMsg('code','');
+  $('c-text').innerHTML=`<b>Code sent to ${esc(mail.sentTo)}.</b> Type the 4 digits from that email.`;
+  $('f-code').focus();ttToast('Confirmation code sent.');
+});
+function checkCode(){
+  const v=$('f-code').value.trim();
+  if(!/^\d{4}$/.test(v)){setMsg('code','Type the 4-digit code from the email.');$('f-code').focus();return}
+  if(v!=='1234'){setMsg('code','That code does not match. Check the latest email from us and type the 4 digits again.');$('f-code').select();return}
+  setMsg('code','');$('saveerr').hidden=true;mail={st:'confirmed',sentTo:mail.sentTo,ok:mail.sentTo};
+  $('c-enter').hidden=true;$('c-note').className='notice';
+  $('c-text').innerHTML=`<span class="stamp ok"><span class="vh">Status: </span>Confirmed</span> <b>${esc(mail.ok)}</b> is confirmed. Save changes to start signing in with it.`;
+  setMsg('email','');$('c-note').focus();
+}
+$('checkcode').addEventListener('click',checkCode);
+$('f-code').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();checkCode()}});
+
+// photo
+$('photo').addEventListener('change',e=>{
+  const f=e.target.files&&e.target.files[0];if(!f)return;
+  photoName=f.name;cur.photo=photoName;face();sync();e.target.value='';
+});
+
+// edits
+document.addEventListener('input',e=>{
+  const t=e.target;
+  if(t.dataset&&t.dataset.k){
+    read();
+    if(t.dataset.k==='email')mailState();
+    if(t.dataset.k==='nameEn'&&!cur.photo)face();
+    if(t.id&&t.id.startsWith('f-'))setMsg(t.dataset.k,'');
+    $('saveerr').hidden=true;counts();sync();
+  }
+  else if(t.id==='f-chip')setMsg('chips','','fx-chips');
+  else if(t.id&&t.id.startsWith('pw-'))setMsg(t.id,'');
+});
+document.addEventListener('change',e=>{if(e.target.dataset&&e.target.dataset.k&&(e.target.type==='radio'||e.target.type==='checkbox')){read();sync()}});
+$('addchip').addEventListener('click',addChip);
+$('f-chip').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();addChip()}});
+$('chips').addEventListener('click',e=>{
+  const b=e.target.closest('[data-rm]');if(!b)return;
+  const i=+b.dataset.rm,name=cur.chips[i];cur.chips.splice(i,1);chips();sync();
+  const next=$('chips').querySelectorAll('.chip')[Math.min(i,cur.chips.length-1)];
+  (next||$('f-chip')).focus();ttToast(`${name} removed. Save changes to update the site.`);
+});
+
+// save / discard
+function validate(){
+  const v=cur,bad=[];
+  const need=(k,ok,m)=>{setMsg(k,ok?'':m,k==='chips'?'fx-chips':null);if(!ok)bad.push(k)};
+  need('nameEn',v.nameEn.trim(),'Enter your name in English. It appears on program pages.');
+  need('nameAr',v.nameAr.trim(),'Enter your name in Arabic. It appears on the Arabic program pages.');
+  need('titleEn',v.titleEn.trim(),'Enter your title in English, for example "Founder, Think Tank Strategists".');
+  need('bioEn',v.bioEn.trim()&&v.bioEn.length<=BIO_MAX,!v.bioEn.trim()?'Write two or three sentences about your work. The English bio appears on every program page.':`Shorten the bio to ${BIO_MAX} characters or fewer. It is now ${v.bioEn.length}.`);
+  need('bioAr',v.bioAr.length<=BIO_MAX,`Shorten the Arabic bio to ${BIO_MAX} characters or fewer. It is now ${v.bioAr.length}.`);
+  need('chips',v.chips.length>0,'Add at least one area of expertise. Program pages list them under your name.');
+  const em=v.email.trim();
+  if(!MAIL_RE.test(em))need('email',false,'Enter an email address like name@example.com.');
+  else need('email',em===SAVED.email||(mail.st==='confirmed'&&mail.ok===em),mail.st==='sent'?'Type the code we sent to the new address, then select Confirm email.':'Confirm the new address first: select Send code, then type the code from the email.');
+  const KW=/^\+965\s?\d{4}\s?\d{4}$/;
+  need('mobile',KW.test(v.mobile.trim()),'Enter a Kuwaiti mobile number: +965 and 8 digits, for example +965 5512 3478.');
+  need('office',!v.office.trim()||KW.test(v.office.trim()),'Enter the office number as +965 and 8 digits, or leave it empty.');
+  return bad;
+}
+$('save').addEventListener('click',()=>{
+  read();const bad=validate();
+  if(bad.length){
+    $('saveerrtext').innerHTML=`<b>Not saved yet.</b> ${bad.length===1?'One field needs':bad.length+' fields need'} attention. Fix ${bad.length===1?'it':'them'}, then select Save changes again.`;
+    $('saveerr').hidden=false;
+    const k=bad[0],el=k==='chips'?$('f-chip'):k==='email'&&mail.st==='sent'?$('f-code'):$('f-'+k);
+    el.focus();return;
+  }
+  const pub=['nameEn','nameAr','titleEn','titleAr','bioEn','bioAr','chips','photo'].some(k=>changed().includes(k));
+  ['nameEn','nameAr','titleEn','titleAr','bioEn','bioAr','email','mobile','office'].forEach(k=>cur[k]=cur[k].trim());
+  SAVED=copy(cur);mail={st:'same',sentTo:'',ok:''};$('confirm').hidden=true;
+  $('who-name').textContent=SAVED.nameEn;$('who-title').textContent=SAVED.titleEn;$('who-mail').textContent=SAVED.email;
+  document.querySelector('.side .me').textContent=SAVED.nameEn;
+  document.querySelector('#pw input[autocomplete=username]').value=SAVED.email;
+  fill(SAVED);sync();$('savedline').setAttribute('tabindex','-1');$('savedline').focus();
+  ttToast(pub?'Changes saved. Program pages now show your updated profile.':'Changes saved.');
+});
+$('discard').addEventListener('click',()=>{
+  cur=copy(SAVED);mail={st:'same',sentTo:'',ok:''};photoName='';$('confirm').hidden=true;$('f-chip').value='';
+  document.querySelectorAll('.set .msg').forEach(m=>m.hidden=true);
+  document.querySelectorAll('.field.bad').forEach(f=>f.classList.remove('bad'));
+  document.querySelectorAll('[aria-invalid]').forEach(f=>f.setAttribute('aria-invalid','false'));
+  fill(SAVED);sync();$('savedline').setAttribute('tabindex','-1');$('savedline').focus();
+  ttToast('Changes discarded. Your profile is as it was.');
+});
+
+// password: saved on its own
+$('pw').addEventListener('submit',e=>{
+  e.preventDefault();
+  const c=$('pw-cur').value,n=$('pw-new').value,f=$('pw-conf').value,bad=[];
+  const pm=(id,ok,m)=>{setMsg(id,ok?'':m);$(id).setAttribute('aria-invalid',ok?'false':'true');$(id).closest('.field').classList.toggle('bad',!ok);if(!ok)bad.push(id)};
+  pm('pw-cur',c.length>0,'Enter your current password.');
+  pm('pw-new',n.length>=8&&n!==c,n.length<8?`Use at least 8 characters. This one has ${n.length}.`:'Choose a password different from your current one.');
+  pm('pw-conf',f.length>0&&f===n,!f?'Type the new password again to confirm it.':'The two new passwords do not match. Type it again in both fields.');
+  if(bad.length){$(bad[0]).focus();return}
+  e.target.reset();$('pwdate').textContent='Today, 24 November 2026';
+  ttToast('Password changed. Use the new one next time you sign in.');
+});
+
+fill(SAVED);sync();
+</script>
+</body>
+</html>

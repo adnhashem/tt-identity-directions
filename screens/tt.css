@@ -167,6 +167,7 @@ table.t{width:100%;border-collapse:collapse;font-size:var(--fs-14)}
 .side a:hover{color:var(--cream);background:rgba(246,239,225,.08)}
 .side a[aria-current]{color:var(--ink);background:linear-gradient(180deg,var(--card-hi),var(--card));font-weight:700;box-shadow:var(--sh-low)}
 .side .n{min-width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:var(--fs-12);font-weight:800;color:var(--cream);background:var(--ribbon);font-variant-numeric:tabular-nums}
+.side a.m-only{display:none}
 .side .foot{margin-top:auto;font-size:var(--fs-12);color:var(--cream-2);padding-inline:var(--s-8)}
 .work{min-width:0;padding:var(--s-24) var(--s-32) var(--s-64) var(--s-8)}
 .work>.sheet{min-height:calc(100svh - 48px);padding:var(--s-32) var(--s-48)}
@@ -219,6 +220,7 @@ table.t{width:100%;border-collapse:collapse;font-size:var(--fs-14)}
   .shell{grid-template-columns:minmax(0,1fr)}
   .side{flex-direction:row;overflow-x:auto;align-items:center;padding:var(--s-12) var(--s-16);gap:var(--s-8)}
   .side .brand{margin:0} .side .brand span,.side .foot{display:none}
+  .side a.m-only{display:flex}
   .side a{white-space:nowrap;gap:var(--s-8)}
   .work{padding:0 var(--s-8) var(--s-32)} .work>.sheet{padding:var(--s-24) var(--s-16)}
   .steps li{padding:8px 6px;font-size:var(--fs-12)}

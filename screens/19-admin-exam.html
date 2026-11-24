@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Exam and survey — Think Tank trainer portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
+<style>
+.work{min-width:0}
+[tabindex="-1"]:focus{outline:0}
+.crumb a{text-decoration:underline;text-underline-offset:4px}
+.sub{margin:var(--s-4) 0 0;font-size:var(--fs-14);color:var(--ink-2)}
+.note{font-size:var(--fs-14);color:var(--ink-2);max-width:66ch}
+.tail{margin-top:var(--s-48)}
+h3{font-size:var(--fs-18)}
+.hrow{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s-8) var(--s-16);flex-wrap:wrap;margin:var(--s-32) 0 var(--s-12)}
+.hrow h3{margin:0}.hrow p{margin:0;font-size:var(--fs-14);color:var(--ink-2)}
+
+/* segmented switch: Questions / Results */
+.seg{display:inline-flex;border:1px solid var(--line-strong);border-radius:999px;padding:3px;margin-bottom:var(--s-24)}
+.seg button{font:inherit;font-family:var(--font-head);font-size:var(--fs-14);font-weight:500;min-height:44px;padding-inline:var(--s-24);border:0;border-radius:999px;background:none;color:var(--ink-2);cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--card-hi);color:var(--ink);font-weight:600;box-shadow:inset 0 0 0 1px var(--line-strong)}
+
+/* settings */
+.set{border:1px solid var(--card-edge);border-radius:12px;padding:var(--s-16) var(--s-24) var(--s-8);margin:0;display:grid;grid-template-columns:repeat(3,minmax(0,200px));gap:var(--s-16) var(--s-24)}
+.set legend{font-family:var(--font-head);font-weight:600;padding-inline:var(--s-8);margin-inline-start:calc(var(--s-8)*-1)}
+.set .field label{display:flex;gap:var(--s-8);align-items:center}
+
+/* question cards */
+.qs{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-strong)}
+.qc{display:grid;grid-template-columns:var(--s-48) minmax(0,1fr);gap:var(--s-16);padding:var(--s-24) 0;border-bottom:1px solid var(--card-edge)}
+.qc>b{font-family:var(--font-head);font-size:var(--fs-28);font-weight:600;line-height:1.1;color:var(--ribbon);font-variant-numeric:tabular-nums}
+.qc h4{font-size:var(--fs-16);font-weight:600;line-height:1.5;margin:0 0 var(--s-8)}
+.qc .kind{display:block;margin-bottom:var(--s-4)}
+.ol{list-style:none;margin:0;padding:0;display:grid;gap:var(--s-4);font-size:var(--fs-14)}
+.ol li{display:flex;gap:var(--s-12);align-items:center;color:var(--ink-2)}
+.ol li.ok{color:var(--ink);font-weight:500}
+.dot{flex:none;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--line-strong)}
+.ok .dot{border-color:var(--ok);background:radial-gradient(circle,var(--ok) 0 4px,transparent 5px)}
+.ol .stamp{margin-inline-start:var(--s-4)}
+.qa{display:flex;gap:0 var(--s-12);flex-wrap:wrap;align-items:center;margin-top:var(--s-8)}
+.qa .lbtn{padding-inline:0}
+.qa .lbtn+.lbtn{margin-inline-start:var(--s-4)}
+.qc .notice{margin-top:var(--s-12)}
+.qc .notice p{margin:0 0 var(--s-8)}
+/* inline editor */
+.ed{display:grid;gap:var(--s-16);max-width:720px}
+.ed fieldset{border:0;margin:0;padding:0;display:grid;gap:var(--s-8)}
+.ed legend{font-size:var(--fs-13);font-weight:500;color:var(--ink-2);margin-bottom:var(--s-4)}
+.orow{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--s-8);align-items:center}
+.cor{display:flex;align-items:center;gap:var(--s-8);min-height:44px;min-width:44px;font-family:var(--font-head);font-weight:600;color:var(--ink-2);cursor:pointer}
+.cor input{width:20px;height:20px;margin:0;accent-color:var(--ok)}
+.cor:has(input:checked){color:var(--ok)}
+.orow input[type=text]{font:inherit;color:var(--ink);background:var(--field);border:1px solid var(--line-strong);border-radius:10px;padding:8px 12px;width:100%;min-height:44px}
+.orow input[type=text]:focus-visible{outline:2px solid var(--ribbon);border-color:var(--ribbon)}
+.ed .bad>input[type=text],.ed .field.bad textarea,.ed .field.bad select{border-color:var(--err)}
+.msg{font-size:var(--fs-12);color:var(--err);font-weight:600}
+.save{display:flex;justify-content:space-between;align-items:center;gap:var(--s-12) var(--s-24);flex-wrap:wrap;margin-top:var(--s-24);padding-top:var(--s-16);border-top:1px solid var(--line-strong)}
+.save p{margin:0;font-size:var(--fs-14);color:var(--ink-2)}
+.save .notice{flex-basis:100%}
+.add{margin-top:var(--s-16)}
+
+/* results */
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--s-12);margin:0 0 var(--s-8)}
+.kpis div{border:1px solid var(--card-edge);border-radius:12px;padding:var(--s-12) var(--s-16);background:var(--card-hi)}
+.kpis dt{font-size:var(--fs-13);color:var(--ink-2)}
+.kpis dd{margin:0;font-family:var(--font-head);font-size:var(--fs-28);font-weight:600;line-height:1.3;font-variant-numeric:tabular-nums}
+.kpis dd small{font-family:var(--font-body);font-size:var(--fs-13);font-weight:400;color:var(--ink-2);display:block;line-height:1.5}
+.meter{flex:1;min-width:60px;height:10px;border-radius:999px;background:color-mix(in oklab,var(--ink) 12%,transparent);overflow:hidden}
+.meter i{display:block;height:100%;border-radius:999px;background:var(--ink-2)}
+.meter.lo i{background:var(--ribbon)}
+.bar{display:flex;gap:var(--s-12);align-items:center;min-width:160px}
+.bar b{font-variant-numeric:tabular-nums;font-weight:600;min-width:3.2em;text-align:end}
+.t .qt{max-width:42ch}
+.t .qt small,.t small{display:block;font-size:var(--fs-12);color:var(--ink-2)}
+.t td.w{width:40%}
+.t .m{display:none}
+.lowtag{color:var(--ribbon);font-weight:600}
+
+/* survey results */
+.sr{list-style:none;margin:0;padding:0;border-top:1px solid var(--line-strong)}
+.sr>li{padding:var(--s-24) 0;border-bottom:1px solid var(--card-edge);display:grid;gap:var(--s-12)}
+.sr h4{margin:0;font-size:var(--fs-16);font-weight:600}
+.avg{display:flex;gap:var(--s-16);align-items:center;max-width:560px}
+.avg strong{font-family:var(--font-head);font-size:var(--fs-28);font-weight:600;font-variant-numeric:tabular-nums;line-height:1;white-space:nowrap}
+.avg strong span{font-family:var(--font-body);font-size:var(--fs-14);font-weight:400;color:var(--ink-2)}
+.dist{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:var(--s-4) var(--s-12);align-items:center;max-width:560px;font-size:var(--fs-13);color:var(--ink-2)}
+.dist .meter{height:8px}
+.dist b{font-weight:500;color:var(--ink);font-variant-numeric:tabular-nums;text-align:end}
+.quotes{display:grid;gap:var(--s-12);margin:0;padding:0;list-style:none;max-width:66ch}
+.quotes blockquote{margin:0;padding:var(--s-8) var(--s-16);border-inline-start:3px solid var(--ribbon);font-size:var(--fs-14);color:var(--ink)}
+#sres h3:focus{outline:0}
+
+@media (max-width:900px){
+  .set{grid-template-columns:minmax(0,1fr);padding-inline:var(--s-16)}
+  .qc{grid-template-columns:minmax(0,1fr);gap:var(--s-4)}
+  .qc>b{font-size:var(--fs-16);color:var(--ink-2)}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .t .x{display:none}.t .m{display:block}
+  .t td.w{width:auto}
+  .bar{min-width:110px}
+  .save .btn{width:100%}
+  .seg{display:flex}.seg button{flex:1;padding-inline:var(--s-12)}
+}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="Trainer portal">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>Trainer portal</span></div>
+    <a href="25-admin-programs.html">Programs</a>
+    <a href="16-admin-course.html" aria-current="page">Course content</a>
+    <a href="20-admin-profile.html" class="m-only">My profile</a>
+    <div class="foot"><a href="20-admin-profile.html" class="me">Dr. Manal Al-Hasawi</a><br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+      <header class="top">
+        <div>
+          <h1>Exam and survey</h1>
+          <div class="crumb" id="crumb"></div>
+          <p class="sub" id="sub"></p>
+        </div>
+        <a class="link" id="back" href="18-admin-chapter.html?ch=2"></a>
+      </header>
+
+      <div class="tabs" role="tablist" aria-label="Exam and survey">
+        <button role="tab" id="t-exam" aria-controls="p-exam" aria-selected="true">Exam</button>
+        <button role="tab" id="t-survey" aria-controls="p-survey" aria-selected="false" tabindex="-1">Survey</button>
+      </div>
+
+      <section role="tabpanel" id="p-exam" aria-labelledby="t-exam" tabindex="-1"></section>
+      <section role="tabpanel" id="p-survey" aria-labelledby="t-survey" tabindex="-1" hidden></section>
+
+      <p class="synthetic tail">Names, dates and figures are sample data. <a href="index.html">Screen map</a></p>
+    </div>
+  </main>
+</div>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const L='ABCDEF';
+let uid=100;const nid=()=>'n'+(++uid);
+
+const ch=(n=>[1,2,3,4].includes(n)?n:2)(+new URLSearchParams(location.search).get('ch'));
+const TITLES={1:'Why foresight?',2:'Reading the signals',3:'Building scenarios',4:'From scenario to decision'};
+const SESS={1:'Goes with the 14 December session',2:'Goes with the 15 December session',3:'Goes with the 16 December session',4:'After the last session · draft, not yet published'};
+
+/* students: [name, latest score, attempts used, first score if retaken]; absent = not taken */
+const ROSTER=['Noura Al-Sabah','Fahad Al-Shammari','Hannah Clarke','Sarah Al-Enezi','Yousef Al-Rashidi','Abdulaziz Al-Mutairi','Dalal Al-Khaled','Mishari Al-Ajmi','Khalid Al-Fahad','Reem Al-Otaibi','Bader Al-Kandari','Lulwa Al-Hajeri','Omar Al-Saleh','Maryam Al-Dosari','Faisal Al-Azmi','Jana Al-Bader'];
+const RATE=(id,q,dist)=>({id,type:'rate',q,res:dist?{dist}:null});
+
+const DATA={
+ 1:{exam:{pass:60,att:2,timer:'none',saved:'10 December 2026',
+   qs:[{id:'a1',q:'What does foresight set out to do?',o:['Predict the one future that will happen','Explore several possible futures so you can prepare for them','Replace the organization\'s strategy','Analyze last year\'s results'],a:1,ok:16},
+       {id:'a2',q:'Which time horizon does foresight usually work with?',o:['The next quarter','The next budget year','Five to twenty years ahead','Only the past five years'],a:2,ok:15},
+       {id:'a3',q:'Why are organizations that skip foresight often surprised?',o:['They plan only for the future they expect','They spend too much on research','They change strategy too often','They rely on outside consultants'],a:0,ok:12},
+       {id:'a4',q:'Which statement best describes a scenario?',o:['A forecast with a set probability','A plausible story of how the future could unfold','A list of yearly goals','A budget plan for the next five years'],a:1,ok:15}],
+   took:{'Noura Al-Sabah':[4,1],'Hannah Clarke':[4,1],'Reem Al-Otaibi':[4,1],'Dalal Al-Khaled':[4,1],'Khalid Al-Fahad':[4,1],'Maryam Al-Dosari':[4,1],'Fahad Al-Shammari':[4,1],'Jana Al-Bader':[4,1],
+         'Sarah Al-Enezi':[3,1],'Yousef Al-Rashidi':[3,1],'Abdulaziz Al-Mutairi':[3,1],'Mishari Al-Ajmi':[3,1],'Bader Al-Kandari':[3,1],'Lulwa Al-Hajeri':[3,1],'Omar Al-Saleh':[3,2,2],'Faisal Al-Azmi':[3,1]}},
+  survey:{saved:'10 December 2026',resp:15,qs:[
+   RATE('s1','The chapter was explained clearly',[0,0,1,5,9]),
+   RATE('s2','There was enough time for the exercise',[0,0,3,7,5]),
+   {id:'s3',type:'choice',q:'Which part of the chapter helped you most?',o:['The video','The information text','The session discussion'],res:{counts:[6,3,6]}},
+   {id:'s4',type:'text',q:'What would you change about this chapter?',res:{n:4,quotes:['A clear start. The difference between forecasting and foresight finally makes sense to me.','One more example from the public sector would help.']}}]}},
+ 2:{exam:{pass:60,att:2,timer:'none',saved:'12 December 2026',
+   qs:[{id:'b1',q:'What sets a weak signal apart from a trend?',o:['It has been backed by data for years','It is an early, scattered sign of a change whose direction is not yet clear','It only ever comes from an official body','It applies to the technology sector and no other'],a:1,ok:14},
+       {id:'b2',q:'Similar signals keep appearing from sources that have nothing to do with one another. What is the most likely conclusion?',o:['The sources are copying one another','It is noise that can be ignored','A trend is forming and is worth following','The change has already come and gone'],a:2,ok:13},
+       {id:'b3',q:'Which of these is not one of the five scanning areas covered in the chapter?',o:['Society','Technology','The environment','Senior management\'s opinion'],a:3,ok:15},
+       {id:'b4',q:'What is the most common mistake when scanning for signals?',o:['Collecting only the signals that confirm what we already believe','Recording the source of every signal','Scanning outside our own sector','Reviewing the signals at regular intervals'],a:0,ok:8},
+       {id:'b5',q:'You have logged a new signal that affects your sector. What is the most useful next step?',o:['Treat it as a confirmed forecast and build on it','Wait for it to show up in official reports','Circulate it before checking its source','Decide what to watch to know that it is growing'],a:3,ok:12}],
+   took:{'Yousef Al-Rashidi':[2,1],'Omar Al-Saleh':[2,2,2],
+         'Noura Al-Sabah':[5,1],'Hannah Clarke':[5,1],'Dalal Al-Khaled':[5,1],'Reem Al-Otaibi':[5,1],'Khalid Al-Fahad':[5,1],'Maryam Al-Dosari':[5,1],
+         'Fahad Al-Shammari':[4,1],'Sarah Al-Enezi':[4,1],'Abdulaziz Al-Mutairi':[4,2,2],'Mishari Al-Ajmi':[4,1],'Bader Al-Kandari':[4,1],'Lulwa Al-Hajeri':[4,1]}},
+  survey:{saved:'12 December 2026',resp:12,qs:[
+   RATE('s1','How clear was the explanation in this chapter?',[0,0,1,5,6]),
+   RATE('s2','How useful was this chapter for your work?',[0,1,3,5,3]),
+   {id:'s4',type:'text',q:'What would you change about this chapter? (optional)',res:{n:5,quotes:['The scanning exercise needed more time. We had to rush the last two areas.','Seeing real signals from the Gulf made the idea click. More examples like that, please.']}}]}},
+ 3:{exam:{pass:60,att:2,timer:'none',saved:'13 December 2026',
+   qs:[{id:'c1',q:'What do the two axes of a scenario matrix represent?',o:['The two most likely trends','Two critical uncertainties that are independent of each other','Cost and benefit','The past and the present'],a:1,ok:3},
+       {id:'c2',q:'How many scenarios does a two-axis matrix produce?',o:['Two','Three','Four','Eight'],a:2,ok:3},
+       {id:'c3',q:'What makes a scenario useful for decisions?',o:['It is the one most likely to happen','It is plausible and challenges current assumptions','It confirms the current plan','It contains precise numbers'],a:1,ok:2}],
+   took:{'Hannah Clarke':[3,1],'Noura Al-Sabah':[2,1],'Reem Al-Otaibi':[3,1]}},
+  survey:{saved:'13 December 2026',resp:2,qs:[
+   RATE('s1','The chapter was explained clearly',[]),
+   RATE('s2','There was enough time for the exercise',[]),
+   {id:'s3',type:'choice',q:'Which part of the chapter helped you most?',o:['The video','The scenario building guide','The session exercise'],res:{counts:[]}},
+   {id:'s4',type:'text',q:'What would you change about this chapter?',res:{n:0,quotes:[]}}]}},
+ 4:{exam:null,survey:null}
+};
+const C=DATA[ch];
+const MIN_RESP=5;
+let ex=C.exam,sv=C.survey;
+let view='q',dirtyE=false,dirtyS=false,ed=null,conf=null,saveErr='',sed=null,sconf=null,ssaveErr='',showRes=false;
+
+/* ---------- header ---------- */
+$('crumb').innerHTML=`<a href="16-admin-course.html">Course content</a> › <a href="16-admin-course.html">Foresight &amp; Futures Thinking</a> › <a href="18-admin-chapter.html?ch=${ch}">Chapter ${ch}</a> › <span aria-current="page">Exam and survey</span>`;
+$('sub').textContent=`Chapter ${ch} · ${TITLES[ch]} · ${SESS[ch]}`;
+$('back').href=`18-admin-chapter.html?ch=${ch}`;$('back').textContent=`Back to chapter ${ch}`;
+document.title=`Exam and survey: ${TITLES[ch]} — Think Tank trainer portal`;
+
+/* ---------- tabs ---------- */
+const tabs=[$('t-exam'),$('t-survey')];
+const pick=(t,focus)=>{tabs.forEach(b=>{const on=b===t;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;$(b.getAttribute('aria-controls')).hidden=!on});if(focus)t.focus();history.replaceState(null,'',location.search+(t.id==='t-survey'?'#survey':''))};
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>pick(t));t.addEventListener('keydown',e=>{
+  const k={ArrowRight:1,ArrowLeft:-1}[e.key];if(k){e.preventDefault();pick(tabs[(i+k+2)%2],true)}
+  if(e.key==='Home'){e.preventDefault();pick(tabs[0],true)}if(e.key==='End'){e.preventDefault();pick(tabs[1],true)}})});
+
+/* ---------- exam: results numbers ---------- */
+const pctOf=(s,n)=>Math.round(s*100/n);
+function examStats(){
+  const T=ex.took||{},names=Object.keys(T),nQ=ex.qs0||ex.qs.length;
+  let attempts=0,correct=0;
+  names.forEach(n=>{const [s,u,f]=T[n];attempts+=u;correct+=s+(u>1?f:0)});
+  const rows=names.map(n=>{const [s,u]=T[n],p=pctOf(s,nQ);return{n,s,u,p,pass:p>=ex.pass0}});
+  const passed=rows.filter(r=>r.pass).length,fail=rows.filter(r=>!r.pass),left=fail.filter(r=>r.u<ex.att0).length;
+  return{took:names.length,attempts,avg:attempts?pctOf(correct,attempts*nQ):0,passed,fail:fail.length,left,rows,nQ};
+}
+
+/* ---------- exam: render ---------- */
+function renderExam(){
+  const P=$('p-exam');
+  if(!ex){P.innerHTML=`<div class="empty"><h3>No exam in this chapter yet</h3><p>An exam is a set of multiple-choice questions students answer after the chapter. You choose the pass mark and how many attempts they get.</p><p><button class="btn" type="button" data-mk="exam">Create exam</button></p></div>`;return}
+  const hasRes=ex.took&&Object.keys(ex.took).length;
+  P.innerHTML=`<div class="seg" role="group" aria-label="Exam view"><button type="button" data-view="q" aria-pressed="${view==='q'}">Questions</button><button type="button" data-view="r" aria-pressed="${view==='r'}">Results</button></div>
+    <div id="eq"${view==='q'?'':' hidden'}></div><div id="er"${view==='r'?'':' hidden'}></div>`;
+  view==='q'?examQ(hasRes):examR(hasRes);
+}
+function qCard(x,i,n){
+  const busy=ed||conf;
+  if(ed&&ed.id===x.id)return `<li class="qc" id="c-${x.id}"><b>${i+1}</b><div>${editor()}</div></li>`;
+  const acts=busy?'':`<div class="qa">
+     <button class="lbtn" type="button" data-edit="${x.id}" aria-label="Edit question ${i+1}">Edit</button>
+     ${i>0?`<button class="lbtn" type="button" data-up="${x.id}" aria-label="Move question ${i+1} up">Move up</button>`:''}
+     ${i<n-1?`<button class="lbtn" type="button" data-down="${x.id}" aria-label="Move question ${i+1} down">Move down</button>`:''}
+     <button class="lbtn" type="button" data-rm="${x.id}" aria-label="Remove question ${i+1}">Remove</button></div>`;
+  const ask=conf===x.id?`<div class="notice err" role="alert"><div><p id="ask-${x.id}" tabindex="-1"><b>Remove question ${i+1}?</b> ${ex.took&&x.ok!=null?'Scores from earlier attempts stay as they are. ':''}This cannot be undone after you save.</p>
+     <div class="row"><button class="btn sec sm" type="button" data-rmyes="${x.id}">Remove question</button><button class="btn quiet sm" type="button" data-rmno="${x.id}">Keep it</button></div></div></div>`:'';
+  return `<li class="qc" id="c-${x.id}"><b>${i+1}</b><div><h4>${esc(x.q)}</h4>
+    <ul class="ol">${x.o.map((o,j)=>`<li${j===x.a?' class="ok"':''}><span class="dot" aria-hidden="true"></span><span><span class="vh">Option ${L[j]}: </span>${esc(o)}</span>${j===x.a?'<span class="stamp ok">Correct</span>':''}</li>`).join('')}</ul>${acts}${ask}</div></li>`;
+}
+function editor(){
+  const e=ed,k=e.id,er=e.err||{};
+  return `<div class="ed" id="ed">
+    <div class="field${er.q?' bad':''}"><label for="eq-t">${e.isNew?'New question':'Question'}</label>
+      <textarea id="eq-t" data-ef="q"${er.q?' aria-describedby="eq-tm" aria-invalid="true"':''}>${esc(e.q)}</textarea>${er.q?`<span class="msg" id="eq-tm">${er.q}</span>`:''}</div>
+    <fieldset${er.o?' aria-describedby="eq-om"':''}><legend>Answer options. Select the one that is correct.</legend>
+      ${e.o.map((o,j)=>`<div class="orow${er.o&&!o.trim()&&j<2?' bad':''}"><label class="cor"><input type="radio" name="cor-${k}" value="${j}"${e.a===j?' checked':''} data-ecor="${j}"><span>${L[j]}</span><span class="vh">is the correct answer</span></label>
+        <input type="text" class="fi" value="${esc(o)}" data-eo="${j}" aria-label="Option ${L[j]}">
+        ${e.o.length>2?`<button class="lbtn" type="button" data-rmopt="${j}" aria-label="Remove option ${L[j]}">Remove</button>`:'<span></span>'}</div>`).join('')}
+      ${e.o.length<6?`<div><button class="lbtn" type="button" data-addopt>Add an option</button></div>`:''}
+      ${er.o?`<span class="msg" id="eq-om" role="alert">${er.o}</span>`:''}
+    </fieldset>
+    <div class="row"><button class="btn sec sm" type="button" data-apply>${e.isNew?'Add question':'Done'}</button><button class="btn quiet sm" type="button" data-cancel>Cancel</button></div>
+  </div>`;
+}
+function examQ(hasRes){
+  const n=ex.qs.length,need=Math.max(1,Math.ceil(ex.pass*n/100));
+  $('eq').innerHTML=`${hasRes?`<div class="notice" style="margin-bottom:var(--s-24)"><div>${examStats().took} students have taken this exam. Their scores stay as they are; any change you save applies from the next attempt.</div></div>`:ch===4?`<div class="notice" style="margin-bottom:var(--s-24)"><div>Chapter 4 is still a draft. Students see this exam once the chapter is published.</div></div>`:''}
+    <fieldset class="set"><legend>Settings</legend>
+      <div class="field${saveErr==='pass'?' bad':''}"><label for="s-pass">Pass mark (%) <span class="assume">assumption</span></label><input id="s-pass" type="number" min="1" max="100" inputmode="numeric" value="${esc(ex.pass)}" data-set="pass">
+        <span class="${saveErr==='pass'?'msg':'hint'}" id="s-passh">${saveErr==='pass'?'Enter a whole number from 1 to 100.':n?`${need} of ${n} correct to pass`:'Add questions to see what this means'}</span></div>
+      <div class="field"><label for="s-att">Attempts</label><select id="s-att" data-set="att">${[1,2,3].map(v=>`<option value="${v}"${+ex.att===v?' selected':''}>${v===1?'1 attempt':v+' attempts'}</option>`).join('')}</select></div>
+      <div class="field"><label for="s-tim">Timer</label><select id="s-tim" data-set="timer">${[['none','No timer'],['10','10 minutes'],['15','15 minutes'],['20','20 minutes']].map(([v,w])=>`<option value="${v}"${ex.timer===v?' selected':''}>${w}</option>`).join('')}</select></div>
+    </fieldset>
+    <div class="hrow"><h3 id="qh" tabindex="-1">Questions</h3><p>${n===0?'No questions yet':n===1?'1 question':n+' questions'} · one correct answer each</p></div>
+    ${n?`<ol class="qs" id="qlist">${ex.qs.map((x,i)=>qCard(x,i,n)).join('')}</ol>`:''}
+    ${ed&&ed.isNew?`<ol class="qs" start="${n+1}"><li class="qc" id="c-new"><b>${n+1}</b><div>${editor()}</div></li></ol>`:''}
+    ${ed||conf?'':`<div class="add"><button class="btn sec sm" type="button" data-add>Add a question</button></div>`}
+    <div class="save">
+      <p id="estate">${dirtyE?'<span class="stamp wait">Unsaved changes</span>':`<span class="stamp ok">Saved</span> ${ex.saved?'Last saved '+ex.saved:'Not saved yet'}`}</p>
+      ${saveErr&&saveErr!=='pass'?`<div class="notice err" role="alert"><div>${saveErr}</div></div>`:''}
+      <button class="btn" type="button" data-cta="WF-CTA-001" data-esave>Build content</button>
+    </div>`;
+}
+function examR(hasRes){
+  if(!hasRes){$('er').innerHTML=`<div class="empty"><h3>No results yet</h3><p>${ch===4?'The chapter is still a draft, so no student can take this exam yet.':'No student has taken this exam yet.'} Results appear here as soon as the first student finishes.</p></div>`;return}
+  const S=examStats(),cnt=S.attempts;
+  const qRows=ex.qs.map((x,i)=>({x,i,p:x.ok==null?null:pctOf(x.ok,cnt)}));
+  const lo=Math.min(...qRows.filter(r=>r.p!=null).map(r=>r.p));
+  const order=[...S.rows].sort((a,b)=>(a.pass-b.pass)||(b.p-a.p)||a.n.localeCompare(b.n));
+  const notTaken=ROSTER.filter(n=>!ex.took[n]);
+  const stamp=r=>r.pass?'<span class="stamp ok">Passed</span>':'<span class="stamp err">Not passed</span>';
+  $('er').innerHTML=`<dl class="kpis">
+      <div><dt>Took the exam</dt><dd>${S.took} <small>of ${ROSTER.length} students</small></dd></div>
+      <div><dt>Average score</dt><dd>${S.avg}% <small>across ${S.attempts} attempts</small></dd></div>
+      <div><dt>Passed</dt><dd>${S.passed} <small>at ${ex.pass0}% or more</small></dd></div>
+      <div><dt>Not passed</dt><dd>${S.fail} <small>${S.fail?(S.left===0?'no attempts left':S.left===1?'1 has an attempt left':S.left+' have an attempt left'):'everyone who took it passed'}</small></dd></div>
+    </dl>
+    <p class="note">Results use the pass mark that applied when each student took the exam.</p>
+    <div class="hrow"><h3>Correct answers by question</h3><p>Share of all ${cnt} attempts</p></div>
+    <div class="scroll-x"><table class="t"><thead><tr><th>Question</th><th>Correct</th></tr></thead><tbody>
+      ${qRows.map(r=>`<tr><td class="qt"><b>${r.i+1}.</b> ${esc(r.x.q)}${r.p===lo&&qRows.length>1?' <small class="lowtag">Lowest: the question most students missed</small>':''}</td>
+        <td class="w">${r.p==null?'<small>No answers yet. Added after these attempts.</small>':`<div class="bar"><span class="meter${r.p===lo&&qRows.length>1?' lo':''}" aria-hidden="true"><i style="width:${r.p}%"></i></span><b>${r.p}%</b></div><small>${r.x.ok} of ${cnt}</small>`}</td></tr>`).join('')}
+    </tbody></table></div>
+    <div class="hrow"><h3>Students</h3><p>${S.took} took it · ${notTaken.length?notTaken.length+' not yet':'everyone took it'}</p></div>
+    <div class="scroll-x"><table class="t"><thead><tr><th>Student</th><th>Latest score</th><th class="x">Attempts used</th><th>Result</th></tr></thead><tbody>
+      ${order.map(r=>`<tr><td><b style="font-weight:600">${esc(r.n)}</b><small class="m">${r.u} of ${ex.att0} attempts used</small></td><td class="num" style="white-space:nowrap">${r.s} of ${S.nQ}<span class="x"> · </span><small class="m">${r.p}%</small><span class="x">${r.p}%</span></td><td class="x num">${r.u} of ${ex.att0}</td>
+        <td>${stamp(r)}${!r.pass?`<small>${r.u<ex.att0?'1 attempt left':'No attempts left'}</small>`:''}</td></tr>`).join('')}
+      ${notTaken.map(n=>`<tr><td><b style="font-weight:600">${esc(n)}</b><small class="m">0 of ${ex.att0} attempts used</small></td><td><span aria-hidden="true">–</span><span class="vh">No score</span></td><td class="x num">0 of ${ex.att0}</td><td><span class="stamp off">Not taken</span></td></tr>`).join('')}
+    </tbody></table></div>`;
+}
+
+/* ---------- exam: actions ---------- */
+const syncEd=()=>{if(!ed)return;const t=$('eq-t');if(t)ed.q=t.value;document.querySelectorAll('[data-eo]').forEach(i=>ed.o[+i.dataset.eo]=i.value)};
+const focusEd=()=>{const t=$('eq-t');if(t)t.focus()};
+function applyEd(){
+  syncEd();const err={};const filled=ed.o.map((o,j)=>({o:o.trim(),j})).filter(x=>x.o);
+  if(!ed.q.trim())err.q='Write the question.';
+  if(filled.length<2)err.o='Give at least two answer options.';
+  else if(ed.a==null||!ed.o[ed.a]||!ed.o[ed.a].trim())err.o='Mark the correct answer.';
+  if(err.q||err.o){ed.err=err;renderExam();const f=err.q?$('eq-t'):document.querySelector('[data-eo]');f&&f.focus();return}
+  const a=filled.findIndex(x=>x.j===ed.a),q={q:ed.q.trim(),o:filled.map(x=>x.o),a};
+  let id=ed.id;
+  if(ed.isNew){id=nid();ex.qs.push(Object.assign({id,ok:null},q));ttToast('Question added. Select Build content to save.')}
+  else{const x=ex.qs.find(z=>z.id===ed.id);const changed=x.q!==q.q||x.o.join('|')!==q.o.join('|')||x.a!==q.a;Object.assign(x,q);if(changed&&x.ok!=null)x.ok=null;if(!changed){ed=null;renderExam();document.querySelector(`[data-edit="${id}"]`).focus();return}}
+  ed=null;dirtyE=true;saveErr='';renderExam();const b=document.querySelector(`[data-edit="${id}"]`);b&&b.focus();
+}
+function createExam(){
+  ex=C.exam={pass:60,att:2,timer:'none',saved:'',qs:[],took:null,pass0:60,att0:2};
+  dirtyE=true;view='q';ed={id:'new',isNew:true,q:'',o:['','','',''],a:null};renderExam();focusEd();
+}
+function saveExam(){
+  syncEd();
+  const p=+ex.pass;
+  if(!Number.isInteger(p)||p<1||p>100){saveErr='pass';renderExam();$('s-pass').focus();return}
+  if(ed){saveErr='Finish the question you are editing, or cancel it, before you save.';renderExam();focusEd();return}
+  if(!ex.qs.length){saveErr='Add at least one question before you save.';renderExam();document.querySelector('[data-add]').focus();return}
+  saveErr='';dirtyE=false;ex.saved='today, 24 November 2026';renderExam();
+  ttToast(ch===4?'Exam saved. Students see it once the chapter is published.':'Exam saved. Students see it from their next attempt.');
+  document.querySelector('[data-esave]').focus();
+}
+$('p-exam').addEventListener('input',e=>{
+  const d=e.target.dataset;
+  if(d.set){ex[d.set]=d.set==='timer'?e.target.value:e.target.value===''?'':+e.target.value;dirtyE=true;
+    if(d.set==='pass'){const n=ex.qs.length,h=$('s-passh');if(saveErr==='pass'&&Number.isInteger(+ex.pass)&&ex.pass>=1&&ex.pass<=100){saveErr='';e.target.closest('.field').classList.remove('bad');h.className='hint'}
+      if(saveErr!=='pass')h.textContent=n?`${Math.max(1,Math.ceil(ex.pass*n/100))} of ${n} correct to pass`:'Add questions to see what this means'}
+    $('estate').innerHTML='<span class="stamp wait">Unsaved changes</span>'}
+  if(d.ecor!=null&&ed)ed.a=+d.ecor;
+});
+$('p-exam').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+  const rerender=()=>{renderExam()};
+  if(d.view){view=d.view;renderExam();document.querySelector(`[data-view="${view}"]`).focus()}
+  else if(d.mk==='exam')createExam();
+  else if('add' in d){ed={id:'new',isNew:true,q:'',o:['','','',''],a:null};saveErr='';rerender();focusEd()}
+  else if(d.edit){const x=ex.qs.find(z=>z.id===d.edit);ed={id:x.id,q:x.q,o:[...x.o],a:x.a};saveErr='';rerender();focusEd()}
+  else if('addopt' in d){syncEd();ed.o.push('');rerender();const all=document.querySelectorAll('[data-eo]');all[all.length-1].focus()}
+  else if(d.rmopt!=null){syncEd();const j=+d.rmopt;ed.o.splice(j,1);if(ed.a===j)ed.a=null;else if(ed.a>j)ed.a--;rerender();document.querySelector('[data-eo]').focus()}
+  else if('apply' in d)applyEd();
+  else if('cancel' in d){const id=ed.isNew?null:ed.id;ed=null;rerender();const f=id?document.querySelector(`[data-edit="${id}"]`):document.querySelector('[data-add]');f&&f.focus()}
+  else if(d.up||d.down){const id=d.up||d.down,i=ex.qs.findIndex(z=>z.id===id),j=d.up?i-1:i+1;[ex.qs[i],ex.qs[j]]=[ex.qs[j],ex.qs[i]];dirtyE=true;rerender();
+    const f=document.querySelector(`[data-${d.up?'up':'down'}="${id}"]`)||document.querySelector(`[data-edit="${id}"]`);f.focus();ttToast(`Moved to position ${j+1}`)}
+  else if(d.rm){conf=d.rm;rerender();$('ask-'+d.rm).focus()}
+  else if(d.rmno){conf=null;rerender();document.querySelector(`[data-rm="${d.rmno}"]`).focus()}
+  else if(d.rmyes){const i=ex.qs.findIndex(z=>z.id===d.rmyes);ex.qs.splice(i,1);conf=null;dirtyE=true;rerender();$('qh').focus();ttToast('Question removed. Select Build content to save.')}
+  else if('esave' in d)saveExam();
+});
+
+/* ---------- survey ---------- */
+const TYPE={rate:'Rating, 1 to 5',choice:'Choice, one answer',text:'Open text'};
+function renderSurvey(){
+  const P=$('p-survey');
+  if(!sv){P.innerHTML=`<div class="empty"><h3>No survey in this chapter yet</h3><p>A survey asks students how the chapter went. Their answers reach you without their names.</p><p><button class="btn" type="button" data-mk="survey">Create survey</button></p></div>`;return}
+  const n=sv.qs.length,busy=sed||sconf;
+  P.innerHTML=`<p class="note">Students fill in the survey once, after the chapter. Responses are anonymous.</p>
+    <div class="hrow"><h3 id="sqh" tabindex="-1">Questions</h3><p>${n===0?'No questions yet':n===1?'1 question':n+' questions'}</p></div>
+    ${n?`<ol class="qs">${sv.qs.map((x,i)=>`<li class="qc"><b>${i+1}</b><div><span class="kind">${TYPE[x.type]}</span><h4>${esc(x.q)}</h4>
+      ${x.type==='choice'?`<ul class="ol">${x.o.map(o=>`<li><span class="dot" aria-hidden="true"></span>${esc(o)}</li>`).join('')}</ul>`:x.type==='rate'?'<p class="note" style="margin:0">1 Poor · 2 Fair · 3 Good · 4 Very good · 5 Excellent</p>':'<p class="note" style="margin:0">Optional. Students write a short answer.</p>'}
+      ${busy?'':`<div class="qa"><button class="lbtn" type="button" data-srm="${x.id}" aria-label="Remove survey question ${i+1}">Remove</button></div>`}
+      ${sconf===x.id?`<div class="notice err" role="alert"><div><p id="sask" tabindex="-1"><b>Remove question ${i+1}?</b> ${x.res&&sv.resp?'Its earlier answers stay in the results. ':''}This cannot be undone after you save.</p><div class="row"><button class="btn sec sm" type="button" data-srmyes="${x.id}">Remove question</button><button class="btn quiet sm" type="button" data-srmno="${x.id}">Keep it</button></div></div></div>`:''}</div></li>`).join('')}</ol>`:''}
+    ${sed?`<ol class="qs" start="${n+1}"><li class="qc"><b>${n+1}</b><div>${sEditor()}</div></li></ol>`:busy?'':`<div class="add"><button class="btn sec sm" type="button" data-sadd>Add a question</button></div>`}
+    <div class="save">
+      <p id="sstate">${dirtyS?'<span class="stamp wait">Unsaved changes</span>':`<span class="stamp ok">Saved</span> ${sv.saved?'Last saved '+sv.saved:'Not saved yet'}`}</p>
+      ${ssaveErr?`<div class="notice err" role="alert"><div>${ssaveErr}</div></div>`:''}
+      <div class="row">${showRes?'':`<button class="btn sec" type="button" data-cta="WF-CTA-036" data-sres>View survey results</button>`}<button class="btn" type="button" data-cta="WF-CTA-001" data-ssave>Build content</button></div>
+    </div>
+    <div id="sres"${showRes?'':' hidden'}>${showRes?surveyRes():''}</div>`;
+}
+function sEditor(){
+  const e=sed,er=e.err||{};
+  return `<div class="ed">
+    <div class="field"><label for="se-type">Type</label><select id="se-type" data-sf="type">${Object.entries(TYPE).map(([v,w])=>`<option value="${v}"${e.type===v?' selected':''}>${w}</option>`).join('')}</select></div>
+    <div class="field${er.q?' bad':''}"><label for="se-q">New question</label><textarea id="se-q" data-sf="q"${er.q?' aria-invalid="true" aria-describedby="se-qm"':''}>${esc(e.q)}</textarea>${er.q?`<span class="msg" id="se-qm">${er.q}</span>`:''}</div>
+    ${e.type==='choice'?`<div class="field${er.o?' bad':''}"><label for="se-o">Choices, one per line</label><textarea id="se-o" data-sf="o"${er.o?' aria-invalid="true" aria-describedby="se-om"':''}>${esc(e.o)}</textarea>${er.o?`<span class="msg" id="se-om">${er.o}</span>`:'<span class="hint">At least two.</span>'}</div>`:''}
+    <div class="row"><button class="btn sec sm" type="button" data-sapply>Add question</button><button class="btn quiet sm" type="button" data-scancel>Cancel</button></div></div>`;
+}
+const pctS=(c,t)=>t?Math.round(c*100/t):0;
+function surveyRes(){
+  const head=`<div class="hrow"><h3 id="sresh" tabindex="-1">Survey results</h3><p>${sv.resp} of ${ROSTER.length} students responded</p></div><p class="note"><b>Responses are anonymous.</b> You see what was said, never who said it.</p>`;
+  if(!sv.resp)return head+`<div class="empty"><h3>No responses yet</h3><p>${ch===4?'The chapter is still a draft.':'No student has filled in the survey yet.'}</p></div>`;
+  if(sv.resp<MIN_RESP)return head+`<div class="empty"><h3>Not enough responses to show</h3><p>Results appear once at least ${MIN_RESP} students respond, so no one can be recognized from their answers.</p></div>`;
+  return head+`<ol class="sr">${sv.qs.map((x,i)=>{
+    const t=`<h4>${i+1}. ${esc(x.q)}</h4>`;
+    if(!x.res)return `<li>${t}<p class="note" style="margin:0">No answers yet. Added after these responses.</p></li>`;
+    if(x.type==='rate'){const d=x.res.dist,tot=d.reduce((a,b)=>a+b,0),avg=tot?d.reduce((a,c,k)=>a+c*(k+1),0)/tot:0;const mx=Math.max(...d,1);
+      return `<li>${t}<div class="avg"><strong>${avg.toFixed(1)} <span>of 5</span></strong><span class="meter" aria-hidden="true"><i style="width:${avg*20}%"></i></span></div>
+        <div class="dist">${[5,4,3,2,1].map(k=>`<span>${k} ${['Poor','Fair','Good','Very good','Excellent'][k-1]}</span><span class="meter" aria-hidden="true"><i style="width:${d[k-1]*100/mx}%"></i></span><b>${d[k-1]}</b>`).join('')}</div></li>`}
+    if(x.type==='choice'){const c=x.res.counts,tot=c.reduce((a,b)=>a+b,0),mx=Math.max(...c);
+      return `<li>${t}<div class="dist">${x.o.map((o,k)=>`<span>${esc(o)}</span><span class="meter${c[k]===mx?' lo':''}" aria-hidden="true"><i style="width:${pctS(c[k],tot)}%"></i></span><b>${c[k]} · ${pctS(c[k],tot)}%</b>`).join('')}</div></li>`}
+    const r=x.res;return `<li>${t}<p class="note" style="margin:0">${r.n} ${r.n===1?'student':'students'} wrote a comment. Two of them:</p><ul class="quotes">${r.quotes.map(q=>`<li><blockquote>“${esc(q)}”<br><small class="note">Anonymous</small></blockquote></li>`).join('')}</ul></li>`;
+  }).join('')}</ol>`;
+}
+function createSurvey(){
+  sv=C.survey={saved:'',resp:0,qs:[RATE(nid(),'The chapter was explained clearly',null),RATE(nid(),'There was enough time for the exercise',null)]};
+  dirtyS=true;renderSurvey();$('sqh').focus();ttToast('Survey created with two standard rating questions. Edit them as you like.');
+}
+const syncSed=()=>{if(!sed)return;const t=$('se-q'),o=$('se-o');if(t)sed.q=t.value;if(o)sed.o=o.value};
+$('p-survey').addEventListener('change',e=>{if(e.target.dataset.sf==='type'){syncSed();sed.type=e.target.value;sed.err=null;renderSurvey();$('se-type').focus()}});
+$('p-survey').addEventListener('click',e=>{
+  const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+  if(d.mk==='survey')createSurvey();
+  else if('sadd' in d){sed={type:'rate',q:'',o:''};ssaveErr='';renderSurvey();$('se-type').focus()}
+  else if('scancel' in d){sed=null;renderSurvey();document.querySelector('[data-sadd]').focus()}
+  else if('sapply' in d){syncSed();const err={},opts=sed.o.split('\n').map(s=>s.trim()).filter(Boolean);
+    if(!sed.q.trim())err.q='Write the question.';
+    if(sed.type==='choice'&&opts.length<2)err.o='Give at least two choices, one per line.';
+    if(err.q||err.o){sed.err=err;renderSurvey();(err.q?$('se-q'):$('se-o')).focus();return}
+    sv.qs.push({id:nid(),type:sed.type,q:sed.q.trim(),o:sed.type==='choice'?opts:undefined,res:null});sed=null;dirtyS=true;ssaveErr='';renderSurvey();$('sqh').focus();ttToast('Question added. Select Build content to save.')}
+  else if(d.srm){sconf=d.srm;renderSurvey();$('sask').focus()}
+  else if(d.srmno){sconf=null;renderSurvey();document.querySelector(`[data-srm="${d.srmno}"]`).focus()}
+  else if(d.srmyes){sv.qs=sv.qs.filter(x=>x.id!==d.srmyes);sconf=null;dirtyS=true;renderSurvey();$('sqh').focus();ttToast('Question removed. Select Build content to save.')}
+  else if('ssave' in d){
+    if(sed){ssaveErr='Finish the question you are adding, or cancel it, before you save.';renderSurvey();$('se-q').focus();return}
+    if(!sv.qs.length){ssaveErr='Add at least one question before you save.';renderSurvey();document.querySelector('[data-sadd]').focus();return}
+    ssaveErr='';dirtyS=false;sv.saved='today, 24 November 2026';renderSurvey();document.querySelector('[data-ssave]').focus();
+    ttToast(ch===4?'Survey saved. Students see it once the chapter is published.':'Survey saved. New questions reach students who have not responded yet.')}
+  else if('sres' in d){showRes=true;renderSurvey();$('sresh').focus()}
+});
+
+/* ---------- start ---------- */
+if(ex){ex.pass0=ex.pass;ex.att0=ex.att;ex.qs0=ex.qs.length}
+renderExam();renderSurvey();
+if(location.hash==='#survey')pick(tabs[1]);
+</script>
+</body>
+</html>

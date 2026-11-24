@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Chapter editor — Think Tank trainer portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
+<style>
+[tabindex="-1"]:focus{outline:0}
+.side .foot a{padding-inline:0}
+.crumb .sep{margin-inline:var(--s-4)}
+.top .acts{display:flex;align-items:center;gap:var(--s-8) var(--s-16);flex-wrap:wrap}
+.top .saved{margin:0;font-size:var(--fs-13);color:var(--ink-2)}
+.lead{max-width:64ch;font-size:var(--fs-14);color:var(--ink-2);margin:0 0 var(--s-24)}
+.ed{display:grid;grid-template-columns:200px minmax(0,1fr);gap:var(--s-48);align-items:start}
+.toc{position:sticky;top:var(--s-24);display:grid;border-top:1px solid var(--line-strong);margin:0;padding:0;list-style:none}
+.toc a{display:flex;justify-content:space-between;align-items:center;gap:var(--s-8);min-height:48px;padding:var(--s-4) var(--s-12);border-bottom:1px solid var(--card-edge);font-family:var(--font-head);font-size:var(--fs-14);color:var(--ink);text-decoration:none}
+.toc a:hover{background:var(--accent-soft)}
+.toc a small{font-family:var(--font-body);font-size:var(--fs-12);color:var(--ink-2)}
+.toc a.miss{color:var(--ink-2)}
+.blk{padding-block:var(--s-24);border-top:1px solid var(--card-edge);scroll-margin-top:var(--s-16)}
+#s-details{padding-top:0;border-top:0}
+.blk>.hd{display:flex;justify-content:space-between;align-items:center;gap:var(--s-8) var(--s-16);flex-wrap:wrap;margin-bottom:var(--s-12)}
+.blk>.hd h2{margin:0;display:flex;align-items:baseline;gap:var(--s-12)}
+.blk>.hd h2 .no{font-size:var(--fs-14);color:var(--ink-2);font-variant-numeric:tabular-nums}
+.blk p{max-width:64ch}
+.note{font-size:var(--fs-13);color:var(--ink-2)}
+.grid-2{gap:var(--s-16)}
+.sure{display:flex;align-items:center;gap:var(--s-8) var(--s-12);flex-wrap:wrap;padding:var(--s-12) var(--s-16);margin-block:var(--s-12);border:1px solid var(--err);border-radius:10px;font-size:var(--fs-14)}
+.sure span{flex:1 1 20ch}
+.missing{display:flex;align-items:center;justify-content:space-between;gap:var(--s-8) var(--s-16);flex-wrap:wrap;padding:var(--s-16);border:1px dashed var(--line-strong);border-radius:10px;color:var(--ink-2);font-size:var(--fs-14)}
+.missing p{margin:0}
+/* video preview: a still, not a player */
+.poster{display:grid;grid-template-columns:minmax(0,220px) minmax(0,1fr);gap:var(--s-24);align-items:center}
+.still{aspect-ratio:16/9;border-radius:10px;border:1px solid var(--card-edge);background:linear-gradient(160deg,var(--card-hi),var(--card-lo));display:grid;place-items:center;align-content:center;gap:var(--s-4);padding:var(--s-8);text-align:center}
+.still svg{width:34px;height:34px;fill:var(--ink-2)}
+.still b{font-family:var(--font-head);font-size:var(--fs-13);font-weight:600;line-height:1.3}
+.still.none{border-style:dashed}
+.vmeta{display:grid;gap:var(--s-4);min-width:0}
+.vmeta strong{font-weight:600;overflow-wrap:anywhere}
+.vmeta span{font-size:var(--fs-13);color:var(--ink-2)}
+.vmeta .row{margin-top:var(--s-8)}
+/* upload: label styled as a button over a hidden file input */
+.up{position:relative}
+.up input:focus-visible+label{outline:2px solid var(--ribbon);outline-offset:3px}
+label.btn{cursor:pointer;display:inline-flex;align-items:center}
+.prog{display:grid;gap:var(--s-4);margin-top:var(--s-12);max-width:420px;font-size:var(--fs-13);color:var(--ink-2)}
+.prog progress{width:100%;height:8px;appearance:none;border:0;border-radius:99px;overflow:hidden;background:var(--card-edge);accent-color:var(--accent-hi)}
+.prog progress::-webkit-progress-bar{background:var(--card-edge)}
+.prog progress::-webkit-progress-value{background:var(--accent-hi)}
+.prog progress::-moz-progress-bar{background:var(--accent-hi)}
+.field textarea{min-height:140px;resize:vertical;line-height:1.7}
+.field .msg{font-size:var(--fs-12)}
+.field.bad textarea,.field.bad input{border-color:var(--err)}
+.count{display:flex;justify-content:space-between;gap:var(--s-8);flex-wrap:wrap}
+.count .hint:last-child{font-variant-numeric:tabular-nums}
+/* files */
+.files{list-style:none;margin:0 0 var(--s-16);padding:0;border-top:1px solid var(--line-strong)}
+.files>li{border-bottom:1px solid var(--card-edge)}
+.files .fr{display:grid;grid-template-columns:3.5rem minmax(0,1fr) auto auto;gap:var(--s-16);align-items:center;min-height:60px;padding:var(--s-4) var(--s-8)}
+.files .ext{font-family:var(--font-head);font-size:var(--fs-12);font-weight:600;letter-spacing:.04em;text-align:center;border:1px solid var(--line-strong);border-radius:var(--s-4);line-height:1.9}
+.files strong{display:block;font-weight:600;font-size:var(--fs-14);line-height:1.5;overflow-wrap:anywhere}
+.files small{display:block;font-size:var(--fs-12);color:var(--ink-2)}
+.files em{font-style:normal;font-size:var(--fs-13);color:var(--ink-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.files .sure{margin:0 0 var(--s-12)}
+.fmts{border:0;margin:0;padding:0;min-width:0}
+.fmts legend{font-size:var(--fs-13);font-weight:500;color:var(--ink-2);padding:0;margin-bottom:var(--s-4)}
+.fmts .opts{display:flex;flex-wrap:wrap;gap:var(--s-8)}
+.chk{display:inline-flex;align-items:center;gap:var(--s-8);min-height:44px;padding-inline:var(--s-12);border:1px solid var(--line-strong);border-radius:10px;background:var(--field);font-size:var(--fs-14);cursor:pointer}
+.chk input{width:18px;height:18px;margin:0;accent-color:var(--accent-hi)}
+.fmts .msg{display:block;margin-top:var(--s-4);font-size:var(--fs-12);color:var(--err);font-weight:600}
+.fmts.bad .chk{border-color:var(--err)}
+.hwgrid{display:grid;gap:var(--s-16);max-width:640px}
+/* submissions */
+.subs-h{margin:var(--s-32) 0 var(--s-4);font-size:var(--fs-18)}
+.subs{list-style:none;margin:var(--s-12) 0 0;padding:0;border-top:1px solid var(--line-strong)}
+.subs>li{border-bottom:1px solid var(--card-edge);padding-block:var(--s-12)}
+.sr{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:var(--s-8) var(--s-16);align-items:center}
+.sr b{display:block;font-weight:600}
+.sr small{display:block;font-size:var(--fs-13);color:var(--ink-2);overflow-wrap:anywhere}
+.sr .fb{margin-top:var(--s-4);font-size:var(--fs-13);color:var(--ink-2);max-width:62ch}
+.rv{display:grid;gap:var(--s-16);max-width:560px;margin-top:var(--s-16);padding:var(--s-16);border:1px solid var(--line-strong);border-radius:10px;background:var(--card-lo)}
+.rv .res{border:0;margin:0;padding:0;min-width:0}
+.rv .res legend{font-size:var(--fs-13);font-weight:500;color:var(--ink-2);padding:0;margin-bottom:var(--s-4)}
+.rv .res .opts{display:flex;flex-wrap:wrap;gap:var(--s-8)}
+.rv .res .msg{display:block;margin-top:var(--s-4);font-size:var(--fs-12);color:var(--err);font-weight:600}
+.rv .res.bad .chk{border-color:var(--err)}
+/* exam and survey summaries */
+.facts{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:var(--s-8) var(--s-32);margin:0 0 var(--s-12);padding:var(--s-12) 0;border-block:1px solid var(--card-edge)}
+.facts div{display:grid}
+.facts dt{font-size:var(--fs-12);color:var(--ink-2)}
+.facts dd{margin:0;font-family:var(--font-head);font-size:var(--fs-22);font-weight:600;font-variant-numeric:tabular-nums;line-height:1.3}
+.pager{display:flex;justify-content:space-between;align-items:center;gap:var(--s-8) var(--s-24);flex-wrap:wrap;margin-top:var(--s-32);padding-top:var(--s-16);border-top:1px solid var(--card-edge);font-size:var(--fs-14)}
+.pager a{min-height:44px;display:inline-flex;align-items:center}
+#leave{margin-bottom:var(--s-16)}
+.synthetic{margin:var(--s-48) 0 0}
+@media (max-width:900px){
+  .btn.sm{min-height:44px}
+  .ed{grid-template-columns:minmax(0,1fr);gap:var(--s-16)}
+  .toc{position:static;grid-template-columns:repeat(auto-fit,minmax(9rem,1fr));gap:var(--s-4);border-top:0}
+  .toc a{border:1px solid var(--card-edge);border-radius:10px}
+  .poster{grid-template-columns:minmax(0,1fr)}
+  .still{max-width:320px}
+  .files .fr{grid-template-columns:3rem minmax(0,1fr) auto;gap:var(--s-4) var(--s-12)}
+  .files .fr em{grid-column:2;grid-row:2}
+  .files .fr .rowlink{grid-column:3;grid-row:1/span 2}
+  .sr{grid-template-columns:minmax(0,1fr) auto}
+  .sr .btn{grid-column:1/-1;justify-self:start}
+  .facts{grid-template-columns:repeat(2,auto)}
+}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="Trainer portal">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>Trainer portal</span></div>
+    <a href="25-admin-programs.html">Programs</a>
+    <a href="16-admin-course.html" aria-current="page">Course content</a>
+    <a href="20-admin-profile.html" class="m-only">My profile</a>
+    <div class="foot"><a href="20-admin-profile.html" class="me">Dr. Manal Al-Hasawi</a><br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+      <header class="top">
+        <div>
+          <div class="crumb"><a href="16-admin-course.html">Course content</a><span class="sep" aria-hidden="true">›</span>Foresight &amp; Futures Thinking<span class="sep" aria-hidden="true">›</span><span id="crumbN"></span></div>
+          <h1 id="h1"></h1>
+        </div>
+        <div class="acts">
+          <span id="state" role="status"></span>
+          <button class="btn" type="button" data-cta="WF-CTA-001" id="save">Build content</button>
+          <a class="link" href="16-admin-course.html" data-leave>Back to course content</a>
+        </div>
+      </header>
+
+      <p class="lead">Changes here are saved with Build content. Trainees see them only after you publish the course on <a class="link" href="16-admin-course.html" data-leave>Course content</a>.</p>
+      <div class="notice err" id="errs" role="alert" tabindex="-1" hidden></div>
+
+      <div class="ed">
+        <ol class="toc" id="toc" aria-label="Items in this chapter"></ol>
+        <div>
+          <section class="blk" id="s-details" aria-labelledby="h-details">
+            <div class="hd"><h2 id="h-details">Chapter details</h2></div>
+            <div class="grid-2">
+              <div class="field" id="fw-en"><label for="t-en">Title (English)</label><input id="t-en" autocomplete="off"><span class="msg" hidden>Write the English title.</span></div>
+              <div class="field"><label for="t-ar">Title (Arabic)</label><input id="t-ar" lang="ar" dir="rtl" autocomplete="off"><span class="hint" id="t-ar-h"></span></div>
+            </div>
+            <p class="note" id="sess"></p>
+          </section>
+          <div id="items"></div>
+          <nav class="pager" aria-label="Chapters" id="pager"></nav>
+          <div class="notice" id="leave" role="alert" hidden></div>
+        </div>
+      </div>
+
+      <p class="synthetic">Names, dates and figures are sample data. <a href="index.html">Screen map</a></p>
+    </div>
+  </main>
+</div>
+<template id="ar-samples">
+  <input data-for="1" lang="ar" dir="rtl" aria-label="Title (Arabic)" value="لماذا نستشرف؟">
+  <input data-for="2" lang="ar" dir="rtl" aria-label="Title (Arabic)" value="قراءة الإشارات">
+  <input data-for="3" lang="ar" dir="rtl" aria-label="Title (Arabic)" value="بناء السيناريوهات">
+</template>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const pl=(n,one,many)=>`${n} ${n===1?one:many}`;
+const AR=Object.fromEntries([...$('ar-samples').content.querySelectorAll('input')].map(i=>[i.dataset.for,i.value]));
+
+// item kinds keep stable keys; the words are display only
+const KINDS=['video','info','files','hw','exam','survey'];
+const KN={video:'Video',info:'Information',files:'Materials',hw:'Assignment',exam:'Exam',survey:'Survey'};
+const KW={video:'video',info:'information',files:'materials',hw:'assignment',exam:'exam',survey:'survey'};
+const FMTS=[['pdf','PDF'],['word','Word'],['xlsx','Excel'],['pptx','PowerPoint'],['img','Image']];
+const INFO2=['A weak signal is a small piece of news that few people notice today and that may be the first sign of a major change tomorrow: a pilot in a distant city, a patent filing, a complaint that keeps coming up among a small group of customers. On its own it proves nothing. Its value is that it arrives before the numbers do.',
+'A trend is something different. A trend is a change with a direction you can measure over years, such as rising life expectancy or shopping moving to the phone. When similar signals keep appearing from sources that have nothing to do with one another, a trend is probably forming.',
+'When we scan, we cover five areas: society, technology, the economy, the environment, and politics and regulation. For each signal we ask three questions. Where did it come from, and can the source be trusted? What would change in our sector if it grew? What should we watch to know that it is growing? The most common mistake is to collect only the signals that confirm what we already believe.'].join('\n\n');
+
+const CH={
+ 1:{en:'Why foresight?',ar:AR[1],sess:'Goes with the 14 December session',items:{
+   video:{file:'01-why-foresight.mp4',len:'12:10',size:'214 MB'},
+   info:{text:'Forecasting asks what will happen. Foresight asks what could happen, and what we would do in each case. This chapter sets out the difference, and when a decision-maker needs each one.\n\nWe look at three decisions made in the region over the past twenty years, and at what a wider look ahead would have changed.'},
+   files:[{name:'Summary: Why foresight?',ext:'PDF',detail:'8 pages',size:'1.2 MB'}],
+   hw:{brief:'Write one page about a decision in your organization that was made without looking beyond one year. What did it miss?',due:'before the 15 December session',fmt:['pdf','word'],subs:[],note:'All 14 submissions for this chapter are reviewed.'},
+   exam:{q:5,pass:60,tries:2},survey:{q:4}}},
+ 2:{en:'Reading the signals',ar:AR[2],sess:"Goes with today's session, 15 December",items:{
+   video:{file:'02-reading-the-signals.mp4',len:'18:00',size:'318 MB'},
+   info:{text:INFO2},
+   files:[{name:'Reading the signals workbook',ext:'PDF',detail:'22 pages',size:'2.4 MB'},{name:'Signal scanning template',ext:'XLSX',detail:'A table ready to fill in',size:'86 KB'}],
+   hw:{brief:'Scan your sector and bring three signals. Write two lines for each: what it is and where it came from, and why it might matter to your sector five years from now. We will discuss them together in the 16 December session, so submit before then.',due:'before the 16 December session',fmt:['pdf','word','xlsx'],
+     subs:[{id:'noura',who:'Noura Al-Sabah',what:'three-signals-banking.pdf',when:'Today, 15 December, 9:12'},
+           {id:'fahad',who:'Fahad Al-Shammari',what:'Text written on the page (164 words)',when:'14 December, 21:40'},
+           {id:'hannah',who:'Hannah Clarke',what:'signal-scan-energy.xlsx',when:'14 December, 18:05'}]},
+   exam:{q:5,pass:60,tries:2},survey:{q:3}}},
+ 3:{en:'Building scenarios',ar:AR[3],sess:'Goes with the 16 December session',items:{
+   video:{file:'03-building-scenarios.mp4',len:'24:30',size:'402 MB'},
+   files:[{name:'Scenario building guide',ext:'PDF',detail:'30 pages',size:'3.1 MB'},{name:'Scenario axes template',ext:'PPTX',detail:'4 slides',size:'640 KB'}],
+   hw:{brief:'Choose the two uncertainties that matter most to your organization, build a two-axis matrix from them, and give each of the four scenarios a short title.',due:'by 20 December',fmt:['pdf','pptx'],subs:[],note:'No submissions yet. Trainees reach this chapter with the 16 December session.'},
+   exam:{q:6,pass:60,tries:2},survey:{q:4}}},
+ 4:{en:'From scenario to decision',ar:'',sess:'After the last session',items:{
+   video:{file:'04-scenario-to-decision.mp4',len:'15:20',size:'256 MB'},
+   info:{text:'A decision that only works in one future is a bet. Before committing, test it against each of your four scenarios: where does it hold, where does it break, and what would you watch to know which future is arriving?'}}}};
+
+let n=+new URLSearchParams(location.search).get('ch');if(!CH[n])n=2;
+const C=CH[n],I=C.items;
+let dirty=false,savedLine='Last saved 13 December, 16:40',ask=null,askFile=null,openRev=null,leaveTo=null,showErr=false;
+const up={video:null,files:null};      // simulated uploads in progress
+const rv={};                           // review drafts keyed by submission id
+
+/* ---------- head ---------- */
+function head(){
+  $('h1').textContent=C.en||'Untitled chapter';
+  $('crumbN').textContent=`Chapter ${n} of 4`;
+  document.title=`${C.en||'Untitled chapter'} — Chapter editor — Think Tank trainer portal`;
+  $('state').innerHTML=dirty?'<span class="stamp wait">Unsaved changes</span>':`<p class="saved">${esc(savedLine)}</p>`;
+}
+function touch(){if(!dirty){dirty=true;head()}if(showErr)check(false)}
+
+/* ---------- table of contents ---------- */
+function toc(){
+  $('toc').innerHTML=KINDS.map(k=>`<li><a href="#s-${k}"${I[k]?'':' class="miss"'}>${KN[k]}<small>${I[k]?'':'Not added'}</small></a></li>`).join('');
+}
+
+/* ---------- sections ---------- */
+const removeRow=k=>ask===k?`<div class="sure" role="group" aria-label="Confirm removal"><span>This removes the ${KW[k]} from the chapter${k==='hw'&&I.hw.subs.length?'. Submissions already received stay in the records':''}. Trainees stop seeing it after you publish.</span><button class="btn sec sm" type="button" data-rm-yes="${k}">Remove ${KW[k]}</button><button class="btn quiet sm" type="button" data-rm-no="${k}">Keep it</button></div>`:'';
+const hd=(k,i)=>`<div class="hd"><h2 id="h-${k}"><span class="no">${i+1}</span>${KN[k]}</h2>${I[k]&&ask!==k?`<button class="rowlink" type="button" data-rm="${k}">Remove ${KW[k]}</button>`:''}</div>${removeRow(k)}`;
+const progress=(u,label)=>u?`<div class="prog" role="status"><span>${esc(label)} ${esc(u.name)}: ${u.pct}%</span><progress max="100" value="${u.pct}" aria-label="Upload progress"></progress></div>`:'';
+
+const BODY={
+ video(v){
+  const has=!!v.file;
+  return `<div class="poster">
+    <div class="still${has?'':' none'}" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.2v13.6a1 1 0 0 0 1.5.9l11-6.8a1 1 0 0 0 0-1.8l-11-6.8A1 1 0 0 0 8 5.2z"/></svg><b>${has?esc(C.en):'No video yet'}</b></div>
+    <div class="vmeta">${has?`<strong>${esc(v.file)}</strong><span>Length ${esc(v.len)} min · ${esc(v.size)}</span><span>Trainees watch it inside the chapter. It cannot be downloaded.</span>`
+      :`<strong>No video uploaded</strong><span>MP4 or MOV, up to 2 GB.</span>`}
+      ${up.video?'':`<div class="row up"><input class="vh" type="file" id="vfile" accept="video/*"><label class="btn sec sm" for="vfile">${has?'Replace video':'Upload video'}</label></div>`}
+      ${progress(up.video,'Uploading')}
+    </div></div>`;
+ },
+ info(v){
+  return `<div class="field" id="fw-info"><label for="info">Information text</label>
+    <textarea id="info" maxlength="4000" aria-describedby="info-c" style="min-height:${n===2?400:180}px">${esc(v.text)}</textarea>
+    <div class="count"><span class="hint">What trainees read with the video. Leave a blank line between paragraphs.</span><span class="hint" id="info-c" aria-live="polite"></span></div>
+    <span class="msg" hidden>Write the information text, or remove this item.</span></div>`;
+ },
+ files(v){
+  const rows=v.map((f,i)=>`<li><div class="fr"><b class="ext">${esc(f.ext)}</b><span><strong>${esc(f.name)}</strong><small>${esc(f.detail)}</small></span><em>${esc(f.size)}</em>${askFile===i?'<span></span>':`<button class="rowlink" type="button" data-rmf="${i}" aria-label="Remove ${esc(f.name)}">Remove</button>`}</div>
+    ${askFile===i?`<div class="sure" role="group" aria-label="Confirm file removal"><span>Remove “${esc(f.name)}” from this chapter?</span><button class="btn sec sm" type="button" data-rmf-yes="${i}">Remove file</button><button class="btn quiet sm" type="button" data-rmf-no>Keep it</button></div>`:''}</li>`).join('');
+  return `${v.length?`<ul class="files">${rows}</ul>`:`<p class="note" id="nofiles">No files yet. Add at least one, or remove this item.</p>`}
+    ${up.files?'':`<div class="row up"><input class="vh" type="file" id="ffile" accept=".pdf,.doc,.docx,.xlsx,.pptx,.zip"><label class="btn sec sm" for="ffile">Add file</label><span class="note">PDF, Word, Excel or PowerPoint, up to 50 MB.</span></div>`}
+    ${progress(up.files,'Uploading')}`;
+ },
+ hw(v){
+  const waiting=v.subs.filter(s=>!s.done).length;
+  const subs=v.subs.length?`<h3 class="subs-h" id="subs-h">Submissions waiting for your review</h3>
+    <p class="note" style="margin:0" id="subs-c" role="status">${waiting?`${pl(waiting,'submission','submissions')} waiting. Trainees see your result and feedback in their chapter.`:'All submissions are reviewed. Trainees can see your results.'}</p>
+    <ul class="subs" aria-labelledby="subs-h">${v.subs.map(sub).join('')}</ul>`
+   :`<h3 class="subs-h">Submissions</h3><p class="note" style="margin:0">${esc(v.note)}</p>`;
+  return `<div class="hwgrid">
+    <div class="field" id="fw-hw"><label for="brief">Assignment brief</label><textarea id="brief">${esc(v.brief)}</textarea><span class="msg" hidden>Write the brief, or remove this item.</span></div>
+    <div class="field"><label for="due">When it is due</label><input id="due" value="${esc(v.due)}" autocomplete="off"><span class="hint">Shown to trainees as written, for example “before the 16 December session”.</span></div>
+    <fieldset class="fmts" id="fmts"><legend>Accepted formats, up to 10 MB</legend><div class="opts">${FMTS.map(([k,w])=>`<label class="chk"><input type="checkbox" name="fmt" value="${k}"${v.fmt.includes(k)?' checked':''}>${w}</label>`).join('')}</div>
+      <span class="note">Trainees can also write their answer on the page.</span><span class="msg" hidden>Choose at least one format.</span></fieldset>
+  </div>${subs}`;
+ },
+ exam(v){
+  return `<dl class="facts"><div><dt>Questions</dt><dd>${v.q}</dd></div><div><dt>Pass mark</dt><dd>${v.pass}%</dd></div><div><dt>Attempts</dt><dd>${v.tries}</dd></div></dl>
+    <p class="note">${v.q?'Multiple choice, marked as soon as the trainee finishes.':'No questions yet. Trainees do not see an exam without questions.'}</p>
+    <a class="link" href="19-admin-exam.html?ch=${n}" data-leave>${v.q?'Edit exam':'Write exam questions'}</a>`;
+ },
+ survey(v){
+  return `<dl class="facts"><div><dt>Questions</dt><dd>${v.q}</dd></div><div><dt>Answers</dt><dd>Anonymous</dd></div></dl>
+    <p class="note">${v.q?'Each trainee sends it once, without their name.':'No questions yet. Trainees do not see a survey without questions.'}</p>
+    <a class="link" href="19-admin-exam.html?ch=${n}#survey" data-leave>${v.q?'Edit survey':'Write survey questions'}</a>`;
+ }};
+
+function sub(s){
+  const RES={yes:['ok','Accepted'],again:['err','Needs resubmission']};
+  const st=s.done?`<span class="stamp ok">Reviewed</span>`:`<span class="stamp wait">Awaiting review</span>`;
+  const btn=openRev===s.id||s.done?'<span></span>':`<button class="btn sec sm" type="button" data-cta="WF-CTA-033" data-rev="${s.id}" aria-label="Review assignment: ${esc(s.who)}">Review assignment</button>`;
+  const d=rv[s.id]||{fb:s.fb||'',res:s.res||'',err:{}};
+  const form=openRev!==s.id?'':`<form class="rv" id="rv-${s.id}" data-sid="${s.id}" novalidate>
+    <p style="margin:0">Submitted: <button class="lbtn link" type="button" data-toast="Opening “${esc(s.what)}” (sample file)">${esc(s.what)}</button></p>
+    <div class="field${d.err.fb?' bad':''}"><label for="fb-${s.id}">Feedback for ${esc(s.who.split(' ')[0])}</label><textarea id="fb-${s.id}" data-fb="${s.id}" aria-describedby="fbm-${s.id}"${d.err.fb?' aria-invalid="true"':''}>${esc(d.fb)}</textarea>
+      <span class="msg" id="fbm-${s.id}"${d.err.fb?'':' hidden'}>Write your feedback. The trainee sees it with the result.</span></div>
+    <fieldset class="res${d.err.res?' bad':''}"><legend>Result</legend><div class="opts">
+      <label class="chk"><input type="radio" name="res-${s.id}" value="yes"${d.res==='yes'?' checked':''}>Accepted</label>
+      <label class="chk"><input type="radio" name="res-${s.id}" value="again"${d.res==='again'?' checked':''}>Needs resubmission</label></div>
+      <span class="msg"${d.err.res?'':' hidden'}>Choose a result.</span></fieldset>
+    <div class="row"><button class="btn sec sm" type="submit">Save review</button><button class="btn quiet sm" type="button" data-rev-no="${s.id}">Cancel</button></div></form>`;
+  return `<li id="sub-${s.id}"><div class="sr"><span><b>${esc(s.who)}</b><small>${esc(s.what)} · ${esc(s.when)}</small>
+    ${s.done?`<span class="fb"><span class="stamp ${RES[s.res][0]}">${RES[s.res][1]}</span> ${esc(s.fb)}</span>`:''}</span>${st}${btn}</div>${form}</li>`;
+}
+
+function items(){
+  $('items').innerHTML=KINDS.map((k,i)=>`<section class="blk" id="s-${k}" aria-labelledby="h-${k}" tabindex="-1">${hd(k,i)}${I[k]?BODY[k](I[k])
+    :`<div class="missing"><p>This chapter has no ${KW[k]}.</p><button class="btn sec sm" type="button" data-add="${k}">Add ${KW[k]}</button></div>`}</section>`).join('');
+  infoCount();toc();
+}
+function infoCount(){const t=$('info');if(t)$('info-c').textContent=`${t.value.length.toLocaleString('en-US')} of 4,000 characters`}
+
+function pager(){
+  const p=n>1?`<a class="link" href="?ch=${n-1}" data-leave>Previous: ${esc(CH[n-1].en)}</a>`:'<span></span>';
+  const x=n<4?`<a class="link" href="?ch=${n+1}" data-leave>Next: ${esc(CH[n+1].en)}</a>`:'<span></span>';
+  $('pager').innerHTML=p+x;
+}
+
+/* ---------- details ---------- */
+$('t-en').value=C.en;$('t-ar').value=C.ar;
+const arHint=()=>$('t-ar-h').textContent=$('t-ar').value.trim()?'':'Not written yet. The course cannot be published without it.';
+$('sess').textContent=C.sess+'.';
+
+/* ---------- validation on save ---------- */
+function check(focus){
+  const bad=[];
+  const mark=(id,on)=>{const f=$(id);if(f){f.classList.toggle('bad',on);f.querySelector('.msg').hidden=!on;const c=f.querySelector('input,textarea');if(c)c.setAttribute('aria-invalid',on)}};
+  mark('fw-en',!C.en.trim());if(!C.en.trim())bad.push(['t-en','The English title is empty.']);
+  if(I.video&&!I.video.file)bad.push(['s-video','The video item has no video. Upload one, or remove the item.']);
+  if(I.info){const e=!I.info.text.trim();mark('fw-info',e);if(e)bad.push(['info','The information text is empty.'])}
+  if(I.files&&!I.files.length)bad.push(['s-files','Materials has no files. Add one, or remove the item.']);
+  if(I.hw){const e=!I.hw.brief.trim();mark('fw-hw',e);if(e)bad.push(['brief','The assignment brief is empty.']);
+    const f=!I.hw.fmt.length,fs=$('fmts');fs.classList.toggle('bad',f);fs.querySelector('.msg').hidden=!f;if(f)bad.push(['fmts','The assignment accepts no file format.'])}
+  const box=$('errs');
+  if(!bad.length){box.hidden=true;return true}
+  box.innerHTML=`<div><b>Not saved. ${bad.length===1?'One thing needs fixing':`${bad.length} things need fixing`}:</b><ul style="margin:var(--s-4) 0 0;padding-inline-start:1.2em">${bad.map(([id,t])=>`<li><a class="link" href="#${id}" data-go="${id}">${t}</a></li>`).join('')}</ul></div>`;
+  box.hidden=false;if(focus)box.focus();return false;
+}
+
+/* ---------- simulated upload ---------- */
+const size=b=>b>=1048576?(b/1048576).toFixed(1)+' MB':Math.max(1,Math.round(b/1024))+' KB';
+function upload(kind,file,done){
+  up[kind]={name:file.name,pct:0};items();
+  const t=setInterval(()=>{
+    up[kind].pct=Math.min(100,up[kind].pct+20);
+    const p=document.querySelector(`#s-${kind} .prog`);
+    if(p){p.querySelector('span').textContent=`Uploading ${file.name}: ${up[kind].pct}%`;p.querySelector('progress').value=up[kind].pct}
+    if(up[kind].pct>=100){clearInterval(t);up[kind]=null;done();touch();items()}
+  },220);
+}
+document.addEventListener('change',e=>{
+  const t=e.target;
+  if(t.id==='vfile'&&t.files[0]){const f=t.files[0];
+    upload('video',f,()=>{const m=Math.max(3,Math.min(45,Math.round(f.size/18e6)||16));I.video={file:f.name,len:m+':00',size:size(f.size)};
+      ttToast('Video uploaded. Save with Build content to keep it.');setTimeout(()=>{const l=document.querySelector('label[for=vfile]');if(l)$('vfile').focus()},0)})}
+  else if(t.id==='ffile'&&t.files[0]){const f=t.files[0],dot=f.name.lastIndexOf('.'),ext=dot>0?f.name.slice(dot+1).toUpperCase():'FILE';
+    upload('files',f,()=>{I.files.push({name:dot>0?f.name.slice(0,dot):f.name,ext:ext==='DOCX'?'DOCX':ext,detail:'Added just now',size:size(f.size)});
+      ttToast('File added. Save with Build content to keep it.');setTimeout(()=>$('ffile')&&$('ffile').focus(),0)})}
+  else if(t.name==='fmt'){I.hw.fmt=[...document.querySelectorAll('input[name=fmt]:checked')].map(x=>x.value);touch()}
+  else if(t.name&&t.name.startsWith('res-')){const id=t.name.slice(4);rvd(id).res=t.value;rvd(id).err.res=false;const fs=t.closest('.res');fs.classList.remove('bad');fs.querySelector('.msg').hidden=true}
+});
+const rvd=id=>rv[id]||(rv[id]={fb:'',res:'',err:{}});
+
+/* ---------- typing ---------- */
+document.addEventListener('input',e=>{
+  const t=e.target;
+  if(t.id==='t-en'){C.en=t.value;touch();head()}
+  else if(t.id==='t-ar'){C.ar=t.value;arHint();touch()}
+  else if(t.id==='info'){I.info.text=t.value;infoCount();touch()}
+  else if(t.id==='brief'){I.hw.brief=t.value;touch()}
+  else if(t.id==='due'){I.hw.due=t.value;touch()}
+  else if(t.dataset.fb){const d=rvd(t.dataset.fb);d.fb=t.value;if(t.value.trim()&&d.err.fb){d.err.fb=false;const f=t.closest('.field');f.classList.remove('bad');f.querySelector('.msg').hidden=true;t.removeAttribute('aria-invalid')}}
+});
+
+/* ---------- review submit ---------- */
+document.addEventListener('submit',e=>{
+  const f=e.target;if(!f.dataset.sid)return;e.preventDefault();
+  const id=f.dataset.sid,s=I.hw.subs.find(x=>x.id===id),d=rvd(id);
+  d.err={fb:!d.fb.trim(),res:!d.res};
+  if(d.err.fb||d.err.res){items();const first=d.err.fb?$('fb-'+id):document.querySelector(`input[name=res-${id}]`);first.focus();return}
+  Object.assign(s,{done:true,fb:d.fb.trim(),res:d.res});delete rv[id];openRev=null;items();
+  const li=$('sub-'+id);li.querySelector('.stamp').classList.add('press');
+  const next=I.hw.subs.find(x=>!x.done);
+  (next?document.querySelector(`[data-rev="${next.id}"]`):$('subs-c')).focus?.();
+  ttToast(`Review saved. ${s.who.split(' ')[0]} can see it now.`);
+});
+
+/* ---------- clicks ---------- */
+document.addEventListener('click',e=>{
+  const a=e.target.closest('a[data-leave]');
+  if(a&&dirty){e.preventDefault();leaveTo=a.getAttribute('href');
+    const l=$('leave');l.innerHTML=`<div><b>You have unsaved changes in this chapter.</b> Save them with Build content first, or leave without saving. <span class="row" style="margin-top:var(--s-8)"><a class="link" href="${esc(leaveTo)}" id="goanyway">Leave without saving</a></span></div>`;
+    l.hidden=false;l.scrollIntoView({block:'center'});$('goanyway').focus();return}
+  if(e.target.id==='goanyway'){dirty=false;return}
+  const g=e.target.closest('[data-go]');if(g){e.preventDefault();const el=$(g.dataset.go);el.scrollIntoView({block:'center'});(el.matches('input,textarea')?el:el.querySelector('input,textarea,button')||el).focus();return}
+  const b=e.target.closest('button');if(!b)return;const d=b.dataset;
+  if(b.id==='save'){
+    showErr=true;if(!check(true))return;
+    dirty=false;showErr=false;savedLine='Saved just now';$('leave').hidden=true;head();
+    ttToast('Chapter saved. Publish the course on Course content when you are ready.');
+  }
+  else if(d.add){const k=d.add;I[k]={video:{file:'',len:'',size:''},info:{text:''},files:[],hw:{brief:'',due:'',fmt:['pdf','word'],subs:[],note:'No submissions yet.'},exam:{q:0,pass:60,tries:2},survey:{q:0}}[k];
+    touch();items();const s=$('s-'+k);(s.querySelector('textarea,label.btn')||s).focus();ttToast(`${KN[k]} added to the chapter`)}
+  else if(d.rm){ask=d.rm;items();document.querySelector(`[data-rm-yes="${d.rm}"]`).focus()}
+  else if(d.rmNo){const k=d.rmNo;ask=null;items();document.querySelector(`[data-rm="${k}"]`).focus()}
+  else if(d.rmYes){const k=d.rmYes;delete I[k];ask=null;if(k==='hw')openRev=null;touch();items();document.querySelector(`[data-add="${k}"]`).focus();ttToast(`${KN[k]} removed. Save with Build content to keep this change.`)}
+  else if(d.rmf!==undefined){askFile=+d.rmf;items();document.querySelector('[data-rmf-yes]').focus()}
+  else if('rmfNo' in d){const i=askFile;askFile=null;items();document.querySelector(`[data-rmf="${i}"]`).focus()}
+  else if(d.rmfYes!==undefined){const f=I.files.splice(+d.rmfYes,1)[0];askFile=null;touch();items();(document.querySelector('[data-rmf]')||$('ffile')).focus();ttToast(`“${f.name}” removed`)}
+  else if(d.rev){openRev=d.rev;items();$('fb-'+d.rev).focus()}
+  else if(d.revNo){const id=d.revNo;openRev=null;delete rv[id];items();document.querySelector(`[data-rev="${id}"]`).focus()}
+});
+
+/* ---------- first paint ---------- */
+head();arHint();items();pager();
+</script>
+</body>
+</html>
