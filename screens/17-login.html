@@ -62,7 +62,7 @@
           <h2>Your login details</h2>
 
           <div class="field">
-            <label for="who">Email or mobile number</label>
+            <label for="who">Email</label>
             <input id="who" autocomplete="username" inputmode="email" spellcheck="false" autocapitalize="none" aria-describedby="who-m">
             <span class="msg" id="who-m" hidden></span>
           </div>
@@ -116,9 +116,8 @@ const val=()=>who.value.trim().toLowerCase();
 function err(inp,t){const m=$(inp.id+'-m');m.textContent=t;m.hidden=!t;inp.closest('.field').classList.toggle('bad',!!t);inp.setAttribute('aria-invalid',String(!!t));return !t}
 function notice(id){notices.forEach(n=>$(n).hidden=n!==id)}
 function checkWho(need){const v=val();
-  if(!v)return err(who,need||'Enter your email or mobile number.');
-  if(v.includes('@'))return err(who,isMail(v)?'':'The email is incomplete. Example: name@example.com');
-  return err(who,/^\d{8}$/.test(digits(v).replace(/^965/,''))?'':'Enter a full email, or an 8-digit mobile number.')}
+  if(!v)return err(who,need||'Enter your email.');
+  return err(who,isMail(v)?'':'The email is incomplete. Example: name@example.com')}
 
 f.addEventListener('submit',e=>{e.preventDefault();notice('');
   const a=checkWho(),b=err(pw,pw.value?'':'Enter your password.');

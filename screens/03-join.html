@@ -59,16 +59,16 @@
 
       <!-- step 2: password from the email -->
       <form class="stack" id="f2" novalidate hidden>
-        <div class="scanned"><span class="stamp you press">Check your email</span></div>
+        <div class="scanned"><span class="stamp you press" id="st2">Check your email</span></div>
         <h1 id="h2" tabindex="-1">Enter the password we emailed you</h1>
-        <p class="sub">We sent a 6-digit password to <b id="sentto"></b>. It can take a minute to arrive; check your junk folder too.</p>
+        <p class="sub" id="sub2">We sent a 6-digit password to <b id="sentto"></b>. It can take a minute to arrive; check your junk folder too.</p>
         <div class="field">
           <label for="pw">Password</label>
           <input id="pw" inputmode="numeric" autocomplete="one-time-code" maxlength="6" aria-describedby="pw-m">
           <span class="msg" id="pw-m" role="alert" hidden></span>
         </div>
         <button class="btn wide" data-cta="WF-CTA-016">Open my course</button>
-        <p class="below"><button type="button" class="textbtn" id="resend">Send the password again</button> · <button type="button" class="textbtn" id="back">Use another email</button></p>
+        <p class="below"><button type="button" class="textbtn" id="resend">Send the password again</button><a class="textbtn" id="forgot" href="17-login.html" hidden>Forgot your password?</a> · <button type="button" class="textbtn" id="back">Use another email</button></p>
       </form>
 
       <!-- closed or unknown code -->
@@ -79,7 +79,7 @@
         <p><a class="btn sec" href="17-login.html">Sign in</a></p>
       </div>
 
-      <p class="demo synthetic">Sample data. In this demo the emailed password is <b class="num">482913</b>. <a href="?c=closed">See a closed registration</a> · <a href="index.html">Screen map</a></p>
+      <p class="demo synthetic">Sample data. In this demo the emailed password is <b class="num">482913</b>; noura@example.com already has an account. <a href="?c=closed">See a closed registration</a> · <a href="index.html">Screen map</a></p>
     </div>
 
     <div class="how">
@@ -120,8 +120,19 @@ email.addEventListener('input',()=>err(email,''));pw.addEventListener('input',()
 $('#f1').addEventListener('submit',e=>{e.preventDefault();const v=email.value.trim();
   if(!v){err(email,'Enter your email. Your password is sent to it.');email.focus();return}
   if(!/^\S+@\S+\.\S+$/.test(v)){err(email,'The email is incomplete. Example: name@example.com');email.focus();return}
-  $('#sentto').textContent=v;$('#f1').hidden=true;$('#f2').hidden=false;$('#h2').focus();ttToast('Password sent to your email')});
-$('#f2').addEventListener('submit',e=>{e.preventDefault();const v=pw.value.replace(/\D/g,'');
+  known=v.toLowerCase()==='noura@example.com';
+  // an email that already has an account gets no new password: the person proves it is theirs with the current one
+  $('#st2').textContent=known?'You already have an account':'Check your email';
+  $('#h2').textContent=known?'Enter your password':'Enter the password we emailed you';
+  $('#sub2').innerHTML=known?'<b>'+v.replace(/[&<>"]/g,'')+'</b> already has an account. Enter your current password and this course is added to it. No new password is sent.'
+    :'We sent a 6-digit password to <b>'+v.replace(/[&<>"]/g,'')+'</b>. It can take a minute to arrive; check your junk folder too.';
+  $('#pw').removeAttribute('maxlength');$('#pw').setAttribute('inputmode',known?'text':'numeric');$('#pw').type=known?'password':'text';
+  $('#resend').hidden=known;$('#forgot').hidden=!known;
+  $('#f1').hidden=true;$('#f2').hidden=false;$('#h2').focus();if(!known)ttToast('Password sent to your email')});
+let known=false;
+$('#f2').addEventListener('submit',e=>{e.preventDefault();
+  if(known){if(!pw.value){err(pw,'Enter your current password.');pw.focus();return}location.href='05-my-cohorts.html';return}
+  const v=pw.value.replace(/\D/g,'');
   if(v.length<6){err(pw,'Enter the 6 digits from the email.');pw.focus();return}
   if(v!=='482913'){err(pw,'That password is not correct. Check the email, or ask us to send it again.');pw.select();return}
   location.href='05-my-cohorts.html'});
