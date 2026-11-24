@@ -55,6 +55,7 @@
     <div class="sheet">
       <header class="top">
         <div><h1>Programs</h1><div class="crumb" id="crumb"></div></div>
+        <a class="btn sec" href="21-admin-new.html">New course, seminar or lecture</a>
       </header>
 
       <section id="p-prog">
@@ -122,7 +123,7 @@ function progs(){
       <td class="x">${FMT[p.fmt]}</td><td class="x">${LANG[p.lang]}</td>
       <td>${stamp(p.st,p.id)}</td>
       <td class="x num">${p.n}</td>
-      <td><div class="acts">${dr?'':`<a class="rowlink" href="16-admin-course.html?course=${p.id}" aria-label="Course content: ${nm}">Course content</a>`}${dr?`<button class="btn sm" type="button" data-cta="WF-CTA-002" data-pub="${p.id}" aria-label="Publish: ${nm}">Publish</button>`:''}</div></td></tr>${det}`}).join('');
+      <td><div class="acts">${dr?'':`<a class="rowlink" href="21-admin-new.html?p=${p.id}" aria-label="Registration QR code: ${nm}">QR code</a>`}${dr?'':`<a class="rowlink" href="16-admin-course.html?course=${p.id}" aria-label="Course content: ${nm}">Course content</a>`}${dr?`<button class="btn sm" type="button" data-cta="WF-CTA-002" data-pub="${p.id}" aria-label="Publish: ${nm}">Publish</button>`:''}</div></td></tr>${det}`}).join('');
   const none=!list.length,pub=P.filter(p=>p.st==='published').length,dr=P.length-pub;
   $('w-prog').hidden=none;$('e-prog').hidden=!none;
   if(none){$('eh-prog').textContent=fP==='draft'?'No draft programs':'No published programs';$('ep-prog').textContent=fP==='draft'?'All your programs are published and visible on the site.':'No program has been published yet.'}

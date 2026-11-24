@@ -68,7 +68,7 @@ td{padding:11px 6px;border-top:1px solid var(--line);vertical-align:middle}
 <div class="wrap">
   <nav class="top" aria-label="Main">
     <a href="01-home.html"><img src="assets/logo-white.png" alt="Think Tank Strategists"></a>
-    <ul><li><a href="01-home.html" aria-current="page">Programs</a></li><li class="keep"><a href="17-login.html">Sign in</a></li><li class="keep"><a class="btn" href="03-register.html">Register</a></li></ul>
+    <ul><li><a href="01-home.html" aria-current="page">Programs</a></li><li class="keep"><a href="17-login.html">Sign in</a></li></ul>
   </nav>
 
   <section class="hero">
@@ -79,7 +79,7 @@ td{padding:11px 6px;border-top:1px solid var(--line);vertical-align:middle}
         <div class="k" id="kind"></div>
         <h2 id="title"></h2>
         <dl><dt>Starts</dt><dd id="dates"></dd><dt>Seats</dt><dd id="seats"></dd></dl>
-        <a class="btn" href="03-register.html" id="cta">Register</a>
+        <a class="btn" href="02-program.html" id="cta">View program</a>
       </article>
     </div>
     <div class="field" id="field">
@@ -118,9 +118,9 @@ td{padding:11px 6px;border-top:1px solid var(--line);vertical-align:middle}
 <footer style="border-top:1px solid var(--line);padding-block:26px;font-size:13px;color:var(--mut)"><div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap"><span>Think Tank Strategists · Kuwait · Sunday to Thursday, 9:00–17:00</span><span><a href="17-login.html">Sign in to your portal</a> · <a href="index.html">Screen map</a> · <a href="deck.html">Presentation</a></span></div></footer>
 <script>try{sessionStorage.setItem("tt-design","markline")}catch(e){}</script>
 <script>
-const C=[{kind:'Public workshop · Arabic',title:'Foresight & Futures Thinking',dates:'14 December 2026, 3 mornings',seats:'4 of 20 left',cta:'Register',cap:20,taken:16},
- {kind:'Public workshop · English',title:'Executive Strategy Workshops',dates:'8 January 2027, 2 days',seats:'Full, waitlist open',cta:'Join the waitlist',cap:20,taken:20},
- {kind:'Track · Arabic',title:'Leadership & Capability Building',dates:'2 February 2027, 5 sessions',seats:'11 of 24 left',cta:'Register',cap:24,taken:13}];
+const C=[{kind:'Public workshop · Arabic',title:'Foresight & Futures Thinking',dates:'14 December 2026, 3 mornings',seats:'4 of 20 left',cta:'View program',cap:20,taken:16},
+ {kind:'Public workshop · English',title:'Executive Strategy Workshops',dates:'8 January 2027, 2 days',seats:'Full, waitlist open',cta:'View program',cap:20,taken:20},
+ {kind:'Track · Arabic',title:'Leadership & Capability Building',dates:'2 February 2027, 5 sessions',seats:'11 of 24 left',cta:'View program',cap:24,taken:13}];
 const $=id=>document.getElementById(id),cv=$('cv'),g=cv.getContext('2d'),W=1040,H=880,rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 let sel=0,mode='mark';
 function pick(k){sel=k;document.querySelectorAll('.cols button').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.k===k));const c=C[k];for(const f of ['kind','title','dates','seats'])$(f).textContent=c[f];$('cta').textContent=c.cta}

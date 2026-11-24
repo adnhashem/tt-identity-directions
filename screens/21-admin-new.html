@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>New course — Think Tank trainer portal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
+<style>
+[tabindex="-1"]:focus{outline:0}
+.lead{max-width:64ch;font-size:var(--fs-14);color:var(--ink-2);margin:0}
+.tail{margin-top:var(--s-48)}
+.back{display:inline-flex;align-items:center;min-height:44px;font-size:var(--fs-14);color:var(--ribbon)}
+.field .msg{font-weight:600}
+.field select{min-height:48px}
+.fs{border:0;margin:0;padding:0;min-width:0}
+.fs legend{font-size:var(--fs-13);font-weight:500;color:var(--ink-2);padding:0;margin-bottom:var(--s-8)}
+.opts{display:flex;flex-wrap:wrap;gap:var(--s-8)}
+.opt{display:inline-flex;align-items:center;gap:var(--s-8);min-height:44px;padding:0 var(--s-16);border:1px solid var(--line-strong);border-radius:999px;font-size:var(--fs-14);cursor:pointer}
+.opt:has(input:checked){border-color:var(--ribbon);box-shadow:inset 0 0 0 1px var(--ribbon)}
+.opt input{accent-color:var(--accent-hi);width:18px;height:18px;margin:0}
+.form{display:grid;gap:var(--s-24);max-width:760px}
+.grid-3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--s-16)}
+.actions{display:flex;gap:var(--s-12);align-items:center;flex-wrap:wrap}
+#errsum{margin:0}
+/* QR block */
+.qrwrap{display:grid;grid-template-columns:minmax(200px,300px) minmax(0,1fr);gap:var(--s-32);align-items:start;margin-top:var(--s-16)}
+/* the code itself stays black on white with a quiet zone in every design, so it scans from a screen and from paper */
+.qrbox{width:100%;aspect-ratio:1;background:#fff;border-radius:12px;padding:var(--s-12);box-shadow:0 0 0 1px var(--card-edge)}
+.qrbox svg{display:block;width:100%;height:100%}
+.qrnone{width:100%;aspect-ratio:1;display:grid;place-items:center;text-align:center;padding:var(--s-24);border:1px dashed var(--line-strong);border-radius:12px;color:var(--ink-2);font-size:var(--fs-14)}
+.qrinfo{display:grid;gap:var(--s-16);min-width:0}
+.qrinfo h3{margin:0;font-size:var(--fs-22)}
+.meta{display:grid;gap:2px;margin:0;font-size:var(--fs-14);color:var(--ink-2)}
+.meta p{margin:0}
+.meta b{color:var(--ink);font-weight:500}
+.link{margin:0;font-size:var(--fs-13);color:var(--ink-2)}
+.link code{display:block;margin-top:var(--s-4);font-size:var(--fs-14);color:var(--ink);overflow-wrap:anywhere}
+.confirmrow{display:grid;gap:var(--s-12)}
+.confirmrow .notice{margin:0}
+.sw{display:flex;justify-content:space-between;align-items:center;gap:var(--s-16);min-height:56px;padding:var(--s-8) 0;border-block:1px solid var(--card-edge);cursor:pointer}
+.sw>span{display:grid;gap:2px;font-size:var(--fs-14)}
+.sw .stamp{margin-inline-start:var(--s-8)}
+.sw small{font-size:var(--fs-13);color:var(--ink-2)}
+.sw input{appearance:none;-webkit-appearance:none;flex:none;width:48px;height:28px;margin:0;border-radius:999px;background:var(--field);border:1px solid var(--line-strong);position:relative;cursor:pointer;transition:background .2s,border-color .2s}
+.sw input::before{content:"";position:absolute;top:3px;inset-inline-start:3px;width:20px;height:20px;border-radius:50%;background:var(--cream-2);transition:inset-inline-start .2s var(--ease),background .2s}
+.sw input:checked{background:var(--accent);border-color:var(--accent-hi)}
+.sw input:checked::before{inset-inline-start:23px;background:var(--on-accent)}
+.sw input:focus-visible{outline:2px solid var(--ribbon);outline-offset:3px}
+.notice+#h-qr{margin-top:var(--s-24)}
+.how{margin:var(--s-16) 0 0;padding-inline-start:var(--s-24);font-size:var(--fs-14);color:var(--ink-2);max-width:64ch}
+.how li+li{margin-top:var(--s-4)}
+.regs{display:flex;justify-content:space-between;align-items:center;gap:var(--s-12);flex-wrap:wrap;margin-bottom:var(--s-12)}
+.regs h2{margin:0}
+.regs p{margin:0;font-size:var(--fs-14);color:var(--ink-2)}
+.t td.num{white-space:nowrap}
+#poster{display:none}
+@media (max-width:900px){
+  .shell{grid-template-columns:minmax(0,1fr)}
+  .qrwrap{grid-template-columns:minmax(0,1fr);gap:var(--s-24)}
+  .qrbox,.qrnone{max-width:300px;min-width:200px}
+  .grid-3{grid-template-columns:minmax(0,1fr)}
+}
+@media (prefers-reduced-motion:reduce){.sw input,.sw input::before{transition:none}}
+/* print: only the A4 poster */
+@page{size:A4;margin:16mm}
+@media print{
+  body{background:#fff!important}
+  body>*:not(#poster){display:none!important}
+  #poster{display:flex!important;flex-direction:column;align-items:center;text-align:center;gap:8mm;color:#000;background:#fff;font-family:var(--font-body)}
+  #poster img{height:22mm;width:auto}
+  #poster h1{font-family:var(--font-head);font-size:30pt;line-height:1.15;margin:4mm 0 0;color:#000}
+  #poster .pd{font-size:15pt;margin:0;color:#000}
+  #poster .pq{width:120mm;height:120mm;padding:6mm;background:#fff}
+  #poster .pq svg{width:100%;height:100%}
+  #poster .ps{font-family:var(--font-head);font-size:20pt;font-weight:600;margin:0;color:#000}
+  #poster .pl{font-size:10pt;margin:0;color:#333;overflow-wrap:anywhere}
+}
+</style>
+</head>
+<body class="desk">
+<div class="shell">
+  <nav class="side" aria-label="Trainer portal">
+    <div class="brand"><img src="assets/logo-white.png" alt="Think Tank Strategists"><span>Trainer portal</span></div>
+    <a href="25-admin-programs.html" aria-current="page">Programs</a>
+    <a href="16-admin-course.html">Course content</a>
+    <a href="20-admin-profile.html" class="m-only">My profile</a>
+    <div class="foot"><a href="20-admin-profile.html" class="me">Dr. Manal Al-Hasawi</a><br><a href="index.html">Screen map</a><br><a href="17-login.html">Sign out</a></div>
+  </nav>
+
+  <main class="work">
+    <div class="sheet">
+      <a class="back" href="25-admin-programs.html">Back to programs</a>
+      <header class="top">
+        <div><h1 id="h1" tabindex="-1">New course, seminar or lecture</h1><div class="crumb"><a href="25-admin-programs.html">Programs</a> › <span id="crumbtail">New</span></div></div>
+      </header>
+
+      <!-- create form -->
+      <section id="s-form" aria-labelledby="h-form">
+        <h2 id="h-form" class="vh">Details</h2>
+        <p class="lead">Students register at the venue by scanning a QR code. Create the item here, then generate its code and print the poster.</p>
+        <form class="form" id="form" novalidate style="margin-top:var(--s-24)">
+          <div class="notice err" id="errsum" role="alert" tabindex="-1" hidden></div>
+          <fieldset class="fs">
+            <legend>Type</legend>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="type" value="course" checked> Course</label>
+              <label class="opt"><input type="radio" name="type" value="seminar"> Seminar</label>
+              <label class="opt"><input type="radio" name="type" value="lecture"> Lecture</label>
+            </div>
+          </fieldset>
+          <div class="grid-2">
+            <div class="field" data-f="en"><label for="f-en">Title (English)</label>
+              <input id="f-en" autocomplete="off" aria-describedby="m-en"><span class="msg" id="m-en" hidden></span></div>
+            <div class="field" data-f="ar"><label for="f-ar">Title (Arabic)</label>
+              <input id="f-ar" lang="ar" dir="rtl" autocomplete="off" aria-describedby="m-ar"><span class="msg" id="m-ar" hidden></span></div>
+          </div>
+          <div class="field" data-f="prog"><label for="f-prog" id="l-prog">Linked program</label>
+            <select id="f-prog" aria-describedby="h-prog m-prog">
+              <option value="">Choose a program</option>
+              <option value="foresight">Foresight &amp; Futures Thinking</option>
+              <option value="strategy">Executive Strategy Workshops</option>
+              <option value="leaders">Leadership &amp; Capability Building</option>
+              <option value="none">None</option>
+            </select>
+            <span class="hint" id="h-prog">A course belongs to a program. For a seminar or lecture this is optional.</span>
+            <span class="msg" id="m-prog" hidden></span></div>
+
+          <div class="grid-3" id="d-course">
+            <div class="field" data-f="start"><label for="f-start">Start date</label>
+              <input id="f-start" type="date" aria-describedby="m-start"><span class="msg" id="m-start" hidden></span></div>
+            <div class="field" data-f="end"><label for="f-end">End date</label>
+              <input id="f-end" type="date" aria-describedby="m-end"><span class="msg" id="m-end" hidden></span></div>
+            <div class="field" data-f="n"><label for="f-n">Number of sessions</label>
+              <input id="f-n" type="number" inputmode="numeric" min="1" max="30" aria-describedby="m-n"><span class="msg" id="m-n" hidden></span></div>
+          </div>
+          <div class="grid-2" id="d-one" hidden>
+            <div class="field" data-f="date"><label for="f-date">Date</label>
+              <input id="f-date" type="date" aria-describedby="m-date"><span class="msg" id="m-date" hidden></span></div>
+            <div class="field" data-f="time"><label for="f-time">Start time</label>
+              <input id="f-time" type="time" aria-describedby="m-time"><span class="msg" id="m-time" hidden></span></div>
+          </div>
+
+          <div class="field" data-f="venue"><label for="f-venue">Venue</label>
+            <input id="f-venue" value="Think Tank hall, Kuwait City" aria-describedby="m-venue"><span class="msg" id="m-venue" hidden></span></div>
+          <div class="grid-2">
+            <fieldset class="fs">
+              <legend>Delivery language</legend>
+              <div class="opts">
+                <label class="opt"><input type="radio" name="lang" value="Arabic" checked> Arabic</label>
+                <label class="opt"><input type="radio" name="lang" value="English"> English</label>
+              </div>
+            </fieldset>
+            <div class="field" data-f="cap"><label for="f-cap">Capacity (optional)</label>
+              <input id="f-cap" type="number" inputmode="numeric" min="1" aria-describedby="h-cap m-cap">
+              <span class="hint" id="h-cap">Leave empty for no limit. Scanning closes on its own when it is full.</span>
+              <span class="msg" id="m-cap" hidden></span></div>
+          </div>
+          <div class="actions"><button class="btn" type="submit" id="create">Create</button></div>
+        </form>
+      </section>
+
+      <!-- after create: the registration QR code -->
+      <section id="s-qr" aria-labelledby="h-qr" hidden>
+        <div class="notice" id="made" role="status" tabindex="-1" hidden></div>
+        <h2 id="h-qr">Registration QR code</h2>
+        <p class="lead">One code for the whole <span id="kindword">course</span>, used at every session.</p>
+        <div class="qrwrap">
+          <div id="qrslot"></div>
+          <div class="qrinfo">
+            <div>
+              <h3 id="ev-title"></h3>
+              <div class="meta" id="ev-meta"></div>
+            </div>
+            <p class="link" id="linkline" hidden>Registration link<code id="ev-link"></code><a class="link" id="ev-try" href="03-join.html">Open what the student sees</a></p>
+            <div class="actions" id="acts"></div>
+            <div class="confirmrow" id="replace" hidden>
+              <div class="notice"><div><b>Replace the code?</b> The old code and any printed poster stop working at once. Students who already registered keep their access.</div></div>
+              <div class="actions"><button class="btn sec sm" type="button" id="rep-yes">Replace code</button><button class="btn quiet sm" type="button" id="rep-no">Keep this code</button></div>
+            </div>
+            <label class="sw" id="swrow" hidden>
+              <span><b id="swword">Registration open</b><small id="swhint">Students who scan the code can register.</small></span>
+              <input type="checkbox" role="switch" id="sw" checked>
+            </label>
+          </div>
+        </div>
+        <ol class="how">
+          <li>Show the poster at the venue, on the screen or printed.</li>
+          <li>The student scans the code and enters their email.</li>
+          <li>A password arrives by email and opens their student portal.</li>
+        </ol>
+      </section>
+
+      <section id="s-regs" aria-labelledby="h-regs" hidden>
+        <div class="regs">
+          <h2 id="h-regs">Registered by QR</h2>
+          <p id="regcount" role="status"></p>
+        </div>
+        <div class="scroll-x" id="regwrap">
+          <table class="t">
+            <thead><tr><th>Student</th><th>Scanned</th></tr></thead>
+            <tbody id="regrows"></tbody>
+          </table>
+        </div>
+        <div class="empty" id="regnone" hidden>
+          <h3>No one has registered yet</h3>
+          <p>Students appear here as they scan the code at the venue.</p>
+        </div>
+      </section>
+
+      <p class="synthetic tail">Names, dates and figures are sample data. <a href="index.html">Screen map</a></p>
+    </div>
+  </main>
+</div>
+
+<!-- A4 poster, shown only when printing -->
+<div id="poster" aria-hidden="true">
+  <img src="assets/logo-dark.png" alt="">
+  <h1 id="p-title"></h1>
+  <p class="pd" id="p-date"></p>
+  <p class="pd" id="p-venue"></p>
+  <div class="pq" id="p-qr"></div>
+  <p class="ps">Scan to register and open your course</p>
+  <p class="pl" id="p-link"></p>
+</div>
+
+<script src="assets/qrcode.min.js"></script>
+<script src="tt.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const BASE='https://adnhashem.github.io/tt-identity-directions/screens/03-join.html?c=';
+const KIND={course:'course',seminar:'seminar',lecture:'lecture'};
+const PROG={foresight:'Foresight & Futures Thinking',strategy:'Executive Strategy Workshops',leaders:'Leadership & Capability Building',none:''};
+const MON=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+// existing items open straight at the QR, already generated
+const ROSTER=['Noura Al-Sabah','Fahad Al-Shammari','Hannah Clarke','Sarah Al-Enezi','Yousef Al-Rashidi','Abdulaziz Al-Mutairi','Dalal Al-Khaled','Mishari Al-Ajmi','Khalid Al-Fahad','Reem Al-Otaibi','Bader Al-Kandari','Lulwa Al-Hajeri','Omar Al-Saleh','Maryam Al-Dosari','Faisal Al-Azmi','Jana Al-Bader'];
+const SCANS=['08:40','08:41','08:42','08:44','08:45','08:46','08:48','08:49','08:51','08:52','08:54','08:56','08:58','09:00','09:03','09:05'];
+const ITEMS={
+ foresight:{type:'course',en:'Foresight & Futures Thinking',prog:'foresight',start:'2026-12-14',end:'2026-12-16',n:3,venue:'Think Tank hall, Kuwait City',lang:'Arabic',cap:'',code:'fft-1412',
+   regs:ROSTER.map((name,i)=>({name,at:'14 Dec, '+SCANS[i]}))},
+ strategy:{type:'course',en:'Executive Strategy Workshops',prog:'strategy',start:'2027-01-08',end:'2027-01-09',n:2,venue:'Think Tank hall, Kuwait City',lang:'English',cap:'24',code:'esw-0801',regs:[]},
+ leaders:{type:'course',en:'Leadership & Capability Building',prog:'leaders',start:'2027-02-02',end:'2027-03-02',n:5,venue:'Think Tank hall, Kuwait City',lang:'Arabic',cap:'',code:'lcb-0202',regs:[]}};
+
+let E=null,made=false,generated=false,open=true;
+
+const dObj=s=>{const [y,m,d]=s.split('-').map(Number);return {y,m,d}};
+function when(e){
+  if(e.type==='course'){const a=dObj(e.start),b=dObj(e.end);
+    const span=a.y===b.y&&a.m===b.m?(a.d===b.d?`${a.d} ${MON[a.m-1]} ${a.y}`:`${a.d}–${b.d} ${MON[a.m-1]} ${a.y}`)
+      :a.y===b.y?`${a.d} ${MON[a.m-1]} – ${b.d} ${MON[b.m-1]} ${a.y}`:`${a.d} ${MON[a.m-1]} ${a.y} – ${b.d} ${MON[b.m-1]} ${b.y}`;
+    return `${span} · ${e.n} ${+e.n===1?'session':'sessions'}`}
+  const a=dObj(e.date),[h,mi]=e.time.split(':');return `${a.d} ${MON[a.m-1]} ${a.y} · ${+h}:${mi}`;
+}
+function slug(e){
+  const stop=/^(and|of|the|for|a|an|in|on|to)$/i;
+  let ini=e.en.replace(/&/g,' ').split(/[^A-Za-z0-9]+/).filter(w=>w&&!stop.test(w)).map(w=>w[0].toLowerCase()).join('').slice(0,4)||'tt';
+  const d=dObj(e.type==='course'?e.start:e.date);
+  return `${ini}-${String(d.d).padStart(2,'0')}${String(d.m).padStart(2,'0')}`;
+}
+const url=()=>BASE+E.code;
+function svg(){const q=qrcode(0,'M');q.addData(url());q.make();return q.createSvgTag({cellSize:6,margin:2,scalable:true})}
+
+// ---- form ----
+const typeNow=()=>document.querySelector('input[name=type]:checked').value;
+function syncType(){
+  const t=typeNow(),c=t==='course';
+  $('d-course').hidden=!c;$('d-one').hidden=c;
+  $('l-prog').textContent=c?'Linked program':'Linked program (optional)';
+  $('f-prog').options[0].textContent=c?'Choose a program':'Choose a program, or None';
+  $('create').textContent='Create';
+  clearBad();
+}
+document.querySelectorAll('input[name=type]').forEach(r=>r.addEventListener('change',syncType));
+function clearBad(){document.querySelectorAll('.field.bad').forEach(f=>{f.classList.remove('bad');f.querySelector('.msg').hidden=true});$('errsum').hidden=true}
+function bad(k,text,errs){const f=document.querySelector(`[data-f="${k}"]`),m=f.querySelector('.msg');m.textContent=text;m.hidden=false;f.classList.add('bad');errs.push(f)}
+document.addEventListener('input',e=>{const f=e.target.closest('.field.bad');if(f){f.classList.remove('bad');f.querySelector('.msg').hidden=true}});
+
+$('form').addEventListener('submit',ev=>{
+  ev.preventDefault();clearBad();
+  const t=typeNow(),errs=[],v=id=>$(id).value.trim(),word=KIND[t];
+  if(!v('f-en'))bad('en','Enter the English title.',errs);
+  if(!v('f-ar'))bad('ar','Enter the Arabic title. The site shows every title in English and Arabic.',errs);
+  if(t==='course'&&(!v('f-prog')||v('f-prog')==='none'))bad('prog','Choose the program this course belongs to.',errs);
+  if(t==='course'){
+    if(!v('f-start'))bad('start','Choose the first day.',errs);
+    if(!v('f-end'))bad('end','Choose the last day.',errs);
+    else if(v('f-start')&&v('f-end')<v('f-start'))bad('end','The last day cannot be before the first day.',errs);
+    const n=v('f-n');if(!n)bad('n','Enter how many sessions the course has.',errs);
+    else if(!/^\d+$/.test(n)||+n<1||+n>30)bad('n','Enter a whole number from 1 to 30.',errs);
+  }else{
+    if(!v('f-date'))bad('date',`Choose the day of the ${word}.`,errs);
+    if(!v('f-time'))bad('time','Enter the start time.',errs);
+  }
+  if(!v('f-venue'))bad('venue','Enter where it takes place. The poster shows it.',errs);
+  const cap=v('f-cap');if(cap&&(!/^\d+$/.test(cap)||+cap<1))bad('cap','Enter a whole number of seats, or leave it empty.',errs);
+  if(errs.length){
+    const s=$('errsum');s.innerHTML=`<div><b>The ${word} was not created.</b> ${errs.length===1?'One field needs':`${errs.length} fields need`} attention below.</div>`;s.hidden=false;
+    errs[0].querySelector('input,select').focus();return;
+  }
+  E={type:t,en:v('f-en'),prog:v('f-prog')||'none',start:v('f-start'),end:v('f-end'),n:v('f-n'),date:v('f-date'),time:v('f-time'),
+     venue:v('f-venue'),lang:document.querySelector('input[name=lang]:checked').value,cap,regs:[]};
+  E.code=slug(E);made=true;generated=false;open=true;
+  showQR();
+  const m=$('made');m.innerHTML=`<div><b>${esc(E.en)} is created.</b> Generate its registration QR code next.</div>`;m.hidden=false;m.focus();
+  ttToast(`${word[0].toUpperCase()+word.slice(1)} created`);
+});
+
+// ---- QR step ----
+function showQR(){
+  $('s-form').hidden=true;$('s-qr').hidden=false;
+  $('h1').textContent=made?`New ${KIND[E.type]}`:'Registration QR code';
+  $('crumbtail').textContent=made?'New':'Registration QR code';
+  document.title=`${made?'New '+KIND[E.type]:'Registration QR code'} — Think Tank trainer portal`;
+  $('kindword').textContent=KIND[E.type];
+  $('h-qr').className=made?'':'vh';
+  $('ev-title').textContent=E.en;
+  const p=PROG[E.prog];
+  $('ev-meta').innerHTML=`<p><b>${when(E)}</b></p><p>${esc(E.venue)}</p><p>${KIND[E.type][0].toUpperCase()+KIND[E.type].slice(1)} in ${E.lang}${p?' · '+esc(p):''}${E.cap?` · ${E.cap} seats`:''}</p>`;
+  drawQR();regs();
+}
+function drawQR(){
+  const slot=$('qrslot'),acts=$('acts');
+  $('linkline').hidden=$('swrow').hidden=!generated;$('replace').hidden=true;
+  if(!generated){
+    slot.innerHTML=`<div class="qrnone">No QR code yet. Generate it to get the poster and the link.</div>`;
+    acts.innerHTML=`<button class="btn" type="button" id="gen">Generate QR code</button>`;return;
+  }
+  slot.innerHTML=`<div class="qrbox" role="img" aria-label="QR code for ${esc(E.en)}, code ${E.code}">${svg()}</div>`;
+  slot.querySelector('svg').setAttribute('aria-hidden','true');
+  $('ev-link').textContent=url();$('ev-try').href='03-join.html?c='+E.code;
+  acts.innerHTML=`<button class="btn" type="button" id="print">Print poster</button>
+    <button class="btn sec sm" type="button" id="dl">Download QR</button>
+    <button class="btn sec sm" type="button" id="copy">Copy link</button>
+    <button class="rowlink" type="button" id="rep">Replace code</button>`;
+  sw();
+}
+function sw(){
+  $('sw').checked=open;
+  $('swword').innerHTML=`Registration ${open?'open':'closed'} <span class="stamp ${open?'ok':'off'}"><span class="vh">Status: </span>${open?'Open':'Closed'}</span>`;
+  $('swhint').textContent=open?'Students who scan the code can register.':'Scanning the code shows that registration is closed.';
+}
+function regs(){
+  $('s-regs').hidden=false;const r=E.regs,n=r.length;
+  $('regcount').textContent=n?`${n} ${n===1?'student':'students'} registered`:'';
+  $('regwrap').hidden=!n;$('regnone').hidden=!!n;
+  $('regrows').innerHTML=r.map(x=>`<tr><td>${esc(x.name)}</td><td class="num">${x.at}</td></tr>`).join('');
+}
+function poster(){
+  $('p-title').textContent=E.en;$('p-date').textContent=when(E);$('p-venue').textContent=E.venue;
+  $('p-qr').innerHTML=svg();$('p-link').textContent=url();
+}
+function nextCode(c){const m=c.match(/^(.*?)(?:-([b-z]))?$/);const base=m[2]?c.slice(0,-2):c;const s=m[2]?String.fromCharCode(m[2].charCodeAt(0)+1):'b';return `${base}-${s}`}
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('button');if(!t)return;
+  if(t.id==='gen'){generated=true;drawQR();$('print').focus();ttToast('QR code generated')}
+  else if(t.id==='print'){poster();window.print()}
+  else if(t.id==='dl'){
+    const s=svg().replace('<svg ','<svg width="600" height="600" ');
+    const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n'+s],{type:'image/svg+xml'}));
+    a.download=`qr-${E.code}.svg`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+    ttToast(`Downloaded qr-${E.code}.svg`)}
+  else if(t.id==='copy'){const done=()=>ttToast('Link copied');
+    if(navigator.clipboard)navigator.clipboard.writeText(url()).then(done,done);else done()}
+  else if(t.id==='rep'){$('replace').hidden=false;$('rep-yes').focus()}
+  else if(t.id==='rep-no'){$('replace').hidden=true;$('rep').focus()}
+  else if(t.id==='rep-yes'){const old=E.code;E.code=nextCode(E.code);drawQR();$('print').focus();
+    ttToast(`New code ${E.code}. The code ${old} no longer works.`)}
+});
+$('sw').addEventListener('change',e=>{open=e.target.checked;sw();ttToast(open?'Registration is open':'Registration is closed. Scanning now shows that it is closed.')});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('replace').hidden){$('replace').hidden=true;$('rep').focus()}});
+
+// ---- start ----
+const p=new URLSearchParams(location.search).get('p');
+if(ITEMS[p]){E=ITEMS[p];generated=true;showQR()}else syncType();
+</script>
+</body>
+</html>

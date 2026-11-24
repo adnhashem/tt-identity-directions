@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Register for your course — Think Tank Strategists</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tt.css">
+<script src="theme.js"></script>
+<style>
+[hidden]{display:none!important}
+.join{display:grid;justify-items:center;padding:var(--s-48) 0 var(--s-96)}
+.join .sheet{width:min(520px,100%);padding:var(--s-48)}
+.join h1{font-size:var(--fs-28)}
+.join h1:focus{outline:0}
+.ev{display:grid;gap:var(--s-4);padding-bottom:var(--s-24);margin-bottom:var(--s-24);border-bottom:1px solid var(--card-edge)}
+.ev b{font-family:var(--font-head);font-size:var(--fs-18);font-weight:600;line-height:1.4}
+.ev span{font-size:var(--fs-14);color:var(--ink-2)}
+.sub{color:var(--ink-2);font-size:var(--fs-14);max-width:46ch;margin:0}
+.scanned{display:flex;gap:var(--s-8);align-items:center;flex-wrap:wrap;margin-bottom:var(--s-16)}
+.below{margin:var(--s-16) 0 0;font-size:var(--fs-13);color:var(--ink-2)}
+.textbtn{background:none;border:0;padding:0;font:inherit;font-weight:600;color:var(--ribbon);cursor:pointer;text-decoration:underline;min-height:44px}
+#pw{letter-spacing:.3em;font-variant-numeric:tabular-nums}
+.demo{margin-top:var(--s-24);font-size:var(--fs-13);color:var(--ink-2)}
+.how{width:min(520px,100%);margin-top:var(--s-32);font-size:var(--fs-14);color:var(--cream-2)}
+.how ol{margin:var(--s-8) 0 0;padding-inline-start:var(--s-24);display:grid;gap:var(--s-4)}
+@media (max-width:900px){.join{padding-top:var(--s-24)}.join .sheet{padding:var(--s-32) var(--s-24)}}
+</style>
+</head>
+<body class="table">
+<div class="wrap">
+  <nav class="nav" aria-label="Main">
+    <a href="01-home.html"><img src="assets/logo-white.png" alt="Think Tank Strategists"></a>
+    <ul>
+      <li><a href="01-home.html" aria-current="page">Programs</a></li>
+      <li class="keep"><a href="17-login.html">Sign in</a></li>
+    </ul>
+  </nav>
+
+  <main class="join">
+    <div class="sheet">
+      <div class="ev" id="ev"><b id="evt"></b><span id="evd"></span></div>
+
+      <!-- step 1: email -->
+      <form class="stack" id="f1" novalidate>
+        <div class="scanned"><span class="stamp ok">Code scanned</span></div>
+        <h1>Register with your email</h1>
+        <p class="sub">Enter your email and we send you a password. You use it to open your course now and to sign in later.</p>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com" aria-describedby="email-m">
+          <span class="msg" id="email-m" hidden></span>
+        </div>
+        <button class="btn wide" data-cta="WF-CTA-006">Send my password</button>
+        <p class="below">No account is needed beforehand. If you already have one, use the same email and the course is added to it.</p>
+      </form>
+
+      <!-- step 2: password from the email -->
+      <form class="stack" id="f2" novalidate hidden>
+        <div class="scanned"><span class="stamp you press">Check your email</span></div>
+        <h1 id="h2" tabindex="-1">Enter the password we emailed you</h1>
+        <p class="sub">We sent a 6-digit password to <b id="sentto"></b>. It can take a minute to arrive; check your junk folder too.</p>
+        <div class="field">
+          <label for="pw">Password</label>
+          <input id="pw" inputmode="numeric" autocomplete="one-time-code" maxlength="6" aria-describedby="pw-m">
+          <span class="msg" id="pw-m" role="alert" hidden></span>
+        </div>
+        <button class="btn wide" data-cta="WF-CTA-016">Open my course</button>
+        <p class="below"><button type="button" class="textbtn" id="resend">Send the password again</button> · <button type="button" class="textbtn" id="back">Use another email</button></p>
+      </form>
+
+      <!-- closed or unknown code -->
+      <div class="stack" id="closed" hidden>
+        <div class="scanned"><span class="stamp off" id="cst"></span></div>
+        <h1 id="ch"></h1>
+        <p class="sub" id="cp"></p>
+        <p><a class="btn sec" href="17-login.html">Sign in</a></p>
+      </div>
+
+      <p class="demo synthetic">Sample data. In this demo the emailed password is <b class="num">482913</b>. <a href="?c=closed">See a closed registration</a> · <a href="index.html">Screen map</a></p>
+    </div>
+
+    <div class="how">
+      How registration works
+      <ol>
+        <li>Dr. Manal shows the course QR code at the venue.</li>
+        <li>You scan it with your phone and enter your email.</li>
+        <li>A password arrives by email and opens your student portal.</li>
+      </ol>
+    </div>
+  </main>
+</div>
+<footer class="sitefoot"><div class="wrap spread"><span>Think Tank Strategists · Kuwait · Sunday to Thursday, 9:00–17:00</span><span class="row"><a href="17-login.html">Sign in</a><a href="index.html">Screen map</a><a href="deck.html">Presentation</a></span></div></footer>
+
+<script src="tt.js"></script>
+<script>
+const $=s=>document.querySelector(s);
+// each QR code carries a short code that names one course, seminar or lecture
+const EV={
+ 'fft-1412':{t:'Foresight & Futures Thinking',d:'Course · 14–16 December 2026 · Think Tank hall, Kuwait City'},
+ 'esw-0801':{t:'Executive Strategy Workshops',d:'Course · 8–9 January 2027 · Think Tank hall, Kuwait City'},
+ 'lcb-0202':{t:'Leadership & Capability Building',d:'Course · from 2 February 2027 · Think Tank hall, Kuwait City'},
+ 'closed':{t:'Foresight & Futures Thinking',d:'Course · 14–16 December 2026 · Think Tank hall, Kuwait City',closed:true}};
+const code=(new URLSearchParams(location.search).get('c')||'fft-1412').toLowerCase().replace(/-b$/,'');
+const ev=EV[code]||(code.length>3?{t:'Your course',d:'Registered by QR code at the venue'}:null);
+if(!ev||ev.closed){
+  $('#f1').hidden=true;$('#closed').hidden=false;
+  if(!ev){$('#ev').hidden=true;$('#cst').textContent='Code not recognized';$('#ch').textContent='This QR code is not active';
+    $('#cp').textContent='The code may have been replaced. Ask the trainer for the current code at the venue, or sign in if you already have an account.'}
+  else{$('#cst').textContent='Registration closed';$('#ch').textContent='Registration for this course is closed';
+    $('#cp').textContent='The trainer has closed registration by QR code. If you are already registered, sign in with your email and password.'}
+}
+if(ev){$('#evt').textContent=ev.t;$('#evd').textContent=ev.d;document.title=`Register for ${ev.t} — Think Tank Strategists`}
+
+const email=$('#email'),pw=$('#pw');
+const err=(i,t)=>{const m=$('#'+i.id+'-m');m.textContent=t;m.hidden=!t;i.closest('.field').classList.toggle('bad',!!t);i.setAttribute('aria-invalid',String(!!t))};
+email.addEventListener('input',()=>err(email,''));pw.addEventListener('input',()=>err(pw,''));
+$('#f1').addEventListener('submit',e=>{e.preventDefault();const v=email.value.trim();
+  if(!v){err(email,'Enter your email. Your password is sent to it.');email.focus();return}
+  if(!/^\S+@\S+\.\S+$/.test(v)){err(email,'The email is incomplete. Example: name@example.com');email.focus();return}
+  $('#sentto').textContent=v;$('#f1').hidden=true;$('#f2').hidden=false;$('#h2').focus();ttToast('Password sent to your email')});
+$('#f2').addEventListener('submit',e=>{e.preventDefault();const v=pw.value.replace(/\D/g,'');
+  if(v.length<6){err(pw,'Enter the 6 digits from the email.');pw.focus();return}
+  if(v!=='482913'){err(pw,'That password is not correct. Check the email, or ask us to send it again.');pw.select();return}
+  location.href='05-my-cohorts.html'});
+$('#resend').addEventListener('click',()=>{err(pw,'');pw.value='';pw.focus();ttToast('We sent the password again')});
+$('#back').addEventListener('click',()=>{$('#f2').hidden=true;$('#f1').hidden=false;email.focus()});
+</script>
+</body>
+</html>
